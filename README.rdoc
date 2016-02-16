@@ -51,3 +51,4 @@ You will require a file called `.env` in the root of the folder.  The following 
   LINKEDIN_URL
   MEDIUM_URL
   SIDEKIQ_CONCURRENCY
+  REDIS_URL
