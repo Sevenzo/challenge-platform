@@ -34,7 +34,7 @@ You will require a file called `.env` in the root of the folder.  The following 
   APP_NAME
   APP_EMAIL
   MANDRILL_USERNAME
-  MANDRILL_API_KEY
+  MANDRILL_APIKEY
   AWS_REGION
   AWS_S3_BUCKET
   AWS_ACCESS_KEY_ID
