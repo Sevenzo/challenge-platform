@@ -1,0 +1,72 @@
+<div class='row'>
+  <div class='col-md-10 col-md-offset-1'>
+
+    <div id='experience-<%= @experience.id %>' class="row row-experience">
+      
+      <div class="col-xs-2">
+        <div class='experience-user center-block text-center'>
+          <%= render partial: 'shared/avatar', locals: { user: current_user, avatar_style: "width:3.5em" } %>
+          <% if user_signed_in? %>
+            <div class="user-caption">
+              <p class='user-name'><%= link_to "#{current_user.display_name}", user_path(current_user) %></p>
+              <p class='user-title text-default'><%= current_user.display_organization %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      
+      <div class="col-xs-8">
+        <div class='well well-experience'>
+          <%= form_for(@experience, url: url) do |f| %>
+            <%= f.hidden_field :theme_id %>
+            <%= f.hidden_field :published, value: nil, 'ng-value' => 'published' %>
+            <%= render partial: 'layouts/error_messages', locals: { model: @experience } %>
+
+            <div class='form-group'>
+              <%= f.text_area :description, placeholder: "Please describe your experience as it relates to this theme and we'll share it with this challenge.", class: 'form-control', autofocus: true, rows: 4 %>
+            </div>
+
+            <div class='row'>
+              <div class='col-sm-8'>
+                <div class='input-switch' ng-switch='experience_<%= @experience.id %>_link' ng-init='experience_<%= @experience.id %>_link=<%= @experience.link.present? %>'>
+                  <div ng-hide='experience_<%= @experience.id %>_link' ng-click="experience_<%= @experience.id %>_link=true" class='media'>
+                    <div class='media-left'>
+                      <span class="fa-stack">
+                        <i class="fa fa-stack-2x fa-circle-thin"></i>
+                        <i class="fa fa-stack-1x fa-plus"></i>
+                      </span>
+                    </div>
+                    <div class='media-body'>
+                      <span class='help-text'>Add a link to a video, article, or image</span>
+                    </div>
+                  </div>
+
+                  <div ng-show='experience_<%= @experience.id %>_link'>
+                    <%= f.text_field :link, placeholder: 'Add URL', class: 'form-control' %>
+                    <span class='help-block'>Attach a link and we'll display it alongside your post.</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class='col-sm-4' ng-init="published=<%= @experience.published_at? %>">
+                <div class='row'>
+                  <div class='col-xs-6'>
+                    <%= link_to 'Cancel', cancel_path, data: { confirm: "Are you sure you want to cancel? Any unsaved work will be lost." }, class: 'btn btn-rounded btn-block btn-sm btn-default' %>
+                  </div>
+
+                  <div class='col-xs-6'>
+                    <%= f.submit submit_text, class: 'btn btn-rounded btn-block btn-sm btn-info', 'ng-click' => "published=true" %>
+                  </div>
+                </div>
+
+                <%= f.submit 'Save and finish later', class: 'submit-link pull-right', style: 'margin-top: 0.5em', 'ng-click' => 'published=false', 'ng-hide' => 'published' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      
+    </div>
+
+  </div>
+</div>

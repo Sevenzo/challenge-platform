@@ -1,0 +1,144 @@
+<div id='landing-splash' style="background-image:url('<%= asset_path("landing.png") %>')">
+  <div class='opacity-layer'>
+    <div class='opacity-content'>
+      <div class='container'>
+        <div class='row'>
+          <div class='col-md-10 col-md-offset-1'>
+
+            <h1 class='text-white'>Join <%= ENV.fetch('APP_NAME') %>.<br><small class='text-white'>Inspired Communities, Localized Solutions.</small></h1>
+
+            <div class='row'>
+              <div class='col-md-4'>
+                <% if user_signed_in? %>
+                  <% if @featured %>
+                    <%= link_to "Return to Challenge", challenge_active_stage_path(@featured), class: 'btn btn-lg btn-rounded btn-info half-margin-bottom' %>
+                  <% else %>
+                    <%= link_to "Learn More", about_path, class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom' %>
+                  <% end %>
+                <% else %>
+                  <% if @featured %>
+                    <%= link_to "See Featured Challenge", challenge_path(@featured), class: 'btn btn-lg btn-rounded btn-info half-margin-bottom' %>
+                  <% else %>
+                    <%= link_to "Learn More", about_path, class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom' %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class='col-md-8'>
+                <p class='text-large'><%= ENV.fetch('APP_NAME') %> is a non-profit, early-stage service provider dedicated to increasing the number of promising practices and tools that take root in our classroom and school communities. We exist because there are too few places in our country where promising innovations take hold beyond a few pockets of excellence. <%= link_to "See how we work", '#landing-what', 'du-smooth-scroll' => true, offset: 0, class: 'text-bold text-white text-underline' %>.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id='landing-what'>
+  <div class="container">
+    <div class='row'>
+      <div class='col-md-10 col-md-offset-1'>
+
+        <h2 class="text-center">Why <%= ENV.fetch('APP_NAME') %>?</h2>
+        <div class="row" style='margin-bottom:15px'>
+          <div class='col-sm-10 col-sm-offset-1'>
+            <p class='section-description'>We know that the best ideas for solving problems in education come from educators. <%= ENV.fetch('APP_NAME') %> is an online community of educators like you who will collaborate to solve common challenges by sharing experiences, giving and getting advice, and turning ideas into reality.</p>
+          </div>
+        </div>
+
+        <div id='process-stages'>
+          <h2 class="section-title">Each Challenge will go through four phases:</h2>
+
+          <div class='row row-process'>
+            <% Challenge::STAGES.each_with_index do |stage, index| %>
+              <div class="col-xs-6 col-sm-3" style='margin-bottom:15px'>
+                <span class="fa-stack challenge-fa-bubble text-<%= stage[:name] %>">
+                  <i class="fa fa-stack-2x fa-circle"></i>
+                  <i class="fa fa-stack-1x fa-inverse <%= stage[:icon] %>"></i>
+                </span>
+                <%= content_tag(:i, '', class: 'fa fa-play', style: ('color: transparent' if stage[:name] == 'solution') ) %>
+                <div class='clearfix'></div>
+                <div class="caption">
+                  <h4><%= "#{index+1}. #{stage[:headline]}" %></h4>
+                  <p class='description'><%= stage[:description] %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="landing-suggest">
+  <div class="container">
+    <div class="row">
+      <div class='col-md-10 col-md-offset-1'>
+
+        <h2 class="section-title" style='margin-bottom:10px'>What challenges should we tackle next?</h2>
+        <p class='section-description' style='margin-bottom:20px'>Tell us what challenges affect you most, and vote on additional challenges suggested by others.</p>
+
+        <div class='row row-count'>
+          <div class='col-xs-3'>
+            <ul class='action text-left text-small list-inline'>
+              <!-- <li><a>Popular</a></li>
+              <li><a>Latest</a></li> -->
+            </ul>
+          </div>
+          <div class='col-xs-6'>
+            <h6 class='text-default text-center center-block'>
+              <i class='fa fa-archive fa-3x'></i><br>
+              <span><%= pluralize(@suggestions.count, 'suggestion') %></span>
+            </h6>
+          </div>
+          <div class='col-xs-3'>
+            <p class='action text-right text-small'><%= link_to '+ Add yours', '#new-suggestion', class: 'pull-right', 'ng-click' => "suggestion_draft=true", "du-smooth-scroll" => true unless @suggestions.count.zero? %></p>
+          </div>
+        </div>
+
+        <div ng-switch="suggestions" ng-init="suggestions=show_all">
+          <% @suggestions.first(2).each do |suggestion| %>
+              <%= render file: 'suggestions/card', cache: true, locals: { suggestion: suggestion } %>
+          <% end %>
+
+          <% if @suggestions.count > 2 %>
+            <div ng-show='suggestions'>
+              <% (@suggestions - @suggestions.first(2)).each do |suggestion| %>
+                <%= render file: 'suggestions/card', cache: true, locals: { suggestion: suggestion } %>
+              <% end %>
+            </div>
+          <% end %>
+
+          <%= render partial: 'suggestions/card/new', cache: true %>
+
+          <% if @suggestions.count > 2 %>
+            <p class='center-block text-center'>
+              <%= link_to "Show #{@suggestions.count-2} More Suggestions", '#', "ng-hide" => "suggestions", "ng-click" => "suggestions=true", onclick: 'return false;', class: 'text-bold' %>
+
+              <%= link_to "Show Less", "#landing-suggest", "ng-show" => "suggestions", "ng-click" => "suggestions=false", "du-smooth-scroll" => true, offset: '100', onclick: 'return false;', class: 'text-bold' %>
+            </p>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id='landing-invite'>
+  <div class="container">
+    <div class='row'>
+      <div class='col-md-10 col-md-offset-1'>
+
+        <h2 class="section-title text-submit">Know someone who may want to add to the discussion?</h2>
+        <p class='section-description'>The more the merrier! Share our platform to help us get the best suggestions from educators like you.</p>
+
+        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: ENV.fetch('COMPANY_NAME'), tweet: "#{ENV.fetch('APP_NAME')} is LIVE! Are you an innovative educator? Join us!", title: "Join #{ENV.fetch('APP_NAME')}!", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "Join me on #{ENV.fetch('APP_NAME')}!" } %>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+ <tr style="font-family: 'PT Sans', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+    <td class="content-block" style="font-family: 'PT Sans', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+      <%= @valediction || 'Thanks,' %>
+    </td>
+  </tr>
+
+  <tr style="font-family: 'PT Sans', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+    <td class="content-block" style="font-family: 'PT Sans', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+      <%= yield(:signer).present? ? yield(:signer): "The #{ENV.fetch('COMPANY_NAME')} Team" %>
+      <% if @community_guides %>
+        <br />
+        <%= @community_guides %>
+      <% end %>
+    </td>
+  </tr>
+</table>

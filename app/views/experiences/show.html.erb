@@ -1,0 +1,110 @@
+<%= render partial: 'challenges/header', cache: true %>
+
+<div id='experience-overview'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-10 col-md-offset-1'>
+
+        <%= render partial: 'experiences/header' %>
+
+        <div class='well well-experience'>
+          <span class="label label-experience pull-left"><i class='fa fa-comment'></i> Experience</span>
+          <div class='clearfix'></div>
+
+          <div class='experience-content'>
+            <div class='row row-experience-show'>
+              <div class="col-sm-4">
+
+                <div class="media media-author">
+                  <div class="media-left">
+                    <%= render partial: 'shared/avatar', locals: { user: @experience.user, avatar_style: "width:4.5em"} %>
+                  </div>
+                  <div class="media-body" style='<%= 'padding-left: 0em' if @experience.user.avatar.present? %>'>
+                    <div class='user-caption' style='<%= 'margin-top: 0.5em' if @experience.user.avatar.present? %>'>
+                      <p class='user-name'><%= link_to "#{@experience.user.display_name}", user_path(@experience.user) %></p>
+                      <p class='user-title text-default'><%= @experience.user.display_organization %></p>
+                      <p class='user-link'><%= "#{time_ago_in_words(@experience.created_at)} ago".titleize %></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class='row'>
+                  <div class='col-xs-8'>
+
+                    <% if @experience.published_at? %>
+                      <% if user_signed_in? && @experience.user == current_user %>
+                        <div class="btn-group btn-block" role="group" style='margin-bottom:10px'>
+                          <%= link_to "<i class='fa fa-edit'></i> Edit".html_safe, edit_challenge_experience_stage_theme_experience_path(@challenge, @experience.experience_stage, @experience.theme, @experience), class: 'btn btn-sm btn-rounded btn-warning', style: 'width:50%' %>
+                          <%= link_to "<i class='fa fa-trash'></i> Delete".html_safe, challenge_experience_stage_theme_experience_path(@challenge, @experience.experience_stage, @experience.theme, @experience), method: :delete, data: {confirm: "Are you sure you want to delete your experience?"}, class: 'btn btn-sm btn-rounded btn-danger', style: 'width:50%' %>
+                        </div>
+                      <% end %>
+                      <div id='experience-<%= @experience.id %>-like'>
+                        <%= render partial: 'experiences/like' %>
+                      </div>
+                      <div id='experience-<%= @experience.id %>-discuss' style='margin-bottom:10px'>
+                        <%= link_to "<i class='fa fa-reply'></i> Discuss".html_safe, "#experience-comments", class: 'btn btn-block btn-fa btn-sm btn-rounded btn-info', "du-smooth-scroll" => true %>
+                      </div>
+                      <div id='experience-<%= @experience.id %>-share'>
+                        <%= render partial: 'layouts/share_button', locals: {url: challenge_experience_stage_theme_experience_url(@challenge, @experience.experience_stage, @experience.theme, @experience), title: "The #{@challenge.title} is LIVE! Are you an innovative educator? Join us!", description: @experience.description.html_safe, hashtag: @challenge.hashtag} %>
+                      </div>
+                    <% else %>
+                      <%= render partial: 'shared/draft', locals: { edit_path: edit_challenge_experience_stage_theme_experience_path(@challenge, @experience.experience_stage, @experience.theme, @experience), delete_path: challenge_experience_stage_theme_experience_path(@challenge, @experience.experience_stage, @experience.theme, @experience) } %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <div class='col-sm-8'>
+                <% if @experience.embed.present? %>
+                  <div class='content-block'>
+                    <%= @experience.embed.html_safe %>
+                  </div>
+                <% end %>
+
+                <div class='content-block'>
+                  <p><%= @experience.description.html_safe %></p>
+                </div>
+
+                <% if @experience.link.present? && @experience.embed.blank? %>
+                  <div class='content-block'>
+                    <p class='text-experience text-large text-bold text-uppercase'>Link</p>
+                    <p><%= link_to @experience.link.html_safe, @experience.link, target: '_blank' %></p>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id='experience-comments'>
+  <div class='container'>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+
+        <%= render partial: 'comments/discussion', locals: { commentable: @experience } %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id='experience-share'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-10 col-md-offset-1'>
+
+        <h2 class='section-title text-submit'>Know people who have something to add to this conversation?</h2>
+        <p class='section-description'>More people means more problems solved. Share this challenge!</p>
+
+        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: @challenge.hashtag, tweet: "Take the #{@challenge.title}! If you use video for professional learning, share your experience.", title: "Share Your Experience Using Video", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "Do you use video to learn? Join the #{@challenge.title}!" } %>
+
+      </div>
+    </div>
+  </div>
+</div>
