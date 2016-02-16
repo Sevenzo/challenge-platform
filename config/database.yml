@@ -1,11 +1,11 @@
 development:
   adapter: postgresql
   database: challenge_platform_development
-  username: <%= ENV.fetch('DATABASE_USERNAME') %>
-  host: <%= ENV.fetch('DATABASE_HOST') %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
 
 test:
   adapter: postgresql
   database: challenge_platform_test
-  username: <%= ENV.fetch('DATABASE_USERNAME') %>
-  host: <%= ENV.fetch('DATABASE_HOST') %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
