@@ -59,7 +59,6 @@ gem 'rails_admin'
 gem 'kaminari'
 
 ## MAILERS
-gem 'mandrill-api'
 gem 'mailkick'
 
 ## PERFORMANCE ENHANCEMENTS
