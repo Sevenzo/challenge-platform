@@ -11,15 +11,7 @@ All dependencies should be listed otherwise in the Gemfile.
 
 == Installation
 
-`bundle install`
-
-== Seeding and Recreating the Database
-
-`rake db:recreate`
-
-== Running the Test Suite
-
-`bundle exec rspec`
+  bundle install
 
 == .env configuration
 
@@ -33,12 +25,13 @@ You will require a file called `.env` in the root of the folder.  The following 
   COMPANY_STATE
   APP_NAME
   APP_EMAIL
-  MANDRILL_USERNAME
-  MANDRILL_APIKEY
-  AWS_REGION
+  ADMIN_EMAIL
+  POSTMARK_SMTP_SERVER
+  POSTMARK_API_TOKEN
   AWS_S3_BUCKET
   AWS_ACCESS_KEY_ID
   AWS_SECRET_ACCESS_KEY
+  AWS_REGION
   TWITTER_CONSUMER_KEY
   TWITTER_CONSUMER_SECRET
   TWITTER_ACCESS_TOKEN
@@ -51,4 +44,19 @@ You will require a file called `.env` in the root of the folder.  The following 
   LINKEDIN_URL
   MEDIUM_URL
   SIDEKIQ_CONCURRENCY
-  REDIS_URL
+
+== Starting the server
+
+  foreman s
+
+== Seeding and Recreating the Database
+
+  rake db:recreate
+
+== Seeding and Recreating the Database
+
+  rake db:recreate
+
+== Running the Test Suite
+
+  bundle exec rspec

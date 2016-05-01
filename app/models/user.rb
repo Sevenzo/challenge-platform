@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
   store_accessor :notifications, :comment_replied, :comment_posted, :comment_followed
 
   mount_uploader :avatar, AvatarUploader
-  process_in_background :avatar
+  process_in_background :avatar unless Rails.env.development?
 
   acts_as_voter
   mailkick_user
@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
     user.display_name = "#{user.first_name} #{user.last_name[0]}"
   end
 
-  before_save do |user| 
+  before_save do |user|
     user.email = user.email.downcase
     user.twitter = user.twitter.sub('@','') if user.twitter.present?
   end

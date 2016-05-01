@@ -17,7 +17,3 @@
 *.pem
 *.key
 *.crt
-/db/seeds/challenge/*
-/db/seeds/other/*
-/db/seeds/users/*
-/db/seeds/local.rb
