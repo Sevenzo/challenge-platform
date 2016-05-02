@@ -71,6 +71,15 @@
                     <p><%= link_to @experience.link.html_safe, @experience.link, target: '_blank' %></p>
                   </div>
                 <% end %>
+
+                <% if @experience.file.present? %>
+                  <div class='content-block'>
+                    <p class='text-experience text-large text-bold text-uppercase'>File</p>
+                    <%= fa_icon "file-#{@experience.file.file.extension.downcase}-o" %>
+                    <%= link_to @experience.file.file.filename, @experience.file_url %>
+                    </div>
+                  </div>
+                <% end %>
               </div>
             </div>
 

@@ -1,5 +1,5 @@
 IMAGE_EXTENSION_WHITELIST = %w(jpg jpeg gif png)
-FILE_EXTENSION_WHITELIST = %w(pdf doc docx xls xlsx ppt pptx)
+FILE_EXTENSION_WHITELIST = %w(pdf csv doc docx xls xlsx ppt pptx)
 
 DEFAULT_LIKE = {
   scope: 'like',

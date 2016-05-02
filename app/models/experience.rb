@@ -23,6 +23,7 @@
 #  destroyed_at            :datetime
 #  published_at            :datetime
 #  comments_count          :integer          default(0)
+#  file                    :string
 #
 
 class Experience < ActiveRecord::Base
@@ -35,6 +36,9 @@ class Experience < ActiveRecord::Base
   belongs_to :theme
   has_and_belongs_to_many :solutions
   has_one :feature, as: :featureable
+
+  mount_uploader :file, FileUploader
+  process_in_background :file
 
   acts_as_votable
   acts_as_commentable

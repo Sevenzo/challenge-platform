@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151017211613) do
+ActiveRecord::Schema.define(version: 20160425204851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -174,6 +174,7 @@ ActiveRecord::Schema.define(version: 20151017211613) do
     t.datetime "destroyed_at"
     t.datetime "published_at"
     t.integer  "comments_count",          default: 0
+    t.string   "file"
   end
 
   add_index "experiences", ["cached_votes_down"], name: "index_experiences_on_cached_votes_down", using: :btree

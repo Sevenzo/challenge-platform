@@ -23,6 +23,7 @@
 #  destroyed_at            :datetime
 #  published_at            :datetime
 #  comments_count          :integer          default(0)
+#  file                    :string
 #
 
 require 'rails_helper'

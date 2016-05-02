@@ -2,7 +2,7 @@
   <div class='col-md-10 col-md-offset-1'>
 
     <div id='experience-<%= @experience.id %>' class="row row-experience">
-      
+
       <div class="col-xs-2">
         <div class='experience-user center-block text-center'>
           <%= render partial: 'shared/avatar', locals: { user: current_user, avatar_style: "width:3.5em" } %>
@@ -14,7 +14,7 @@
           <% end %>
         </div>
       </div>
-      
+
       <div class="col-xs-8">
         <div class='well well-experience'>
           <%= form_for(@experience, url: url) do |f| %>
@@ -26,29 +26,56 @@
               <%= f.text_area :description, placeholder: "Please describe your experience as it relates to this theme and we'll share it with this challenge.", class: 'form-control', autofocus: true, rows: 4 %>
             </div>
 
-            <div class='row'>
-              <div class='col-sm-8'>
-                <div class='input-switch' ng-switch='experience_<%= @experience.id %>_link' ng-init='experience_<%= @experience.id %>_link=<%= @experience.link.present? %>'>
-                  <div ng-hide='experience_<%= @experience.id %>_link' ng-click="experience_<%= @experience.id %>_link=true" class='media'>
-                    <div class='media-left'>
-                      <span class="fa-stack">
-                        <i class="fa fa-stack-2x fa-circle-thin"></i>
-                        <i class="fa fa-stack-1x fa-plus"></i>
-                      </span>
-                    </div>
-                    <div class='media-body'>
-                      <span class='help-text'>Add a link to a video, article, or image</span>
-                    </div>
+            <div class='form-group input-switch' ng-switch='experience_<%= @experience.id %>_link' ng-init='experience_<%= @experience.id %>_link=<%= @experience.link.present? %>'>
+                <div ng-hide='experience_<%= @experience.id %>_link' ng-click="experience_<%= @experience.id %>_link=true" class='media'>
+                  <div class='media-left'>
+                    <span class="fa-stack">
+                      <i class="fa fa-stack-2x fa-circle-thin"></i>
+                      <i class="fa fa-stack-1x fa-plus"></i>
+                    </span>
                   </div>
-
-                  <div ng-show='experience_<%= @experience.id %>_link'>
-                    <%= f.text_field :link, placeholder: 'Add URL', class: 'form-control' %>
-                    <span class='help-block'>Attach a link and we'll display it alongside your post.</span>
+                  <div class='media-body'>
+                    <span class='help-text'>Add a link to a video, article, or image</span>
                   </div>
                 </div>
-              </div>
+                <div ng-show='experience_<%= @experience.id %>_link'>
+                  <%= f.text_field :link, placeholder: 'Add URL', class: 'form-control' %>
+                  <span class='help-block'>Attach a link and we'll display it alongside your post.</span>
+                </div>
+            </div>
 
-              <div class='col-sm-4' ng-init="published=<%= @experience.published_at? %>">
+            <div class='form-group input-switch' ng-switch='experience_<%= @experience.id %>_file' ng-init='experience_<%= @experience.id %>_file=<%= @experience.file.present? %>'>
+              <div ng-hide='experience_<%= @experience.id %>_file' ng-click="experience_<%= @experience.id %>_file=true" class='media'>
+                <div class='media-left'>
+                  <span class="fa-stack">
+                    <i class="fa fa-stack-2x fa-circle-thin"></i>
+                    <i class="fa fa-stack-1x fa-cloud-upload"></i>
+                  </span>
+                </div>
+                <div class='media-body'>
+                  <span class='help-text'>Upload a file</span>
+                </div>
+              </div>
+              <div ng-show='experience_<%= @experience.id %>_file'>
+                <% if @experience.file? %>
+                  <p>
+                    <%= @experience.file.file.filename %>
+                    <small>
+                      <%= f.check_box :remove_file %>
+                      Remove file
+                    </small>
+                  </p>
+                  <%= f.hidden_field :file_cache %>
+                <% else %>
+                  <%= f.file_field :file, class: 'form-control' %>
+                  <%= f.hidden_field :file_cache %>
+                  <span class='help-block'>Attach a file and we'll display it alongside your post.</span>
+                <% end %>
+              </div>
+            </div>
+
+            <div class='row'>
+              <div class='col-sm-4 col-sm-offset-8' ng-init="published=<%= @experience.published_at? %>">
                 <div class='row'>
                   <div class='col-xs-6'>
                     <%= link_to 'Cancel', cancel_path, data: { confirm: "Are you sure you want to cancel? Any unsaved work will be lost." }, class: 'btn btn-rounded btn-block btn-sm btn-default' %>
@@ -65,7 +92,7 @@
           <% end %>
         </div>
       </div>
-      
+
     </div>
 
   </div>
