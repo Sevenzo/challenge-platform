@@ -62,6 +62,7 @@ describe ExperiencesController do
     {
       description: 'This is a much, much better description!!',
       link: 'http://www.yahoo.com',
+      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls')),
       published: 'true'
     }
   }

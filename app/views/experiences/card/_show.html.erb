@@ -7,21 +7,38 @@
       </div>
     <% end %>
 
-    <% if experience.embed.present? %>
-      <div class='row'>
+    <div class='row'>
+      <% if experience.embed.present? %>
         <div class='col-sm-6'>
           <p><%= experience.description %></p>
+          <% if experience.file.present? %>
+            <p>
+              <b><%= fa_icon "file-#{experience.file.file.extension.downcase}-o" %></b>
+              <%= link_to experience.file.file.filename, experience.file.url, target: '_blank' %>
+            </p>
+          <% end %>
         </div>
         <div class='col-sm-6'>
           <%= experience.embed.html_safe %>
         </div>
-      </div>
-    <% else %>
-      <p><%= experience.description %></p>
-      <% unless experience.link.blank? %>
-        <p><b><i class='fa fa-link'></i> Link:</b> <%= link_to truncate(experience.link, length: 150), experience.link, target: '_blank' %></p>
+      <% else %>
+        <div class='col-sm-12'>
+          <p><%= experience.description %></p>
+          <% unless experience.link.blank? %>
+            <p>
+              <b><i class='fa fa-link'></i></b>
+              <%= link_to truncate(experience.link, length: 150), experience.link, target: '_blank' %>
+            </p>
+          <% end %>
+          <% if experience.file.present? %>
+            <p>
+              <b><%= fa_icon "file-#{experience.file.file.extension.downcase}-o" %></b>
+              <%= link_to experience.file.file.filename, experience.file.url, target: '_blank' %>
+            </p>
+          <% end %>
+        </div>
       <% end %>
-    <% end %>
+    </div>
   </div>
 
   <div class='experience-actions'>

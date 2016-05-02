@@ -63,7 +63,7 @@ class ExperiencesController < ApplicationController
 
   def unlike
     @experience.unliked_by(current_user, vote_scope: @experience.default_like[:scope])
-    
+
     respond_to do |format|
       format.html { redirect_to after_update_object_path_for(@experience) }
       format.js   { render :unlike, locals: { partial: "#{params[:partial]}" } }
@@ -71,9 +71,9 @@ class ExperiencesController < ApplicationController
   end
 
 private
-  
+
   def experience_params
-    params.require(:experience).permit(:description, :link, :theme_id, :published_at)
+    params.require(:experience).permit(:description, :link, :file, :remove_file, :theme_id, :published_at)
   end
 
   def load_experience

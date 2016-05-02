@@ -23,11 +23,9 @@ module Embeddable
             embed_code = tweet.html
           end
         end
-
-        embed_code ? self.update_column(:embed, embed_code) : nil
-      else
-        self.update_column(:embed, nil)
       end
+
+      self.update_column(:embed, embed_code)
     end
   rescue
   end

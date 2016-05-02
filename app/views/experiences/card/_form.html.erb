@@ -6,13 +6,30 @@
     <%= f.text_area :description, placeholder: "Please describe your experience as it relates to this theme and we'll share it with this challenge.", class: 'form-control', autofocus: true, rows: 4 %>
   </div>
 
-  <div class='row'>
-    <div class='col-sm-8'>
-      <%= f.text_field :link, placeholder: 'Add URL', class: 'form-control' %>
-      <span class='help-block' style='margin-bottom:0px'>Attach a link and we'll display it alongside your post.</span>
-    </div>
+  <div class='form-group'>
+    <%= f.text_field :link, placeholder: 'Add URL', class: 'form-control' %>
+    <span class='help-block' style='margin-bottom:0px'>Attach a link and we'll display it alongside your post.</span>
+  </div>
 
-    <div class='col-sm-4' ng-init="theme_<%= theme.id %>_experience_<%= experience.id %>_published=<%= experience.published_at? %>">
+  <div class='form-group'>
+    <% if experience.file? %>
+      <p>
+        <%= experience.file.file.filename %>
+        <small>
+          <%= f.check_box :remove_file %>
+          Remove file
+        </small>
+      </p>
+      <%= f.hidden_field :file_cache %>
+    <% else %>
+      <%= f.file_field :file, class: 'form-control' %>
+      <%= f.hidden_field :file_cache %>
+      <span class='help-block'>Attach a file and we'll display it alongside your post.</span>
+    <% end %>
+  </div>
+
+  <div class='row'>
+    <div class='col-sm-4 col-sm-offset-8' ng-init="theme_<%= theme.id %>_experience_<%= experience.id %>_published=<%= experience.published_at? %>">
       <div class='row'>
         <div class='col-xs-6'>
           <%= link_to 'Cancel', '#', class: 'btn btn-rounded btn-block btn-sm btn-default', 'ng-click' => cancel_path, onclick: 'return false;' %>
