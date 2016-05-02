@@ -18,9 +18,9 @@ require 'rails_helper'
 
 describe Feature do
 
-  let(:non_admin_user)  { FactoryGirl.create(:user) }
-  let(:admin_user)  { FactoryGirl.create(:user, admin: true) }
-  let(:feature) { FactoryGirl.create(:feature) }
+  let(:non_admin_user)  { create(:user) }
+  let(:admin_user)  { create(:user, admin: true) }
+  let(:feature) { create(:feature) }
 
   it { is_expected.to belong_to :featureable }
   it { is_expected.to belong_to :user }

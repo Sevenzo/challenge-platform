@@ -48,9 +48,9 @@ describe Experience do
   it_behaves_like 'an entity respecting the default order'
 
   let(:entity) {
-    experience_stage = FactoryGirl.create(:experience_stage, challenge: challenge)
-    theme = FactoryGirl.create(:theme, experience_stage: experience_stage)
-    experience = FactoryGirl.create(:experience, theme: theme)
+    experience_stage = create(:experience_stage, challenge: challenge)
+    theme = create(:theme, experience_stage: experience_stage)
+    experience = create(:experience, theme: theme)
 
     experience
   }

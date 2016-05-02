@@ -6,7 +6,7 @@ describe RegistrationsController do
   describe 'PATCH #update' do
 
     let(:user) {
-      FactoryGirl.create(:user, avatar_option: 'twitter')
+      create(:user, avatar_option: 'twitter')
     }
 
     let(:upload) {

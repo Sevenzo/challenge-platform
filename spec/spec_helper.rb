@@ -23,6 +23,7 @@ require 'webmock/rspec'
 require 'devise'
 require 'database_cleaner'
 require 'carrierwave'
+require 'factory_girl'
 WebMock.disable_net_connect!(allow_localhost: true)
 
 class CarrierWave::Mount::Mounter
@@ -31,6 +32,8 @@ class CarrierWave::Mount::Mounter
 end
 
 RSpec.configure do |config|
+
+  config.include FactoryGirl::Syntax::Methods
 
   # Devise-related testing (for tests that have to do with authentication)
   config.include Devise::TestHelpers, type: :controller

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 shared_examples_for 'orderable' do
-  let(:model) { described_class }
-  let(:entity) { FactoryGirl.create(described_class.to_s.downcase.to_sym) }
+  let(:model) { described_class.model_name.param_key.to_sym }
+  let(:entity) { create(described_class.model_name.param_key.to_sym) }
 
   # Since anything that is orderable has comments attached to it,
   # we should be able to simply add comments to the entity.
@@ -37,7 +37,7 @@ shared_examples_for 'orderable' do
 
   private
   def add_comment(entity)
-    comment = Comment.build_from(entity, FactoryGirl.create(:user).id, {body: "Test comment"})
+    comment = Comment.build_from(entity, create(:user).id, {body: "Test comment"})
     comment.save!
     comment
   end

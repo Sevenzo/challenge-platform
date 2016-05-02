@@ -32,74 +32,74 @@ describe RecipeStage do
   let(:panelists) {
     panelists = Array.new
     3.times do
-      panelists.push(FactoryGirl.create(:user))
+      panelists.push(create(:user))
     end
     panelists
   }
 
   let(:first_challenge) {
-    FactoryGirl.create(:challenge, :with_panelists, panelists: panelists)
+    create(:challenge, :with_panelists, panelists: panelists)
   }
 
   let(:second_challenge) {
-    FactoryGirl.create(:challenge, :with_panelists, panelists: panelists)
+    create(:challenge, :with_panelists, panelists: panelists)
   }
 
   let(:first_recipe_stage) {
-    recipe_stage = FactoryGirl.create(:recipe_stage, challenge: first_challenge)
-    cookbook = FactoryGirl.create(:cookbook, recipe_stage: recipe_stage)
+    recipe_stage = create(:recipe_stage, challenge: first_challenge)
+    cookbook = create(:cookbook, recipe_stage: recipe_stage)
 
     # Prime recipe ideas as featured
     20.times do
-      recipe = FactoryGirl.create(:recipe, cookbook: cookbook)
+      recipe = create(:recipe, cookbook: cookbook)
       cookbook.recipes << recipe
-      FactoryGirl.create(:feature, featureable: recipe, active: true, challenge: first_challenge)
+      create(:feature, featureable: recipe, active: true, challenge: first_challenge)
     end
 
     # Create 10 comments, with half of them featured.
     10.times do |n|
-      comment = Comment.build_from(cookbook, FactoryGirl.create(:user).id,
+      comment = Comment.build_from(cookbook, create(:user).id,
                                    { body: Faker::Lorem.sentence, link: Faker::Internet.url })
       comment.save!
-      FactoryGirl.create(:feature, featureable: comment, active: n % 2 == 0, challenge: first_challenge)
+      create(:feature, featureable: comment, active: n % 2 == 0, challenge: first_challenge)
     end
 
     # Create 40 recipes which aren't active; half of them do not have a "feature" attached.
     40.times do |n|
-      recipe = FactoryGirl.create(:recipe, cookbook: cookbook)
+      recipe = create(:recipe, cookbook: cookbook)
       cookbook.recipes << recipe
       if n >= 20
-        FactoryGirl.create(:feature, featureable: recipe, challenge: first_challenge, active: false)
+        create(:feature, featureable: recipe, challenge: first_challenge, active: false)
       end
     end
     recipe_stage
   }
 
   let(:second_recipe_stage) {
-    recipe_stage = FactoryGirl.create(:recipe_stage, challenge: second_challenge)
-    cookbook = FactoryGirl.create(:cookbook, recipe_stage: recipe_stage)
+    recipe_stage = create(:recipe_stage, challenge: second_challenge)
+    cookbook = create(:cookbook, recipe_stage: recipe_stage)
 
     # Prime recipe ideas as featured
     45.times do
-      recipe = FactoryGirl.create(:recipe, cookbook: cookbook)
+      recipe = create(:recipe, cookbook: cookbook)
       cookbook.recipes << recipe
-      FactoryGirl.create(:feature, featureable: recipe, challenge: second_challenge, active: true)
+      create(:feature, featureable: recipe, challenge: second_challenge, active: true)
     end
 
     # Create 30 comments, with a third of them featured.
     30.times do |n|
-      comment = Comment.build_from(cookbook, FactoryGirl.create(:user).id,
+      comment = Comment.build_from(cookbook, create(:user).id,
                                    { body: Faker::Lorem.sentence, link: Faker::Internet.url })
       comment.save!
-      FactoryGirl.create(:feature, featureable: comment, challenge: second_challenge, active: n % 3 == 0 )
+      create(:feature, featureable: comment, challenge: second_challenge, active: n % 3 == 0 )
     end
 
     # Create 12 recipes which aren't active; half of them do not have a "feature" attached.
     12.times do |n|
-      recipe = FactoryGirl.create(:recipe, cookbook: cookbook)
+      recipe = create(:recipe, cookbook: cookbook)
       cookbook.recipes << recipe
       if n >= 6
-        FactoryGirl.create(:feature, featureable: recipe, challenge: second_challenge, active: false)
+        create(:feature, featureable: recipe, challenge: second_challenge, active: false)
       end
     end
     recipe_stage

@@ -7,16 +7,16 @@ shared_examples_for 'a publishable entity' do
 
     context 'when the user does not own the entities that are unpublished' do
 
-      let(:other_user) { FactoryGirl.create(:user) }
+      let(:other_user) { create(:user) }
 
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { create(:user) }
 
       let!(:unpublished_entities) {
-        FactoryGirl.create_list(described_class.to_s.downcase, 5, user: user)
+        create_list(described_class.to_s.downcase, 5, user: user)
       }
 
       let!(:published_entities) {
-        FactoryGirl.create_list(described_class.to_s.downcase, 15, user: other_user, published_at: Time.now)
+        create_list(described_class.to_s.downcase, 15, user: other_user, published_at: Time.now)
       }
 
 
@@ -28,16 +28,16 @@ shared_examples_for 'a publishable entity' do
 
     context 'when the user owns the entities that are unpublished' do
 
-      let(:other_user) { FactoryGirl.create(:user, email: Faker::Internet.email) }
+      let(:other_user) { create(:user, email: Faker::Internet.email) }
 
-      let(:user) { FactoryGirl.create(:user, email: Faker::Internet.email) }
+      let(:user) { create(:user, email: Faker::Internet.email) }
 
       let!(:unpublished_entities) {
-        FactoryGirl.create_list(described_class.to_s.downcase, 5, user: user)
+        create_list(described_class.to_s.downcase, 5, user: user)
       }
 
       let!(:published_entities) {
-        FactoryGirl.create_list(described_class.to_s.downcase, 15, user: other_user, published_at: Time.now)
+        create_list(described_class.to_s.downcase, 15, user: other_user, published_at: Time.now)
       }
 
       it 'retrieves all entities' do
@@ -50,11 +50,11 @@ shared_examples_for 'a publishable entity' do
   context 'when the user is not defined' do
 
     let!(:unpublished_entities) {
-      FactoryGirl.create_list(described_class.to_s.downcase, 5, user: FactoryGirl.create(:user))
+      create_list(described_class.to_s.downcase, 5, user: create(:user))
     }
 
     let!(:published_entities) {
-      FactoryGirl.create_list(described_class.to_s.downcase, 15, user: FactoryGirl.create(:user), published_at: Time.now)
+      create_list(described_class.to_s.downcase, 15, user: create(:user), published_at: Time.now)
     }
 
     context 'with no user supplied' do
@@ -69,7 +69,7 @@ shared_examples_for 'a publishable entity' do
 
     context 'with an unpersisted user' do
 
-      let(:user) { FactoryGirl.build(:user) }
+      let(:user) { build(:user) }
 
       it 'retrieves only non-draft entities' do
         result = described_class.published(user).all

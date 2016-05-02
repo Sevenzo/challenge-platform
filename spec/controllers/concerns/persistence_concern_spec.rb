@@ -5,7 +5,7 @@ end
 
 describe PersistenceOrientedConcern do
 
-  let(:user) { FactoryGirl.create(:user, email: 'the-user@overload.net')}
+  let(:user) { create(:user, email: 'the-user@overload.net')}
 
   before(:each) do
     sign_in user
@@ -13,9 +13,9 @@ describe PersistenceOrientedConcern do
 
   context 'when persisting likes' do
 
-    let(:experience) { FactoryGirl.create(:experience) }
-    let(:published_experience) { FactoryGirl.create(:experience, published_at: Time.now) }
-    let(:idea) { FactoryGirl.create(:idea, user: FactoryGirl.create(:user, email: Faker::Internet.email)) }
+    let(:experience) { create(:experience) }
+    let(:published_experience) { create(:experience, published_at: Time.now) }
+    let(:idea) { create(:idea, user: create(:user, email: Faker::Internet.email)) }
 
     it 'persists nothing if the session contains none to persist' do
       subject.persist_pending_cache
@@ -58,8 +58,8 @@ describe PersistenceOrientedConcern do
     end
 
     it 'clears the cache after persistence' do
-      experience = FactoryGirl.create(:experience, user: FactoryGirl.create(:user, email: Faker::Internet.email))
-      idea = FactoryGirl.create(:idea, user: FactoryGirl.create(:user, email: Faker::Internet.email))
+      experience = create(:experience, user: create(:user, email: Faker::Internet.email))
+      idea = create(:idea, user: create(:user, email: Faker::Internet.email))
 
       entities_and_scopes = [
           {entity: experience, vote_scope: 'sample scope'},
@@ -78,8 +78,8 @@ describe PersistenceOrientedConcern do
 
   context 'when persisting entities' do
 
-    let(:experience) { FactoryGirl.build(:experience) }
-    let(:published_experience) { FactoryGirl.build(:experience, published_at: Time.now) }
+    let(:experience) { build(:experience) }
+    let(:published_experience) { build(:experience, published_at: Time.now) }
 
     it 'actually persists the entity' do
       subject.cache_pending_object(experience)
@@ -106,9 +106,9 @@ describe PersistenceOrientedConcern do
     end
 
     it "sets the entity's return path correctly" do
-      challenge = FactoryGirl.create(:challenge)
-      experience_stage = FactoryGirl.create(:experience_stage)
-      theme = FactoryGirl.create(:theme)
+      challenge = create(:challenge)
+      experience_stage = create(:experience_stage)
+      theme = create(:theme)
 
       experience_stage.challenge = challenge
 
@@ -118,7 +118,7 @@ describe PersistenceOrientedConcern do
       subject.cache_pending_object(experience)
 
       subject.persist_pending_cache
-      
+
       expect(session[:user_return_to]).to eq "/challenges/#{challenge.slug}/experience_stages/#{experience_stage.id}/themes/#{theme.id}/experiences/#{experience.id}"
     end
 
@@ -132,10 +132,10 @@ describe PersistenceOrientedConcern do
   end
 
   context 'when persisting a comment' do
-    let(:commentable) { FactoryGirl.create(:experience, user: FactoryGirl.create(:user)) }
-    let(:parent_comment) { FactoryGirl.create(:comment, commentable: commentable) }
-    let(:comment_with_parent) { FactoryGirl.create(:comment, commentable: commentable, temporal_parent_id: parent_comment.id) }
-    let(:comment) { FactoryGirl.create(:comment, commentable: commentable) }
+    let(:commentable) { create(:experience, user: create(:user)) }
+    let(:parent_comment) { create(:comment, commentable: commentable) }
+    let(:comment_with_parent) { create(:comment, commentable: commentable, temporal_parent_id: parent_comment.id) }
+    let(:comment) { create(:comment, commentable: commentable) }
 
     it 'queues one mail job with no parent id attached' do
       subject.cache_pending_object(comment)

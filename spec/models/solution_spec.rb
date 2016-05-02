@@ -57,9 +57,9 @@ describe Solution do
   it_behaves_like 'an entity respecting the default order'
 
   let(:entity) {
-    solution_stage = FactoryGirl.create(:solution_stage, challenge: challenge)
-    solution_story = FactoryGirl.create(:solution_story, solution_stage: solution_stage)
-    solution = FactoryGirl.create(:solution, solution_story: solution_story)
+    solution_stage = create(:solution_stage, challenge: challenge)
+    solution_story = create(:solution_story, solution_stage: solution_stage)
+    solution = create(:solution, solution_story: solution_story)
 
     solution
   }

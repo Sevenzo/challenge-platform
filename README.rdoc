@@ -45,14 +45,6 @@ You will require a file called `.env` in the root of the folder.  The following 
   MEDIUM_URL
   SIDEKIQ_CONCURRENCY
 
-== Starting the server
-
-  foreman s
-
-== Seeding and Recreating the Database
-
-  rake db:recreate
-
 == Seeding and Recreating the Database
 
   rake db:recreate
@@ -60,3 +52,7 @@ You will require a file called `.env` in the root of the folder.  The following 
 == Running the Test Suite
 
   bundle exec rspec
+
+== Starting the server
+
+  foreman s

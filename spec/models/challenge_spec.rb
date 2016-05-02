@@ -38,16 +38,16 @@ describe Challenge do
   context 'when displaying featured contributions for a particular stage' do
 
     let(:challenge) {
-      FactoryGirl.create(:challenge)
+      create(:challenge)
     }
 
     let(:experience_stage) {
-      theme = FactoryGirl.create(:theme)
-      experience_stage = FactoryGirl.create(:experience_stage)
+      theme = create(:theme)
+      experience_stage = create(:experience_stage)
       15.times do |n|
-        experience = FactoryGirl.create(:experience, published_at: Time.now)
+        experience = create(:experience, published_at: Time.now)
         theme.experiences << experience
-        FactoryGirl.create(:feature, featureable: experience, challenge: challenge, active: n < 3)
+        create(:feature, featureable: experience, challenge: challenge, active: n < 3)
       end
 
       experience_stage.themes << theme
@@ -55,12 +55,12 @@ describe Challenge do
     }
 
     let(:idea_stage) {
-      problem_statement = FactoryGirl.create(:problem_statement)
-      idea_stage = FactoryGirl.create(:idea_stage)
+      problem_statement = create(:problem_statement)
+      idea_stage = create(:idea_stage)
       15.times do |n|
-        idea = FactoryGirl.create(:idea, published_at: Time.now)
+        idea = create(:idea, published_at: Time.now)
         problem_statement.ideas << idea
-        FactoryGirl.create(:feature, featureable: idea, challenge: challenge, active: n < 3)
+        create(:feature, featureable: idea, challenge: challenge, active: n < 3)
       end
 
       idea_stage.problem_statements << problem_statement
@@ -68,12 +68,12 @@ describe Challenge do
     }
 
     let(:recipe_stage) {
-      cookbook = FactoryGirl.create(:cookbook)
-      recipe_stage = FactoryGirl.create(:recipe_stage)
+      cookbook = create(:cookbook)
+      recipe_stage = create(:recipe_stage)
       15.times do |n|
-        recipe = FactoryGirl.create(:recipe, published_at: Time.now)
+        recipe = create(:recipe, published_at: Time.now)
         cookbook.recipes << recipe
-        FactoryGirl.create(:feature, featureable: recipe, challenge: challenge, active: n < 3)
+        create(:feature, featureable: recipe, challenge: challenge, active: n < 3)
       end
 
       recipe_stage.cookbooks << cookbook
@@ -81,11 +81,11 @@ describe Challenge do
     }
 
     let(:solution_stage) {
-      solution_stage = FactoryGirl.create(:solution_stage)
+      solution_stage = create(:solution_stage)
       15.times do |n|
-        solution = FactoryGirl.create(:solution, published_at: Time.now)
-        solution_story = FactoryGirl.create(:solution_story, solution: solution)
-        FactoryGirl.create(:feature, featureable: solution, challenge: challenge, active: n < 3)
+        solution = create(:solution, published_at: Time.now)
+        solution_story = create(:solution_story, solution: solution)
+        create(:feature, featureable: solution, challenge: challenge, active: n < 3)
         solution_stage.solution_stories << solution_story
       end
 
@@ -146,20 +146,20 @@ describe Challenge do
   describe '#has_featured_for' do
 
     let(:first_challenge) {
-      FactoryGirl.create(:challenge)
+      create(:challenge)
     }
 
     let(:second_challenge) {
-      FactoryGirl.create(:challenge)
+      create(:challenge)
     }
 
     let(:experience_stage) {
-      theme = FactoryGirl.create(:theme)
-      experience_stage = FactoryGirl.create(:experience_stage)
+      theme = create(:theme)
+      experience_stage = create(:experience_stage)
       15.times do |n|
-        experience = FactoryGirl.create(:experience, published_at: Time.now)
+        experience = create(:experience, published_at: Time.now)
         theme.experiences << experience
-        FactoryGirl.create(:feature, featureable: experience, challenge: first_challenge, active: n < 3)
+        create(:feature, featureable: experience, challenge: first_challenge, active: n < 3)
       end
 
       experience_stage.themes << theme
@@ -167,12 +167,12 @@ describe Challenge do
     }
 
     let(:idea_stage) {
-      problem_statement = FactoryGirl.create(:problem_statement)
-      idea_stage = FactoryGirl.create(:idea_stage)
+      problem_statement = create(:problem_statement)
+      idea_stage = create(:idea_stage)
       15.times do |n|
-        idea = FactoryGirl.create(:idea, published_at: Time.now)
+        idea = create(:idea, published_at: Time.now)
         problem_statement.ideas << idea
-        FactoryGirl.create(:feature, featureable: idea, challenge: first_challenge, active: n < 3)
+        create(:feature, featureable: idea, challenge: first_challenge, active: n < 3)
       end
 
       idea_stage.problem_statements << problem_statement
@@ -180,12 +180,12 @@ describe Challenge do
     }
 
     let(:recipe_stage) {
-      cookbook = FactoryGirl.create(:cookbook)
-      recipe_stage = FactoryGirl.create(:recipe_stage)
+      cookbook = create(:cookbook)
+      recipe_stage = create(:recipe_stage)
       15.times do |n|
-        recipe = FactoryGirl.create(:recipe, published_at: Time.now)
+        recipe = create(:recipe, published_at: Time.now)
         cookbook.recipes << recipe
-        FactoryGirl.create(:feature, featureable: recipe, challenge: first_challenge, active: n < 3)
+        create(:feature, featureable: recipe, challenge: first_challenge, active: n < 3)
       end
 
       recipe_stage.cookbooks << cookbook
@@ -193,11 +193,11 @@ describe Challenge do
     }
 
     let(:solution_stage) {
-      solution_stage = FactoryGirl.create(:solution_stage)
+      solution_stage = create(:solution_stage)
       15.times do |n|
-        solution = FactoryGirl.create(:solution, published_at: Time.now)
-        solution_story = FactoryGirl.create(:solution_story, solution: solution)
-        FactoryGirl.create(:feature, featureable: solution, challenge: first_challenge, active: n < 3)
+        solution = create(:solution, published_at: Time.now)
+        solution_story = create(:solution_story, solution: solution)
+        create(:feature, featureable: solution, challenge: first_challenge, active: n < 3)
         solution_stage.solution_stories << solution_story
       end
 

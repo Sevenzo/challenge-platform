@@ -36,10 +36,10 @@ require 'sidekiq/testing'
 describe Comment do
 
   let(:entity) {
-    comment = FactoryGirl.create(:comment)
-    idea_stage = FactoryGirl.create(:idea_stage, challenge: challenge)
-    problem_statement = FactoryGirl.create(:problem_statement, idea_stage: idea_stage)
-    commentable_entity = FactoryGirl.create(:idea, problem_statement: problem_statement)
+    comment = create(:comment)
+    idea_stage = create(:idea_stage, challenge: challenge)
+    problem_statement = create(:problem_statement, idea_stage: idea_stage)
+    commentable_entity = create(:idea, problem_statement: problem_statement)
 
     comment.commentable = commentable_entity
     comment
@@ -56,9 +56,9 @@ describe Comment do
 
   context 'with comments that are soft deleted' do
     it 'does not pull back any comments' do
-      user = FactoryGirl.create(:user, email: 'foo@bar.com')
+      user = create(:user, email: 'foo@bar.com')
       5.times do
-        FactoryGirl.create(:comment, user: user)
+        create(:comment, user: user)
       end
       deleted_comment = Comment.last
       deleted_comment.destroy
@@ -71,9 +71,9 @@ describe Comment do
   context 'when looking at sibling comments' do
 
     let(:commentable) {
-      experience = FactoryGirl.create(:experience)
+      experience = create(:experience)
       10.times do |i|
-        FactoryGirl.create(:comment, commentable: experience, body: i.to_s)
+        create(:comment, commentable: experience, body: i.to_s)
       end
 
       experience
@@ -95,9 +95,9 @@ describe Comment do
   describe '#send_notifications' do
     context 'with users in the comment_replied notification group' do
       let(:commentable) {
-        experience = FactoryGirl.create(:experience)
+        experience = create(:experience)
         10.times do |i|
-          FactoryGirl.create(:comment, commentable: experience, body: i.to_s, user: FactoryGirl.create(:user, notifications: {:comment_replied => true, :comment_posted => false, :comment_followed => false}))
+          create(:comment, commentable: experience, body: i.to_s, user: create(:user, notifications: {:comment_replied => true, :comment_posted => false, :comment_followed => false}))
         end
         experience
       }
@@ -114,9 +114,9 @@ describe Comment do
 
     context 'with users in the comment_posted notification group' do
       let(:commentable) {
-        experience = FactoryGirl.create(:experience)
+        experience = create(:experience)
         10.times do |i|
-          FactoryGirl.create(:comment, commentable: experience, body: i.to_s, user: FactoryGirl.create(:user, notifications: {:comment_replied => false, :comment_posted => true, :comment_followed => false}))
+          create(:comment, commentable: experience, body: i.to_s, user: create(:user, notifications: {:comment_replied => false, :comment_posted => true, :comment_followed => false}))
         end
         experience
       }
@@ -133,9 +133,9 @@ describe Comment do
 
     context 'with users in both comment_posted and comment_replied notification groups' do
       let(:commentable) {
-        experience = FactoryGirl.create(:experience)
+        experience = create(:experience)
         10.times do |i|
-          FactoryGirl.create(:comment, commentable: experience, body: i.to_s, user: FactoryGirl.create(:user, notifications: {:comment_replied => true, :comment_posted => true, :comment_followed => false}))
+          create(:comment, commentable: experience, body: i.to_s, user: create(:user, notifications: {:comment_replied => true, :comment_posted => true, :comment_followed => false}))
         end
         experience
       }
@@ -152,9 +152,9 @@ describe Comment do
 
     context 'with users opting out of the comment_followed group' do
       let(:commentable) {
-        experience = FactoryGirl.create(:experience)
+        experience = create(:experience)
         10.times do |i|
-          FactoryGirl.create(:comment, commentable: experience, body: i.to_s, user: FactoryGirl.create(:user, notifications: {:comment_replied => false, :comment_posted => false, :comment_followed => false}))
+          create(:comment, commentable: experience, body: i.to_s, user: create(:user, notifications: {:comment_replied => false, :comment_posted => false, :comment_followed => false}))
         end
         experience
       }
@@ -168,12 +168,12 @@ describe Comment do
         expect(Sidekiq::Extensions::DelayedMailer.jobs.size).to eq 0
       end
     end
-    
+
     context 'with users opted in' do
       let(:commentable) {
-        experience = FactoryGirl.create(:experience)
+        experience = create(:experience)
         10.times do |i|
-          FactoryGirl.create(:comment, commentable: experience, body: i.to_s, user: FactoryGirl.create(:user, notifications: {:comment_replied => false, :comment_posted => false, :comment_followed => true}))
+          create(:comment, commentable: experience, body: i.to_s, user: create(:user, notifications: {:comment_replied => false, :comment_posted => false, :comment_followed => true}))
         end
         experience
       }

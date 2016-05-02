@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe SuggestionsController do 
+describe SuggestionsController do
 
-  let(:user) { FactoryGirl.create(:user, email: Faker::Internet.email) }
-  let(:suggestion) { FactoryGirl.create(:suggestion, user: user) }
-  
-  describe "GET #new" do 
+  let(:user) { create(:user, email: Faker::Internet.email) }
+  let(:suggestion) { create(:suggestion, user: user) }
+
+  describe "GET #new" do
 
     it "renders the form for suggestions" do
       get :new
@@ -53,7 +53,7 @@ describe SuggestionsController do
     end
 
     context "with an unauthenticated user" do
-      
+
       before(:each) do
         sign_out user
       end
@@ -90,7 +90,7 @@ describe SuggestionsController do
     end
 
     context "when the update is successful" do
- 
+
       it "updates the suggestion" do
         request.env['HTTP_REFERER'] = "http://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags"
         patch :update, id: suggestion.id, suggestion: { description: "suggestion description update" }
@@ -120,12 +120,12 @@ describe SuggestionsController do
 
         expect(response).to render_template(:edit)
       end
-    end    
+    end
   end
 
   describe "DELETE #destroy" do
 
-    let(:other_user) { FactoryGirl.create(:user, email: 'evil_user@malicious.com') }
+    let(:other_user) { create(:user, email: 'evil_user@malicious.com') }
 
     context "the suggestion user and logged in user are the same" do
 
@@ -225,7 +225,7 @@ describe SuggestionsController do
         put :unlike, id: suggestion.id, vote_weight: 3
 
         expect(assigns(:suggestion).cached_votes_up).to eq 0
-        expect(assigns(:suggestion).get_upvotes(vote_scope: 'rating', vote_weight: 3).length).to eq 0      
+        expect(assigns(:suggestion).get_upvotes(vote_scope: 'rating', vote_weight: 3).length).to eq 0
       end
 
       it "renders the unlike.js.erb file" do

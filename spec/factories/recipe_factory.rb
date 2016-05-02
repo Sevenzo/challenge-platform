@@ -40,7 +40,7 @@ FactoryGirl.define do
 
   trait :with_sequential_steps do
     after :create do |recipe|
-      recipe.steps = FactoryGirl.create_list(:step, 6, :with_order)
+      recipe.steps = create_list(:step, 6, :with_order)
     end
   end
 end

@@ -3,23 +3,23 @@ require 'rails_helper'
 shared_examples_for 'a featurable entity' do
 
   let(:non_panelist) {
-    FactoryGirl.create(:user)
+    create(:user)
   }
 
   let(:panelists) {
     panelists = Array.new
     3.times do
-      panelists.push(FactoryGirl.create(:user))
+      panelists.push(create(:user))
     end
     panelists
   }
 
   let(:challenge) {
-    FactoryGirl.create(:challenge, :with_panelists, panelists: panelists)
+    create(:challenge, :with_panelists, panelists: panelists)
   }
 
   let(:feature) {
-    FactoryGirl.create(:feature, challenge: challenge, featureable: entity)
+    create(:feature, challenge: challenge, featureable: entity)
   }
 
   it 'marks an entity with a non-panelist as invalid' do

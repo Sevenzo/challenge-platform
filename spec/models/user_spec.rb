@@ -64,23 +64,23 @@ describe User do
   describe '#has_draft_submissions?' do
     context 'with an entity that is unpublished' do
       let(:user) {
-        FactoryGirl.create(:user)
+        create(:user)
       }
 
       let(:experience) {
-        FactoryGirl.create_list(:experience, 1) + FactoryGirl.create_list(:experience, 5, published_at: Time.now)
+        create_list(:experience, 1) + create_list(:experience, 5, published_at: Time.now)
       }
 
       let(:idea) {
-        FactoryGirl.create_list(:idea, 1) + FactoryGirl.create_list(:idea, 5, published_at: Time.now)
+        create_list(:idea, 1) + create_list(:idea, 5, published_at: Time.now)
       }
 
       let(:recipe) {
-        FactoryGirl.create_list(:recipe, 1) + FactoryGirl.create_list(:recipe, 5, published_at: Time.now)
+        create_list(:recipe, 1) + create_list(:recipe, 5, published_at: Time.now)
       }
 
       let(:solution) {
-        FactoryGirl.create_list(:solution, 1) + FactoryGirl.create_list(:solution, 5, published_at: Time.now)
+        create_list(:solution, 1) + create_list(:solution, 5, published_at: Time.now)
       }
 
       it 'returns true for an experience' do
@@ -114,23 +114,23 @@ describe User do
 
     context 'with no entities that are unpublished' do
       let(:user) {
-        FactoryGirl.create(:user)
+        create(:user)
       }
 
       let(:experience) {
-        FactoryGirl.create_list(:experience, 5, published_at: Time.now)
+        create_list(:experience, 5, published_at: Time.now)
       }
 
       let(:idea) {
-        FactoryGirl.create_list(:idea, 5, published_at: Time.now)
+        create_list(:idea, 5, published_at: Time.now)
       }
 
       let(:recipe) {
-        FactoryGirl.create_list(:recipe, 5, published_at: Time.now)
+        create_list(:recipe, 5, published_at: Time.now)
       }
 
       let(:solution) {
-        FactoryGirl.create_list(:solution, 5, published_at: Time.now)
+        create_list(:solution, 5, published_at: Time.now)
       }
 
       it 'returns false for an experience' do
@@ -169,17 +169,17 @@ describe User do
       let(:panelists) {
         panelists = Array.new
         3.times do
-          panelists.push(FactoryGirl.create(:user))
+          panelists.push(create(:user))
         end
         panelists
       }
 
       let(:challenge) {
-        FactoryGirl.create(:challenge, :with_panelists, panelists: panelists)
+        create(:challenge, :with_panelists, panelists: panelists)
       }
 
       let(:user) {
-        FactoryGirl.create(:user)
+        create(:user)
       }
 
       it 'returns false' do
@@ -192,13 +192,13 @@ describe User do
       let(:panelists) {
         panelists = Array.new
         3.times do
-          panelists.push(FactoryGirl.create(:user))
+          panelists.push(create(:user))
         end
         panelists
       }
 
       let(:challenge) {
-        FactoryGirl.create(:challenge, :with_panelists, panelists: panelists)
+        create(:challenge, :with_panelists, panelists: panelists)
       }
 
       let(:user) {

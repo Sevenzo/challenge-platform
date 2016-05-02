@@ -2,19 +2,19 @@ require 'rails_helper'
 
 describe CommentsController do
 
-  let(:user) { FactoryGirl.create(:user, email: Faker::Internet.email) }
+  let(:user) { create(:user, email: Faker::Internet.email) }
   let(:idea) {
-    idea = FactoryGirl.create(:idea, user: FactoryGirl.create(:user))
-    idea_stage = FactoryGirl.create(:idea_stage)
-    challenge = FactoryGirl.create(:challenge)
-    problem_statement = FactoryGirl.create(:problem_statement)
+    idea = create(:idea, user: create(:user))
+    idea_stage = create(:idea_stage)
+    challenge = create(:challenge)
+    problem_statement = create(:problem_statement)
 
     challenge.idea_stage = idea_stage
     idea_stage.problem_statements << problem_statement
     problem_statement.ideas << idea
     idea
   }
-  let(:comment) { FactoryGirl.create(:comment, commentable: idea, user: user) }
+  let(:comment) { create(:comment, commentable: idea, user: user) }
 
   describe 'GET #new' do
     it 'renders the form for comments' do
@@ -63,7 +63,7 @@ describe CommentsController do
 
       context 'with a comment that has an attached parent id' do
 
-        let(:existing_comment) { FactoryGirl.create(:comment, commentable: idea) }
+        let(:existing_comment) { create(:comment, commentable: idea) }
 
         it 'attaches the new comment to the child' do
           post :create, comment: {body: "Everything is awesome when you're living on a dream!", link: 'http://youtu.be/StTqXEQ2l-Y',commentable_type: 'Idea', commentable_id: idea.id, temporal_parent_id: existing_comment.id}
@@ -117,7 +117,7 @@ describe CommentsController do
 
   describe 'DELETE #destroy' do
 
-    let(:other_user) { FactoryGirl.create(:user) }
+    let(:other_user) { create(:user) }
 
     before(:each) do
       sign_in user
@@ -228,7 +228,7 @@ describe CommentsController do
 
       it 'redirects if not rendering JavaScript' do
         put :unlike, id: comment.id
-        
+
         expect(response).to redirect_to "/challenges/#{idea.challenge.slug}/idea_stages/#{idea.idea_stage.id}/problem_statements/#{idea.problem_statement.id}/ideas/#{idea.id}"
       end
     end

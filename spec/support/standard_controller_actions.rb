@@ -2,8 +2,8 @@ require 'rails_helper'
 
 shared_examples_for 'a standard controller' do
 
-  let(:user) { FactoryGirl.create(:user, email: Faker::Internet.email) }
-  let(:challenge) { FactoryGirl.create(:challenge) }
+  let(:user) { create(:user, email: Faker::Internet.email) }
+  let(:challenge) { create(:challenge) }
   let(:target_model) { resolve_model_name(described_class) }
 
   describe 'GET #new' do
@@ -20,7 +20,7 @@ shared_examples_for 'a standard controller' do
     context 'with a user that is logged in and owns the fetched entity' do
 
       let(:user) {
-        FactoryGirl.create(:user)
+        create(:user)
       }
 
       before(:each) {
@@ -50,11 +50,11 @@ shared_examples_for 'a standard controller' do
     context 'with a user that is logged in and does not own the fetched entity' do
 
       let(:user) {
-        FactoryGirl.create(:user)
+        create(:user)
       }
 
       let(:other_user) {
-        FactoryGirl.create(:user)
+        create(:user)
       }
 
       before(:each) {
@@ -83,7 +83,7 @@ shared_examples_for 'a standard controller' do
 
     context 'with a user that is not logged in' do
       let(:user) {
-        FactoryGirl.create(:user)
+        create(:user)
       }
 
       before(:each) {
@@ -328,7 +328,7 @@ shared_examples_for 'a standard controller' do
 
     context 'with a user that does not own the entity' do
       let(:other_user) {
-        FactoryGirl.create(:user, email: Faker::Internet.email)
+        create(:user, email: Faker::Internet.email)
       }
 
       before(:each) do
