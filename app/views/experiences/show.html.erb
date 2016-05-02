@@ -45,7 +45,7 @@
                         <%= link_to "<i class='fa fa-reply'></i> Discuss".html_safe, "#experience-comments", class: 'btn btn-block btn-fa btn-sm btn-rounded btn-info', "du-smooth-scroll" => true %>
                       </div>
                       <div id='experience-<%= @experience.id %>-share'>
-                        <%= render partial: 'layouts/share_button', locals: {url: challenge_experience_stage_theme_experience_url(@challenge, @experience.experience_stage, @experience.theme, @experience), title: "The #{@challenge.title} is LIVE! Are you an innovative educator? Join us!", description: @experience.description.html_safe, hashtag: @challenge.hashtag} %>
+                        <%= render partial: 'layouts/share_button', locals: {url: challenge_experience_stage_theme_experience_url(@challenge, @experience.experience_stage, @experience.theme, @experience), title: @experience.title.html_safe, description: @experience.description.html_safe, hashtag: @challenge.hashtag} %>
                       </div>
                     <% else %>
                       <%= render partial: 'shared/draft', locals: { edit_path: edit_challenge_experience_stage_theme_experience_path(@challenge, @experience.experience_stage, @experience.theme, @experience), delete_path: challenge_experience_stage_theme_experience_path(@challenge, @experience.experience_stage, @experience.theme, @experience) } %>
