@@ -4,25 +4,25 @@ require 'support/standard_controller_actions'
 describe RecipesController do
 
   let(:second_fragment) {
-    recipe_stage = FactoryGirl.create(:recipe_stage)
+    recipe_stage = create(:recipe_stage)
     challenge.recipe_stage = recipe_stage
     recipe_stage
   }
 
   let(:third_fragment) {
-    cookbook = FactoryGirl.create(:cookbook)
+    cookbook = create(:cookbook)
     second_fragment.cookbooks << cookbook
     cookbook
   }
 
   let(:preexisting_entity) {
-    recipe = FactoryGirl.create(:recipe, user: user, published_at: Time.now)
+    recipe = create(:recipe, user: user, published_at: Time.now)
     third_fragment.recipes << recipe
     recipe
   }
 
   let(:unpublished_entity) {
-    recipe = FactoryGirl.create(:recipe, user: user)
+    recipe = create(:recipe, user: user)
     third_fragment.recipes << recipe
     recipe
   }

@@ -59,9 +59,9 @@ describe Idea do
   it_behaves_like 'an entity respecting the default order'
 
   let(:entity) {
-    idea_stage = FactoryGirl.create(:idea_stage, challenge: challenge)
-    problem_statement = FactoryGirl.create(:problem_statement, idea_stage: idea_stage)
-    idea = FactoryGirl.create(:idea, problem_statement: problem_statement)
+    idea_stage = create(:idea_stage, challenge: challenge)
+    problem_statement = create(:problem_statement, idea_stage: idea_stage)
+    idea = create(:idea, problem_statement: problem_statement)
 
     idea
   }

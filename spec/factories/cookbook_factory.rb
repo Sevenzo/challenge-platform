@@ -25,7 +25,7 @@ FactoryGirl.define do
     end
 
     after :create do |cookbook, evaluator|
-      cookbook.recipes = FactoryGirl.create_list(:recipe, evaluator.amount, user: evaluator.user)
+      cookbook.recipes = create_list(:recipe, evaluator.amount, user: evaluator.user)
     end
   end
 end

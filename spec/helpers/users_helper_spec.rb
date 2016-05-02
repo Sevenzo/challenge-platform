@@ -6,27 +6,27 @@ describe UsersHelper do
     context 'if the user owns the submissions' do
 
       let(:user) {
-        FactoryGirl.create(:user)
+        create(:user)
       }
 
       let(:experiences) {
-        FactoryGirl.create_list(:experience, 5, user: user)
+        create_list(:experience, 5, user: user)
       }
 
       let(:ideas) {
-        FactoryGirl.create_list(:idea, 5, user: user)
+        create_list(:idea, 5, user: user)
       }
 
       let(:recipes) {
-        FactoryGirl.create_list(:recipe, 5, user: user)
+        create_list(:recipe, 5, user: user)
       }
 
       let(:solutions) {
-        FactoryGirl.create_list(:solution, 5, user: user)
+        create_list(:solution, 5, user: user)
       }
 
       let(:suggestions) {
-        FactoryGirl.create_list(:suggestion, 5, user: user)
+        create_list(:suggestion, 5, user: user)
       }
 
       it 'pulls back all experiences' do
@@ -68,39 +68,39 @@ describe UsersHelper do
     context 'if the user does not own the submissions' do
 
       let(:user) {
-        FactoryGirl.create(:user)
+        create(:user)
       }
 
       let(:other_user) {
-        FactoryGirl.create(:user)
+        create(:user)
       }
 
       let(:experiences) {
-        pub = FactoryGirl.create_list(:experience, 5, user: user, published_at: Time.now)
-        unpub = FactoryGirl.create_list(:experience, 15, user: user)
+        pub = create_list(:experience, 5, user: user, published_at: Time.now)
+        unpub = create_list(:experience, 15, user: user)
         pub + unpub
       }
 
       let(:ideas) {
-        pub = FactoryGirl.create_list(:idea, 5, user: user, published_at: Time.now)
-        unpub = FactoryGirl.create_list(:idea, 15, user: user)
+        pub = create_list(:idea, 5, user: user, published_at: Time.now)
+        unpub = create_list(:idea, 15, user: user)
         pub + unpub
       }
 
       let(:recipes) {
-        pub = FactoryGirl.create_list(:recipe, 5, user: user, published_at: Time.now)
-        unpub = FactoryGirl.create_list(:recipe, 15, user: user)
+        pub = create_list(:recipe, 5, user: user, published_at: Time.now)
+        unpub = create_list(:recipe, 15, user: user)
         pub + unpub
       }
 
       let(:solutions) {
-        pub = FactoryGirl.create_list(:solution, 5, user: user, published_at: Time.now)
-        unpub = FactoryGirl.create_list(:solution, 15, user: user)
+        pub = create_list(:solution, 5, user: user, published_at: Time.now)
+        unpub = create_list(:solution, 15, user: user)
         pub + unpub
       }
 
       let(:suggestions) {
-        FactoryGirl.create_list(:suggestion, 15, user: user)
+        create_list(:suggestion, 15, user: user)
       }
 
 
@@ -143,7 +143,7 @@ describe UsersHelper do
 
   describe '#display_commenters' do
     let(:entity) {
-      FactoryGirl.create(:experience)
+      create(:experience)
     }
 
     context 'with no commenters' do
@@ -156,7 +156,7 @@ describe UsersHelper do
     context 'with one commenter' do
 
       let!(:comment) {
-        comment = Comment.build_from(entity, FactoryGirl.create(:user, first_name: 'John', last_name: 'Doe').id, {body: 'Test comment!!'})
+        comment = Comment.build_from(entity, create(:user, first_name: 'John', last_name: 'Doe').id, {body: 'Test comment!!'})
         comment.save!
       }
       it 'returns the single user\'s display name' do
@@ -168,7 +168,7 @@ describe UsersHelper do
       let!(:comments) {
         names = [%w(John Doe), %w(Jane Doe)]
         2.times do |idx|
-          comment = Comment.build_from(entity, FactoryGirl.create(:user, first_name: names[idx][0], last_name: names[idx][1]).id, {body: 'Test comment!!'})
+          comment = Comment.build_from(entity, create(:user, first_name: names[idx][0], last_name: names[idx][1]).id, {body: 'Test comment!!'})
           comment.save!
         end
       }
@@ -182,7 +182,7 @@ describe UsersHelper do
       let!(:comments) {
         names = [%w(John Doe), %w(Jane Doe), %w(Barack Obama)]
         3.times do |idx|
-          comment = Comment.build_from(entity, FactoryGirl.create(:user, first_name: names[idx][0], last_name: names[idx][1]).id, {body: 'Test comment!!'})
+          comment = Comment.build_from(entity, create(:user, first_name: names[idx][0], last_name: names[idx][1]).id, {body: 'Test comment!!'})
           comment.save!
         end
       }
@@ -196,7 +196,7 @@ describe UsersHelper do
       let!(:comments) {
         names = [%w(John Doe), %w(Jane Doe), %w(Barack Obama), %w(Bill Gates)]
         4.times do |idx|
-          comment = Comment.build_from(entity, FactoryGirl.create(:user, first_name: names[idx][0], last_name: names[idx][1]).id, {body: 'Test comment!!'})
+          comment = Comment.build_from(entity, create(:user, first_name: names[idx][0], last_name: names[idx][1]).id, {body: 'Test comment!!'})
           comment.save!
         end
       }
@@ -209,7 +209,7 @@ describe UsersHelper do
 
   describe '#display_likers' do
     let(:entity) {
-      FactoryGirl.create(:experience)
+      create(:experience)
     }
 
     context 'with no likes' do
@@ -222,7 +222,7 @@ describe UsersHelper do
     context 'with one like' do
 
       let!(:like) {
-        entity.liked_by(FactoryGirl.create(:user, first_name: 'John', last_name: 'Doe'), vote_scope: entity.default_like[:scope])
+        entity.liked_by(create(:user, first_name: 'John', last_name: 'Doe'), vote_scope: entity.default_like[:scope])
       }
       it 'returns the single user\'s display name' do
         expect(display_likers(entity)).to eq 'John D'
@@ -233,7 +233,7 @@ describe UsersHelper do
       let!(:likes) {
         names = [%w(John Doe), %w(Jane Doe)]
         2.times do |idx|
-          entity.liked_by(FactoryGirl.create(:user, first_name: names[idx][0], last_name: names[idx][1]), vote_scope: entity.default_like[:scope])
+          entity.liked_by(create(:user, first_name: names[idx][0], last_name: names[idx][1]), vote_scope: entity.default_like[:scope])
         end
       }
 
@@ -246,7 +246,7 @@ describe UsersHelper do
       let!(:comments) {
         names = [%w(John Doe), %w(Jane Doe), %w(Barack Obama)]
         3.times do |idx|
-          entity.liked_by(FactoryGirl.create(:user, first_name: names[idx][0], last_name: names[idx][1]), vote_scope: entity.default_like[:scope])
+          entity.liked_by(create(:user, first_name: names[idx][0], last_name: names[idx][1]), vote_scope: entity.default_like[:scope])
         end
       }
 
@@ -259,7 +259,7 @@ describe UsersHelper do
       let!(:comments) {
         names = [%w(John Doe), %w(Jane Doe), %w(Barack Obama), %w(Bill Gates)]
         4.times do |idx|
-          entity.liked_by(FactoryGirl.create(:user, first_name: names[idx][0], last_name: names[idx][1]), vote_scope: entity.default_like[:scope])
+          entity.liked_by(create(:user, first_name: names[idx][0], last_name: names[idx][1]), vote_scope: entity.default_like[:scope])
         end
       }
 

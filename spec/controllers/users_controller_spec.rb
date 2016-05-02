@@ -5,7 +5,7 @@ describe UsersController do
   describe "GET #show" do
 
     let(:user) {
-      FactoryGirl.create(:user)
+      create(:user)
     }
 
     it 'finds the user with the specified id' do

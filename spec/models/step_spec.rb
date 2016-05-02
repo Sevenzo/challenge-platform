@@ -22,13 +22,13 @@ describe Step do
 
   context 'with multiple steps associated to a recipe' do
 
-    let(:sequential_recipe) { FactoryGirl.create(:recipe, :with_sequential_steps)}
+    let(:sequential_recipe) { create(:recipe, :with_sequential_steps)}
     let(:standard_recipe) {
-      FactoryGirl.create(:recipe, steps:
+      create(:recipe, steps:
         [
-          FactoryGirl.create(:step, description: 'Alpha'),
-          FactoryGirl.create(:step, description: 'Gamma'),
-          FactoryGirl.create(:step, description: 'Beta')
+          create(:step, description: 'Alpha'),
+          create(:step, description: 'Gamma'),
+          create(:step, description: 'Beta')
         ]
       )
     }

@@ -6,10 +6,10 @@ end
 describe RoutingOrientedController do
 
   let(:experience) {
-    experience = FactoryGirl.create(:experience)
-    theme = FactoryGirl.create(:theme)
-    experience_stage = FactoryGirl.create(:experience_stage)
-    challenge = FactoryGirl.create(:challenge)
+    experience = create(:experience)
+    theme = create(:theme)
+    experience_stage = create(:experience_stage)
+    challenge = create(:challenge)
 
     experience_stage.challenge = challenge
     theme.experience_stage = experience_stage
@@ -18,10 +18,10 @@ describe RoutingOrientedController do
   }
 
   let(:idea) {
-    idea = FactoryGirl.create(:idea)
-    idea_stage = FactoryGirl.create(:idea_stage)
-    problem_statement = FactoryGirl.create(:problem_statement)
-    challenge = FactoryGirl.create(:challenge)
+    idea = create(:idea)
+    idea_stage = create(:idea_stage)
+    problem_statement = create(:problem_statement)
+    challenge = create(:challenge)
 
     idea_stage.challenge = challenge
     problem_statement.idea_stage = idea_stage
@@ -52,7 +52,7 @@ describe RoutingOrientedController do
 
   context 'if the object is a comment' do
 
-    let(:comment) { FactoryGirl.create(:comment) }
+    let(:comment) { create(:comment) }
 
     it 'returns the correct route for experiences if we pass in an experience' do
       comment.commentable = experience
@@ -85,7 +85,7 @@ describe RoutingOrientedController do
 
   it 'returns the root path in case of an error' do
     result = subject.after_update_object_path_for(nil)
-    
+
     expect(result).to eq '/'
   end
 

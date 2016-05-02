@@ -7,7 +7,7 @@ describe CacheOrientedController do
 
   context 'when storing a like into the session' do
 
-    let(:idea) { FactoryGirl.create(:idea) }
+    let(:idea) { create(:idea) }
 
     it 'writes a single like into the like session' do
       scope = 'Test Scope'
@@ -28,7 +28,7 @@ describe CacheOrientedController do
     end
 
     it 'stores only the last like into the session' do
-      experience = FactoryGirl.create(:experience)
+      experience = create(:experience)
       scope = 'Test Scope'
 
       expected = {likeable_type: 'Experience', likeable_id: experience.id, vote_scope: scope}
@@ -40,7 +40,7 @@ describe CacheOrientedController do
     end
 
     it 'stores nothing if no likeable_id is supplied' do
-      experience = FactoryGirl.build(:experience)
+      experience = build(:experience)
       scope = 'Test Scope'
 
       subject.cache_pending_like(experience, {vote_scope: scope})
@@ -51,14 +51,14 @@ describe CacheOrientedController do
 
   context 'when storing an entity into the session' do
     it 'stores an entity into the session' do
-      experience = FactoryGirl.create(:experience)
+      experience = create(:experience)
       subject.cache_pending_object(experience)
 
       expect(session[:object]).to eq experience
     end
 
     it 'only allows one entity to remain in the session' do
-      entities = [FactoryGirl.create(:experience), FactoryGirl.create(:idea), FactoryGirl.create(:comment)].shuffle!
+      entities = [create(:experience), create(:idea), create(:comment)].shuffle!
 
       entities.each { |entity|
         subject.cache_pending_object(entity)
@@ -70,7 +70,7 @@ describe CacheOrientedController do
 
   context 'when storing both a like and an entity' do
 
-    let(:entity) { FactoryGirl.create(:experience) }
+    let(:entity) { create(:experience) }
 
     it 'only stores a like if an entity previously existed' do
       subject.cache_pending_object(entity)

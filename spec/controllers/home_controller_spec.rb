@@ -11,11 +11,11 @@ describe HomeController do
     context 'with two featured challenges, and the first has not ended' do
 
       let!(:first_challenge) {
-        FactoryGirl.create(:challenge, title: 'Primary challenge', featured: true, starts_at: 30.days.ago, ends_at: 5.minutes.from_now)
+        create(:challenge, title: 'Primary challenge', featured: true, starts_at: 30.days.ago, ends_at: 5.minutes.from_now)
       }
 
       let!(:second_challenge) {
-        FactoryGirl.create(:challenge, title: 'Secondary challenge', featured: true, starts_at: 5.minutes.from_now, ends_at: 30.days.from_now)
+        create(:challenge, title: 'Secondary challenge', featured: true, starts_at: 5.minutes.from_now, ends_at: 30.days.from_now)
       }
 
       it 'pulls in the first challenge' do
@@ -26,11 +26,11 @@ describe HomeController do
 
     context 'with two featured challenges, and the first has ended' do
       let!(:first_challenge) {
-        FactoryGirl.create(:challenge, title: 'Primary challenge', featured: true, starts_at: 30.days.ago, ends_at: Time.now)
+        create(:challenge, title: 'Primary challenge', featured: true, starts_at: 30.days.ago, ends_at: Time.now)
       }
 
       let!(:second_challenge) {
-        FactoryGirl.create(:challenge, title: 'Secondary challenge', featured: true, starts_at: Time.now, ends_at: 30.days.from_now)
+        create(:challenge, title: 'Secondary challenge', featured: true, starts_at: Time.now, ends_at: 30.days.from_now)
       }
 
       it 'pulls in the second challenge' do
@@ -41,11 +41,11 @@ describe HomeController do
 
     context 'with two unfeatured challenges' do
       let!(:first_challenge) {
-        FactoryGirl.create(:challenge, title: 'Primary challenge', featured: false, starts_at: 30.days.ago, ends_at: Time.now)
+        create(:challenge, title: 'Primary challenge', featured: false, starts_at: 30.days.ago, ends_at: Time.now)
       }
 
       let!(:second_challenge) {
-        FactoryGirl.create(:challenge, title: 'Secondary challenge', featured: false, starts_at: Time.now, ends_at: 30.days.from_now)
+        create(:challenge, title: 'Secondary challenge', featured: false, starts_at: Time.now, ends_at: 30.days.from_now)
       }
 
       it 'pulls nothing in' do
@@ -56,11 +56,11 @@ describe HomeController do
 
     context 'with one featured challenge that started two hours ago' do
       let!(:first_challenge) {
-        FactoryGirl.create(:challenge, title: 'Primary challenge', featured: false, starts_at: 30.days.ago, ends_at: 30.days.from_now)
+        create(:challenge, title: 'Primary challenge', featured: false, starts_at: 30.days.ago, ends_at: 30.days.from_now)
       }
 
       let!(:second_challenge) {
-        FactoryGirl.create(:challenge, title: 'Secondary challenge', featured: true, starts_at: 2.hours.ago, ends_at: 30.days.from_now)
+        create(:challenge, title: 'Secondary challenge', featured: true, starts_at: 2.hours.ago, ends_at: 30.days.from_now)
       }
 
       it 'pulls the second challenge in' do
@@ -72,11 +72,11 @@ describe HomeController do
     context 'with two featured challenges, with the first over and the second not yet to start' do
 
       let!(:first_challenge) {
-        FactoryGirl.create(:challenge, title: 'Primary challenge', featured: true, starts_at: 30.days.ago, ends_at: Time.now)
+        create(:challenge, title: 'Primary challenge', featured: true, starts_at: 30.days.ago, ends_at: Time.now)
       }
 
       let!(:second_challenge) {
-        FactoryGirl.create(:challenge, title: 'Secondary challenge', featured: true, starts_at: 5.minutes.from_now, ends_at: 30.days.from_now)
+        create(:challenge, title: 'Secondary challenge', featured: true, starts_at: 5.minutes.from_now, ends_at: 30.days.from_now)
       }
 
       it 'pulls nothing in' do
@@ -87,7 +87,7 @@ describe HomeController do
   end
 
   describe 'GET #preview' do
-    let(:comment) { FactoryGirl.create(:comment) }
+    let(:comment) { create(:comment) }
 
     it 'hides the navigation bars' do
       get 'preview', class_name: 'inconsequential'

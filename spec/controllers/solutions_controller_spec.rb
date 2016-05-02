@@ -1,21 +1,21 @@
 require 'rails_helper'
 
-describe SolutionsController do 
+describe SolutionsController do
 
-  let(:user) { FactoryGirl.create(:user, email: Faker::Internet.email) }
-  let(:challenge) { FactoryGirl.create(:challenge) }
+  let(:user) { create(:user, email: Faker::Internet.email) }
+  let(:challenge) { create(:challenge) }
   let(:solution_stage) {
-    solution_stage = FactoryGirl.create(:solution_stage)
+    solution_stage = create(:solution_stage)
     challenge.solution_stage = solution_stage
     solution_stage
   }
   let(:solution_story) {
-    solution_story = FactoryGirl.create(:solution_story)
+    solution_story = create(:solution_story)
     solution_stage.solution_stories << solution_story
     solution_story
   }
   let(:solution) {
-    solution = FactoryGirl.create(:solution, user: user)
+    solution = create(:solution, user: user)
     solution_story.solution = solution
     solution
   }
@@ -56,7 +56,7 @@ describe SolutionsController do
       it "caches the like" do
         put :like, challenge_id: solution.challenge.id, solution_stage_id: solution.solution_story.solution_stage.id, solution_story_id: solution.solution_story.id, id: solution.id
 
-        expect(session[:like].length).to_not be_nil      
+        expect(session[:like].length).to_not be_nil
       end
     end
   end

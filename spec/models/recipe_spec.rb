@@ -64,9 +64,9 @@ describe Recipe do
   it_behaves_like 'an entity respecting the default order'
 
   let(:entity) {
-    recipe_stage = FactoryGirl.create(:recipe_stage, challenge: challenge)
-    cookbook = FactoryGirl.create(:cookbook, recipe_stage: recipe_stage)
-    recipe = FactoryGirl.create(:recipe, cookbook: cookbook)
+    recipe_stage = create(:recipe_stage, challenge: challenge)
+    cookbook = create(:cookbook, recipe_stage: recipe_stage)
+    recipe = create(:recipe, cookbook: cookbook)
 
     recipe
   }

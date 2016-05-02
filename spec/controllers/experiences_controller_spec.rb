@@ -4,25 +4,25 @@ require 'support/standard_controller_actions'
 describe ExperiencesController do
 
   let(:second_fragment) {
-    experience_stage = FactoryGirl.create(:experience_stage)
+    experience_stage = create(:experience_stage)
     challenge.experience_stage = experience_stage
     experience_stage
   }
 
   let(:third_fragment) {
-    theme = FactoryGirl.create(:theme)
+    theme = create(:theme)
     second_fragment.themes << theme
     theme
   }
 
   let(:preexisting_entity) {
-    experience = FactoryGirl.create(:experience, user: user, published_at: Time.now)
+    experience = create(:experience, user: user, published_at: Time.now)
     third_fragment.experiences << experience
     experience
   }
 
   let(:unpublished_entity) {
-    experience = FactoryGirl.create(:experience, user: user)
+    experience = create(:experience, user: user)
     third_fragment.experiences << experience
     experience
   }
@@ -53,7 +53,7 @@ describe ExperiencesController do
 
   let(:valid_patch_model) {
     {
-      description: 'This is a much, much better description!!', 
+      description: 'This is a much, much better description!!',
       link: 'http://www.yahoo.com'
     }
   }
@@ -68,7 +68,7 @@ describe ExperiencesController do
 
   let(:invalid_patch_model) {
     {
-      description: 'This is a much, much better description!!', 
+      description: 'This is a much, much better description!!',
       link: 'sftp://www.yahoo.com'
     }
   }

@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 shared_examples_for 'an entity respecting the default order' do
-  let(:model) { described_class }
+  let(:model) { described_class.model_name.param_key.to_sym }
 
   context 'when there is no tie on an entities'' votes' do
 
     let!(:models) {
       3.times do |n|
-        entity = FactoryGirl.create(described_class.to_s.downcase.to_sym)
+        entity = create(described_class.to_s.downcase.to_sym)
         vote_for_entity(n + 1, entity)
       end
     }
@@ -29,7 +29,7 @@ shared_examples_for 'an entity respecting the default order' do
 
     let!(:models) {
       3.times do |n|
-        entity = FactoryGirl.create(described_class.to_s.downcase.to_sym)
+        entity = create(described_class.to_s.downcase.to_sym)
         vote_for_entity(3, entity)
         comment_on_entity(n + 1, entity)
       end
@@ -55,7 +55,7 @@ shared_examples_for 'an entity respecting the default order' do
 
     let!(:models) {
       3.times do |n|
-        entity = FactoryGirl.create(described_class.to_s.downcase.to_sym, created_at: now.days_ago(n+1).getlocal('+00:00'))
+        entity = create(described_class.to_s.downcase.to_sym, created_at: now.days_ago(n+1).getlocal('+00:00'))
         vote_for_entity(3, entity)
         comment_on_entity(3, entity)
       end
@@ -82,7 +82,7 @@ shared_examples_for 'an entity respecting the default order' do
 
     let!(:models) {
       3.times do
-        entity = FactoryGirl.create(described_class.to_s.downcase.to_sym, created_at: now)
+        entity = create(described_class.to_s.downcase.to_sym, created_at: now)
         vote_for_entity(3, entity)
         comment_on_entity(3, entity)
       end
@@ -111,13 +111,13 @@ private
 
 def vote_for_entity(n, entity)
   n.times do
-    entity.liked_by(FactoryGirl.create(:user), vote_scope: entity.default_like[:scope])
+    entity.liked_by(create(:user), vote_scope: entity.default_like[:scope])
   end
 end
 
 def comment_on_entity(n, entity)
   n.times do
-    comment = Comment.build_from(entity, FactoryGirl.create(:user).id, {body: "Test comment"})
+    comment = Comment.build_from(entity, create(:user).id, {body: "Test comment"})
     comment.save!
   end
   entity.save!
