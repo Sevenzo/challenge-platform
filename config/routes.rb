@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  mount RedactorRails::Engine => '/redactor_rails'
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web, at: 'sidekiq'
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

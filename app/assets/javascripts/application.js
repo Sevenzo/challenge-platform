@@ -23,3 +23,6 @@
 //= require bootstrap-switch
 //= require cocoon
 //= require_tree .
+//= require redactor-rails
+//= require redactor-rails/plugins
+//

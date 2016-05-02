@@ -268,6 +268,10 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.16.0)
     rake (10.5.0)
+    redactor-rails (0.5.0)
+      devise
+      mime-types
+      orm_adapter
     redis (3.3.0)
     remotipart (1.2.1)
     responders (2.2.0)
@@ -406,6 +410,7 @@ DEPENDENCIES
   rails-assets-underscore!
   rails_12factor
   rails_admin
+  redactor-rails
   rspec-rails
   sass-rails
   select2-rails

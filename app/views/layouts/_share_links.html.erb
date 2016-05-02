@@ -6,13 +6,13 @@
   </li>
   <li>
     <%= link_to "<i class='fa fa-facebook'></i>".html_safe, "https://www.facebook.com/dialog/share?app_id=811290972280440&display=popup&href=#{url_encode(url)}&redirect_uri=#{url_encode(url)}", onclick: "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;" %>
-    <meta property="og:title" content="<%= title %>" />
-    <meta property="og:description" content="<%= description %>" />
+    <meta property="og:title" content="<%= strip_tags(title) %>" />
+    <meta property="og:description" content="<%= strip_tags(description) %>" />
   </li>
   <li>
-    <%= link_to "<i class='fa fa-linkedin'></i>".html_safe, "http://www.linkedin.com/shareArticle?mini=true&url=#{url_encode(url)}&title=#{url_encode(title)}&summary=#{url_encode(description)}", onclick: "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;" %>
+    <%= link_to "<i class='fa fa-linkedin'></i>".html_safe, "http://www.linkedin.com/shareArticle?mini=true&url=#{url_encode(url)}&title=#{url_encode(strip_tags(title))}&summary=#{url_encode(strip_tags(description))}", onclick: "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;" %>
   </li>
   <li>
-    <%= mail_to '', "<i class='fa fa-envelope'></i>".html_safe, {subject: "#{title}", body: "#{description} #{url}", onclick: "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"} %>
+    <%= mail_to '', "<i class='fa fa-envelope'></i>".html_safe, {subject: "#{strip_tags(title)}", body: "#{strip_tags(description)} #{url}", onclick: "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"} %>
   </li>
 </ul>

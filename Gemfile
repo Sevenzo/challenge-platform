@@ -35,6 +35,7 @@ gem 'font-awesome-sass'
 gem 'bootstrap-switch-rails'
 gem 'bourbon'
 gem 'select2-rails'
+gem 'redactor-rails'
 
 ## FILE/PHOTO UPLOADS
 gem 'twitter'
