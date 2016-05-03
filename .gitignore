@@ -17,5 +17,5 @@
 *.pem
 *.key
 *.crt
-/db/seeds*
+db/seeds*
 routes.txt
