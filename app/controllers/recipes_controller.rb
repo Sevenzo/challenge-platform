@@ -100,16 +100,18 @@ private
 
   def recipe_params
     params.require(:recipe).permit(
-      :title, 
-      :description, 
-      :materials, 
+      :title,
+      :description,
+      :materials,
       :community,
-      :conditions, 
-      :evidence, 
-      :protips, 
-      :link, 
-      :cookbook_id, 
-      :published_at, 
+      :conditions,
+      :evidence,
+      :protips,
+      :link,
+      :file,
+      :remove_file,
+      :cookbook_id,
+      :published_at,
       steps_attributes: [:id, :display_order, :description, :_destroy]
     )
   end
