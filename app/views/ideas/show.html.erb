@@ -100,6 +100,15 @@
                     <p><%= link_to @idea.link.html_safe, @idea.link, target: '_blank' %></p>
                   </div>
                 <% end %>
+
+                <% if @idea.file.present? %>
+                  <div class='content-block'>
+                    <p class='text-idea text-large text-bold text-uppercase'>File</p>
+                    <%= fa_icon "file-#{@idea.file.file.extension.downcase}-o" %>
+                    <%= link_to @idea.file.file.filename, @idea.file_url %>
+                    </div>
+                  </div>
+                <% end %>
               </div>
             </div>
 
