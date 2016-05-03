@@ -1,0 +1,8 @@
+$('#redactor').redactor({
+    callbacks: {
+        syncBefore: function(html) {
+            console.log('syncBefore!', html);
+            return html;
+        }
+    }
+});
