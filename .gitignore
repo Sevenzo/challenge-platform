@@ -17,5 +17,4 @@
 *.pem
 *.key
 *.crt
-db/seeds*
-routes.txt
+/db/seeds/users/alpha*
