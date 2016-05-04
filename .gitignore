@@ -17,4 +17,4 @@
 *.pem
 *.key
 *.crt
-/db/seeds/alpha*
+/db/seeds/users/alpha*
