@@ -23,7 +23,7 @@ class Experience < ActiveRecord::Base
   validates :link,        url: true, allow_blank: true
 
   def title
-    description.present? ? description.truncate(50) : nil
+    description.present? ?  ActionController::Base.helpers.strip_tags(description).truncate(30) : nil
   end
 
   def default_like
