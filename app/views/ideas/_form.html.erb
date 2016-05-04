@@ -23,7 +23,7 @@
         </div>
 
         <div class='form-group'>
-          <%= f.text_area :description, placeholder: "Describe your idea. Your idea can be simple – just a few lines, but the clearer you are about the details, the better.", class: 'form-control', rows: 5 %>
+          <%= f.text_area :description, placeholder: "Describe your idea. Your idea can be simple – just a few lines, but the clearer you are about the details, the better.", class: 'redactor form-control', rows: 5 %>
         </div>
 
         <div class='input-switch' ng-switch='idea_impact' ng-init='idea_impact=<%= @idea.impact.present? %>'>
@@ -41,7 +41,7 @@
 
           <div ng-show='idea_impact' class='form-group'>
             <%= f.label :impact, "Potential Impact" %>
-            <%= f.text_area :impact, placeholder: "Describe the impact your idea could have.", class: 'form-control', rows: 3 %>
+            <%= f.text_area :impact, placeholder: "Describe the impact your idea could have.", class: 'redactor form-control', rows: 3 %>
           </div>
         </div>
 
@@ -60,7 +60,7 @@
 
           <div ng-show='idea_implementation' class='form-group'>
             <%= f.label :implementation, "Possible Implementation" %>
-            <%= f.text_area :implementation, placeholder: "Describe how your idea may be implemented.", class: 'form-control', rows: 3 %>
+            <%= f.text_area :implementation, placeholder: "Describe how your idea may be implemented.", class: 'redactor form-control', rows: 3 %>
           </div>
         </div>
 
