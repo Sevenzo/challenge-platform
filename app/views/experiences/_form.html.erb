@@ -23,7 +23,7 @@
             <%= render partial: 'layouts/error_messages', locals: { model: @experience } %>
 
             <div class='form-group'>
-              <%= f.text_area :description, placeholder: "Please describe your experience as it relates to this theme and we'll share it with this challenge.", class: 'form-control', autofocus: true, rows: 4 %>
+              <%= f.text_area :description, placeholder: "Please describe your experience as it relates to this theme and we'll share it with this challenge.", class: 'redactor form-control', autofocus: true, rows: 4 %>
             </div>
 
             <div class='form-group input-switch' ng-switch='experience_<%= @experience.id %>_link' ng-init='experience_<%= @experience.id %>_link=<%= @experience.link.present? %>'>
