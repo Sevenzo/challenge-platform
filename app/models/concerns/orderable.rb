@@ -3,8 +3,8 @@ module Orderable
 
   included do
     scope :latest, -> {
-      # Escape the default_scope
-      unscoped.order(created_at: :desc)
+      # Escape the default_scope's ordering
+      unscope(:order).order(created_at: :desc)
     }
 
     default_scope {
