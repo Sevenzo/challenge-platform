@@ -2,9 +2,11 @@ module Orderable
   extend ActiveSupport::Concern
 
   included do
-    scope :latest, -> {
-      # Escape the default_scope's ordering
-      unscope(:order).order(created_at: :desc)
+    scope :order_by, lambda{ |field|
+      if (field)
+        # Escape the default_scope's ordering, and order by the field provided
+        unscope(:order).order(field)
+      end
     }
 
     default_scope {

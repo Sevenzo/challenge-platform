@@ -5,7 +5,7 @@ class ExperienceStagesController < ApplicationController
     @experience_stage = @challenge.experience_stage
     @themes = @experience_stage.themes
     @featured_experiences = @experience_stage.experiences.where(featured: true)
-    @order_by = params[:order_by]
+    @order_field = params[:order_by]
   end
 
 end
