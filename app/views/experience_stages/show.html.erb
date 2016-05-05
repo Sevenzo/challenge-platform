@@ -66,7 +66,7 @@
     <div class='row'>
       <div class='col-md-10 col-md-offset-1'>
 
-        <% @themes.each do |theme| %>
+        <% @themes.limit(1).each do |theme| %>
           <div id='theme-<%= theme.id %>' class='content-block-xl'>
             <h6 class='text-center'>Theme</h6>
             <h2 class='section-title text-experience'><%= theme.title %></h2>
@@ -74,7 +74,7 @@
             <div class='row row-count'>
               <div class='col-xs-2 col-xs-offset-2'>
                 <ul class='action text-right text-small list-inline'>
-                  <li><a>Popular</a></li>
+                  <li><%= link_to "Popular", challenge_experience_stage_path(@challenge, @experience_stage, order: "popular", anchor: "theme-#{theme.id}") %></li>
                   <li><a>Latest</a></li>
                 </ul>
               </div>
@@ -91,15 +91,15 @@
               </div>
             </div>
 
-            <div ng-switch='theme_<%= theme.id %>_experiences' ng-init='theme_<%= theme.id %>_experiences=show_all'>
+            <div ng-switch='theme_<%= theme.id %>_experiences' ng-init='theme_<%= theme.id %>_experiences=false'>
 
-              <% theme.experiences.published.first(2).each do |experience| %>
+              <% theme.experiences.latest.published.first(2).each do |experience| %>
                 <%= render file: 'experiences/card', cache: true, locals: { experience: experience } %>
               <% end %>
 
               <% if theme.experiences.published.count > 2 %>
                 <div ng-show='theme_<%= theme.id %>_experiences'>
-                  <% (theme.experiences.published - theme.experiences.published.first(2)).each do |experience| %>
+                  <% (theme.experiences.latest.published - theme.experiences.latest.published.first(2)).each do |experience| %>
                     <%= render file: 'experiences/card', cache: true, locals: { experience: experience } %>
                   <% end %>
                 </div>
