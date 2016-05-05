@@ -2,7 +2,7 @@ app.controller('ExperienceStageCtrl', function($scope, $document, $timeout) {
   var hash = window.location.hash;
   $scope.show_all = hash != '';
 
-  // On page load, we only want to set theme_:id_experiences to true on initial page load if that theme is in the url hash.
+  // On page load, we initialize theme_:id_experiences=false, unless that theme is listed in the url hash.
   $scope.initialize = function(themeIdExperiences) {
     // Use the hash to generate the scope variable that we'd like to set to `true`.
     // For example, with `hash`, of the form `#theme-1` => construct scope variable name `theme_1_experiences`
