@@ -66,7 +66,7 @@
     <div class='row'>
       <div class='col-md-10 col-md-offset-1'>
 
-        <% @themes.limit(1).each do |theme| %>
+        <% @themes.each do |theme| %>
           <div id='theme-<%= theme.id %>' class='content-block-xl'>
             <h6 class='text-center'>Theme</h6>
             <h2 class='section-title text-experience'><%= theme.title %></h2>
@@ -74,7 +74,7 @@
             <div class='row row-count'>
               <div class='col-xs-2 col-xs-offset-2'>
                 <ul class='action text-right text-small list-inline'>
-                  <li><%= link_to "Popular", challenge_experience_stage_path(@challenge, @experience_stage, order: "popular", anchor: "theme-#{theme.id}") %></li>
+                  <li><%= link_to "Popular", challenge_experience_stage_path(@challenge, @experience_stage, order: "popular", anchor: "theme-#{theme.id}", offset: 120) %></li>
                   <li><a>Latest</a></li>
                 </ul>
               </div>
