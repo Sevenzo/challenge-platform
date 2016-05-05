@@ -74,8 +74,8 @@
             <div class='row row-count'>
               <div class='col-xs-2 col-xs-offset-2'>
                 <ul class='action text-right text-small list-inline'>
-                  <li><%= link_to "Popular", challenge_experience_stage_path(@challenge, @experience_stage, order: "popular", anchor: "theme-#{theme.id}", offset: 120) %></li>
-                  <li><a>Latest</a></li>
+                  <li><%= link_to "Popular", challenge_experience_stage_path(@challenge, @experience_stage, order_by: "popular", anchor: "theme-#{theme.id}", offset: 120) %></li>
+                  <li><%= link_to "Latest", challenge_experience_stage_path(@challenge, @experience_stage, order_by: "latest", anchor: "theme-#{theme.id}", offset: 120) %></li>
                 </ul>
               </div>
               <div class='col-xs-4'>
