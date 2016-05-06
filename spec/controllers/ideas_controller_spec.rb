@@ -79,8 +79,7 @@ describe IdeasController do
   let(:invalid_patch_model) {
     {
       description: 'This is a much, much better description!!',
-      link: 'obex://www.yahoo.com',
-      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls'))
+      link: 'obex://www.yahoo.com'
     }
   }
 
