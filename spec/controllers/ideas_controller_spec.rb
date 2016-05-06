@@ -55,7 +55,6 @@ describe IdeasController do
       problem_statement_id: third_fragment.id,
       link: 'ftp://google.com',
       file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls'))
-
     }
   }
 
