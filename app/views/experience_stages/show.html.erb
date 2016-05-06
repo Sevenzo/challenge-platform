@@ -76,16 +76,16 @@
                 <ul class='action text-right text-small list-inline'>
                   <li>
                     <%= link_to challenge_experience_stage_path(@challenge, @experience_stage, order_by: "", anchor: "theme-#{theme.id}", offset: 120) do %>
-                      <div class="badge badge-experience <%= 'selected' if @order_field.blank? %>">
+                      <span class="badge badge-experience <%= 'selected' if @order_field.blank? %>">
                         <span class='headline text-experience'>Popular</span>
-                      </div>
+                      </span>
                     <% end %>
                   </li>
                   <li>
                     <%= link_to challenge_experience_stage_path(@challenge, @experience_stage, order_by: "created_at DESC", anchor: "theme-#{theme.id}", offset: 120) do %>
-                      <div class="badge badge-experience <%= 'selected' unless @order_field.blank? %>">
+                      <span class="badge badge-experience <%= 'selected' unless @order_field.blank? %>">
                         <span class='headline text-experience'>Latest</span>
-                      </div>
+                      </span>
                     <% end %>
                   </li>
                 </ul>
