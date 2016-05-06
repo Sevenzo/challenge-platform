@@ -66,7 +66,7 @@
     <div class='row'>
       <div class='col-md-10 col-md-offset-1'>
 
-        <% @themes.limit(1).each do |theme| %>
+        <% @themes.each do |theme| %>
           <div id='theme-<%= theme.id %>' class='content-block-xl'>
             <h6 class='text-center'>Theme</h6>
             <h2 class='section-title text-experience'><%= theme.title %></h2>
