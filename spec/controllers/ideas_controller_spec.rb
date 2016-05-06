@@ -34,7 +34,8 @@ describe IdeasController do
       title: 'A generic title',
       description: 'this is a pretty bland description',
       problem_statement_id: third_fragment.id,
-      published: 'true'
+      published: 'true',
+      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls'))
     }
   }
 
@@ -43,6 +44,7 @@ describe IdeasController do
       title: 'A generic title',
       description: 'this is a pretty bland description',
       problem_statement_id: third_fragment.id,
+      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls'))
     }
   }
 
@@ -51,14 +53,17 @@ describe IdeasController do
       title: 'A generic title',
       description: 'this is a pretty broken description',
       problem_statement_id: third_fragment.id,
-      link: 'ftp://google.com'
+      link: 'ftp://google.com',
+      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls'))
+
     }
   }
 
   let(:valid_patch_model) {
     {
       description: 'This is a much, much better description!!',
-      link: 'http://www.yahoo.com'
+      link: 'http://www.yahoo.com',
+      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls'))
     }
   }
 
@@ -66,14 +71,16 @@ describe IdeasController do
     {
       description: 'This is a much, much better description!!',
       link: 'http://www.yahoo.com',
-      published: 'true'
+      published: 'true',
+      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls'))
     }
   }
 
   let(:invalid_patch_model) {
     {
       description: 'This is a much, much better description!!',
-      link: 'obex://www.yahoo.com'
+      link: 'obex://www.yahoo.com',
+      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls'))
     }
   }
 
