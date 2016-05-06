@@ -6,7 +6,7 @@
   <td>
     <h4 class='text-<%= submission.class.to_s.downcase %>'>
       <i class='fa <%= submission.icon %>'></i>
-      <%= link_to submission.title.html_safe, after_update_object_path_for(submission) %>
+      <%= link_to submission.title, after_update_object_path_for(submission) %>
     </h4>
     <p class='zero-margin-bottom'><%= submission.description.html_safe if submission.description.present? %></p>
   </td>
