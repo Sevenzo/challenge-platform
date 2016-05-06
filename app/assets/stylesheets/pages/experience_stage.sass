@@ -30,18 +30,22 @@
   background-color: $lightestGrayBG
   &.affix
     margin-top: 40px
+  .order-by
+    padding: 0px
   .badge
     @extend .text-default, .text-small
     +border-radius(2em)
     background-color: transparent
-    padding: 5px 15px
     vertical-align: bottom
     .headline
-      @extend .hidden-xs
-      @extend .text-bolder
+      font-size: $font-size-small
       position: relative
-      text-color: $experience
     &.selected
       background-color: $experience !important
       .headline
         @extend .text-white
+        font-size: $font-size-small
+
+  li
+    padding: 0px
+
