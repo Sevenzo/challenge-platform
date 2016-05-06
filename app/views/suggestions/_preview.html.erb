@@ -7,7 +7,7 @@
       </div>
       <div class='media-body'>
         <h4 class='media-heading text-default'><%= suggestion.title %></h4>
-        <p class='media-description'><%= truncate(suggestion.description.html_safe, length: 250) %></p>
+        <p class='media-description'><%= truncate_html(suggestion.description.html_safe, length: 250) %></p>
       </div>
     </div>
 
