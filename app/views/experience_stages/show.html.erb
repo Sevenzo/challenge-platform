@@ -75,14 +75,14 @@
               <div class='col-xs-2 col-xs-offset-2 order-by'>
                 <ul class='action text-right text-small list-inline'>
                   <li>
-                    <%= link_to challenge_experience_stage_path(@challenge, @experience_stage, order_by: "", anchor: "theme-#{theme.id}", offset: 120) do %>
+                    <%= link_to challenge_experience_stage_path(@challenge, @experience_stage, order_by: "", anchor: "theme-#{theme.id}") do %>
                       <span class="badge badge-experience <%= 'selected' if @order_field.blank? %>">
                         <span class='headline text-experience'>Popular</span>
                       </span>
                     <% end %>
                   </li>
                   <li>
-                    <%= link_to challenge_experience_stage_path(@challenge, @experience_stage, order_by: "created_at DESC", anchor: "theme-#{theme.id}", offset: 120) do %>
+                    <%= link_to challenge_experience_stage_path(@challenge, @experience_stage, order_by: "created_at DESC", anchor: "theme-#{theme.id}") do %>
                       <span class="badge badge-experience <%= 'selected' unless @order_field.blank? %>">
                         <span class='headline text-experience'>Latest</span>
                       </span>
