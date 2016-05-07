@@ -72,19 +72,25 @@
             <h2 class='section-title text-experience'><%= theme.title %></h2>
 
             <div class='row row-count'>
-              <div class='col-xs-2 col-xs-offset-2 order-by'>
-                <ul class='action text-right text-small list-inline'>
+              <div class='col-xs-4'>
+                <ul class='list-sort'>
                   <li>
                     <%= link_to challenge_experience_stage_path(@challenge, @experience_stage, order_by: "", anchor: "theme-#{theme.id}") do %>
                       <span class="badge badge-experience <%= 'selected' if @order_field.blank? %>">
-                        <span class='headline text-experience'>Popular</span>
+                        <span class='headline text-experience text-xsmall'>
+                          <%= fa_icon 'fire' %>
+                          Popular
+                        </span>
                       </span>
                     <% end %>
                   </li>
                   <li>
                     <%= link_to challenge_experience_stage_path(@challenge, @experience_stage, order_by: "latest", anchor: "theme-#{theme.id}") do %>
                       <span class="badge badge-experience <%= 'selected' unless @order_field.blank? %>">
-                        <span class='headline text-experience'>Latest</span>
+                        <span class='headline text-experience text-xsmall'>
+                          <%= fa_icon 'clock-o' %>
+                          Latest
+                        </span>
                       </span>
                     <% end %>
                   </li>
