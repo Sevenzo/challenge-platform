@@ -10,7 +10,7 @@
 
   <div class='form-group'>
     <%= f.label :description %>
-    <%= f.text_area :description, placeholder: @recipe.recipe_stage.description_instructions, class: 'form-control', rows: 5 %>
+    <%= f.text_area :description, placeholder: @recipe.recipe_stage.description_instructions, class: 'redactor form-control', rows: 5 %>
   </div>
 
   <div class='row' style='margin-bottom: 30px'>
@@ -22,12 +22,12 @@
 
       <div class='form-group'>
         <%= f.label :community %>
-        <%= f.text_area :community, placeholder: @recipe.recipe_stage.community_instructions,class: 'form-control', rows: 6 %>
+        <%= f.text_area :community, placeholder: @recipe.recipe_stage.community_instructions, class: 'form-control', rows: 6 %>
       </div>
 
       <div class='form-group'>
         <%= f.label :conditions %>
-        <%= f.text_area :conditions, placeholder: @recipe.recipe_stage.conditions_instructions,class: 'form-control', rows: 6 %>
+        <%= f.text_area :conditions, placeholder: @recipe.recipe_stage.conditions_instructions, class: 'form-control', rows: 6 %>
       </div>
     </div>
 
@@ -74,12 +74,12 @@
 
       <div class='form-group'>
         <%= f.label :evidence %>
-        <%= f.text_area :evidence, placeholder: @recipe.recipe_stage.evidence_instructions,class: 'form-control', rows: 5 %>
+        <%= f.text_area :evidence, placeholder: @recipe.recipe_stage.evidence_instructions, class: 'redactor form-control', rows: 5 %>
       </div>
 
       <div class='form-group'>
         <%= f.label :protips %>
-        <%= f.text_area :protips, placeholder: @recipe.recipe_stage.protips_instructions,class: 'form-control', rows: 5 %>
+        <%= f.text_area :protips, placeholder: @recipe.recipe_stage.protips_instructions, class: 'redactor form-control', rows: 5 %>
       </div>
     </div>
   </div>

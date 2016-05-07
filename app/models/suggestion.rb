@@ -8,7 +8,7 @@ class Suggestion < ActiveRecord::Base
   acts_as_paranoid column: :destroyed_at
 
   validates :title,       presence: true
-  validates :description, presence: true
+  validates :description, rich_text_presence: true
   validates :link,        url: true, allow_blank: true
 
   RATING_WEIGHTS = [1, 2, 3, 4].freeze

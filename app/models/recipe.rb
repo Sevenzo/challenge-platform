@@ -25,7 +25,7 @@ class Recipe < ActiveRecord::Base
   acts_as_paranoid column: :destroyed_at
 
   validates :title,       presence: true
-  validates :description, presence: true
+  validates :description, rich_text_presence: true
   validates :link,        url: true, allow_blank: true
 
   def default_like
