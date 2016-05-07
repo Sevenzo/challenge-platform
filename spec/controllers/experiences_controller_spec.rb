@@ -33,14 +33,16 @@ describe ExperiencesController do
     {
       description: 'this is a pretty bland description',
       theme_id: third_fragment.id,
-      published: 'true'
+      published: 'true',
+      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls'))
     }
   }
 
   let(:draft_entity) {
     {
-        description: 'this is a pretty bland description',
-        theme_id: third_fragment.id,
+      description: 'this is a pretty bland description',
+      theme_id: third_fragment.id,
+      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls'))
     }
   }
 
@@ -54,7 +56,8 @@ describe ExperiencesController do
   let(:valid_patch_model) {
     {
       description: 'This is a much, much better description!!',
-      link: 'http://www.yahoo.com'
+      link: 'http://www.yahoo.com',
+      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls'))
     }
   }
 
@@ -62,8 +65,8 @@ describe ExperiencesController do
     {
       description: 'This is a much, much better description!!',
       link: 'http://www.yahoo.com',
-      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls')),
-      published: 'true'
+      published: 'true',
+      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls'))
     }
   }
 
