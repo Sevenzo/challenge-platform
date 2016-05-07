@@ -2,6 +2,7 @@ require 'rails_helper'
 require 'models/concerns/embeddable_concern'
 require 'models/concerns/url_normalizer_concern'
 require 'models/concerns/feature_concern'
+require 'models/concerns/likeable_concern'
 require 'sidekiq/testing'
 
 describe Comment do
@@ -23,6 +24,7 @@ describe Comment do
 
   it_behaves_like 'embeddable'
   it_behaves_like 'normalizable'
+  it_behaves_like 'likeable'
   it_behaves_like 'a featurable entity'
 
   context 'with comments that are soft deleted' do

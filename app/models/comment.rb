@@ -1,6 +1,7 @@
 class Comment < ActiveRecord::Base
   include Embeddable
   include URLNormalizer
+  include Likeable
   default_scope { order(created_at: :asc) }
 
   belongs_to :user
@@ -108,10 +109,6 @@ class Comment < ActiveRecord::Base
   # given the commentable class name and id
   def self.find_commentable(commentable_str, commentable_id)
     commentable_str.constantize.find(commentable_id)
-  end
-
-  def default_like
-    DEFAULT_LIKE
   end
 
 private

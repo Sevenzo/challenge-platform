@@ -3,6 +3,7 @@ class Experience < ActiveRecord::Base
   include URLNormalizer
   include Publishable
   include Orderable
+  include Likeable
 
   belongs_to :user
   belongs_to :theme
@@ -24,10 +25,6 @@ class Experience < ActiveRecord::Base
 
   def title
     description.present? ?  ActionController::Base.helpers.strip_tags(description).truncate(30) : nil
-  end
-
-  def default_like
-    DEFAULT_LIKE
   end
 
   def icon

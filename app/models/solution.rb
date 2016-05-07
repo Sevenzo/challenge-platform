@@ -3,6 +3,7 @@ class Solution < ActiveRecord::Base
   include URLNormalizer
   include Publishable
   include Orderable
+  include Likeable
 
   belongs_to :solution_story
   belongs_to :user
@@ -21,10 +22,6 @@ class Solution < ActiveRecord::Base
   acts_as_votable
   acts_as_commentable
   acts_as_paranoid column: :destroyed_at
-
-  def default_like
-    DEFAULT_LIKE
-  end
 
   def icon
     'fa-puzzle-piece'

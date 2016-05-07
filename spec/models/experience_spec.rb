@@ -5,6 +5,7 @@ require 'models/concerns/publishable_concern'
 require 'models/concerns/feature_concern'
 require 'models/concerns/default_ordering_concern'
 require 'models/concerns/orderable_concern'
+require 'models/concerns/likeable_concern'
 
 describe Experience do
 
@@ -21,6 +22,7 @@ describe Experience do
   it_behaves_like 'normalizable'
   it_behaves_like 'a publishable entity'
   it_behaves_like 'orderable'
+  it_behaves_like 'likeable'
   it_behaves_like 'an entity respecting the default order'
 
   let(:entity) {
