@@ -2,6 +2,7 @@ class Idea < ActiveRecord::Base
   include Embeddable
   include URLNormalizer
   include Publishable
+  include Likeable
   default_scope { order(inspiration: :desc, featured: :desc, comments_count: :desc, created_at: :desc, id: :desc) }
 
   belongs_to :user
@@ -24,10 +25,6 @@ class Idea < ActiveRecord::Base
   validates :title,       presence: true
   validates :description, rich_text_presence: true
   validates :link,        url: true, allow_blank: true
-
-  def default_like
-    DEFAULT_LIKE
-  end
 
   def icon
     'fa-lightbulb-o'

@@ -3,6 +3,7 @@ class Recipe < ActiveRecord::Base
   include URLNormalizer
   include Publishable
   include Orderable
+  include Likeable
 
   belongs_to :cookbook
   belongs_to :user
@@ -27,10 +28,6 @@ class Recipe < ActiveRecord::Base
   validates :title,       presence: true
   validates :description, rich_text_presence: true
   validates :link,        url: true, allow_blank: true
-
-  def default_like
-    DEFAULT_LIKE
-  end
 
   def icon
     'fa-flask'
