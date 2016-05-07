@@ -8,6 +8,7 @@ gem 'unicorn'
 gem 'active_model_serializers'
 gem 'uglifier'
 gem 'turbolinks', '~> 5.0.0.beta'
+gem 'angular_rails_csrf'
 
 ## RAILS HELPERS
 gem 'friendly_id'

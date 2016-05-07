@@ -5,16 +5,11 @@ class ApplicationController < ActionController::Base
 
   ## Callback
   before_action :capture_referrer_id
-  after_action :set_csrf_cookie_for_ng
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
-  
-  def set_csrf_cookie_for_ng
-    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
-  end
-  
+
   def resource_name
     :user
   end
@@ -51,7 +46,7 @@ class ApplicationController < ActionController::Base
 private
 
   def capture_referrer_id
-    session[:referrer_id] = params[:referrer_id] if params[:referrer_id]
+    session[:referrer_id] ||= params[:referrer_id] if params[:referrer_id]
   end
 
   def object_flash_message_for(object, options = {})
