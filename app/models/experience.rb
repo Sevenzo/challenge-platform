@@ -19,7 +19,7 @@ class Experience < ActiveRecord::Base
   acts_as_commentable
   acts_as_paranoid column: :destroyed_at
 
-  validates :description, presence: true
+  validates :description, rich_text_presence: true
   validates :link,        url: true, allow_blank: true
 
   def title

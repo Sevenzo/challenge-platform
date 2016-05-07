@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-class Validatable
+class UrlValidatable
   include ActiveModel::Validations
   validates_with UrlValidator, attributes: :link
   attr_accessor :link
 end
 
 describe UrlValidator do
-  subject { Validatable.new }
+  subject { UrlValidatable.new }
 
   it 'does not validate a scheme of FTP' do
     subject.link = 'ftp://youtube.com'
