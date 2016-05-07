@@ -9,6 +9,9 @@ class Experience < ActiveRecord::Base
   has_and_belongs_to_many :solutions
   has_one :feature, as: :featureable
 
+  delegate :experience_stage, to: :theme
+  delegate :challenge, to: :experience_stage
+
   mount_uploader :file, FileUploader
   process_in_background :file
 
@@ -21,14 +24,6 @@ class Experience < ActiveRecord::Base
 
   def title
     description.present? ? description.truncate(50) : nil
-  end
-
-  def experience_stage
-    theme.experience_stage
-  end
-
-  def challenge
-    experience_stage.challenge
   end
 
   def default_like

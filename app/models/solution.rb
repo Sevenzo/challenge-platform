@@ -12,20 +12,15 @@ class Solution < ActiveRecord::Base
   has_and_belongs_to_many :ideas
   has_and_belongs_to_many :recipes
 
+  delegate :solution_stage, to: :solution_story
+  delegate :challenge, to: :solution_stage
+
   mount_uploader :file, FileUploader
   process_in_background :file
 
   acts_as_votable
   acts_as_commentable
   acts_as_paranoid column: :destroyed_at
-
-  def solution_stage
-    solution_story.solution_stage
-  end
-
-  def challenge
-    solution_stage.challenge
-  end
 
   def default_like
     DEFAULT_LIKE

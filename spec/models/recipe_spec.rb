@@ -10,12 +10,10 @@ describe Recipe do
 
   it { is_expected.to validate_presence_of(:title) }
   it { is_expected.to validate_presence_of(:description) }
-  # it { is_expected.to validate_length_of(:description).is_at_most(2048)}
-  # it { is_expected.to validate_length_of(:evidence).is_at_most(2048)}
-  # it { is_expected.to validate_length_of(:protips).is_at_most(2048)}
-  # it { is_expected.to validate_length_of(:materials).is_at_most(2048)}
-  # it { is_expected.to validate_length_of(:community).is_at_most(2048)}
-  # it { is_expected.to validate_length_of(:conditions).is_at_most(2048)}
+
+  it { is_expected.to delegate_method(:recipe_stage).to(:cookbook) }
+  it { is_expected.to delegate_method(:challenge).to(:recipe_stage) }
+
   it { is_expected.to belong_to(:user) }
   it { is_expected.to belong_to(:cookbook) }
   it { is_expected.to belong_to(:refinement_parent).class_name('Recipe') }

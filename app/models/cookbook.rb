@@ -3,7 +3,6 @@ class Cookbook < ActiveRecord::Base
   has_many :recipes
   acts_as_commentable
 
-  def challenge
-    recipe_stage.challenge
-  end
+  delegate :challenge, to: :recipe_stage
+
 end

@@ -11,6 +11,9 @@ class Idea < ActiveRecord::Base
   has_and_belongs_to_many :solutions
   has_one :feature, as: :featureable
 
+  delegate :idea_stage, to: :problem_statement
+  delegate :challenge, to: :idea_stage
+
   mount_uploader :file, FileUploader
   process_in_background :file
 
@@ -21,14 +24,6 @@ class Idea < ActiveRecord::Base
   validates :title,       presence: true
   validates :description, presence: true
   validates :link,        url: true, allow_blank: true
-
-  def idea_stage
-    problem_statement.idea_stage
-  end
-
-  def challenge
-    idea_stage.challenge
-  end
 
   def default_like
     DEFAULT_LIKE
