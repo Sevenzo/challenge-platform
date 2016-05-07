@@ -22,7 +22,9 @@
 //= require select2
 //= require bootstrap-switch
 //= require cocoon
-//= require_tree .
 //= require redactor-rails
 //= require redactor-rails/plugins
+//= require turbolinks
+//= require ./cp_angular/app
+//= require_tree .
 //

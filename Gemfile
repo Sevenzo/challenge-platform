@@ -7,6 +7,7 @@ gem 'pg'
 gem 'unicorn'
 gem 'active_model_serializers'
 gem 'uglifier'
+gem 'turbolinks', '~> 5.0.0.beta'
 
 ## RAILS HELPERS
 gem 'friendly_id'
