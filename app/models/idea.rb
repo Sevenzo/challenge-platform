@@ -42,7 +42,10 @@ class Idea < ActiveRecord::Base
   belongs_to :refinement_parent, class_name: 'Idea'
   has_and_belongs_to_many :solutions
   has_one :feature, as: :featureable
-  
+
+  mount_uploader :file, FileUploader
+  process_in_background :file
+
   acts_as_votable
   acts_as_commentable
   acts_as_paranoid column: :destroyed_at
