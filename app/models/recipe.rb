@@ -48,12 +48,15 @@ class Recipe < ActiveRecord::Base
 
   accepts_nested_attributes_for :steps, allow_destroy: true, reject_if: lambda { |step| step['description'].blank? }
 
+  mount_uploader :file, FileUploader
+  process_in_background :file
+
   acts_as_votable
   acts_as_commentable
   acts_as_paranoid column: :destroyed_at
 
   validates :title,       presence: true
-  validates :description, presence: true  
+  validates :description, presence: true
   validates :link,        url: true, allow_blank: true
 
   def recipe_stage

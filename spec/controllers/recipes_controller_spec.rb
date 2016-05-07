@@ -45,7 +45,8 @@ describe RecipesController do
         {description: 'Put on a blindfold and start typing furiously away at the keyboard.  You will know when you are done.'}
       ],
       cookbook_id: third_fragment.id,
-      published: 'true'
+      published: 'true',
+      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls'))
     }
   }
 
@@ -65,6 +66,7 @@ describe RecipesController do
         {description: 'Put on a blindfold and start typing furiously away at the keyboard.  You will know when you are done.'}
       ],
       cookbook_id: third_fragment.id,
+      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls'))
     }
   }
 
@@ -72,14 +74,16 @@ describe RecipesController do
     {
       title: 'An awesome recipe',
       description: 'this is a pretty broken description',
-      link: 'ftp://google.com'
+      link: 'ftp://google.com',
+      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls'))
     }
   }
 
   let(:valid_patch_model) {
     {
       description: 'This is a much, much better description!!',
-      link: 'http://www.yahoo.com'
+      link: 'http://www.yahoo.com',
+      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls'))
     }
   }
 
@@ -87,7 +91,8 @@ describe RecipesController do
     {
       description: 'This is a much, much better description!!',
       link: 'http://www.yahoo.com',
-      published: 'true'
+      published: 'true',
+      file: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'files','inflation.xls'))
     }
   }
 

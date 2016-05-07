@@ -135,6 +135,15 @@
                     <p><%= link_to @recipe.link.html_safe, @recipe.link, target: '_blank' %></p>
                   </div>
                 <% end %>
+
+                <% if @recipe.file.present? %>
+                  <div class='content-block'>
+                    <p class='text-recipe text-large text-bold text-uppercase'>File</p>
+                    <%= fa_icon "file-#{@recipe.file.file.extension.downcase}-o" %>
+                    <%= link_to @recipe.file.file.filename, @recipe.file_url %>
+                    </div>
+                  </div>
+                <% end %>
               </div>
             </div>
 
