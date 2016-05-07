@@ -1,16 +1,3 @@
-# == Schema Information
-#
-# Table name: cookbooks
-#
-#  id              :integer          not null, primary key
-#  title           :string
-#  description     :text
-#  recipe_stage_id :integer
-#  created_at      :datetime
-#  updated_at      :datetime
-#  comments_count  :integer          default(0)
-#
-
 FactoryGirl.define do
   factory :cookbook, class: Cookbook do
     sequence(:title) { |n| "Title ##{n}"}

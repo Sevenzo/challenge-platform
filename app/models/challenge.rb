@@ -1,29 +1,3 @@
-# == Schema Information
-#
-# Table name: challenges
-#
-#  id           :integer          not null, primary key
-#  title        :string
-#  description  :text
-#  hashtag      :string
-#  slug         :string
-#  video_url    :string
-#  ends_at      :datetime
-#  created_at   :datetime
-#  updated_at   :datetime
-#  background   :text
-#  outcome      :text
-#  help         :text
-#  image        :string
-#  starts_at    :datetime
-#  active_stage :string
-#  headline     :string
-#  incentive    :text
-#  cta          :string
-#  banner       :string
-#  featured     :boolean
-#
-
 class Challenge < ActiveRecord::Base
   extend FriendlyId
   include ActiveRecord::QueryMethods
@@ -48,30 +22,30 @@ class Challenge < ActiveRecord::Base
   end
 
   def panelists
-    self.panel.users
+    panel.users
   end
 
   def featured_contributions
-    case self.active_stage
+    case active_stage
     when 'experience'
-      self.experience_stage.experiences.published.first(2)
+      experience_stage.experiences.published.first(2)
     when 'idea'
-      self.idea_stage.ideas.published.where(inspiration: false).first(3)
+      idea_stage.ideas.published.where(inspiration: false).first(3)
     when 'recipe'
-      self.recipe_stage.recipes.published.first(2)
+      recipe_stage.recipes.published.first(2)
     when 'solution'
-      self.solution_stage.solutions.first(2)
+      solution_stage.solutions.first(2)
     else
       nil
     end
   end
 
   def has_featured_for(type)
-    Feature.exists?(featureable_type: type, active: true, challenge_id: self.id)
+    Feature.exists?(featureable_type: type, active: true, challenge_id: id)
   end
 
   def stage_number
-    case self.active_stage
+    case active_stage
     when 'experience'
       1
     when 'idea'
@@ -118,5 +92,6 @@ class Challenge < ActiveRecord::Base
       headline: 'See Your Solutions',
       description: 'See stories of how real schools have adopted the solutions you’ve inspired, or try them out yourself!'
     }
-  ]
+  ].freeze
+
 end

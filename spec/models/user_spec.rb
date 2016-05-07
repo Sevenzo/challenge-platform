@@ -1,39 +1,3 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id                     :integer          not null, primary key
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  reset_password_token   :string
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0), not null
-#  current_sign_in_at     :datetime
-#  last_sign_in_at        :datetime
-#  current_sign_in_ip     :string
-#  last_sign_in_ip        :string
-#  created_at             :datetime
-#  updated_at             :datetime
-#  first_name             :string
-#  last_name              :string
-#  role                   :string
-#  organization           :string
-#  admin                  :boolean          default(FALSE)
-#  ga_dimension           :string
-#  title                  :string
-#  video_access           :boolean          default(FALSE)
-#  twitter                :string
-#  avatar                 :string
-#  future_participant     :boolean          default(TRUE)
-#  color                  :string
-#  bio                    :text
-#  referrer_id            :integer
-#  display_name           :string
-#  avatar_option          :string           default("twitter")
-#  notifications          :hstore           default({"comment_posted"=>"true", "comment_replied"=>"true", "comment_followed"=>"true"})
-#
-
 require 'rails_helper'
 
 describe User do
