@@ -325,6 +325,9 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.2)
     truncate_html (0.9.3)
+    turbolinks (5.0.0.beta2)
+      turbolinks-source
+    turbolinks-source (5.0.0.beta4)
     twitter (5.16.0)
       addressable (~> 2.3)
       buftok (~> 0.2.0)
@@ -417,6 +420,7 @@ DEPENDENCIES
   sinatra
   spring
   truncate_html
+  turbolinks (~> 5.0.0.beta)
   twitter
   uglifier
   unicorn
