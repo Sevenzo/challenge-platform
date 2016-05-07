@@ -16,6 +16,9 @@ describe Solution do
   it { is_expected.to have_and_belong_to_many(:recipes) }
   it { is_expected.to have_one :feature }
 
+  it { is_expected.to delegate_method(:solution_stage).to(:solution_story) }
+  it { is_expected.to delegate_method(:challenge).to(:solution_stage) }
+
   it_behaves_like 'embeddable'
   it_behaves_like 'normalizable'
   it_behaves_like 'a publishable entity'

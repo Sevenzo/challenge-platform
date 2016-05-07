@@ -10,9 +10,9 @@ describe Idea do
 
   it { is_expected.to validate_presence_of(:title) }
   it { is_expected.to validate_presence_of(:description) }
-  # it { is_expected.to validate_length_of(:description).is_at_most(1024)}
-  # it { is_expected.to validate_length_of(:impact).is_at_most(1024)}
-  # it { is_expected.to validate_length_of(:implementation).is_at_most(1024)}
+
+  it { is_expected.to delegate_method(:idea_stage).to(:problem_statement) }
+  it { is_expected.to delegate_method(:challenge).to(:idea_stage) }
 
   it { is_expected.to belong_to(:user) }
   it { is_expected.to belong_to(:problem_statement) }

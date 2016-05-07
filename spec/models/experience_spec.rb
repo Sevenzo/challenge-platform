@@ -14,6 +14,9 @@ describe Experience do
   it { is_expected.to belong_to(:theme) }
   it { is_expected.to have_one :feature }
 
+  it { is_expected.to delegate_method(:experience_stage).to(:theme) }
+  it { is_expected.to delegate_method(:challenge).to(:experience_stage) }
+
   it_behaves_like 'embeddable'
   it_behaves_like 'normalizable'
   it_behaves_like 'a publishable entity'

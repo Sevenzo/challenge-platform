@@ -14,6 +14,9 @@ class Recipe < ActiveRecord::Base
 
   accepts_nested_attributes_for :steps, allow_destroy: true, reject_if: lambda { |step| step['description'].blank? }
 
+  delegate :recipe_stage, to: :cookbook
+  delegate :challenge, to: :recipe_stage
+
   mount_uploader :file, FileUploader
   process_in_background :file
 
@@ -24,14 +27,6 @@ class Recipe < ActiveRecord::Base
   validates :title,       presence: true
   validates :description, presence: true
   validates :link,        url: true, allow_blank: true
-
-  def recipe_stage
-    cookbook.recipe_stage
-  end
-
-  def challenge
-    recipe_stage.challenge
-  end
 
   def default_like
     DEFAULT_LIKE
