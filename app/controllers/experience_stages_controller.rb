@@ -5,7 +5,15 @@ class ExperienceStagesController < ApplicationController
     @experience_stage = @challenge.experience_stage
     @themes = @experience_stage.themes
     @featured_experiences = @experience_stage.experiences.where(featured: true)
-    @ordering_criteria = params[:order_by].blank? ? '' : 'created_at DESC'
+    @ordering_criteria = valid_params
   end
 
+  private
+
+  def valid_params
+    # Alternative to the default_scopes ordering.
+    if params[:order_by] == 'latest'
+      'created_at DESC'
+    end
+  end
 end
