@@ -2,10 +2,10 @@ module Orderable
   extend ActiveSupport::Concern
 
   included do
-    scope :order_by, lambda{ |field|
-      if (field)
+    scope :order_by, lambda{ |ordering_criteria|
+      if (ordering_criteria)
         # Escape the default_scope's ordering, and order by the field provided
-        unscope(:order).order(field)
+        unscope(:order).order(ordering_criteria)
       end
     }
 

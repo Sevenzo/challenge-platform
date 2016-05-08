@@ -76,7 +76,7 @@
                 <ul class='list-sort'>
                   <li>
                     <%= link_to challenge_experience_stage_path(@challenge, @experience_stage, order_by: "", anchor: "theme-#{theme.id}") do %>
-                      <span class="badge badge-experience <%= 'selected' if @order_field.blank? %>">
+                      <span class="badge badge-experience <%= 'selected' if @ordering_criteria.blank? %>">
                         <span class='headline text-experience text-xsmall'>
                           <%= fa_icon 'fire' %>
                           Popular
@@ -86,7 +86,7 @@
                   </li>
                   <li>
                     <%= link_to challenge_experience_stage_path(@challenge, @experience_stage, order_by: "latest", anchor: "theme-#{theme.id}") do %>
-                      <span class="badge badge-experience <%= 'selected' unless @order_field.blank? %>">
+                      <span class="badge badge-experience <%= 'selected' unless @ordering_criteria.blank? %>">
                         <span class='headline text-experience text-xsmall'>
                           <%= fa_icon 'clock-o' %>
                           Latest
@@ -111,13 +111,13 @@
 
             <div ng-switch='theme_<%= theme.id %>_experiences' ng-init="initialize('theme_<%= theme.id %>_experiences')">
 
-              <% theme.experiences.order_by(@order_field).published.first(2).each do |experience| %>
+              <% theme.experiences.order_by(@ordering_criteria).published.first(2).each do |experience| %>
                 <%= render file: 'experiences/card', cache: true, locals: { experience: experience } %>
               <% end %>
 
               <% if theme.experiences.published.count > 2 %>
                 <div ng-show='theme_<%= theme.id %>_experiences'>
-                  <% (theme.experiences.order_by(@order_field).published - theme.experiences.order_by(@order_field).published.first(2)).each do |experience| %>
+                  <% (theme.experiences.order_by(@ordering_criteria).published - theme.experiences.order_by(@ordering_criteria).published.first(2)).each do |experience| %>
                     <%= render file: 'experiences/card', cache: true, locals: { experience: experience } %>
                   <% end %>
                 </div>
