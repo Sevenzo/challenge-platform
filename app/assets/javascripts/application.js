@@ -24,7 +24,5 @@
 //= require cocoon
 //= require redactor-rails
 //= require redactor-rails/plugins
-//= require turbolinks
-//= require ./cp_angular/app
 //= require_tree .
 //

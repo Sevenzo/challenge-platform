@@ -3,11 +3,7 @@ class ApplicationController < ActionController::Base
   include CachingConcern
   include PersistenceConcern
 
-  ## Callback
   before_action :capture_referrer_id
-
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
 
   def resource_name
@@ -27,12 +23,8 @@ class ApplicationController < ActionController::Base
     if resource_class == User
       UserParameterSanitizer.new(User, :user, params)
     else
-      super # Use the default one
+      super
     end
-  end
-
-  def verified_request?
-    super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
   end
 
   def hide_navs
@@ -40,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def load_challenge
-    @challenge = Challenge.find(params[:challenge_id])
+    @challenge ||= Challenge.find(params[:challenge_id])
   end
 
 private
@@ -53,7 +45,7 @@ private
     if object.destroyed_at?
       action = 'deleted'
     else
-      if ['experience','idea','recipe'].include?(object.class.to_s.downcase)
+      if %w(experience idea recipe).include?(object.class.to_s.downcase)
         if object.published_at?
           action = object.created_at == object.updated_at ? 'shared' : options[:published] ? 'published' : 'updated'
         else
