@@ -8,7 +8,7 @@ app.controller('ExperienceStageCtrl', function($scope, $document, $timeout) {
     // For example, with `hash`, of the form `#theme-1` => construct scope variable name `theme_1_experiences`
     var themeIdExperienceToShow = (hash.split('#')[1]+'_experiences').replace(/-/,'_');
 
-    $scope[themeIdExperiences] = (themeIdExperiences === themeIdExperienceToShow) ? true : false;
+    $scope[themeIdExperiences] = themeIdExperiences === themeIdExperienceToShow;
   };
 
   // For the front end, update the view and scroll to the right element
