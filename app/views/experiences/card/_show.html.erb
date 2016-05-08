@@ -10,7 +10,7 @@
     <div class='row'>
       <% if experience.embed.present? %>
         <div class='col-sm-6'>
-          <p><%= experience.description %></p>
+          <p><%= experience.description.html_safe %></p>
           <% if experience.file.present? %>
             <p>
               <b><%= fa_icon "file-#{experience.file.file.extension.downcase}-o" %></b>
@@ -23,7 +23,7 @@
         </div>
       <% else %>
         <div class='col-sm-12'>
-          <p><%= experience.description %></p>
+          <p><%= experience.description.html_safe %></p>
           <% unless experience.link.blank? %>
             <p>
               <b><i class='fa fa-link'></i></b>

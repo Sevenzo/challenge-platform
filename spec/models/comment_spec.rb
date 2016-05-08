@@ -1,36 +1,8 @@
-# == Schema Information
-#
-# Table name: comments
-#
-#  id                      :integer          not null, primary key
-#  commentable_id          :integer
-#  commentable_type        :string
-#  body                    :text
-#  user_id                 :integer          not null
-#  parent_id               :integer
-#  lft                     :integer
-#  rgt                     :integer
-#  reported                :boolean          default(FALSE), not null
-#  created_at              :datetime
-#  updated_at              :datetime
-#  embed                   :text
-#  link                    :text
-#  temporal_parent_id      :integer
-#  destroyed_at            :datetime
-#  cached_votes_total      :integer          default(0)
-#  cached_votes_score      :integer          default(0)
-#  cached_votes_up         :integer          default(0)
-#  cached_votes_down       :integer          default(0)
-#  cached_weighted_score   :integer          default(0)
-#  cached_weighted_total   :integer          default(0)
-#  cached_weighted_average :float            default(0.0)
-#  featured                :boolean          default(FALSE)
-#
-
 require 'rails_helper'
 require 'models/concerns/embeddable_concern'
 require 'models/concerns/url_normalizer_concern'
 require 'models/concerns/feature_concern'
+require 'models/concerns/likeable_concern'
 require 'sidekiq/testing'
 
 describe Comment do
@@ -52,6 +24,7 @@ describe Comment do
 
   it_behaves_like 'embeddable'
   it_behaves_like 'normalizable'
+  it_behaves_like 'likeable'
   it_behaves_like 'a featurable entity'
 
   context 'with comments that are soft deleted' do

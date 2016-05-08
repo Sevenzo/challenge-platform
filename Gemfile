@@ -7,6 +7,7 @@ gem 'pg'
 gem 'unicorn'
 gem 'active_model_serializers'
 gem 'uglifier'
+gem 'turbolinks', '~> 5.0.0.beta'
 
 ## RAILS HELPERS
 gem 'friendly_id'
@@ -86,7 +87,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'quiet_assets'
-  gem 'annotate'
 end
 
 group :development, :test do

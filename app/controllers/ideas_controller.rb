@@ -66,7 +66,7 @@ class IdeasController < ApplicationController
 
   def unlike
     @idea.unliked_by(current_user, vote_scope: @idea.default_like[:scope])
-    
+
     respond_to do |format|
       format.html { redirect_to after_update_object_path_for(@idea) }
       format.js   { render :unlike, locals: { partial: "#{params[:partial]}" } }
@@ -76,7 +76,7 @@ class IdeasController < ApplicationController
 private
 
   def idea_params
-    params.require(:idea).permit(:title, :description, :impact, :implementation, :link, :problem_statement_id, :refinement_parent_id, :published_at)
+    params.require(:idea).permit(:title, :description, :impact, :implementation, :link, :file, :remove_file, :problem_statement_id, :refinement_parent_id, :published_at)
   end
 
   def load_idea

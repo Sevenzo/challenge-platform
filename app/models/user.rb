@@ -1,39 +1,3 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id                     :integer          not null, primary key
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  reset_password_token   :string
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0), not null
-#  current_sign_in_at     :datetime
-#  last_sign_in_at        :datetime
-#  current_sign_in_ip     :string
-#  last_sign_in_ip        :string
-#  created_at             :datetime
-#  updated_at             :datetime
-#  first_name             :string
-#  last_name              :string
-#  role                   :string
-#  organization           :string
-#  admin                  :boolean          default(FALSE)
-#  ga_dimension           :string
-#  title                  :string
-#  video_access           :boolean          default(FALSE)
-#  twitter                :string
-#  avatar                 :string
-#  future_participant     :boolean          default(TRUE)
-#  color                  :string
-#  bio                    :text
-#  referrer_id            :integer
-#  display_name           :string
-#  avatar_option          :string           default("twitter")
-#  notifications          :hstore           default({"comment_posted"=>"true", "comment_replied"=>"true", "comment_followed"=>"true"})
-#
-
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :async,
          :recoverable, :rememberable, :trackable, :validatable
@@ -58,8 +22,8 @@ class User < ActiveRecord::Base
   has_many :solutions
   has_many :comments
   has_many :suggestions
-  belongs_to :referrer, class_name: "User", foreign_key: :referrer_id
-  has_many :referrals,  class_name: "User", foreign_key: :referrer_id
+  belongs_to :referrer, class_name: 'User', foreign_key: :referrer_id
+  has_many :referrals,  class_name: 'User', foreign_key: :referrer_id
   store_accessor :notifications, :comment_replied, :comment_posted, :comment_followed
 
   mount_uploader :avatar, AvatarUploader
@@ -91,49 +55,49 @@ class User < ActiveRecord::Base
   validate  :avatar_file_size
 
   def name
-    "#{self.first_name} #{self.last_name}"
+    "#{first_name} #{last_name}"
   end
 
   def display_organization
-    if self.organization.present?
-      self.organization
-    elsif self.schools.present?
-      self.schools.first.name
-    elsif self.districts.present?
-      self.districts.first.name
-    elsif self.states.present?
-      self.states.first.name
+    if organization.present?
+      organization
+    elsif schools.present?
+      schools.first.name
+    elsif districts.present?
+      districts.first.name
+    elsif states.present?
+      states.first.name
     else
-      ""
+      ''
     end
   end
 
   def initials
-    "#{self.first_name[0]}#{self.last_name[0]}"
+    "#{first_name[0]}#{last_name[0]}"
   end
 
   def profile_complete?
-    self.organization.present? || self.title.present? || self.twitter.present? || self.states.present? || self.districts.present? || self.schools.present?
+    organization.present? || title.present? || twitter.present? || states.present? || districts.present? || schools.present?
   end
 
   def states_json
-    self.states.to_json(only: [:id, :name, :mail_state])
+    states.to_json(only: [:id, :name, :mail_state])
   end
 
   def districts_json
-    self.districts.to_json(only: [:id, :name, :location_city, :location_state])
+    districts.to_json(only: [:id, :name, :location_city, :location_state])
   end
 
   def schools_json
-    self.schools.to_json(only: [:id, :name, :location_city, :location_state])
+    schools.to_json(only: [:id, :name, :location_city, :location_state])
   end
 
   def is_teacher?
-    ['Current Teacher', 'Teacher Leader', 'Instructional Coach', 'School Leader'].include?(self.role)
+    ['Current Teacher', 'Teacher Leader', 'Instructional Coach', 'School Leader'].include?(role)
   end
 
   def is_on_panel?(challenge)
-    self.panels.exists?(challenge_id: challenge.id)
+    panels.exists?(challenge_id: challenge.id)
   end
 
   def has_draft_submissions?
@@ -143,21 +107,21 @@ class User < ActiveRecord::Base
   def set_avatar_from_twitter
     best_avatar_url = nil
 
-    if self.twitter.present? && self.avatar_option == 'twitter'
+    if twitter.present? && avatar_option == 'twitter'
       begin
         twitter_rest_client = Twitter::REST::Client.new(TWITTER_CONFIG)
-        twitter_user_object = twitter_rest_client.user(self.twitter)
+        twitter_user_object = twitter_rest_client.user(twitter)
         best_avatar_url = twitter_user_object.profile_image_url_https.to_s.sub('_normal', '_400x400')
       rescue Twitter::Error::NotFound
-        self.twitter = nil
+        twitter = nil
       rescue Twitter::Error::RateLimited
-        best_avatar_url = "http://avatars.io/twitter/#{self.twitter}?size=large"
+        best_avatar_url = "http://avatars.io/twitter/#{twitter}?size=large"
       rescue
       end
     end
 
-    self.remote_avatar_url = best_avatar_url
-    self.save!
+    remote_avatar_url = best_avatar_url
+    save!
   rescue
   end
 
@@ -168,17 +132,17 @@ class User < ActiveRecord::Base
   # <p class='select-help'>I am an administrator in a school (principal, assistant principal, dean, etc.).</p>
 
   ROLES = {
-    "Pre-Service Teacher" => 'Pre-Service Teacher',
-    "Current Teacher" => 'Current Teacher',
-    "Teacher Leader" => 'Teacher Leader',
-    "Instructional Coach" => 'Instructional Coach',
-    "School Leader" => 'School Leader',
-    "District or CMO Staff" => 'LEA Staff',
-    "State Educational Agency Staff" => 'SEA Staff',
-    "Other" => 'Other'
-  }
+    'Pre-Service Teacher' => 'Pre-Service Teacher',
+    'Current Teacher' => 'Current Teacher',
+    'Teacher Leader' => 'Teacher Leader',
+    'Instructional Coach' => 'Instructional Coach',
+    'School Leader' => 'School Leader',
+    'District or CMO Staff' => 'LEA Staff',
+    'State Educational Agency Staff' => 'SEA Staff',
+    'Other' => 'Other'
+  }.freeze
 
-  COLORS = %w(#11487e #8BB734 #7F3F98 #F26606)
+  COLORS = %w(#11487e #8BB734 #7F3F98 #F26606).freeze
 
 private
 
