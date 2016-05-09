@@ -5,6 +5,15 @@ class IdeaStagesController < ApplicationController
     @idea_stage = @challenge.idea_stage
     @problem_statements = @idea_stage.problem_statements
     @featured_ideas = @idea_stage.ideas.where(featured: true)
+    @ordering_criteria = valid_params
   end
 
+  private
+
+  def valid_params
+    # Alternative to the default_scopes ordering.
+    if params[:order_by] == 'latest'
+      'created_at DESC'
+    end
+  end
 end
