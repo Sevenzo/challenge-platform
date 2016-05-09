@@ -95,7 +95,7 @@
           </div>
 
           <div class='row' style='margin-bottom: 50px'>
-            <% @solution_stories.unscope(:order).order('created_at DESC').each do |solution_story| %>
+            <% @solution_stories.order_by(@ordering_criteria).each do |solution_story| %>
               <%= render file: 'solution_stories/card', locals: { solution_story: solution_story } %>
             <% end %>
           </div>
