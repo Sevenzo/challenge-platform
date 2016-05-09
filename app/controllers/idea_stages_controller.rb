@@ -11,7 +11,7 @@ class IdeaStagesController < ApplicationController
   private
 
   def valid_params
-    # Alternative to the default_scopes ordering.
+    # Alternative to the default_scope's ordering.
     if params[:order_by] == 'latest'
       'created_at DESC'
     end
