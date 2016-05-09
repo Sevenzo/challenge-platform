@@ -3,7 +3,8 @@ class Idea < ActiveRecord::Base
   include URLNormalizer
   include Publishable
   include Likeable
-  default_scope { order(inspiration: :desc, featured: :desc, comments_count: :desc, created_at: :desc, id: :desc) }
+  default_scope { order(inspiration: :desc) }
+  include Orderable
 
   belongs_to :user
   belongs_to :problem_statement
