@@ -63,9 +63,27 @@
 
           <div class='row row-count'>
             <div class='col-xs-3'>
-              <ul class='action text-left text-small list-inline'>
-                <!-- <li><a>Popular</a></li>
-                <li><a>Latest</a></li> -->
+              <ul class='list-sort'>
+                <li>
+                  <%= link_to challenge_solution_stage_path(@challenge, @solution_stage, order_by: "", anchor: "solution_stage-content") do %>
+                    <span class="badge badge-solution <%= 'selected' if @ordering_criteria.blank? %>">
+                      <span class='headline text-solution text-xsmall'>
+                        <%= fa_icon 'fire' %>
+                        Popular
+                      </span>
+                    </span>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to challenge_solution_stage_path(@challenge, @solution_stage, order_by: "latest", anchor: "solution_stage-content") do %>
+                    <span class="badge badge-solution <%= 'selected' unless @ordering_criteria.blank? %>">
+                      <span class='headline text-solution text-xsmall'>
+                        <%= fa_icon 'clock-o' %>
+                        Latest
+                      </span>
+                    </span>
+                  <% end %>
+                </li>
               </ul>
             </div>
             <div class='col-xs-6'>
