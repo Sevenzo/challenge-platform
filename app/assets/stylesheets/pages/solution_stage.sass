@@ -14,3 +14,20 @@
   background-color: $lightestGrayBG
   &.affix
     margin-top: 40px
+  .order-by
+    padding: 0px
+  .badge
+    @extend .text-default, .text-small
+    +border-radius(2em)
+    background-color: transparent
+    vertical-align: bottom
+    .headline
+      position: relative
+    &.selected
+      background-color: $idea !important
+      .headline
+        @extend .text-white
+
+  li
+    padding: 0px
+
