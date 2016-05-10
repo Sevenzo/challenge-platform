@@ -10,14 +10,14 @@
             <div class='row'>
               <div class='col-md-4'>
                 <% if user_signed_in? %>
-                  <% if @featured %>
-                    <%= link_to "Return to Challenge", challenge_active_stage_path(@featured), class: 'btn btn-lg btn-rounded btn-info half-margin-bottom' %>
+                  <% if @challenge %>
+                    <%= link_to "Return to Challenge", challenge_active_stage_path(@challenge), class: 'btn btn-lg btn-rounded btn-info half-margin-bottom' %>
                   <% else %>
                     <%= link_to "Learn More", about_path, class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom' %>
                   <% end %>
                 <% else %>
-                  <% if @featured %>
-                    <%= link_to "See Featured Challenge", challenge_path(@featured), class: 'btn btn-lg btn-rounded btn-info half-margin-bottom' %>
+                  <% if @challenge %>
+                    <%= link_to "See Featured Challenge", challenge_path(@challenge), class: 'btn btn-lg btn-rounded btn-info half-margin-bottom' %>
                   <% else %>
                     <%= link_to "Learn More", about_path, class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom' %>
                   <% end %>
@@ -66,6 +66,28 @@
               </div>
             <% end %>
           </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id='challenge-featured'>
+  <div class="container">
+    <div class='row'>
+      <div class='col-md-10 col-md-offset-1'>
+
+        <h2 class="text-center">Featured contributions from <%= @challenge.title %></h2>
+
+        <div class='row'>
+          <% @challenge.featured_contributions.each do |featured_contribution| %>
+            <%= render file: "#{featured_contribution.class.name.pluralize.downcase}/card", cache: true, locals: eval("{ #{featured_contribution.class.name.downcase}: featured_contribution}") %>
+          <% end %>
+        </div>
+
+        <div class='text-center center-block'>
+          <%= link_to "Show More", challenge_active_stage_path(@challenge), class: 'text-bold' %>
         </div>
 
       </div>

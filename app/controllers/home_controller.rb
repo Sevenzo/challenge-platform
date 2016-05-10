@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_action :hide_navs, only: [:preview]
 
   def index
-    @featured = Challenge.featured
+    @challenge = Challenge.featured
     @suggestions = Suggestion.all
     render user_page
   end
