@@ -2,20 +2,10 @@
 <div id='suggestion-overview'>
   <div class='container'>
 
-    <%= link_to "<i class='fa fa-close fa-2x'></i>".html_safe, root_path %>
-    <div class='clearfix'></div>
-
     <div class='row'>
       <div class='col-md-10 col-md-offset-1'>
 
-        <div class='suggestion-block'>
-          <h6 class='suggestion-header'>Suggestion</h6>
-          <h2 class='suggestion-title'>Suggestion</h2>
-        </div>
-
-        <div class="well well-lg well-suggestion">
-          <%= render file: 'suggestions/card', locals: { suggestion: @suggestion } %>
-        </div>
+        <%= render file: 'suggestions/card', locals: { suggestion: @suggestion } %>
 
       </div>
     </div>
