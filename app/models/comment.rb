@@ -116,7 +116,7 @@ private
   def update_commentable_values
     # These classes are the only ones that have the new comments_count column defined on them.
     # If you add a class to this array, be *certain* that there is a migration for the comments_count column.
-    if COMMENTABLE_ENTITIES.include?(commentable.class)
+    if COMMENTABLE_ENTITIES.include?(commentable.class.to_s)
       commentable.update_column(:comments_count, commentable.comment_threads.count)
     end
   end
