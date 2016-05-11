@@ -32,7 +32,6 @@
     <%= render partial: 'layouts/footer', cache: true unless @hide_navs %>
 
     <script>
-      // $(document).on('turbolinks:load', function() {angular.bootstrap(document.body, ['CPApp']);});
       angular.element(document).ready(function() {angular.bootstrap(document, ['CPApp']);});
     </script>
   </body>
