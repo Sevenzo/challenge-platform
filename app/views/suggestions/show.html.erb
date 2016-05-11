@@ -14,7 +14,7 @@
         </div>
 
         <div class="well well-lg well-suggestion">
-          <%= render partial: 'suggestions/form', locals: { url: suggestion_path, cancel_path: root_path, submit_text: "Update" } %>
+          <%= render file: 'suggestions/card', locals: { suggestion: @suggestion } %>
         </div>
 
       </div>
