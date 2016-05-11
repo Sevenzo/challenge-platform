@@ -114,6 +114,22 @@ ul.actions
         &:hover,&:focus,&:active,.active
           cursor: pointer
           @extend .text-bolder
+  ul.list-sort
+    @extend .list-inline
+    margin-top: 3.15em
+    li
+      padding: 0px
+      .badge
+        @extend .text-default, .text-small
+        +border-radius(2em)
+        background-color: transparent
+        vertical-align: bottom
+        .headline
+          position: relative
+        &.selected
+          .headline
+            @extend .text-white
+
 
 .opacity-layer
   background-color: rgba(47,52,64,0.25)

@@ -7,7 +7,7 @@
     @extend .text-experience-light
     top: 0
     font-size: 15em
-    line-height: 0.5em    
+    line-height: 0.5em
 
 #experience_stage-navigation
   @extend .hidden-xs
@@ -25,9 +25,11 @@
     &:hover,&:focus,&.active
       @extend .text-experience
 
-
 #experience_stage-content
   padding: 20px 0px
   background-color: $lightestGrayBG
   &.affix
     margin-top: 40px
+  .selected
+    background-color: $experience !important
+
