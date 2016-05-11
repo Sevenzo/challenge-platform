@@ -4,7 +4,7 @@ links = ['https://youtube.com/watch?v=rzfhs3M4lus', 'https://vimeo.com/82083297'
 
 ## CREATING RECIPES
 challenge.recipe_stage.cookbooks.each do |cookbook|
-  5.times do
+  5.times do |time|
     recipe = cookbook.recipes.create!(
       title: Faker::Lorem.sentence,
       description: Faker::Lorem.paragraph,
@@ -15,7 +15,7 @@ challenge.recipe_stage.cookbooks.each do |cookbook|
       protips: Faker::Lorem.paragraph,
       user_id: (User.pluck(:id) - challenge.panelists.pluck(:id)).sample,
       link: links.sample,
-      published_at: Time.now
+      published_at: time.days.ago
     )
 
     1+rand(5).times do |index|
