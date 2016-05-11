@@ -127,7 +127,7 @@ shared_examples_for 'a standard controller' do
                :"#{target_model}" => savable_entity
           expect(assigns(target_model).published_at).to_not be_nil
           expect(assigns(target_model).description).to eq savable_entity[:description]
-          # expect(assigns(target_model).file).to be_present
+          expect(assigns(target_model).file).to be_present
           expect(assigns(target_model).persisted?).to eq true
         end
 
@@ -138,7 +138,7 @@ shared_examples_for 'a standard controller' do
                :"#{target_model}" => draft_entity
           expect(assigns(target_model).published_at).to be_nil
           expect(assigns(target_model).description).to eq draft_entity[:description]
-          # expect(assigns(target_model).file).to be_present
+          expect(assigns(target_model).file).to be_present
           expect(assigns(target_model).persisted?).to eq true
         end
 
@@ -231,7 +231,7 @@ shared_examples_for 'a standard controller' do
 
         expect(assigns(target_model).link).to eq valid_patch_model[:link]
         expect(assigns(target_model).description).to eq valid_patch_model[:description]
-        # expect(assigns(target_model).file).to be_present
+        expect(assigns(target_model).file).to be_present
         expect(assigns(target_model).persisted?).to eq true
         expect(assigns(target_model).published_at).to be_nil
       end
@@ -265,7 +265,7 @@ shared_examples_for 'a standard controller' do
 
         expect(assigns(target_model).link).to eq valid_patch_publish_model[:link]
         expect(assigns(target_model).description).to eq valid_patch_publish_model[:description]
-        # expect(assigns(target_model).file).to be_present
+        expect(assigns(target_model).file).to be_present
         expect(assigns(target_model).persisted?).to eq true
         expect(assigns(target_model).published_at).to_not be_nil
       end
