@@ -5,6 +5,7 @@ class IdeaStagesController < ApplicationController
     @idea_stage = @challenge.idea_stage
     @problem_statements = @idea_stage.problem_statements
     @featured_ideas = @idea_stage.ideas.where(featured: true)
+    @ordering_criteria = 'published_at DESC' if params[:order_by] == 'latest'
   end
 
 end

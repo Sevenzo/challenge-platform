@@ -3,4 +3,3 @@ class AddCommentsCountToApproachIdea < ActiveRecord::Migration
     add_column :approach_ideas, :comments_count, :integer, nil: false, default: 0
   end
 end
-``

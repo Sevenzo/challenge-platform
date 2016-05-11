@@ -18,7 +18,7 @@
 
       <% if idea.refinement_parent %>
         <p class='text-xsmall-normal'>
-          <i class='fa fa-pencil'></i> Refinement of 
+          <i class='fa fa-pencil'></i> Refinement of
           <%= link_to idea.refinement_parent.title, challenge_idea_stage_problem_statement_idea_path(@challenge, idea.idea_stage, idea.problem_statement, idea.refinement_parent) %>
         </p>
       <% end %>
@@ -52,7 +52,7 @@
           </ul>
         </li>
       </ul>
-      
+
       <div class='pull-right'>
         <%= render partial: 'shared/avatar', locals: {user: idea.user, avatar_style: 'width:2.25em;top: 0.5em;position: relative;' } %>
       </div>

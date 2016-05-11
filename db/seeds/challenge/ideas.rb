@@ -4,7 +4,7 @@ links = ['https://youtube.com/watch?v=rzfhs3M4lus', 'https://vimeo.com/82083297'
 
 ## CREATING IDEAS
 challenge.idea_stage.problem_statements.each do |problem_statement|
-  15.times do
+  15.times do |time|
     idea = problem_statement.ideas.create!(
       title: Faker::Lorem.sentence,
       description: Faker::Lorem.paragraph,
@@ -12,7 +12,7 @@ challenge.idea_stage.problem_statements.each do |problem_statement|
       implementation: Faker::Lorem.paragraph,
       user_id: (User.pluck(:id) - challenge.panelists.pluck(:id)).sample,
       link: links.sample,
-      published_at: Time.now
+      published_at: time.days.ago
     )
 
 
