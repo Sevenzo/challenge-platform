@@ -1,86 +1,20 @@
 <!-- For the time being, we pass @challenge = Challenge.featured just so as not to break it. We'll remove it + all dependencies on @challenge eventually -->
 <div id='suggestion-overview'>
   <div class='container'>
+
+    <%= link_to "<i class='fa fa-close fa-2x'></i>".html_safe, root_path %>
+    <div class='clearfix'></div>
+
     <div class='row'>
       <div class='col-md-10 col-md-offset-1'>
 
-        <div class='well well-suggestion'>
-          <span class="label label-suggestion pull-left"><i class='fa fa-comment'></i> Suggestion</span>
-          <div class='clearfix'></div>
+        <div class='suggestion-block'>
+          <h6 class='suggestion-header'>Suggestion</h6>
+          <h2 class='suggestion-title'>Suggestion</h2>
+        </div>
 
-          <div class='suggestion-content'>
-            <div class='row row-suggestion-show'>
-              <div class="col-sm-4">
-
-                <div class="media media-author">
-                  <div class="media-left">
-                    <%= render partial: 'shared/avatar', locals: { user: @suggestion.user, avatar_style: "width:4.5em"} %>
-                  </div>
-                  <div class="media-body" style='<%= 'padding-left: 0em' if @suggestion.user.avatar.present? %>'>
-                    <div class='user-caption' style='<%= 'margin-top: 0.5em' if @suggestion.user.avatar.present? %>'>
-                      <p class='user-name'><%= link_to "#{@suggestion.user.display_name}", user_path(@suggestion.user) %></p>
-                      <p class='user-title text-default'><%= @suggestion.user.display_organization %></p>
-                      <p class='user-link'><%= "#{time_ago_in_words(@suggestion.created_at)} ago".titleize %></p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class='row'>
-                  <div class='col-xs-8'>
-
-                    <% if @suggestion.published_at? %>
-                      <% if user_signed_in? && @suggestion.user == current_user %>
-                        <div class="btn-group btn-block" role="group" style='margin-bottom:10px'>
-                          <%= link_to "<i class='fa fa-edit'></i> Edit".html_safe, edit_challenge_experience_stage_theme_experience_path(@challenge, @suggestion.experience_stage, @suggestion.theme, @suggestion), class: 'btn btn-sm btn-rounded btn-warning', style: 'width:50%' %>
-                          <%= link_to "<i class='fa fa-trash'></i> Delete".html_safe, challenge_experience_stage_theme_experience_path(@challenge, @suggestion.experience_stage, @suggestion.theme, @suggestion), method: :delete, data: {confirm: "Are you sure you want to delete your suggestion?"}, class: 'btn btn-sm btn-rounded btn-danger', style: 'width:50%' %>
-                        </div>
-                      <% end %>
-                      <div id='suggestion-<%= @suggestion.id %>-like'>
-                        <%= render partial: 'suggestions/like' %>
-                      </div>
-                      <div id='suggestion-<%= @suggestion.id %>-discuss' style='margin-bottom:10px'>
-                        <%= link_to "<i class='fa fa-reply'></i> Discuss".html_safe, "#suggestion-comments", class: 'btn btn-block btn-fa btn-sm btn-rounded btn-info', "du-smooth-scroll" => true %>
-                      </div>
-                      <div id='suggestion-<%= @suggestion.id %>-share'>
-                        <%= render partial: 'layouts/share_button', locals: {url: challenge_experience_stage_theme_experience_url(@challenge, @suggestion.experience_stage, @suggestion.theme, @suggestion), title: @suggestion.title.html_safe, description: @suggestion.description.html_safe, hashtag: @challenge.hashtag} %>
-                      </div>
-                    <% else %>
-                      <%= render partial: 'shared/draft', locals: { edit_path: edit_challenge_experience_stage_theme_experience_path(@challenge, @suggestion.experience_stage, @suggestion.theme, @suggestion), delete_path: challenge_experience_stage_theme_experience_path(@challenge, @suggestion.experience_stage, @suggestion.theme, @suggestion) } %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-
-              <div class='col-sm-8'>
-                <% if @suggestion.embed.present? %>
-                  <div class='content-block'>
-                    <%= @suggestion.embed.html_safe %>
-                  </div>
-                <% end %>
-
-                <div class='content-block'>
-                  <p><%= @suggestion.description.html_safe %></p>
-                </div>
-
-                <% if @suggestion.link.present? && @suggestion.embed.blank? %>
-                  <div class='content-block'>
-                    <p class='text-suggestion text-large text-bold text-uppercase'>Link</p>
-                    <p><%= link_to @suggestion.link.html_safe, @suggestion.link, target: '_blank' %></p>
-                  </div>
-                <% end %>
-
-                <% if @suggestion.file.present? %>
-                  <div class='content-block'>
-                    <p class='text-suggestion text-large text-bold text-uppercase'>File</p>
-                    <%= fa_icon "file-#{@suggestion.file.file.extension.downcase}-o" %>
-                    <%= link_to @suggestion.file.file.filename, @suggestion.file_url %>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-
-          </div>
+        <div class="well well-lg well-suggestion">
+          <%= render partial: 'suggestions/form', locals: { url: suggestion_path, cancel_path: root_path, submit_text: "Update" } %>
         </div>
 
       </div>
@@ -93,7 +27,7 @@
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
 
-        <%= render partial: 'comments/discussion', locals: { commentable: @suggestion } %>
+        <%# render partial: 'comments/discussion', locals: { commentable: @suggestion } %>
 
       </div>
     </div>

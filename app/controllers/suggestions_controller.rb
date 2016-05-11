@@ -1,6 +1,6 @@
 class SuggestionsController < ApplicationController
   before_action :authenticate_user!,  except: [:new, :create, :like]
-  before_action :load_suggestion,     only:   [:edit, :update, :destroy, :like, :unlike]
+  before_action :load_suggestion,     only:   [:show, :edit, :update, :destroy, :like, :unlike]
   before_action :authorize_user!,     only:   [:edit, :update, :destroy]
 
   def new
@@ -25,6 +25,10 @@ class SuggestionsController < ApplicationController
         render :new
       end
     end
+  end
+
+  def show
+    @challenge = Challenge.featured
   end
 
   def edit
@@ -60,7 +64,7 @@ class SuggestionsController < ApplicationController
 
   def unlike
     @suggestion.unliked_by(current_user, vote_scope: 'rating', vote_weight: params[:vote_weight])
-    
+
     respond_to do |format|
       format.html { redirect_to after_update_object_path_for(@suggestion) }
       format.js
