@@ -73,7 +73,7 @@
 
             <div class='row row-count'>
               <div class='col-xs-4'>
-                <ul class='list-sort'>
+                <ul class='list-sort text-right'>
                   <li>
                     <%= link_to challenge_experience_stage_path(@challenge, @experience_stage, order_by: "", anchor: "theme-#{theme.id}") do %>
                       <span class="badge badge-experience <%= 'selected' if @ordering_criteria.blank? %>">

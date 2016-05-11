@@ -4,12 +4,11 @@ links = ["https://youtube.com/watch?v=rzfhs3M4lus", "https://twitter.com/MrBronk
 
 ## CREATING DEMO EXPERIENCES
 challenge.experience_stage.themes.each do |theme|
-  15.times do
+  15.times do |time|
     experience = theme.experiences.create!(
       description: Faker::Lorem.paragraph,
       user_id: (User.pluck(:id) - challenge.panelists.pluck(:id)).sample,
-      link: links.sample,
-      published_at: Time.now
+      published_at: time.days.ago
     )
 
     ## Creating comment threads for those ideas

@@ -9,9 +9,7 @@ module Orderable
       end
     }
 
-    default_scope {
-      order(featured: :desc, comments_count: :desc, created_at: :desc, id: :desc)
-    }
+    default_scope { order(featured: :desc, comments_count: :desc, published_at: :desc, id: :desc) }
   end
 
 end
