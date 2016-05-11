@@ -14,7 +14,7 @@
   .suggestion-user
     @extend .text-small
     @extend .text-bolder
-    color: #333    
+    color: #333
     margin-bottom: 0px
   ul.vote
     @extend .list-inline
@@ -32,7 +32,7 @@
     li,.list-link
       @extend .text-xsmall
       padding: 0px 3px
-            
+
 .suggestion-form
   .well-share
     border: 2px dashed #B1B0B2
@@ -70,7 +70,7 @@
   .fa-close.fa-2x
     @extend .pull-right
     position: relative
-    top: 30px 
+    top: 30px
     color: #999999
   .suggestion-block
     .suggestion-header
@@ -79,3 +79,42 @@
     .suggestion-title
       @extend .section-title
       @extend .text-green
+
+#suggestion-overview
+  padding: 40px 0px
+  .well-featured-suggestion
+    @extend .well, .well-sm, .text-center, .text-white
+    +border-radius(1em)
+    padding: 0.25em
+    background-color: $suggestion !important
+  .well-suggestion
+    padding: 0px
+    background-color: white
+    +border-radius(10px)
+    #actions
+      a
+        color: $lightGrayText
+    .suggestion-content
+      padding: 0px 3em 1.5em
+      .row-suggestion-show
+        margin-bottom: 2em
+        .media-author
+          margin-bottom: 2em
+          .media-left
+            height: 5em
+            .fa-user-avatar
+              .fa-stack-2x
+                font-size: 4em !important
+              .fa-stack-1x
+                margin-top: 1.9em
+                margin-left: 1.9em
+          .media-body
+            padding-left: 5em
+        .content-block:last-child
+          margin-bottom: 0px
+
+#suggestion-comments
+  padding: 20px 0px
+
+#suggestion-share
+  padding: 20px 0px
