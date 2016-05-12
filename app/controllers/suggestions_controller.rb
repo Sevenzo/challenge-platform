@@ -37,7 +37,7 @@ class SuggestionsController < ApplicationController
   def update
     if @suggestion.update(suggestion_params)
       flash[:success] = object_flash_message_for(@suggestion)
-      redirect_to after_update_object_path_for(@suggestion, anchor: 'landing-suggest')
+      redirect_to suggestion_path(@suggestion.id)
     else
       render :edit
     end
