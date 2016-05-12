@@ -5,6 +5,7 @@ class Suggestion < ActiveRecord::Base
 
   belongs_to :user
   acts_as_votable
+  acts_as_commentable
   acts_as_paranoid column: :destroyed_at
 
   validates :title,       presence: true
