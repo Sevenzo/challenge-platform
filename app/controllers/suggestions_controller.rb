@@ -13,7 +13,7 @@ class SuggestionsController < ApplicationController
       @suggestion.user = current_user
       if @suggestion.save
         flash[:success] = object_flash_message_for(@suggestion)
-        redirect_to after_update_object_path_for(@suggestion)
+        redirect_to after_update_object_path_for(@suggestion, anchor: 'landing-suggest')
       else
         render :new
       end
@@ -37,7 +37,7 @@ class SuggestionsController < ApplicationController
   def update
     if @suggestion.update(suggestion_params)
       flash[:success] = object_flash_message_for(@suggestion)
-      redirect_to after_update_object_path_for(@suggestion)
+      redirect_to after_update_object_path_for(@suggestion, anchor: 'landing-suggest')
     else
       render :edit
     end
@@ -46,14 +46,14 @@ class SuggestionsController < ApplicationController
   def destroy
     @suggestion.destroy
     flash[:success] = object_flash_message_for(@suggestion)
-    redirect_to after_update_object_path_for(@suggestion)
+    redirect_to after_update_object_path_for(@suggestion, anchor: 'landing-suggest')
   end
 
   def like
     if user_signed_in?
       @suggestion.liked_by(current_user, vote_scope: 'rating', vote_weight: params[:vote_weight])
       respond_to do |format|
-        format.html { redirect_to after_update_object_path_for(@suggestion) }
+        format.html { redirect_to after_update_object_path_for(@suggestion, anchor: 'landing-suggest') }
         format.js
       end
     else
@@ -66,7 +66,7 @@ class SuggestionsController < ApplicationController
     @suggestion.unliked_by(current_user, vote_scope: 'rating', vote_weight: params[:vote_weight])
 
     respond_to do |format|
-      format.html { redirect_to after_update_object_path_for(@suggestion) }
+      format.html { redirect_to after_update_object_path_for(@suggestion, anchor: 'landing-suggest') }
       format.js
     end
   end
@@ -84,7 +84,7 @@ private
   def authorize_user!
     unless @suggestion.user == current_user
       flash[:danger] = "You do not have access to that area or operation."
-      redirect_to after_update_object_path_for(@suggestion)
+      redirect_to after_update_object_path_for(@suggestion, anchor: 'landing-suggest')
     end
   end
 
