@@ -13,7 +13,7 @@ class SuggestionsController < ApplicationController
       @suggestion.user = current_user
       if @suggestion.save
         flash[:success] = object_flash_message_for(@suggestion)
-        redirect_to after_update_object_path_for(@suggestion, anchor: 'landing-suggest')
+        redirect_to after_update_object_path_for(@suggestion)
       else
         render :new
       end
@@ -37,7 +37,7 @@ class SuggestionsController < ApplicationController
   def update
     if @suggestion.update(suggestion_params)
       flash[:success] = object_flash_message_for(@suggestion)
-      redirect_to suggestion_path(@suggestion.id)
+      redirect_to after_update_object_path_for(@suggestion)
     else
       render :edit
     end
@@ -46,7 +46,7 @@ class SuggestionsController < ApplicationController
   def destroy
     @suggestion.destroy
     flash[:success] = object_flash_message_for(@suggestion)
-    redirect_to after_update_object_path_for(@suggestion, anchor: 'landing-suggest')
+    redirect_to after_update_object_path_for(@suggestion, home: true, anchor: 'landing-suggest')
   end
 
   def like
