@@ -1,7 +1,7 @@
 <div class="row" style='margin-bottom: 15px'>
   <div class='col-sm-10'>
     <h3 class="suggestion-title text-black">
-      <%= suggestion.title %>
+      <%= link_to suggestion.title, suggestion_path(suggestion.id) %>
       <% if user_signed_in? && suggestion.user == current_user %>
         <small style='margin-left:10px'>
           <%= link_to "<i class='fa fa-edit'></i>".html_safe, '#', 'ng-click' => "suggestion_#{suggestion.id}_edit=true", onclick: 'return false;', class: 'list-link' %>
