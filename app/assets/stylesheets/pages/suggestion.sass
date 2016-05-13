@@ -14,7 +14,7 @@
   .suggestion-user
     @extend .text-small
     @extend .text-bolder
-    color: #333    
+    color: #333
     margin-bottom: 0px
   ul.vote
     @extend .list-inline
@@ -32,7 +32,7 @@
     li,.list-link
       @extend .text-xsmall
       padding: 0px 3px
-            
+
 .suggestion-form
   .well-share
     border: 2px dashed #B1B0B2
@@ -63,14 +63,13 @@
       .help-block
         margin-bottom: 0px
 
-
 #suggestion-form
   @extend .suggestion-form
   padding: 20px 0px 40px
   .fa-close.fa-2x
     @extend .pull-right
     position: relative
-    top: 30px 
+    top: 30px
     color: #999999
   .suggestion-block
     .suggestion-header
@@ -79,3 +78,9 @@
     .suggestion-title
       @extend .section-title
       @extend .text-green
+
+.badge-suggestion
+  &.selected
+    background-color: $text-color !important
+    color: white
+

@@ -5,7 +5,7 @@ class RecipeStagesController < ApplicationController
     @recipe_stage = @challenge.recipe_stage
     @cookbooks = @recipe_stage.cookbooks
     @featured_recipes = @recipe_stage.recipes.where(featured: true)
-    @ordering_criteria = 'published_at DESC' if params[:order_by] == 'latest'
+    @ordering = 'published_at DESC' if params[:order_by] == 'latest'
   end
 
 end
