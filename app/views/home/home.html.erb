@@ -10,14 +10,14 @@
             <div class='row'>
               <div class='col-md-4'>
                 <% if user_signed_in? %>
-                  <% if @featured %>
-                    <%= link_to "Return to Challenge", challenge_active_stage_path(@featured), class: 'btn btn-lg btn-rounded btn-info half-margin-bottom' %>
+                  <% if @challenge %>
+                    <%= link_to "Return to Challenge", challenge_active_stage_path(@challenge), class: 'btn btn-lg btn-rounded btn-info half-margin-bottom' %>
                   <% else %>
                     <%= link_to "Learn More", about_path, class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom' %>
                   <% end %>
                 <% else %>
-                  <% if @featured %>
-                    <%= link_to "See Featured Challenge", challenge_path(@featured), class: 'btn btn-lg btn-rounded btn-info half-margin-bottom' %>
+                  <% if @challenge %>
+                    <%= link_to "See Featured Challenge", challenge_path(@challenge), class: 'btn btn-lg btn-rounded btn-info half-margin-bottom' %>
                   <% else %>
                     <%= link_to "Learn More", about_path, class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom' %>
                   <% end %>
@@ -35,8 +35,50 @@
   </div>
 </div>
 
+<% if @challenge %>
+  <div id='landing-featured'>
+    <div class="container">
+      <div class='row'>
+        <div class='col-md-10 col-md-offset-1'>
+
+          <%= render 'challenges/featured' %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div id='landing-stages'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-10 col-md-offset-1'>
+
+        <h2 class="section-title">Each Challenge will go through four phases:</h2>
+
+        <div class='row row-process'>
+          <% Challenge::STAGES.each_with_index do |stage, index| %>
+            <div class="col-xs-6 col-sm-3" style='margin-bottom:15px'>
+              <span class="fa-stack challenge-fa-bubble text-<%= stage[:name] %>">
+                <i class="fa fa-stack-2x fa-circle"></i>
+                <i class="fa fa-stack-1x fa-inverse <%= stage[:icon] %>"></i>
+              </span>
+              <%= content_tag(:i, '', class: 'fa fa-play', style: ('color: transparent' if stage[:name] == 'solution') ) %>
+              <div class='clearfix'></div>
+              <div class="caption">
+                <h4><%= "#{index+1}. #{stage[:headline]}" %></h4>
+                <p class='description'><%= stage[:description] %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id='landing-what'>
-  <div class="container">
+  <div class='container'>
     <div class='row'>
       <div class='col-md-10 col-md-offset-1'>
 
@@ -46,28 +88,6 @@
             <p class='section-description'>We know that the best ideas for solving problems in education come from educators. <%= ENV.fetch('APP_NAME') %> is an online community of educators like you who will collaborate to solve common challenges by sharing experiences, giving and getting advice, and turning ideas into reality.</p>
           </div>
         </div>
-
-        <div id='process-stages'>
-          <h2 class="section-title">Each Challenge will go through four phases:</h2>
-
-          <div class='row row-process'>
-            <% Challenge::STAGES.each_with_index do |stage, index| %>
-              <div class="col-xs-6 col-sm-3" style='margin-bottom:15px'>
-                <span class="fa-stack challenge-fa-bubble text-<%= stage[:name] %>">
-                  <i class="fa fa-stack-2x fa-circle"></i>
-                  <i class="fa fa-stack-1x fa-inverse <%= stage[:icon] %>"></i>
-                </span>
-                <%= content_tag(:i, '', class: 'fa fa-play', style: ('color: transparent' if stage[:name] == 'solution') ) %>
-                <div class='clearfix'></div>
-                <div class="caption">
-                  <h4><%= "#{index+1}. #{stage[:headline]}" %></h4>
-                  <p class='description'><%= stage[:description] %></p>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
