@@ -81,7 +81,7 @@
                 <ul class='list-sort'>
                   <li>
                     <%= link_to challenge_idea_stage_path(@challenge, @idea_stage, order_by: "", anchor: "problem_statement-#{problem_statement.id}") do %>
-                      <span class="badge badge-idea <%= 'selected' if @ordering_criteria.blank? %>">
+                      <span class="badge badge-idea <%= 'selected' if @ordering.blank? %>">
                         <span class='headline text-idea text-xsmall'>
                           <%= fa_icon 'fire' %>
                           Popular
@@ -91,7 +91,7 @@
                   </li>
                   <li>
                     <%= link_to challenge_idea_stage_path(@challenge, @idea_stage, order_by: "latest", anchor: "problem_statement-#{problem_statement.id}") do %>
-                      <span class="badge badge-idea <%= 'selected' unless @ordering_criteria.blank? %>">
+                      <span class="badge badge-idea <%= 'selected' unless @ordering.blank? %>">
                         <span class='headline text-idea text-xsmall'>
                           <%= fa_icon 'clock-o' %>
                           Latest
@@ -118,13 +118,13 @@
             "initialize('problem_statement_<%= problem_statement.id %>_ideas')">
 
               <div class='row'>
-                <% problem_statement.ideas.order_by(@ordering_criteria).published.first(@challenge.stage_number == 4 ? 6 : 5).each do |idea| %>
+                <% problem_statement.ideas.order_by(@ordering).published.first(@challenge.stage_number == 4 ? 6 : 5).each do |idea| %>
                   <%= render file: 'ideas/card', cache: true, locals: { idea: idea, columns: 'col-md-4 col-sm-6' } %>
                 <% end %>
 
                 <% if problem_statement.ideas.published.count > (@challenge.stage_number == 4 ? 6 : 5) %>
                   <div ng-show='problem_statement_<%= problem_statement.id %>_ideas'>
-                    <% (problem_statement.ideas.order_by(@ordering_criteria).published - problem_statement.ideas.order_by(@ordering_criteria).published.first(@challenge.stage_number == 4 ? 6 : 5)).each do |idea| %>
+                    <% (problem_statement.ideas.order_by(@ordering).published - problem_statement.ideas.order_by(@ordering).published.first(@challenge.stage_number == 4 ? 6 : 5)).each do |idea| %>
                       <%= render file: 'ideas/card', cache: true, locals: { idea: idea, columns: 'col-md-4 col-sm-6' } %>
                     <% end %>
                   </div>

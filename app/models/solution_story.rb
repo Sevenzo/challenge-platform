@@ -2,12 +2,7 @@ class SolutionStory < ActiveRecord::Base
   include Embeddable
   include URLNormalizer
   default_scope { order(created_at: :asc) }
-  scope :order_by, lambda{ |ordering_criteria|
-    if ordering_criteria.present?
-      # Escape the default_scope's ordering, and order by the field provided
-      unscope(:order).order(ordering_criteria)
-    end
-  }
+  scope :order_by, -> (ordering) { unscope(:order).order(ordering) if ordering }
 
   belongs_to :solution_stage
   has_one :solution

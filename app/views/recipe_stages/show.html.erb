@@ -95,7 +95,7 @@
                 <ul class='list-sort'>
                   <li>
                     <%= link_to challenge_recipe_stage_path(@challenge, @recipe_stage, order_by: "", anchor: "cookbook-#{cookbook.id}") do %>
-                      <span class="badge badge-recipe <%= 'selected' if @ordering_criteria.blank? %>">
+                      <span class="badge badge-recipe <%= 'selected' if @ordering.blank? %>">
                         <span class='headline text-recipe text-xsmall'>
                           <%= fa_icon 'fire' %>
                           Popular
@@ -105,7 +105,7 @@
                   </li>
                   <li>
                     <%= link_to challenge_recipe_stage_path(@challenge, @recipe_stage, order_by: "latest", anchor: "cookbook-#{cookbook.id}") do %>
-                      <span class="badge badge-recipe <%= 'selected' unless @ordering_criteria.blank? %>">
+                      <span class="badge badge-recipe <%= 'selected' unless @ordering.blank? %>">
                         <span class='headline text-recipe text-xsmall'>
                           <%= fa_icon 'clock-o' %>
                           Latest
@@ -130,13 +130,13 @@
 
             <div ng-switch='cookbook_<%= cookbook.id %>_recipes' ng-init="initialize('cookbook_<%= cookbook.id %>_recipes')">
 
-              <% cookbook.recipes.order_by(@ordering_criteria).published.first(3).each do |recipe| %>
+              <% cookbook.recipes.order_by(@ordering).published.first(3).each do |recipe| %>
                 <%= render file: 'recipes/card', cache: true, locals: { recipe: recipe } %>
               <% end %>
 
               <% if cookbook.recipes.published.count > 3 %>
                 <div ng-show='cookbook_<%= cookbook.id %>_recipes'>
-                  <% (cookbook.recipes.order_by(@ordering_criteria).published - cookbook.recipes.order_by(@ordering_criteria).published.first(3)).each do |recipe| %>
+                  <% (cookbook.recipes.order_by(@ordering).published - cookbook.recipes.order_by(@ordering).published.first(3)).each do |recipe| %>
                     <%= render file: 'recipes/card', cache: true, locals: { recipe: recipe } %>
                   <% end %>
                 </div>

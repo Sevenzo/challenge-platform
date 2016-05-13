@@ -1,7 +1,8 @@
 class Suggestion < ActiveRecord::Base
   include Embeddable
   include URLNormalizer
-  default_scope { order(cached_votes_total: :desc, created_at: :desc, id: :desc) }
+  scope :order_by, -> (ordering) { unscope(:order).order(ordering) if ordering }
+  default_scope { order(cached_weighted_average: :desc, created_at: :desc, id: :desc) }
 
   belongs_to :user
   acts_as_votable

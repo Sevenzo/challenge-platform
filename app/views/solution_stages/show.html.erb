@@ -66,7 +66,7 @@
               <ul class='list-sort'>
                 <li>
                   <%= link_to challenge_solution_stage_path(@challenge, @solution_stage, order_by: "", anchor: "solution_stage-content") do %>
-                    <span class="badge badge-solution <%= 'selected' if @ordering_criteria.blank? %>">
+                    <span class="badge badge-solution <%= 'selected' if @ordering.blank? %>">
                       <span class='headline text-solution text-xsmall'>
                         <%= fa_icon 'fire' %>
                         Popular
@@ -76,7 +76,7 @@
                 </li>
                 <li>
                   <%= link_to challenge_solution_stage_path(@challenge, @solution_stage, order_by: "latest", anchor: "solution_stage-content") do %>
-                    <span class="badge badge-solution <%= 'selected' unless @ordering_criteria.blank? %>">
+                    <span class="badge badge-solution <%= 'selected' unless @ordering.blank? %>">
                       <span class='headline text-solution text-xsmall'>
                         <%= fa_icon 'clock-o' %>
                         Latest
@@ -95,7 +95,7 @@
           </div>
 
           <div class='row' style='margin-bottom: 50px'>
-            <% @solution_stories.order_by(@ordering_criteria).each do |solution_story| %>
+            <% @solution_stories.order_by(@ordering).each do |solution_story| %>
               <%= render file: 'solution_stories/card', locals: { solution_story: solution_story } %>
             <% end %>
           </div>
