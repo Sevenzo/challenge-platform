@@ -9,9 +9,11 @@
       <%= link_to image_tag('logo.png', style: 'height: 100%'), root_path, class: "navbar-brand" %>
 
       <!-- Custom link for new designs with challenge links in navigation -->
-      <div class='navbar-center-link hidden-xs'>
-        <%= link_to(@challenge.title.ellipsisize(15,15), challenge_path(@challenge), class: 'text-lighter') if @challenge %>
-      </div>
+      <% unless controller_name == 'home' %>
+        <div class='navbar-center-link hidden-xs'>
+          <%= link_to(@challenge.title.ellipsisize(15,15), challenge_path(@challenge), class: 'text-lighter') if @challenge %>
+        </div>
+      <% end %>
 
     </div>
 
