@@ -2,8 +2,9 @@ class HomeController < ApplicationController
   before_action :hide_navs, only: [:preview]
 
   def index
-    @featured = Challenge.featured
+    @challenge = Challenge.featured
     @suggestions = Suggestion.all
+    @ordering = 'created_at DESC' if params[:order_by] == 'latest'
     render user_page
   end
 

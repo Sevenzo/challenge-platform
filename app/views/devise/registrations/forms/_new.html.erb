@@ -1,3 +1,9 @@
+<div class='row'>
+  <div class='col-sm-4 col-sm-offset-4'>
+    <p class='auth-switch'>Already have an account? <%= switch_link %></p>
+  </div>
+</div>
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.hidden_field :remember_me, value: true %>
   <%= f.hidden_field :referrer_id, value: session[:referrer_id] %>
@@ -62,10 +68,7 @@
   </div>
 
   <div class='row row-actions'>
-    <div class='col-sm-4'>
-      <p class='auth-switch'>Already have an account? <%= switch_link %></p>
-    </div>
-    <div class='col-sm-2'>
+    <div class='col-sm-2 col-sm-offset-4'>
       <%= link_to 'Cancel', cancel_path, class: 'btn btn-default btn-block btn-rounded' %>
     </div>
     <div class='col-sm-2'>

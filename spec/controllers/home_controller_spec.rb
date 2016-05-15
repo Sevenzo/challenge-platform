@@ -20,7 +20,7 @@ describe HomeController do
 
       it 'pulls in the first challenge' do
         get 'index'
-        expect(assigns(:featured)).to eq first_challenge
+        expect(assigns(:challenge)).to eq first_challenge
       end
     end
 
@@ -35,7 +35,7 @@ describe HomeController do
 
       it 'pulls in the second challenge' do
         get 'index'
-        expect(assigns(:featured)).to eq second_challenge
+        expect(assigns(:challenge)).to eq second_challenge
       end
     end
 
@@ -50,7 +50,7 @@ describe HomeController do
 
       it 'pulls nothing in' do
         get 'index'
-        expect(assigns(:featured)).to be_nil
+        expect(assigns(:challenge)).to be_nil
       end
     end
 
@@ -65,7 +65,7 @@ describe HomeController do
 
       it 'pulls the second challenge in' do
         get 'index'
-        expect(assigns(:featured)).to eq second_challenge
+        expect(assigns(:challenge)).to eq second_challenge
       end
     end
 
@@ -81,7 +81,7 @@ describe HomeController do
 
       it 'pulls nothing in' do
         get 'index'
-        expect(assigns(:featured)).to be_nil
+        expect(assigns(:challenge)).to be_nil
       end
     end
   end

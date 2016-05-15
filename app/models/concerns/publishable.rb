@@ -10,4 +10,9 @@ module Publishable
       end
     }
   end
+
+  def display_date
+    published_at || created_at
+  end
+
 end

@@ -132,17 +132,7 @@
     <div class='row'>
       <div class='col-md-10 col-md-offset-1'>
 
-        <h2 class="text-center">Featured contributions from <%= @challenge.title %></h2>
-
-        <div class='row'>
-          <% @challenge.featured_contributions.each do |featured| %>
-            <%= render file: "#{featured.class.name.pluralize.downcase}/card", cache: true, locals: eval("{ #{featured.class.name.downcase}: featured }") %>
-          <% end %>
-        </div>
-
-        <div class='text-center center-block'>
-          <%= link_to "Show More", challenge_active_stage_path(@challenge), class: 'text-bold' %>
-        </div>
+        <%= render 'challenges/featured' %>
 
       </div>
     </div>
