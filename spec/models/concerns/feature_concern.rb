@@ -2,10 +2,6 @@ require 'rails_helper'
 
 shared_examples_for 'a featurable entity' do
 
-  let(:non_panelist) {
-    create(:user)
-  }
-
   let(:panelists) {
     panelists = Array.new
     3.times do
@@ -13,29 +9,16 @@ shared_examples_for 'a featurable entity' do
     end
     panelists
   }
+  let(:challenge) { create(:challenge, :with_panelists, panelists: panelists) }
 
-  let(:challenge) {
-    create(:challenge, :with_panelists, panelists: panelists)
-  }
-
-  let(:feature) {
-    create(:feature, challenge: challenge, featureable: entity)
-  }
-
-  it 'marks an entity with a non-panelist as invalid' do
-    feature.featureable = entity
-    feature.user = non_panelist
-    expect(feature.valid?).to eq false
+  it 'marks an entity as featured if feature is active' do
+    create(:feature, featureable: entity, active: true)
+    expect(entity.featured).to be true
   end
 
-  it 'marks an entity with a panelist as valid' do
-    feature.featureable = entity
-    feature.user = panelists.first
-    expect(feature.valid?).to eq true
+  it 'marks an entity as not feature if feature is inactive' do
+    create(:feature, featureable: entity, active: false)
+    expect(entity.featured).to be false
   end
 
-  it 'marks an entity without a user as valid' do
-    feature.featureable = entity
-    expect(feature.valid?).to eq true
-  end
 end

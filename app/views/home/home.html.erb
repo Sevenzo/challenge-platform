@@ -107,7 +107,7 @@
               <li>
                 <%= link_to root_path(order_by: "", anchor: "landing-suggest") do %>
                   <span class="badge badge-suggestion <%= 'selected' if @ordering.blank? %>">
-                    <span class='headline text-default text-xsmall'>
+                    <span class='headline text-suggestion text-xsmall'>
                       <%= fa_icon 'fire' %>
                       Popular
                     </span>
@@ -117,7 +117,7 @@
               <li>
                 <%= link_to root_path(order_by: "latest", anchor: "landing-suggest") do %>
                   <span class="badge badge-suggestion <%= 'selected' unless @ordering.blank? %>">
-                    <span class='headline text-default text-xsmall'>
+                    <span class='headline text-suggestion text-xsmall'>
                       <%= fa_icon 'clock-o' %>
                       Latest
                     </span>
@@ -127,8 +127,8 @@
             </ul>
           </div>
           <div class='col-xs-4'>
-            <h6 class='text-default text-center center-block'>
-              <i class='fa fa-archive fa-3x'></i><br>
+            <h6 class='text-default text-center center-block' style='margin-top: 2.25em'>
+              <i class='fa fa-archive fa-2x'></i><br>
               <span><%= pluralize(@suggestions.count, 'suggestion') %></span>
             </h6>
           </div>

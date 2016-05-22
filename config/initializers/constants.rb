@@ -13,7 +13,4 @@ DEFAULT_LIKE = {
   }
 }.freeze
 
-MAIN_ENTITIES = %w(Experience Idea Recipe Solution)
-COMMENTABLE_ENTITIES = MAIN_ENTITIES + %w(Cookbook)
-
 OPEN_RECIPE_SUBMISSIONS = false

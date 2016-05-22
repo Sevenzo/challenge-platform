@@ -4,6 +4,7 @@ class Experience < ActiveRecord::Base
   include Publishable
   include Orderable
   include Likeable
+  include Sortable
 
   belongs_to :user
   belongs_to :theme

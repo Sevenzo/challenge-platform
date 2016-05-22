@@ -5,6 +5,7 @@ class Idea < ActiveRecord::Base
   include Likeable
   default_scope { order(inspiration: :desc) }
   include Orderable
+  include Sortable
 
   belongs_to :user
   belongs_to :problem_statement

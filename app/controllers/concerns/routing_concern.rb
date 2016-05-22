@@ -38,7 +38,7 @@ module RoutingConcern
     when 'comment'
       after_update_object_path_for(object.commentable, options)
     when 'suggestion'
-      if options[:home]
+      if object.paranoia_destroyed?
         root_path(anchor: options[:anchor])
       else
         suggestion_path(object.id)

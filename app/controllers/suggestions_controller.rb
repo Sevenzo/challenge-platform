@@ -1,5 +1,5 @@
 class SuggestionsController < ApplicationController
-  before_action :authenticate_user!,  except: [:new, :create, :like]
+  before_action :authenticate_user!,  except: [:new, :create, :show, :like]
   before_action :load_suggestion,     only:   [:show, :edit, :update, :destroy, :like, :unlike]
   before_action :authorize_user!,     only:   [:edit, :update, :destroy]
 
@@ -28,7 +28,6 @@ class SuggestionsController < ApplicationController
   end
 
   def show
-    @challenge = Challenge.featured
   end
 
   def edit
@@ -46,14 +45,14 @@ class SuggestionsController < ApplicationController
   def destroy
     @suggestion.destroy
     flash[:success] = object_flash_message_for(@suggestion)
-    redirect_to after_update_object_path_for(@suggestion, home: true, anchor: 'landing-suggest')
+    redirect_to after_update_object_path_for(@suggestion, anchor: 'landing-suggest')
   end
 
   def like
     if user_signed_in?
       @suggestion.liked_by(current_user, vote_scope: 'rating', vote_weight: params[:vote_weight])
       respond_to do |format|
-        format.html { redirect_to after_update_object_path_for(@suggestion, anchor: 'landing-suggest') }
+        format.html { redirect_to after_update_object_path_for(@suggestion) }
         format.js
       end
     else
@@ -66,7 +65,7 @@ class SuggestionsController < ApplicationController
     @suggestion.unliked_by(current_user, vote_scope: 'rating', vote_weight: params[:vote_weight])
 
     respond_to do |format|
-      format.html { redirect_to after_update_object_path_for(@suggestion, anchor: 'landing-suggest') }
+      format.html { redirect_to after_update_object_path_for(@suggestion) }
       format.js
     end
   end

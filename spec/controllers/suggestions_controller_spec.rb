@@ -38,7 +38,7 @@ describe SuggestionsController do
         it "redirects to the correct path for this suggestion" do
           post :create, suggestion: {title: "this is a suggestion title", description: "this is a suggestion description"}
 
-          expect(response).to redirect_to suggestion_path(assigns(:suggestion).id)
+          expect(response).to redirect_to suggestion_path(assigns(:suggestion))
         end
       end
 
@@ -109,7 +109,7 @@ describe SuggestionsController do
         request.env['HTTP_REFERER'] = '/'
         patch :update, id: suggestion.id, suggestion: { description: "suggestion description update" }
 
-        expect(response).to redirect_to suggestion_path(assigns(:suggestion).id)
+        expect(response).to redirect_to suggestion_path(assigns(:suggestion))
       end
     end
 
@@ -237,7 +237,7 @@ describe SuggestionsController do
       it "redirects if not rendering JavaScript" do
         put :unlike, id: suggestion.id
 
-        expect(response).to redirect_to suggestion_path(assigns(:suggestion).id)
+        expect(response).to redirect_to suggestion_path(assigns(:suggestion))
       end
 
     end

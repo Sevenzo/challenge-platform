@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512052538) do
+ActiveRecord::Schema.define(version: 20160522022255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -203,10 +203,9 @@ ActiveRecord::Schema.define(version: 20160512052538) do
     t.string   "featureable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "challenge_id",     null: false
+    t.integer  "challenge_id"
   end
 
-  add_index "features", ["challenge_id"], name: "index_features_on_challenge_id", using: :btree
   add_index "features", ["featureable_id", "featureable_type"], name: "index_features_on_featureable_id_and_featureable_type", using: :btree
   add_index "features", ["user_id"], name: "index_features_on_user_id", using: :btree
 
