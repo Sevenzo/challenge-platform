@@ -1,19 +1,21 @@
-<div class="row" style='margin-bottom: 15px'>
+<div class="row">
   <div class='col-sm-10'>
     <h3 class="suggestion-title text-black">
-      <%= suggestion.title %>
-      <% if user_signed_in? && suggestion.user == current_user %>
-        <small style='margin-left:10px'>
-          <%= link_to "<i class='fa fa-edit'></i>".html_safe, '#', 'ng-click' => "suggestion_#{suggestion.id}_edit=true", onclick: 'return false;', class: 'list-link' %>
-          &nbsp; &bull; &nbsp;
-          <%= link_to "<i class='fa fa-trash'></i>".html_safe, suggestion_path(suggestion.id), method: :delete, data: { confirm: "Are you sure you want to delete your suggestion?"}, class: 'list-link' %>
-        </small>
-      <% end %>
+      <%= link_to suggestion.title, suggestion_path(suggestion), class: 'text-suggestion' %>
+      <br>
+      <small><%= suggestion.user.display_name %> &bull; <%= suggestion.user.display_organization %></small>
     </h3>
   </div>
 
   <div class='col-sm-2'>
     <p class='suggestion-time'><%= "#{time_ago_in_words(suggestion.created_at)} ago" %></p>
+    <% if user_signed_in? && suggestion.user == current_user %>
+      <p class='suggestion-actions'>
+        <%= link_to "<i class='fa fa-edit'></i> Edit".html_safe, '#', 'ng-click' => "suggestion_#{suggestion.id}_edit=true", onclick: 'return false;' %>
+        &nbsp; &bull; &nbsp;
+        <%= link_to "<i class='fa fa-trash'></i> Delete".html_safe, suggestion_path(suggestion), method: :delete, data: { confirm: "Are you sure you want to delete your suggestion?"} %>
+      </p>
+    <% end %>
   </div>
 </div>
 
@@ -37,7 +39,7 @@
 
 <div class="row">
   <div class="col-sm-4">
-    <p class='suggestion-user text-left'>How much does this impact you?</p>
+    <p class='suggestion-user'>How much does this impact you?</p>
   </div>
 
   <div class="col-sm-5">
@@ -47,6 +49,8 @@
   </div>
 
   <div class="col-sm-3">
-    <p class='suggestion-user text-right'><%= suggestion.user.initials %>, <%= suggestion.user.display_organization %></p>
+    <p id="suggestion-<%= suggestion.id %>-comments" class='suggestion-comments text-right'>
+      <%= link_to "<i class='fa fa-comments-o'></i> #{suggestion.comments_count unless suggestion.comments_count.zero?}".html_safe, suggestion_path(suggestion, { anchor: 'suggestion-comments' }) %>
+    </p>
   </div>
 </div>

@@ -1,8 +1,8 @@
 class SolutionStory < ActiveRecord::Base
   include Embeddable
   include URLNormalizer
+  include Sortable
   default_scope { order(created_at: :asc) }
-  scope :order_by, -> (ordering) { unscope(:order).order(ordering) if ordering }
 
   belongs_to :solution_stage
   has_one :solution

@@ -8,7 +8,14 @@
     @extend .text-xsmall
     @extend .text-right
     @extend .text-capitalize
-    margin-top: 2.6em
+    margin: 2.6em 0em 0em
+  .suggestion-actions
+    @extend .suggestion-time
+    margin: 0em
+    a
+      color: inherit
+      &:hover,&:focus,&:active,&.active
+        color: inherit
   .suggestion-content
     margin-bottom: 15px
   .suggestion-user
@@ -32,6 +39,11 @@
     li,.list-link
       @extend .text-xsmall
       padding: 0px 3px
+  .suggestion-comments
+    margin-top: -0.5em
+    @extend .suggestion-user
+    a
+      color: #979797
 
 .suggestion-form
   .well-share
@@ -79,8 +91,48 @@
       @extend .section-title
       @extend .text-green
 
+#suggestion-overview
+  padding: 100px 0px 40px
+  .well-featured-suggestion
+    @extend .well, .well-sm, .text-center, .text-white
+    +border-radius(1em)
+    padding: 0.25em
+    background-color: $suggestion !important
+  .well-suggestion
+    padding: 0px
+    background-color: white
+    +border-radius(10px)
+    #actions
+      a
+        color: $lightGrayText
+    .suggestion-content
+      padding: 0px 3em 1.5em
+      .row-suggestion-show
+        margin-bottom: 2em
+        .media-author
+          margin-bottom: 2em
+          .media-left
+            height: 5em
+            .fa-user-avatar
+              .fa-stack-2x
+                font-size: 4em !important
+              .fa-stack-1x
+                margin-top: 1.9em
+                margin-left: 1.9em
+          .media-body
+            padding-left: 5em
+        .content-block:last-child
+          margin-bottom: 0px
+        ul.vote
+          @extend .text-left
+
+#suggestion-comments
+  padding: 20px 0px
+
+#suggestion-share
+  padding: 20px 0px
+
 .badge-suggestion
   &.selected
-    background-color: $text-color !important
+    background-color: $suggestion !important
     color: white
-

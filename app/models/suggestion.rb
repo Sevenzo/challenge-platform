@@ -1,11 +1,12 @@
 class Suggestion < ActiveRecord::Base
   include Embeddable
   include URLNormalizer
-  scope :order_by, -> (ordering) { unscope(:order).order(ordering) if ordering }
+  include Sortable
   default_scope { order(cached_weighted_average: :desc, created_at: :desc, id: :desc) }
 
   belongs_to :user
   acts_as_votable
+  acts_as_commentable
   acts_as_paranoid column: :destroyed_at
 
   validates :title,       presence: true

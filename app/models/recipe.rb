@@ -4,6 +4,7 @@ class Recipe < ActiveRecord::Base
   include Publishable
   include Orderable
   include Likeable
+  include Sortable
 
   belongs_to :cookbook
   belongs_to :user

@@ -1,6 +1,6 @@
 class SuggestionsController < ApplicationController
-  before_action :authenticate_user!,  except: [:new, :create, :like]
-  before_action :load_suggestion,     only:   [:edit, :update, :destroy, :like, :unlike]
+  before_action :authenticate_user!,  except: [:new, :create, :show, :like]
+  before_action :load_suggestion,     only:   [:show, :edit, :update, :destroy, :like, :unlike]
   before_action :authorize_user!,     only:   [:edit, :update, :destroy]
 
   def new
@@ -27,6 +27,9 @@ class SuggestionsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def edit
   end
 
@@ -42,7 +45,7 @@ class SuggestionsController < ApplicationController
   def destroy
     @suggestion.destroy
     flash[:success] = object_flash_message_for(@suggestion)
-    redirect_to after_update_object_path_for(@suggestion)
+    redirect_to after_update_object_path_for(@suggestion, anchor: 'landing-suggest')
   end
 
   def like
@@ -60,7 +63,7 @@ class SuggestionsController < ApplicationController
 
   def unlike
     @suggestion.unliked_by(current_user, vote_scope: 'rating', vote_weight: params[:vote_weight])
-    
+
     respond_to do |format|
       format.html { redirect_to after_update_object_path_for(@suggestion) }
       format.js
@@ -80,7 +83,7 @@ private
   def authorize_user!
     unless @suggestion.user == current_user
       flash[:danger] = "You do not have access to that area or operation."
-      redirect_to after_update_object_path_for(@suggestion)
+      redirect_to after_update_object_path_for(@suggestion, anchor: 'landing-suggest')
     end
   end
 

@@ -1,0 +1,110 @@
+<div id='suggestion-overview'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-10 col-md-offset-1'>
+
+        <div class='well well-suggestion'>
+          <span class="label label-suggestion pull-left"><i class='fa fa-archive'></i> Suggestion</span>
+          <div class='clearfix'></div>
+
+          <div class='suggestion-content'>
+            <div class='row row-suggestion-show'>
+              <div class="col-sm-4">
+
+                <div class="media media-author">
+                  <div class="media-left">
+                    <%= render partial: 'shared/avatar', locals: { user: @suggestion.user, avatar_style: "width:4.5em"} %>
+                  </div>
+                  <div class="media-body" style='<%= 'padding-left: 0em' if @suggestion.user.avatar.present? %>'>
+                    <div class='user-caption' style='<%= 'margin-top: 0.5em' if @suggestion.user.avatar.present? %>'>
+                      <p class='user-name'><%= link_to "#{@suggestion.user.display_name}", user_path(@suggestion.user) %></p>
+                      <p class='user-title text-default'><%= @suggestion.user.display_organization %></p>
+                      <p class='user-link'><%= "#{time_ago_in_words(@suggestion.created_at)} ago".titleize %></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class='row'>
+                  <div class='col-xs-8'>
+
+                    <% if user_signed_in? && @suggestion.user == current_user %>
+                      <div class="btn-group btn-block" role="group" style='margin-bottom:10px'>
+                        <%= link_to "<i class='fa fa-edit'></i> Edit".html_safe, edit_suggestion_path(@suggestion), class: 'btn btn-sm btn-rounded btn-warning', style: 'width:50%' %>
+                        <%= link_to "<i class='fa fa-trash'></i> Delete".html_safe, suggestion_path(@suggestion), method: :delete, data: {confirm: "Are you sure you want to delete your suggestion?"}, class: 'btn btn-sm btn-rounded btn-danger', style: 'width:50%' %>
+                      </div>
+                    <% end %>
+                    <div id='suggestion-<%= @suggestion.id %>-discuss' style='margin-bottom:10px'>
+                      <%= link_to "<i class='fa fa-reply'></i> Discuss".html_safe, "#suggestion-comments", class: 'btn btn-block btn-fa btn-sm btn-rounded btn-info', "du-smooth-scroll" => true %>
+                    </div>
+                    <div id='suggestion-<%= @suggestion.id %>-share'>
+                      <%= render partial: 'layouts/share_button', locals: {url: suggestion_url(@suggestion), title: @suggestion.title.html_safe, description: @suggestion.description.html_safe, hashtag: '#Challenge'} %>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class='col-sm-8'>
+
+                <h1 class='text-suggestion' style='margin-top:0em'><%= @suggestion.title.html_safe %></h1>
+
+                <% if @suggestion.embed.present? %>
+                  <div class='content-block'>
+                    <%= @suggestion.embed.html_safe %>
+                  </div>
+                <% end %>
+
+                <div class='content-block'>
+                  <p><%= @suggestion.description.html_safe %></p>
+                </div>
+
+                <% if @suggestion.link.present? && @suggestion.embed.blank? %>
+                  <div class='content-block'>
+                    <p class='text-suggestion text-large text-bold text-uppercase'>Link</p>
+                    <p><%= link_to @suggestion.link.html_safe, @suggestion.link, target: '_blank' %></p>
+                  </div>
+                <% end %>
+
+                <div class='content-block'>
+                  <p class='text-suggestion text-large text-bold text-uppercase'>How much does this affect you?</p>
+                  <ul id='suggestion-<%= @suggestion.id %>-vote' class='vote'>
+                    <%= render partial: 'suggestions/card/vote', locals: { suggestion: @suggestion } %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id='suggestion-comments'>
+  <div class='container'>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+
+        <%= render partial: 'comments/discussion', locals: { commentable: @suggestion } %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id='suggestion-share'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-10 col-md-offset-1'>
+
+        <h2 class='section-title text-submit'>Know people who have something to add to this conversation?</h2>
+        <p class='section-description'>More people means more problems solved. Share this Suggestion!</p>
+
+        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: ENV.fetch('COMPANY_NAME'), tweet: "Take the challenge! If you use video for professional learning, share your Suggestion.", title: "Join #{ENV.fetch('APP_NAME')}!", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "Join me on #{ENV.fetch('APP_NAME')}!" } %>
+
+      </div>
+    </div>
+  </div>
+</div>
