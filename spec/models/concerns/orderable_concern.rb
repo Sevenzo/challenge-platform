@@ -1,52 +1,61 @@
 require 'rails_helper'
 
 shared_examples_for 'orderable' do
+
   let(:model) { described_class.model_name.param_key.to_sym }
-  let(:entity) { create(described_class.model_name.param_key.to_sym) }
+  let(:commenter) { create(:user) }
 
-  # Since anything that is orderable has comments attached to it,
-  # we should be able to simply add comments to the entity.
-
-  it 'updates the comments_count column when comments are added into the entity' do
-    add_comment(entity)
-    add_comment(entity)
-    add_comment(entity)
-    entity.reload
-    expect(entity.comments_count).to eq 3
+  before(:each) do
+    6.times do |time|
+      entity = create(model, created_at: time.days.ago, published_at: time.days.from_now)
+      time.times { add_comment(entity) } if time.odd?
+    end
   end
 
-  it 'updates the comments_count column when comments are soft deleted from the entity' do
-    add_comment(entity)
-    add_comment(entity)
-    soft_deleted_comment = add_comment(entity)
-    expect(entity.comments_count).to eq 3
-    soft_delete_comment(soft_deleted_comment)
-    entity.reload
-    expect(entity.comments_count).to eq 2
+  it 'creates the correct number of entities' do
+    expect(described_class.count).to eq 6
+    expect(Comment.count).to eq 9
   end
 
-  it 'updates the comments_count column when comments are hard deleted from the entity' do
-    add_comment(entity)
-    add_comment(entity)
-    hard_deleted_comment = add_comment(entity)
-    expect(entity.comments_count).to eq 3
-    hard_delete_comment(hard_deleted_comment)
-    entity.reload
-    expect(entity.comments_count).to eq 2
+  it 'sorts by comment counts desc' do
+    expect(described_class.pluck(:comments_count).uniq).to eq [5,3,1,0]
   end
 
-  private
+  it 'sorts by featured first, then comments count' do
+    featured = described_class.second
+    featured.update!(featured: true)
+    expect(described_class.first.id).to eq featured.id
+    expect(described_class.last.comments_count).to eq 0
+  end
+
+  context 'when there are no comments' do
+    before { Comment.all.each(&:destroy) }
+
+    it 'sorts by published_at desc count' do
+      first_id = described_class.first.id
+      expected_id_array = (first_id-5..first_id).to_a.reverse
+      expect(described_class.pluck(:id)).to eq expected_id_array
+    end
+
+    it 'sorts by featured, then published_at desc count' do
+      first_id = described_class.first.id
+      expected_id_array = (first_id-5..first_id).to_a.reverse
+
+      featured = described_class.last
+      featured.update!(featured: true)
+
+      expected_id_array.unshift(featured.id)
+      expected_id_array.pop
+
+      expect(described_class.pluck(:id)).to eq expected_id_array
+    end
+  end
+
+private
+
   def add_comment(entity)
-    comment = Comment.build_from(entity, create(:user).id, {body: "Test comment"})
+    comment = Comment.build_from(entity, commenter.id, {body: "Test comment"})
     comment.save!
-    comment
   end
 
-  def soft_delete_comment(comment)
-    comment.destroy
-  end
-
-  def hard_delete_comment(comment)
-    comment.really_destroy!
-  end
 end
