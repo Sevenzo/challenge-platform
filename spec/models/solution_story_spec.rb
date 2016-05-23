@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'models/concerns/embeddable_concern'
 require 'models/concerns/url_normalizer_concern'
+require 'models/concerns/sortable_concern'
 
 describe SolutionStory do
 
@@ -10,4 +11,6 @@ describe SolutionStory do
 
   it_behaves_like 'embeddable'
   it_behaves_like 'normalizable'
+  it_behaves_like 'sortable'
+
 end

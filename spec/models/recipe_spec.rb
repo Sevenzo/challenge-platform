@@ -6,6 +6,7 @@ require 'models/concerns/publishable_concern'
 require 'models/concerns/default_ordering_concern'
 require 'models/concerns/orderable_concern'
 require 'models/concerns/likeable_concern'
+require 'models/concerns/sortable_concern'
 
 describe Recipe do
 
@@ -27,6 +28,7 @@ describe Recipe do
   it_behaves_like 'a publishable entity'
   it_behaves_like 'orderable'
   it_behaves_like 'likeable'
+  it_behaves_like 'sortable'
   it_behaves_like 'an entity respecting the default order'
 
   let(:entity) {
