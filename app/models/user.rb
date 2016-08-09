@@ -128,12 +128,14 @@ class User < ActiveRecord::Base
 
   # Extract the information that is available after OmniAuth authentication.
   def self.from_omniauth(auth)
-      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-        user.provider = auth.provider
-        user.uid = auth.uid
-        user.email = auth.info.email.downcase
-        user.password = Devise.friendly_token[0,20]
-      end
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.first_name = auth.info.name.split(" ").first
+      user.last_name = auth.info.name.split(" ").last
+      user.email = auth.info.email.downcase
+      user.password = Devise.friendly_token[0,20]
+    end
   end
 
   # <p class='select-help'>I am currently training to be a teacher in a whole class, resource, or one-on-one setting.</p>
