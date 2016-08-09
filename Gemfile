@@ -59,6 +59,8 @@ gem 'devise'
 gem 'bcrypt'
 gem 'rails_admin'
 gem 'kaminari'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 ## MAILERS
 gem 'mailkick'
