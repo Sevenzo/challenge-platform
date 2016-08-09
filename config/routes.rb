@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   end
 
-  devise_for :users, controllers: { registrations: 'registrations' }
+  devise_for :users, :controllers => { :registrations => 'registrations', :omniauth_callbacks => "callbacks" }
   resources :users, only: [:show]
 
   root to: 'home#index'
