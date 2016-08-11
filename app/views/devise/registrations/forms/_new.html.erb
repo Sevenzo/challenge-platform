@@ -43,9 +43,14 @@
       </div>
     </div>
 
-    <%= link_to user_omniauth_authorize_path(:facebook), class: "btn btn-block btn-social btn-facebook" do %>
-       <span class="fa fa-facebook"></span> Sign up with Facebook
-    <% end %>
+    <div id='oauth' class='col-sm-8 col-sm-offset-2'>
+      <div class='form-group'>
+        <label>Oauth</label>
+        <%= link_to user_omniauth_authorize_path(:facebook), class: "btn btn-block btn-lg btn-social btn-facebook" do %>
+           <span class="fa fa-facebook"></span> Sign up with Facebook
+        <% end %>
+      </div>
+    </div>
 
     <!-- <div id='or' class='col-sm-2'>
       <span class="fa-stack fa-lg">
