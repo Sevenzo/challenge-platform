@@ -135,6 +135,7 @@ class User < ActiveRecord::Base
       user.last_name = auth.info.name.split(" ").last
       user.email = auth.info.email.downcase
       user.password = Devise.friendly_token[0,20]
+      user.role = 'Other'
     end
   end
 
