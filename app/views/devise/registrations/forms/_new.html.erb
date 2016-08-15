@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true) do |f| %>
   <%= f.hidden_field :remember_me, value: true %>
   <%= f.hidden_field :referrer_id, value: session[:referrer_id] %>
 
@@ -46,7 +46,7 @@
     <div id='oauth' class='col-sm-8 col-sm-offset-2'>
       <div class='form-group'>
         <label>Oauth</label>
-        <%= link_to user_omniauth_authorize_path(:facebook), class: "btn btn-block btn-lg btn-social btn-facebook" do %>
+        <%= link_to user_omniauth_authorize_path(:facebook), id: "facebook-login",class: "btn btn-block btn-lg btn-social btn-facebook" do %>
            <span class="fa fa-facebook"></span> Sign up with Facebook
         <% end %>
       </div>

@@ -37,6 +37,7 @@ gem 'bootstrap-switch-rails'
 gem 'bourbon'
 gem 'select2-rails'
 gem 'redactor-rails'
+gem 'client_side_validations'
 
 ## FILE/PHOTO UPLOADS
 gem 'twitter'
