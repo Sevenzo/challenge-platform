@@ -7,10 +7,16 @@ $(document).ready(function() {
     $input.data('changed', true);
 
     // Only proceed to href if #user_role is valid
-    var validUserRole = $input.isValid($form[0].ClientSideValidations.settings.validators);
+    const validUserRole = $input.isValid($form[0].ClientSideValidations.settings.validators);
     if ( !validUserRole ) {
-      // alert('Please select your Role!')
-      event.preventDefault(); // Prevent link from following its href
+      // Prevent link from following its href
+      event.preventDefault();
+    } else {
+      // Extract the user's selected Role and add it as a URI param to be sent to CallbacksCrontroller#facebook.
+      const selectedRole = encodeURIComponent($('#user_role :selected').val());
+
+      // Append the selected Role as a URI param.
+      this.href += '?role=' + selectedRole;
     }
   });
 });

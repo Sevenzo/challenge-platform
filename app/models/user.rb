@@ -127,7 +127,7 @@ class User < ActiveRecord::Base
   end
 
   # Extract the information that is available after OmniAuth authentication.
-  def self.from_omniauth(auth)
+  def self.from_omniauth(auth, params)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
@@ -135,7 +135,7 @@ class User < ActiveRecord::Base
       user.last_name = auth.info.name.split(" ").last
       user.email = auth.info.email.downcase
       user.password = Devise.friendly_token[0,20]
-      user.role = 'Other'
+      user.role = params["role"]
     end
   end
 
