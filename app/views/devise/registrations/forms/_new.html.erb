@@ -43,15 +43,6 @@
       </div>
     </div>
 
-    <div id='oauth' class='col-sm-8 col-sm-offset-2'>
-      <div class='form-group'>
-        <label>Oauth</label>
-        <%= link_to user_omniauth_authorize_path(:facebook), id: "facebook-login", class: "btn btn-block btn-lg btn-social btn-facebook" do %>
-           <span class="fa fa-facebook"></span> Sign up with Facebook
-        <% end %>
-      </div>
-    </div>
-
     <!-- <div id='or' class='col-sm-2'>
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
@@ -68,21 +59,35 @@
         <div class="btn btn-block btn-social btn-lg btn-twitter"><i class="fa fa-twitter"></i> Sign in with Twitter</div>
       </div>
     </div> -->
-  </div>
 
-  <div class='row row-disclaimer'>
-    <div class='col-sm-8 col-sm-offset-2'>
-      <div class='auth-disclaimer text-small'>By signing up, you are agreeing to our <%= link_to 'Terms and Conditions', terms_path, target: '_blank' %> and <%= link_to 'Privacy Policy', privacy_path, target: '_blank' %>.</div>
+    <div class='row row-actions'>
+      <div class='col-sm-2 col-sm-offset-4'>
+        <%= link_to 'Cancel', cancel_path, class: 'btn btn-default btn-block btn-rounded' %>
+      </div>
+      <div class='col-sm-2'>
+        <%= f.submit "Sign Up", class: 'btn btn-info btn-block btn-rounded' %>
+      </div>
     </div>
-  </div>
 
-  <div class='row row-actions'>
-    <div class='col-sm-2 col-sm-offset-4'>
-      <%= link_to 'Cancel', cancel_path, class: 'btn btn-default btn-block btn-rounded' %>
+    <div class='row half-margin-top half-margin-bottom'>
+      <div id='or'>
+        <div>Or</div>
+      </div>
     </div>
-    <div class='col-sm-2'>
-      <%= f.submit "Sign Up", class: 'btn btn-info btn-block btn-rounded' %>
-    </div>
-  </div>
 
+    <div id='oauth' class='col-sm-8 col-sm-offset-2'>
+      <div class='form-group'>
+        <%= link_to user_omniauth_authorize_path(:facebook), id: "facebook-login", class: "btn btn-block btn-lg btn-social btn-facebook" do %>
+           <span class="fa fa-facebook"></span> Sign up with Facebook
+        <% end %>
+      </div>
+    </div>
+
+    <div class='row row-disclaimer'>
+      <div class='col-sm-8 col-sm-offset-2'>
+        <div class='auth-disclaimer text-small'>By signing up, you are agreeing to our <%= link_to 'Terms and Conditions', terms_path, target: '_blank' %> and <%= link_to 'Privacy Policy', privacy_path, target: '_blank' %>.</div>
+      </div>
+    </div>
+
+  </div>
 <% end %>
