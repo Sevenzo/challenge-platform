@@ -104,6 +104,8 @@ group :test do
   gem 'webmock'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :production do
