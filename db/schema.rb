@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160522022255) do
+ActiveRecord::Schema.define(version: 20160809165847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -313,6 +313,28 @@ ActiveRecord::Schema.define(version: 20160522022255) do
 
   add_index "panels_users", ["panel_id"], name: "index_panels_users_on_panel_id", using: :btree
   add_index "panels_users", ["user_id"], name: "index_panels_users_on_user_id", using: :btree
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title",                limit: 255
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "strava_id"
+    t.string   "strava_name",          limit: 255
+    t.text     "strava_description"
+    t.decimal  "distance"
+    t.integer  "moving_time"
+    t.integer  "elapsed_time"
+    t.decimal  "total_elevation_gain"
+    t.decimal  "start_lat"
+    t.decimal  "start_lng"
+    t.decimal  "end_lat"
+    t.decimal  "end_lng"
+    t.text     "summary_polyline"
+    t.decimal  "average_speed"
+    t.datetime "start_date"
+    t.datetime "start_date_local"
+  end
 
   create_table "problem_statements", force: :cascade do |t|
     t.string   "title"
@@ -634,6 +656,8 @@ ActiveRecord::Schema.define(version: 20160522022255) do
     t.string   "display_name"
     t.string   "avatar_option",          default: "twitter"
     t.hstore   "notifications",          default: {"comment_posted"=>"true", "comment_replied"=>"true", "comment_followed"=>"true"}
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

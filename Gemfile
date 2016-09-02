@@ -37,6 +37,7 @@ gem 'bootstrap-switch-rails'
 gem 'bourbon'
 gem 'select2-rails'
 gem 'redactor-rails'
+gem 'client_side_validations'
 
 ## FILE/PHOTO UPLOADS
 gem 'twitter'
@@ -59,6 +60,8 @@ gem 'devise'
 gem 'bcrypt'
 gem 'rails_admin'
 gem 'kaminari'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 ## MAILERS
 gem 'mailkick'
@@ -101,6 +104,8 @@ group :test do
   gem 'webmock'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :production do
