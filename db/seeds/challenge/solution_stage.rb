@@ -16,7 +16,7 @@ solution_story_titles = ["How Lakeside High Used Classroom Blooper Videos to Fos
 
 embeds = ['https://youtube.com/watch?v=rzfhs3M4lus', 'https://vimeo.com/82083297', nil]
 
-images = ['http://www.uglydogbooks.com/wp-content/uploads/2014/04/books.jpg', 'https://c4.staticflickr.com/4/3553/3421529389_005faf57a5_b.jpg']
+images = ['https://upload.wikimedia.org/wikipedia/commons/7/76/Urval_av_de_bocker_som_har_vunnit_Nordiska_radets_litteraturpris_under_de_50_ar_som_priset_funnits_(2).jpg', 'https://c4.staticflickr.com/4/3553/3421529389_005faf57a5_b.jpg']
 
 solution_story_titles.each do |solution_story_title|
   solution_story = solution_stage.solution_stories.create!(
