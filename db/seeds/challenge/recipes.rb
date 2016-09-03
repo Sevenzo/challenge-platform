@@ -1,6 +1,6 @@
 challenge = Challenge.find(1)
 
-links = ['https://youtube.com/watch?v=rzfhs3M4lus', 'https://vimeo.com/82083297', 'https://upload.wikimedia.org/wikipedia/commons/7/76/Urval_av_de_bocker_som_har_vunnit_Nordiska_radets_litteraturpris_under_de_50_ar_som_priset_funnits_(2).jpg', 'https://c4.staticflickr.com/4/3553/3421529389_005faf57a5_b.jpg', nil]
+links = ['https://youtube.com/watch?v=rzfhs3M4lus', 'https://vimeo.com/82083297', 'https://assets.entrepreneur.com/content/16x9/822/20150903173413-books-shop-fair-library-used-bookshelf-literature-study-textbooks.jpeg', 'https://c4.staticflickr.com/4/3553/3421529389_005faf57a5_b.jpg', nil]
 
 ## CREATING RECIPES
 challenge.recipe_stage.cookbooks.each do |cookbook|
