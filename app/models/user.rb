@@ -45,13 +45,14 @@ class User < ActiveRecord::Base
   MAX_AVATAR_SIZE = 3
 
   ## VALIDATIONS
-  validates :first_name,    length: { maximum: 255 }, presence: true
-  validates :last_name,     length: { maximum: 255 }, presence: true
-  validates :role,          length: { maximum: 255 }, presence: true
-  validates :display_name,  length: { maximum: 255 }, presence: true, on: :update
+  validates :first_name,    presence: true, length: { maximum: 255 }
+  validates :last_name,     presence: true, length: { maximum: 255 }
+  validates :display_name,  presence: true, length: { maximum: 255 }, on: :update
+  validates :role,          presence: true, length: { maximum: 255 }, on: :update
   validates :organization,  length: { maximum: 255 }, allow_blank: true
   validates :title,         length: { maximum: 255 }, allow_blank: true
   validates :twitter,       length: { maximum: 16 },  allow_blank: true
+  validates :twitter,       presence: true, if: "avatar_option == 'twitter'"
   validate  :avatar_file_size
 
   def name
@@ -77,7 +78,7 @@ class User < ActiveRecord::Base
   end
 
   def profile_complete?
-    organization.present? || title.present? || twitter.present? || states.present? || districts.present? || schools.present?
+    role.present? || organization.present? || title.present? || twitter.present? || states.present? || districts.present? || schools.present?
   end
 
   def states_json
@@ -92,8 +93,8 @@ class User < ActiveRecord::Base
     schools.to_json(only: [:id, :name, :location_city, :location_state])
   end
 
-  def is_teacher?
-    ['Current Teacher', 'Teacher Leader', 'Instructional Coach', 'School Leader'].include?(role)
+  def is_school_role?
+    ['Student', 'Current Teacher', 'Teacher Leader', 'Instructional Coach', 'School Leader'].include?(role)
   end
 
   def is_on_panel?(challenge)
@@ -132,6 +133,7 @@ class User < ActiveRecord::Base
   # <p class='select-help'>I am an administrator in a school (principal, assistant principal, dean, etc.).</p>
 
   ROLES = {
+    'Student' => 'Student',
     'Pre-Service Teacher' => 'Pre-Service Teacher',
     'Current Teacher' => 'Current Teacher',
     'Teacher Leader' => 'Teacher Leader',

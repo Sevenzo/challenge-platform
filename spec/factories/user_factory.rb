@@ -13,6 +13,8 @@ FactoryGirl.define do
     sequence :email do |n|
       "testname#{n}@example.com"
     end
+
+    before(:create) { |user| user.display_name = "#{user.first_name} #{user.last_name[0]}" }
   end
   #
   # trait :with_small_avatar_file do
