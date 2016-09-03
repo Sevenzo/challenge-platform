@@ -6,16 +6,16 @@ describe RegistrationsController do
   describe 'PATCH #update' do
 
     let(:user) {
-      create(:user, avatar_option: 'twitter')
+      create(:user)
     }
 
     let(:upload) {
       ActionDispatch::Http::UploadedFile.new(
-          {
-              filename: 'avatar.png',
-              content_type: 'image/png',
-              tempfile: File.new("#{Rails.root}/spec/support/images/small_image.png")
-          }
+        {
+          filename: 'avatar.png',
+          content_type: 'image/png',
+          tempfile: File.new("#{Rails.root}/spec/support/images/small_image.png")
+        }
       )
     }
 
@@ -57,8 +57,7 @@ describe RegistrationsController do
         first_name: "James",
         last_name: "Bond",
         email: "bond@goldeneye.com",
-        password: "0nh3rm4j357y'553cr3753rv1c3",
-        role: 'Current Teacher'
+        password: "0nh3rm4j357y'553cr3753rv1c3"
       }
     }
 
@@ -68,7 +67,6 @@ describe RegistrationsController do
         last_name: "Bond",
         email: "bond@goldeneye",
         password: "0nh3rm4j357y'553cr3753rv1c3",
-        role: 'Current Teacher'
       }
     }
 

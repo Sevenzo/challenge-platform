@@ -4,8 +4,11 @@ module RoutingConcern
   ## DEVISE ROUTING
   def after_sign_in_path_for(resource)
     persist_pending_cache
-    complete_profile_request
-    super
+    if resource.profile_complete?
+      super
+    else
+      edit_user_registration_path(setting: 'onboard')
+    end
   end
 
   ## OBJECT PERSISTENCE ROUTING
@@ -59,13 +62,6 @@ module RoutingConcern
 
   def path_to_url(path)
     "#{ENV.fetch('SITE_PROTOCOL')}://#{ENV.fetch('SITE_HOST')}#{path}"
-  end
-
-private
-
-  def complete_profile_request
-    flash[:notice] += " Please <a href='#{edit_user_registration_url(setting: 'onboard')}'>complete your profile</a>." if resource.sign_in_count < 5 && !resource.profile_complete?
-  rescue
   end
 
 end
