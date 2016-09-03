@@ -4,6 +4,12 @@
     <%= f.radio_button :avatar_option, 'twitter', 'ng-model' => 'avatar_option' %>
     <small>Twitter</small>
   </label>
+  <% if resource.provider == 'facebook' && resource.uid.present? %>
+    <label class="radio-inline text-normal">
+      <%= f.radio_button :avatar_option, 'facebook', 'ng-model' => 'avatar_option' %>
+      <small>Facebook</small>
+    </label>
+  <% end %>
   <label class="radio-inline text-normal">
     <%= f.radio_button :avatar_option, 'upload', 'ng-model' => 'avatar_option' %>
     <small>Upload photo</small>
@@ -14,7 +20,7 @@
   </label>
 </div>
 
-<div class='form-group' ng-show='avatar_option=="twitter"'>
+<div class='form-group' ng-show='avatar_option=="twitter" || avatar_option == "facebook"'>
   <% if resource.avatar.present? %>
     <div>
       <label>

@@ -27,4 +27,16 @@
     </div>
   </div>
 
+  <h2 class='text-center'>– OR –</h3>
+
+  <div class='row row-fields'>
+    <div id='oauth' class='col-sm-8 col-sm-offset-2'>
+      <div class='form-group'>
+        <%= link_to user_omniauth_authorize_path(:facebook), class: "btn btn-block btn-lg btn-social btn-facebook" do %>
+           <span class="fa fa-facebook"></span> Sign in with Facebook
+        <% end %>
+      </div>
+    </div>
+  </div>
+
 <% end %>

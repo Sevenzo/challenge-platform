@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :async,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, omniauth_providers: [:facebook]
 
   ## Rails Admin
   rails_admin do
@@ -123,6 +124,35 @@ class User < ActiveRecord::Base
     self.remote_avatar_url = best_avatar_url
     self.save!
   rescue
+  end
+
+  def set_avatar_from_facebook
+    best_avatar_url = nil
+
+    if facebook.present? && avatar_option == 'facebook'
+      begin
+        best_avatar_url = "https://graph.facebook.com/v2.6/#{facebook}/picture?width=400&height=400"
+      rescue
+        best_avatar_url = "https://avatars.io/facebook/#{facebook}/large"
+      end
+    end
+
+    self.remote_avatar_url = best_avatar_url
+    self.save!
+  rescue
+  end
+
+  # Extract the information that is available after OmniAuth authentication.
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
+      user.email = auth.info.email.downcase
+      user.password = Devise.friendly_token[0, 20]
+      user.facebook = auth.uid
+      user.avatar_option = auth.provider
+      user.remote_avatar_url = auth.info.image
+    end
   end
 
   # <p class='select-help'>I am currently training to be a teacher in a whole class, resource, or one-on-one setting.</p>
