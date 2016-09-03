@@ -152,16 +152,6 @@
   <%= render partial: 'devise/registrations/forms/avatar', locals: { f: f } %>
 
   <div class='form-group'>
-    <%= f.label :display_name, "Name you would like to go by*" %>
-    <div class="input-group">
-      <span class="input-group-addon"><i class='fa fa-user'></i></span>
-      <%= f.text_field :display_name, class: 'form-control', required: true %>
-    </div>
-  </div>
-
-  <%= render partial: 'devise/registrations/forms/avatar', locals: { f: f } %>
-
-  <div class='form-group'>
     <%= f.label :twitter, "Twitter".html_safe %>
     <div class="input-group">
       <span class="input-group-addon"><i class='fa fa-at'></i></span>
