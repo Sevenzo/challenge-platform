@@ -25,4 +25,5 @@
 //= require redactor-rails
 //= require redactor-rails/plugins
 //= require_tree .
+//= require rails.validations
 //

@@ -8,7 +8,6 @@
 @import "select2";
 @import "bootstrap3-switch";
 @import "vendor/shake";
-@import "vendor/bootstrap-social";
 @import "imports/fonts";
 @import "imports/icons";
 @import "partials/mixins";
@@ -23,7 +22,9 @@
 @import "overrides/font-awesome";
 @import "overrides/redactor";
 
+@import "vendor/bootstrap-social";
 @import "vendor/ribbon";
+
 @import "partials/animate";
 @import "partials/header";
 @import "partials/footer";
