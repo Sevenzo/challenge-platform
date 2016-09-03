@@ -4,7 +4,7 @@
     @extend .text-center
 
 #error_explanation
-  color: #f00
+  @extend .text-danger
   ul
     padding: 0px
     list-style: none
@@ -14,8 +14,12 @@
   display: inline
   @extend .control-group !optional
   @extend .has-error !optional
+  label
+    @extend .text-danger
   .input-group
     @extend .has-error
+  .message
+    @extend .text-danger
 
 .devise-links
   @extend .text-center
@@ -53,10 +57,13 @@
       .form-group
         label
           font-size: 1.4em
-          color: #9D9D9D
+          color: $lightGrayText
         input
           @extend .input-borderless
           background-color: $lightGrayBG
+        .field_with_errors
+          @extend .field_with_errors
+
       .auth-helper
         margin: 10px 0px 0px
         @extend .text-bold
@@ -92,6 +99,7 @@
       margin-top: 15px
       .auth-switch
         @extend .text-bold
+        @extend .text-center
         margin-top: 5px
         margin-bottom: 0px
         a
