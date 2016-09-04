@@ -145,14 +145,14 @@
     <%= f.label :display_name, "Name you would like to go by*" %>
     <div class="input-group">
       <span class="input-group-addon"><i class='fa fa-user'></i></span>
-      <%= f.text_field :display_name, class: 'form-control', required: true %>
+      <%= f.text_field :display_name, required: true, class: 'form-control' %>
     </div>
   </div>
 
   <%= render partial: 'devise/registrations/forms/avatar', locals: { f: f } %>
 
   <div class='form-group'>
-    <%= f.label :twitter, "Twitter".html_safe %>
+    <%= f.label :twitter %>
     <div class="input-group">
       <span class="input-group-addon"><i class='fa fa-at'></i></span>
       <%= f.text_field :twitter, class: 'form-control', maxlength: "16" %>
@@ -160,7 +160,7 @@
   </div>
 
   <div class='form-group'>
-    <%= f.label :bio, "Interests and expertise".html_safe %>
+    <%= f.label :bio, 'Interests and expertise' %>
     <%= f.text_area :bio, class: 'form-control', placeholder: "Let other community members learn a bit more about you.", rows: 3 %>
   </div>
 

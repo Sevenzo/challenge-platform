@@ -18,7 +18,7 @@
               <div id='email' class='col-sm-8 col-sm-offset-2'>
                 <div class='form-group'>
                   <%= f.label :email %>
-                  <%= f.email_field :email, autofocus: true, placeholder: 'Please enter your email address', class: 'form-control input-lg' %>
+                  <%= f.email_field :email, autofocus: true, required: true, placeholder: 'Please enter your email address', class: 'form-control input-lg' %>
                 </div>
               </div>
             </div>
@@ -37,7 +37,7 @@
           <% end %>
         </div>
 
-      </div>  
+      </div>
     </div>
   </div>
 </div>
