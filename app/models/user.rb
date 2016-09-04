@@ -115,14 +115,13 @@ class User < ActiveRecord::Base
         best_avatar_url = twitter_user_object.profile_image_url_https.to_s.sub('_normal', '_400x400')
       rescue Twitter::Error::NotFound
         twitter = nil
-      rescue Twitter::Error::RateLimited
-        best_avatar_url = "http://avatars.io/twitter/#{twitter}?size=large"
       rescue
+        best_avatar_url = "https://avatars.io/twitter/#{twitter}/large"
       end
     end
 
-    remote_avatar_url = best_avatar_url
-    save!
+    self.remote_avatar_url = best_avatar_url
+    self.save!
   rescue
   end
 
