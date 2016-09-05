@@ -67,14 +67,13 @@ gem 'omniauth-facebook'
 gem 'mailkick'
 
 ## PERFORMANCE ENHANCEMENTS
-gem 'multi_fetch_fragments'
 gem 'newrelic_rpm'
 gem 'memcachier'
 gem 'dalli'
 
 ## DELAYED JOBS
 gem 'sidekiq'
-gem 'sinatra'
+gem 'sinatra', require: false
 gem 'exception_notification'
 
 ## VALIDATOR HELPER

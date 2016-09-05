@@ -1,4 +1,4 @@
-<%= render partial: 'challenges/header', cache: true %>
+<%= render partial: 'challenges/header' %>
 
 <div id='idea_stage-overview'>
   <div class='container'>
@@ -119,18 +119,18 @@
 
               <div class='row'>
                 <% problem_statement.ideas.order_by(@ordering).published.first(@challenge.stage_number == 4 ? 6 : 5).each do |idea| %>
-                  <%= render file: 'ideas/card', cache: true, locals: { idea: idea, columns: 'col-md-4 col-sm-6' } %>
+                  <%= render file: 'ideas/card', locals: { idea: idea, columns: 'col-md-4 col-sm-6' } %>
                 <% end %>
 
                 <% if problem_statement.ideas.published.count > (@challenge.stage_number == 4 ? 6 : 5) %>
                   <div ng-show='problem_statement_<%= problem_statement.id %>_ideas'>
                     <% (problem_statement.ideas.order_by(@ordering).published - problem_statement.ideas.order_by(@ordering).published.first(@challenge.stage_number == 4 ? 6 : 5)).each do |idea| %>
-                      <%= render file: 'ideas/card', cache: true, locals: { idea: idea, columns: 'col-md-4 col-sm-6' } %>
+                      <%= render file: 'ideas/card', locals: { idea: idea, columns: 'col-md-4 col-sm-6' } %>
                     <% end %>
                   </div>
                 <% end %>
 
-                <%= render partial: 'ideas/card/new', cache: true, locals: { problem_statement: problem_statement } unless @challenge.stage_number == 4 %>
+                <%= render partial: 'ideas/card/new', locals: { problem_statement: problem_statement } unless @challenge.stage_number == 4 %>
               </div>
 
               <% if problem_statement.ideas.published.count > (@challenge.stage_number == 4 ? 6 : 5) %>

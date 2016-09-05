@@ -1,4 +1,4 @@
-<%= render partial: 'challenges/header', cache: true %>
+<%= render partial: 'challenges/header' %>
 
 <div id='challenge-overview' style='background-image:url("<%= @challenge.banner.present? ? @challenge.banner.url.html_safe : asset_path('bg.png') %>")'>
   <div class='container'>
