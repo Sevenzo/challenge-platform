@@ -10,7 +10,7 @@ app.controller('DistrictCtrl', function($scope) {
       },
       results: function (data) {
         return {
-          results: _.map(data.districts, function(district){
+          results: _.map(data, function(district){
             return{ id: district.id, text: district.name + ' (' + district.location_city + ', ' + district.location_state + ')' }
           })
         }

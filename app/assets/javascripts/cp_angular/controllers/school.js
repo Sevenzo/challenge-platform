@@ -10,7 +10,7 @@ app.controller('SchoolCtrl', function($scope) {
       },
       results: function (data) {
         return {
-          results: _.map(data.schools, function(school){
+          results: _.map(data, function(school){
             return{ id: school.id, text: school.name + ' (' + school.location_city + ', ' + school.location_state + ')' }
           })
         }

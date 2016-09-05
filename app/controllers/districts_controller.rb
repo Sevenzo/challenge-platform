@@ -5,7 +5,7 @@ class DistrictsController < ApplicationController
 
     respond_to do |format|
       format.html { }
-      format.json { render json: @districts, each_serializer: DistrictSerializer }
+      format.json { render json: @districts }
     end
   end
 

@@ -10,7 +10,7 @@ app.controller('StateCtrl', function($scope) {
       },
       results: function (data) {
         return {
-          results: _.map(data.states, function(state){
+          results: _.map(data, function(state){
             return{ id: state.id, text: state.name + ' (' + state.mail_state + ')' }
           })
         }
