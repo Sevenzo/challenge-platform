@@ -75,7 +75,6 @@ gem 'dalli'
 ## DELAYED JOBS
 gem 'sidekiq'
 gem 'sinatra'
-gem 'devise-async'
 gem 'exception_notification'
 
 ## VALIDATOR HELPER
