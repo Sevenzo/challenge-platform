@@ -10,25 +10,29 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.find_by_email(auth.info.email)
 
     if user_signed_in?
-      # If signed in, but the emails don't match
+      # If the user is currently signed in, then either:
+      # 1. they're already associated with Facebook, or
+      # 2. they're not, and we need to associate their account.
       if @user != current_user
-        # associate
+        # Associate the current_user with this facebook account
+        current_user.update_from_omniauth(auth)
       end
-
-      signed_in_root_path @user
+      # In either case, alert them that they've linked their Facebook account.
+      signed_in_root_path @user, notice: "You've successfully linked to Facebook!"
     else
-      # If not signed in, but the email is recognized
+      # Not signed in
       if @user
-        # If they're not associated with facebook
+        # The facebook account's email is recognized
         if @user.provider != 'facebook'
-          # associate
+          # @user is not associated with facebook,
+          # associate the @user with this facebook account
+          @user.update_from_omniauth(auth)
         end
-
-      # If not signed in, and the email is not recognized
       else
-        @user = User.from_omniauth(auth)
+        # The facebook account's email is not recognized
+        # This is the simple case: a new user creates an account via Facebook login.
+        @user = User.create_from_omniauth(auth)
       end
-
       sign_in_and_redirect @user
     end
   end

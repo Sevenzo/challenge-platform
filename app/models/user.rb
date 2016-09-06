@@ -142,8 +142,8 @@ class User < ActiveRecord::Base
   rescue
   end
 
-  # Extract the information that is available after OmniAuth authentication.
-  def self.from_omniauth(auth)
+  # Create a new User with the information that is available after OmniAuth authentication
+  def self.create_from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
@@ -153,6 +153,11 @@ class User < ActiveRecord::Base
       user.avatar_option = auth.provider
       user.remote_avatar_url = auth.info.image
     end
+  end
+
+  # Update an existing User usting the information that is available after OmniAuth authentication
+  def update_from_omniauth(auth)
+    self.update_attributes({ provider: auth.provider, uid: auth.uid, facebook: auth.uid })
   end
 
   # <p class='select-help'>I am currently training to be a teacher in a whole class, resource, or one-on-one setting.</p>
