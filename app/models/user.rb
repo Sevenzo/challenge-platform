@@ -154,7 +154,6 @@ class User < ActiveRecord::Base
       user.last_name = auth.info.last_name
       user.email = auth.info.email.downcase
       user.password = Devise.friendly_token[0, 20]
-      user.facebook = auth.uid
       user.avatar_option = auth.provider
       user.remote_avatar_url = auth.info.image
     end
