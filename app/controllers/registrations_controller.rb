@@ -76,9 +76,9 @@ private
 
   def avatar_updated?
     twitter_changed = resource.twitter != params[:user][:twitter] || (params[:user][:avatar_option] == 'twitter' && resource.avatar_option != 'twitter')
-    facebook_changed = resource.facebook != params[:user][:facebook] || (params[:user][:avatar_option] == 'facebook' && resource.avatar_option != 'facebook')
+    facebook_avatar = params[:user][:avatar_option] == 'facebook' && resource.avatar_option != 'facebook'
     remove_avatar = resource.avatar.present? && params[:user][:avatar_option] == 'none'
-    twitter_changed || facebook_changed || remove_avatar
+    twitter_changed || facebook_avatar || remove_avatar
   end
 
 end

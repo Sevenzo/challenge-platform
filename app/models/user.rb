@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
   validates :title,         length: { maximum: 255 }, allow_blank: true
   validates :twitter,       length: { maximum: 16 },  allow_blank: true
   validates :twitter,       presence: true, if: "avatar_option == 'twitter'"
+  validates :uid,           uniqueness: { scope: :provider }, if: "provider.present?"
   validate  :avatar_file_size
 
   def name
@@ -142,6 +143,10 @@ class User < ActiveRecord::Base
   rescue
   end
 
+  def facebook
+    uid
+  end
+
   # Create a new User with the information that is available after OmniAuth authentication
   def self.create_from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -149,7 +154,6 @@ class User < ActiveRecord::Base
       user.last_name = auth.info.last_name
       user.email = auth.info.email.downcase
       user.password = Devise.friendly_token[0, 20]
-      user.facebook = auth.uid
       user.avatar_option = auth.provider
       user.remote_avatar_url = auth.info.image
     end
@@ -157,7 +161,13 @@ class User < ActiveRecord::Base
 
   # Update an existing User usting the information that is available after OmniAuth authentication
   def update_from_omniauth(auth)
-    self.update_attributes({ provider: auth.provider, uid: auth.uid, facebook: auth.uid })
+    self.tap do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.avatar_option = auth.provider
+      user.remote_avatar_url = auth.info.image
+    end
+    self.save!
   end
 
   # <p class='select-help'>I am currently training to be a teacher in a whole class, resource, or one-on-one setting.</p>

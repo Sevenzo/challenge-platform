@@ -25,5 +25,5 @@ module OmniAuthTestHelper
 end
 
 RSpec.configure do |config|
-  config.include OmniAuthTestHelper, :type => :request
+  config.include OmniAuthTestHelper, type: :request
 end
