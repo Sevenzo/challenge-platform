@@ -2,15 +2,14 @@ require 'rails_helper'
 require 'support/omni_auth_test_helper'
 require 'faker'
 require 'sidekiq/testing'
+require 'pry'
 
 describe "GET '/auth/facebook/callback'" do
 
   describe 'with valid login info' do
     before(:each) do
       valid_facebook_login_setup
-      get "/users/auth/facebook"
-      request.env["devise.mapping"] = Devise.mappings[:user]
-      request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
+      authenticate_with_facebook
     end
 
     it "should successfully create a new user" do
@@ -34,9 +33,7 @@ describe "GET '/auth/failure'" do
 
   before(:each) do
     invalid_facebook_login_setup
-    get "/users/auth/facebook"
-    request.env["devise.mapping"] = Devise.mappings[:user]
-    request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
+    authenticate_with_facebook
   end
 
   describe "follow redirect" do
@@ -58,18 +55,17 @@ describe 'Sign Up with Facebook' do
       create(:user)
     }
 
-    before(:each) {
-      login_as(user, :scope => :user)
-      existing_user_facebook_login_setup
-    }
+    describe 'not yet connected to facebook' do
 
-    it 'gets a message of some sort ?????' do
-      get "/users/auth/facebook"
-      request.env["devise.mapping"] = Devise.mappings[:user]
-      request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
+      before(:each) do
+        login_as(user, :scope => :user)
+        existing_user_facebook_login_setup
+        authenticate_with_facebook
+      end
 
-      expect(follow_redirect!).to redirect_to root_path
-      binding.pry
+      it 'should not create a new user' do
+        expect{ follow_redirect! }.not_to change(User, :count)
+      end
     end
   end
 end
