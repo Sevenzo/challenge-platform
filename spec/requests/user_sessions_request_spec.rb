@@ -69,6 +69,7 @@ describe 'Sign Up with Facebook' do
       request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
 
       expect(follow_redirect!).to redirect_to root_path
+      binding.pry
     end
   end
 end
