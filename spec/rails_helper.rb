@@ -62,6 +62,8 @@ RSpec.configure do |config|
     Warden.test_reset!
   end
 
+  OmniAuth.config.mock_auth[:facebook] = nil
+
   # Clear Sidekiq workers on every run
   config.before(:each) do
     Sidekiq::Worker.clear_all
