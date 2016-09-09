@@ -4,7 +4,7 @@
   <%= f.hidden_field :remember_me, value: true %>
 
   <div class='row row-fields'>
-    <div id='email' class='col-sm-8 col-sm-offset-2'>
+    <div id='email' class='col-sm-5'>
       <div class='form-group'>
         <%= f.label :email %>
         <%= f.email_field :email, autofocus: true, required: true, class: 'form-control input-lg' %>
@@ -13,30 +13,32 @@
       <div class='form-group'>
         <%= f.label :password %>
         <%= f.password_field :password, required: true, autocomplete: 'off', class: 'form-control input-lg' %>
-        <p class='auth-helper'><%= link_to "Forgot your password?", new_user_password_path %></p>
+        <small class='auth-helper'><%= link_to "Forgot your password?", new_user_password_path %></small>
       </div>
-    </div>
-  </div>
 
-  <div class='row row-actions'>
-    <div class='col-sm-2 col-sm-offset-4'>
-      <%= link_to 'Cancel', cancel_path, class: 'btn btn-default btn-block btn-rounded' %>
+      <%= f.submit "Sign In", class: 'btn btn-info btn-block btn-lg' %>
     </div>
-    <div class='col-sm-2'>
-      <%= f.submit "Sign In", class: 'btn btn-info btn-block btn-rounded' %>
+
+    <div id='or' class='col-sm-2'>
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-stack-1x fa-inverse">or</i>
+      </span>
     </div>
-  </div>
 
-  <h2 class='text-center'>– OR –</h3>
-
-  <div class='row row-fields'>
-    <div id='oauth' class='col-sm-8 col-sm-offset-2'>
+    <div id='oauth' class='col-sm-5'>
+      <label>Sign in with Facebook</label>
       <div class='form-group'>
         <%= link_to user_omniauth_authorize_path(:facebook), class: "btn btn-block btn-lg btn-social btn-facebook" do %>
-           <span class="fa fa-facebook"></span> Sign in with Facebook
+           <span class="fa fa-facebook"></span> Sign In with Facebook
         <% end %>
       </div>
+
+      <!-- <div class='form-group'>
+        <%#= link_to user_omniauth_authorize_path(:facebook), class: "btn btn-block btn-lg btn-social btn-twitter" do %>
+           <span class="fa fa-twitter"></span> Sign In with Twitter
+        <%# end %>
+      </div> -->
     </div>
   </div>
-
 <% end %>
