@@ -10,11 +10,11 @@
           <h2 class='section-title'>Your <%= @class_name %> will be <%= @object.respond_to?(:published_at) && !@object.published_at? ? 'saved as a draft' : 'shared' %> once you sign {{new_user ? 'up' : 'in'}}</h2>
 
           <div ng-hide="new_user">
-            <%= render partial: 'devise/sessions/form', locals: { cancel_path: @cancel_path, switch_link: link_to("Sign Up.", '#', onclick: 'return false;', 'ng-click' => 'new_user=true') } %>
+            <%= render partial: 'devise/sessions/form', locals: { switch_link: link_to("Sign Up.", '#', onclick: 'return false;', 'ng-click' => 'new_user=true') } %>
           </div>
 
           <div ng-show="new_user">
-            <%= render partial: 'devise/registrations/forms/new', locals: { cancel_path: @cancel_path, switch_link: link_to("Sign In.", '#', onclick: 'return false;', 'ng-click' => 'new_user=false') } %>
+            <%= render partial: 'devise/registrations/forms/new', locals: { switch_link: link_to("Sign In.", '#', onclick: 'return false;', 'ng-click' => 'new_user=false') } %>
           </div>
 
         </div>

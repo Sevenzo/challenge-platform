@@ -1,8 +1,4 @@
-<div class='row'>
-  <div class='col-sm-4 col-sm-offset-4'>
-    <p class='auth-switch'>Already have an account? <%= switch_link %></p>
-  </div>
-</div>
+<p class='auth-switch text-center'>Already have an account? <%= switch_link %></p>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.hidden_field :remember_me, value: true %>
@@ -55,5 +51,4 @@
       <div class='auth-disclaimer text-small'>By signing up, you are agreeing to our <%= link_to 'Terms and Conditions', terms_path, target: '_blank' %> and <%= link_to 'Privacy Policy', privacy_path, target: '_blank' %>.</div>
     </div>
   </div>
-
 <% end %>

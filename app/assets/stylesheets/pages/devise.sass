@@ -53,50 +53,46 @@
       @extend .text-bold
       margin: 30px auto 10px
     .row-fields
-      margin-bottom: 15px
+      padding: 15px 0px
       .form-group
         label
-          font-size: 1.4em
+          font-size: 1.3em
           color: $lightGrayText
         input
           @extend .input-borderless
           background-color: $lightGrayBG
         .field_with_errors
           @extend .field_with_errors
-
       .auth-helper
         margin: 10px 0px 0px
         @extend .text-bold
         a
           @extend .text-bold
       #or
-        @extend .text-center 
+        @extend .text-center
         @extend .center-block
         .fa-stack
           margin-top: 35px
           .fa-stack-2x
-            color: #F1F1F1
             font-size: 3em
           .fa-stack-1x
-            color: #9D9D9D
             font-size: 1.5em
             top: 0.25em
             left: 0.15em
       #oauth
+        .form-group
+          margin-bottom: 2em
         label
+          font-size: 1.3em
           color: transparent
-        .fa-t2t
-          @extend .text-bold
-          font-size: 0.9em
     .row-disclaimer
-      margin-bottom: 30px
       .auth-disclaimer
         @extend .text-center
         a
           @extend .text-bold
+          @extend .text-underline
           color: black
     .row-actions
-      margin-top: 15px
       .auth-switch
         @extend .text-bold
         @extend .text-center
@@ -108,11 +104,11 @@
 .well-hr
   border-top: 1px solid #e3e3e3
   margin: 15px auto
-      
+
 .select-option
   font-weight: bold
   margin-bottom: 0px
-  
+
 .select-help
   font-size: 0.85em
   margin: 0px 15px
