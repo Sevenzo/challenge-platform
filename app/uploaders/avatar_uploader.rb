@@ -17,6 +17,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
   def default_url
     if model.twitter.present?
       "http://avatars.io/twitter/#{model.twitter}/large"
+    elsif model.facebook.present?
+      "http://avatars.io/facebook/#{model.facebook}/large"
     else
       "http://avatars.io/gravatar/#{model.email}/large"
       # [version_name, "default.png"].compact.join('_')

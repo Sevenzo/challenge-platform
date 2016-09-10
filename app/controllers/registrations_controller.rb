@@ -67,15 +67,18 @@ private
     if params[:user][:avatar_option] == 'none'
       resource.remove_avatar!
       resource.save
-    else
+    elsif params[:user][:avatar_option] == 'twitter'
       resource.delay.set_avatar_from_twitter
+    elsif params[:user][:avatar_option] == 'facebook'
+      resource.delay.set_avatar_from_facebook
     end
   end
 
   def avatar_updated?
     twitter_changed = resource.twitter != params[:user][:twitter] || (params[:user][:avatar_option] == 'twitter' && resource.avatar_option != 'twitter')
+    facebook_avatar = params[:user][:avatar_option] == 'facebook' && resource.avatar_option != 'facebook'
     remove_avatar = resource.avatar.present? && params[:user][:avatar_option] == 'none'
-    twitter_changed || remove_avatar
+    twitter_changed || facebook_avatar || remove_avatar
   end
 
 end
