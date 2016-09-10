@@ -4,7 +4,15 @@
       <div class='col-sm-10 col-sm-offset-1'>
 
         <div class='well well-auth'>
-          <h2 class='section-title'>Reset Your Password</h2>
+          <h2 class='section-title'>
+            Reset Your Password
+            <%= link_to new_user_session_path, class: 'pull-right auth-cancel' do %>
+              <i class='fa fa-close'></i>
+            <% end %>
+          </h2>
+          <p class='auth-switch text-center'>
+            Don't have an account? <%= link_to "Sign Up", new_user_registration_path %>
+          </p>
 
           <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
 
@@ -20,18 +28,16 @@
                   <%= f.label :email %>
                   <%= f.email_field :email, autofocus: true, required: true, placeholder: 'Please enter your email address', class: 'form-control input-lg' %>
                 </div>
+
+
               </div>
             </div>
 
             <div class='row row-actions'>
-              <div class='col-sm-4'>
-                <p class='auth-switch'>Don't have an account? <%= link_to "Sign Up", new_user_registration_path %></p>
-              </div>
-              <div class='col-sm-2'>
-                <%= link_to 'Cancel', new_user_session_path, class: 'btn btn-default btn-block btn-rounded' %>
-              </div>
-              <div class='col-sm-2'>
-                <%= f.submit "Reset", class: 'btn btn-info btn-block btn-rounded' %>
+              <div class='col-sm-6 col-sm-offset-3'>
+                <div class='form-group'>
+                  <%= f.submit "Reset", class: 'btn btn-info btn-block btn-lg' %>
+                </div>
               </div>
             </div>
           <% end %>
