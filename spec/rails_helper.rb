@@ -57,13 +57,6 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
-  # Reset Warden after each test
-  config.after(:each) do
-    Warden.test_reset!
-  end
-
-  OmniAuth.config.mock_auth[:facebook] = nil
-
   # Clear Sidekiq workers on every run
   config.before(:each) do
     Sidekiq::Worker.clear_all
