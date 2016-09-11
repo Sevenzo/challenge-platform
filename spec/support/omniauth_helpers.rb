@@ -4,8 +4,7 @@ module OmniauthHelpers
     strategy = mock_login[:strategy].to_sym
 
     set_mock_auth(strategy, mock_login[:data])
-    path = "user_#{strategy.to_s}_omniauth_authorize_path"
-    get path
+    get eval("user_#{strategy.to_s}_omniauth_authorize_path")
 
     request.env['devise.mapping'] = Devise.mappings[:user]
     request.env['omniauth.env'] = OmniAuth.config.mock_auth[strategy]

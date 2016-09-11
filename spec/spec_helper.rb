@@ -17,24 +17,14 @@
 #
 
 require 'webmock/rspec'
-require 'devise'
 require 'database_cleaner'
-require 'carrierwave'
 require 'factory_girl'
 WebMock.disable_net_connect!(allow_localhost: true)
-
-class CarrierWave::Mount::Mounter
-  def store!
-  end
-end
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
-
-  # Devise-related testing (for tests that have to do with authentication)
-  config.include Devise::Test::ControllerHelpers, type: :controller
 
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
