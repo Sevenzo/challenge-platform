@@ -35,6 +35,7 @@ class User::ParameterSanitizer < Devise::ParameterSanitizer
       :role,
       :title,
       :organization,
+      :location,
       :bio,
       { state_ids: [] },
       { district_ids: [] },
