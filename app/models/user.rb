@@ -83,8 +83,16 @@ class User < ActiveRecord::Base
     "#{first_name[0]}#{last_name[0]}"
   end
 
+  def habtm_organizations?
+    states.present? || districts.present? || schools.present?
+  end
+
   def profile_complete?
-    role.present? || organization.present? || title.present? || twitter.present? || states.present? || districts.present? || schools.present?
+    role.present? ||
+    organization.present? ||
+    title.present? ||
+    twitter.present? ||
+    habtm_organizations?
   end
 
   def states_json

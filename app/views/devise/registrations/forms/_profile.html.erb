@@ -42,7 +42,7 @@
     </script>
   </div>
 
-  <div ng-init="other_lea=<%= resource.role == 'LEA Staff' && resource.districts.empty? && resource.organization.present? %>;otherLEA(other_lea)"></div>
+  <div ng-init="other_lea=<%= resource.role == 'LEA Staff' && resource.districts.empty? && resource.organization.present? %>;otherLEA(true)"></div>
   <div class="form-group" ng-show="role == 'LEA Staff'" ng-controller='DistrictCtrl' ng-class="{ 'zero-margin-bottom' : other_lea }">
     <label for='user_district_ids'>
       Which district(s) do you serve?
@@ -85,7 +85,7 @@
     </script>
   </div>
 
-  <div ng-init="other_school=<%= resource.is_school_role? && resource.schools.empty? && resource.organization.present? %>;otherSchool(other_school)"></div>
+  <div ng-init="other_school=<%= resource.is_school_role? && resource.schools.empty? && resource.organization.present? %>;otherSchool(true)"></div>
   <div class="form-group" ng-show="role == 'Student' || role == 'Current Teacher' || role == 'Teacher Leader' || role == 'Instructional Coach' || role == 'School Leader'" ng-controller='SchoolCtrl' ng-class="{ 'zero-margin-bottom' : other_school }">
     <label for='user_school_ids'>
       {{ role == 'Student' ? 'Which school do you attend?' : 'Which school(s) do you serve?' }}

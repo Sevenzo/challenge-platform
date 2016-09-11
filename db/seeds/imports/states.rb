@@ -1,3 +1,6 @@
+# This variable can be set to "small" to reduce the seed time
+seed_task = 'small' if ['local', 'staging'].include?(ENV['DEPLOY_REMOTE'])
+
 require 'csv'
 require 'open-uri'
 
@@ -21,6 +24,12 @@ CSV.foreach(open("https://s3.amazonaws.com/pdc-dev-seeds/states.txt"), headers: 
   state.number_of_members = import['MEMBER']
 
   import_bucket << state
+
+  # We need these first 1000 schools or schools_spec test will fail
+  if seed_task == 'small' && import_bucket.length >= 10
+    puts "- finished small import"
+    break
+  end
 end
 
 State.transaction do
