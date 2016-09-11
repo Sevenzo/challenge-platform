@@ -1,4 +1,4 @@
-<%= render partial: 'challenges/header', cache: true %>
+<%= render partial: 'challenges/header' %>
 
 <div id='experience_stage-overview'>
   <div class='container'>
@@ -112,18 +112,18 @@
             <div ng-switch='theme_<%= theme.id %>_experiences' ng-init="initialize('theme_<%= theme.id %>_experiences')">
 
               <% theme.experiences.order_by(@ordering).published.first(2).each do |experience| %>
-                <%= render file: 'experiences/card', cache: true, locals: { experience: experience } %>
+                <%= render file: 'experiences/card', locals: { experience: experience } %>
               <% end %>
 
               <% if theme.experiences.published.count > 2 %>
                 <div ng-show='theme_<%= theme.id %>_experiences'>
                   <% (theme.experiences.order_by(@ordering).published - theme.experiences.order_by(@ordering).published.first(2)).each do |experience| %>
-                    <%= render file: 'experiences/card', cache: true, locals: { experience: experience } %>
+                    <%= render file: 'experiences/card', locals: { experience: experience } %>
                   <% end %>
                 </div>
               <% end %>
 
-              <%= render partial: 'experiences/card/new', cache: true, locals: { theme: theme } unless @challenge.stage_number == 4 %>
+              <%= render partial: 'experiences/card/new', locals: { theme: theme } unless @challenge.stage_number == 4 %>
 
               <% if theme.experiences.published.count > 2 %>
                 <p class='center-block text-center'>

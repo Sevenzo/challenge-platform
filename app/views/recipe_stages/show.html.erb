@@ -1,4 +1,4 @@
-<%= render partial: 'challenges/header', cache: true %>
+<%= render partial: 'challenges/header' %>
 
 <div id="recipe_stage-overview">
   <div class="container">
@@ -131,18 +131,18 @@
             <div ng-switch='cookbook_<%= cookbook.id %>_recipes' ng-init="initialize('cookbook_<%= cookbook.id %>_recipes')">
 
               <% cookbook.recipes.order_by(@ordering).published.first(3).each do |recipe| %>
-                <%= render file: 'recipes/card', cache: true, locals: { recipe: recipe } %>
+                <%= render file: 'recipes/card', locals: { recipe: recipe } %>
               <% end %>
 
               <% if cookbook.recipes.published.count > 3 %>
                 <div ng-show='cookbook_<%= cookbook.id %>_recipes'>
                   <% (cookbook.recipes.order_by(@ordering).published - cookbook.recipes.order_by(@ordering).published.first(3)).each do |recipe| %>
-                    <%= render file: 'recipes/card', cache: true, locals: { recipe: recipe } %>
+                    <%= render file: 'recipes/card', locals: { recipe: recipe } %>
                   <% end %>
                 </div>
               <% end %>
 
-              <%= render partial: 'recipes/card/new', cache: true, locals: { cookbook: cookbook } if OPEN_RECIPE_SUBMISSIONS && @challenge.stage_number != 4 %>
+              <%= render partial: 'recipes/card/new', locals: { cookbook: cookbook } if OPEN_RECIPE_SUBMISSIONS && @challenge.stage_number != 4 %>
 
               <% if cookbook.recipes.published.count > 3 %>
                 <p class='center-block text-center'>

@@ -2,7 +2,7 @@
 
 <div class='row'>
   <% @challenge.featured_contributions.each do |featured| %>
-    <%= render file: "#{featured.class.name.pluralize.downcase}/card", cache: true, locals: eval("{ #{featured.class.name.downcase}: featured }") %>
+    <%= render file: "#{featured.class.name.pluralize.downcase}/card", locals: eval("{ #{featured.class.name.downcase}: featured }") %>
   <% end %>
 </div>
 

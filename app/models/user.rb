@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :registerable, :async,
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
 
   acts_as_voter
   mailkick_user
+
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
 
   before_create do |user|
     user.color = User::COLORS.sample
@@ -79,8 +83,16 @@ class User < ActiveRecord::Base
     "#{first_name[0]}#{last_name[0]}"
   end
 
+  def habtm_organizations?
+    states.present? || districts.present? || schools.present?
+  end
+
   def profile_complete?
-    role.present? || organization.present? || title.present? || twitter.present? || states.present? || districts.present? || schools.present?
+    role.present? ||
+    organization.present? ||
+    title.present? ||
+    twitter.present? ||
+    habtm_organizations?
   end
 
   def states_json

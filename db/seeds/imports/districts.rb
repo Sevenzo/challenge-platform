@@ -34,7 +34,7 @@ CSV.foreach(open("https://s3.amazonaws.com/pdc-dev-seeds/districts.txt"), header
   district.union = import['UNION']
   district.county_number = import['CONUM']
   district.county_name = import['CONAME'].titleize
-  
+
   district.csa = import['CSA']
   district.cbsa = import['CBSA']
   district.metmic = import['METMIC']
@@ -62,7 +62,7 @@ CSV.foreach(open("https://s3.amazonaws.com/pdc-dev-seeds/districts.txt"), header
   import_bucket << district
 
   # We need these first 1000 schools or schools_spec test will fail
-  if seed_task == 'small' && import_bucket.length >= 50
+  if seed_task == 'small' && import_bucket.length >= 10
     puts "- finished small import"
     break
   end

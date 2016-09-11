@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.0'
+ruby '2.3.1'
 
 ## RAILS SETUP
 gem 'rails'
@@ -22,7 +22,6 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-resource'
   gem 'rails-assets-angular-sanitize'
   gem 'rails-assets-angular-animate'
-  gem 'rails-assets-angular-ui-select'
   gem 'rails-assets-angular-scroll'
 end
 
@@ -57,7 +56,6 @@ gem 'paranoia'
 
 ## AUTHENTICATION/ADMINISTRATION
 gem 'devise'
-gem 'bcrypt'
 gem 'rails_admin'
 gem 'kaminari'
 gem 'omniauth'
@@ -67,15 +65,13 @@ gem 'omniauth-facebook'
 gem 'mailkick'
 
 ## PERFORMANCE ENHANCEMENTS
-gem 'multi_fetch_fragments'
 gem 'newrelic_rpm'
 gem 'memcachier'
 gem 'dalli'
 
 ## DELAYED JOBS
 gem 'sidekiq'
-gem 'sinatra'
-gem 'devise-async'
+gem 'sinatra', require: false
 gem 'exception_notification'
 
 ## VALIDATOR HELPER

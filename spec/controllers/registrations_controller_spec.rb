@@ -64,9 +64,7 @@ describe RegistrationsController do
     let(:invalid_sign_up_params) {
       {
         first_name: "James",
-        last_name: "Bond",
         email: "bond@goldeneye",
-        password: "0nh3rm4j357y'553cr3753rv1c3",
       }
     }
 
@@ -76,12 +74,16 @@ describe RegistrationsController do
     end
 
     it 'places the welcome email into the queue for a valid user' do
-      post :create, user: valid_sign_up_params
+      expect do
+        post :create, user: valid_sign_up_params
+      end.to change(User, :count).by(1)
       expect(Sidekiq::Worker.jobs.size).to eq 1
     end
 
     it 'does not place the welcome email into the queue for an invalid user' do
-      post :create, user: invalid_sign_up_params
+      expect do
+        post :create, user: invalid_sign_up_params
+      end.not_to change(User, :count)
       expect(Sidekiq::Worker.jobs.size).to eq 0
     end
   end

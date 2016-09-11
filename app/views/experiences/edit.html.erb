@@ -1,4 +1,4 @@
-<%= render partial: 'challenges/header', cache: true %>
+<%= render partial: 'challenges/header' %>
 
 <div id='experience-form'>
   <div class='container'>
@@ -9,6 +9,6 @@
     <%= render partial: 'experiences/header' %>
 
     <%= render partial: 'experiences/form', locals: { url: challenge_experience_stage_theme_experience_path(@challenge, @experience.experience_stage, @experience.theme, @experience), cancel_path: challenge_experience_stage_theme_experience_path(@challenge, @experience.experience_stage, @experience.theme, @experience), submit_text: 'Update' } %>
-    
+
   </div>
 </div>
