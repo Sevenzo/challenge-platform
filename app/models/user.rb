@@ -165,6 +165,7 @@ class User < ActiveRecord::Base
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.email = auth.info.email.downcase
+      user.location = auth.info.location
       user.password = Devise.friendly_token[0, 20]
       user.avatar_option = auth.provider
       user.remote_avatar_url = auth.info.image
@@ -176,6 +177,7 @@ class User < ActiveRecord::Base
     self.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
+      user.location = auth.info.location unless user.location.present?
       user.avatar_option = auth.provider
       user.remote_avatar_url = auth.info.image
     end

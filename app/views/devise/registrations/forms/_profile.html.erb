@@ -160,6 +160,14 @@
   </div>
 
   <div class='form-group'>
+    <%= f.label :location %>
+    <div class="input-group">
+      <span class="input-group-addon"><i class='fa fa-map-marker'></i></span>
+      <%= f.text_field :location, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class='form-group'>
     <%= f.label :bio, 'Interests and expertise' %>
     <%= f.text_area :bio, class: 'form-control', placeholder: "Let other community members learn a bit more about you.", rows: 3 %>
   </div>
