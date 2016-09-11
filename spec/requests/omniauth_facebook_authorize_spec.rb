@@ -72,7 +72,10 @@ RSpec.describe 'Facebook OAuth authorization', type: :request do
     end
 
     context 'following redirect' do
-      before { follow_redirect! }
+      before do
+        expect_any_instance_of(User).not_to receive(:update_from_omniauth)
+        follow_redirect!
+      end
 
       it 'redirects to root path' do
         expect(response).to redirect_to root_path
@@ -80,7 +83,7 @@ RSpec.describe 'Facebook OAuth authorization', type: :request do
     end
   end
 
-  context 'with valid login info for an existing complete user with same email' do
+  context 'with valid login info for an existing user with same email' do
     let!(:user) { create(:user, email: email) }
     before { omniauth_authenticate(valid_oauth_login) }
 
@@ -101,9 +104,29 @@ RSpec.describe 'Facebook OAuth authorization', type: :request do
         info = valid_oauth_login[:data][:info]
         expect(user.first_name).not_to eq info[:first_name]
         expect(user.last_name).not_to eq info[:last_name]
-        expect(user.email).to eq email.downcase
         expect(user.avatar_option).to eq provider
         expect(user.avatar.url).to include uid
+      end
+    end
+  end
+
+  context 'with valid login info for an existing user with same email/uid' do
+    let!(:user) { create(:user, email: email, uid: uid) }
+    before { omniauth_authenticate(valid_oauth_login) }
+
+    it 'DOES NOT create a new user' do
+      expect(response).to be_redirect
+      expect { follow_redirect! }.not_to change(User, :count)
+    end
+
+    context 'following redirect' do
+      before do
+        expect_any_instance_of(User).not_to receive(:update_from_omniauth)
+        follow_redirect!
+      end
+
+      it 'redirects to root path' do
+        expect(response).to redirect_to root_path
       end
     end
   end
