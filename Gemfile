@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.0'
+ruby '2.3.1'
 
 ## RAILS SETUP
 gem 'rails'
@@ -57,7 +57,6 @@ gem 'paranoia'
 
 ## AUTHENTICATION/ADMINISTRATION
 gem 'devise'
-gem 'bcrypt'
 gem 'rails_admin'
 gem 'kaminari'
 gem 'omniauth'

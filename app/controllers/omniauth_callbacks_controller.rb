@@ -4,8 +4,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     auth = request.env['omniauth.auth']
 
     if auth.info.email.blank?
-      redirect_to user_omniauth_authorize_path(
-        :facebook,
+      redirect_to user_facebook_omniauth_authorize(
         auth_type: 'rerequest',
         scope: 'email,public_profile'
       )
