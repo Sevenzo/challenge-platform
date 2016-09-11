@@ -13,7 +13,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user = User.find_by(provider: auth.provider, uid: auth.uid)
 
       if user.nil?
-        user = User.find_by(email: auth.info.email)
+        user = User.find_by(email: auth.info.email.downcase)
 
         if user.nil?
           user = User.create_from_omniauth(auth)
