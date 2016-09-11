@@ -16,6 +16,7 @@ RSpec.describe 'Facebook OAuth authorization', type: :request do
           first_name: 'Gaius',
           last_name:  'Baltar',
           email:      email,
+          location: 'Here, there'
         },
         credentials: {
           token: '123456',
@@ -51,6 +52,7 @@ RSpec.describe 'Facebook OAuth authorization', type: :request do
         info = valid_oauth_login[:data][:info]
         expect(user.first_name).to eq info[:first_name]
         expect(user.last_name).to eq info[:last_name]
+        expect(user.location).to eq info[:location]
         expect(user.email).to eq email.downcase
         expect(user.avatar_option).to eq provider
         expect(user.avatar.url).to include uid
@@ -104,6 +106,7 @@ RSpec.describe 'Facebook OAuth authorization', type: :request do
         info = valid_oauth_login[:data][:info]
         expect(user.first_name).not_to eq info[:first_name]
         expect(user.last_name).not_to eq info[:last_name]
+        expect(user.location).to eq info[:location]
         expect(user.avatar_option).to eq provider
         expect(user.avatar.url).to include uid
       end
