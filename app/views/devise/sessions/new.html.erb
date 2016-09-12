@@ -12,7 +12,7 @@
             <% end %>
           </h2>
 
-          <%= render partial: 'devise/sessions/form', locals: { switch_link: link_to("Sign Up.", new_user_registration_path) } %>
+          <%= render partial: 'devise/sessions/form', locals: { switch_link: link_to("Sign Up.", new_user_registration_path) }, cache: true %>
         </div>
 
       </div>

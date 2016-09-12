@@ -150,7 +150,7 @@
             </div>
           <% end %>
 
-          <%= render partial: 'suggestions/card/new' %>
+          <%= render partial: 'suggestions/card/new', cache: true %>
 
           <% if @suggestions.count > 2 %>
             <p class='center-block text-center'>
@@ -174,7 +174,7 @@
         <h2 class="section-title text-submit">Know someone who may want to add to the discussion?</h2>
         <p class='section-description'>The more the merrier! Share our platform to help us get the best suggestions from educators like you.</p>
 
-        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: ENV.fetch('COMPANY_NAME'), tweet: "#{ENV.fetch('APP_NAME')} is LIVE! Are you an innovative educator? Join us!", title: "Join #{ENV.fetch('APP_NAME')}!", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "Join me on #{ENV.fetch('APP_NAME')}!" } %>
+        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: ENV.fetch('COMPANY_NAME'), tweet: "#{ENV.fetch('APP_NAME')} is LIVE! Are you an innovative educator? Join us!", title: "Join #{ENV.fetch('APP_NAME')}!", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "Join me on #{ENV.fetch('APP_NAME')}!" }, cache: true %>
 
       </div>
     </div>

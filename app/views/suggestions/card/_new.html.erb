@@ -4,7 +4,7 @@
   </div>
 
   <div ng-show='suggestion_draft' class='well well-suggestion'>
-    <%= render partial: 'suggestions/card/form', locals: { suggestion: new_suggestion, url: suggestions_path, cancel_path: "suggestion_draft=false", submit_text: "Share" } %>
+    <%= render partial: 'suggestions/card/form', locals: { suggestion: new_suggestion, url: suggestions_path, cancel_path: "suggestion_draft=false", submit_text: "Share" }, cache: true %>
     <div class='clearfix'></div>
   </div>
 </div>

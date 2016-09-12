@@ -13,7 +13,7 @@
 
       <% if idea.refinement_parent %>
         <p class='text-xsmall-normal text-white'>
-          <i class='fa fa-pencil text-white'></i> Refinement of 
+          <i class='fa fa-pencil text-white'></i> Refinement of
           <%= link_to idea.refinement_parent.title, challenge_idea_stage_problem_statement_idea_path(@challenge, idea.idea_stage, idea.problem_statement, idea.refinement_parent), class: 'text-white text-underline' %>
         </p>
       <% end %>
@@ -26,11 +26,11 @@
         </li>
 
         <li id="idea-<%= idea.id %>-like">
-          <%= render partial: 'ideas/card/like', locals: { idea: idea } %>
+          <%= render partial: 'ideas/card/like', locals: { idea: idea }, cache: true %>
         </li>
 
         <!-- <li id='idea-<%#= idea.id %>-share'> -->
-          <%#= link_to 'Share', '#', class: 'list-link', onclick: 'return false;', data: { container: 'body', toggle: 'popover', placement: 'bottom', html: true, trigger: 'focus', delay: {'hide': 1000}, content: "#{render partial: 'layouts/share_popover', locals: { url: challenge_idea_stage_problem_statement_idea_url(@challenge, idea.idea_stage, idea.problem_statement, idea), title: idea.title.html_safe, description: idea.description.html_safe, hashtag: @challenge.hashtag }}"} %>
+          <%#= link_to 'Share', '#', class: 'list-link', onclick: 'return false;', data: { container: 'body', toggle: 'popover', placement: 'bottom', html: true, trigger: 'focus', delay: {'hide': 1000}, content: "#{render partial: 'layouts/share_popover', locals: { url: challenge_idea_stage_problem_statement_idea_url(@challenge, idea.idea_stage, idea.problem_statement, idea), title: idea.title.html_safe, description: idea.description.html_safe, hashtag: @challenge.hashtag }}"}, cache: true %>
         <!-- </li> -->
 
         <li class='dropdown'>
@@ -47,9 +47,9 @@
           </ul>
         </li>
       </ul>
-      
+
       <div class='pull-right'>
-        <%= render partial: 'shared/avatar', locals: {user: idea.user, avatar_style: 'width:2.25em;top: 0.5em;position: relative;' } %>
+        <%= render partial: 'shared/avatar', locals: {user: idea.user, avatar_style: 'width:2.25em;top: 0.5em;position: relative;' }, cache: true %>
       </div>
     </div>
 

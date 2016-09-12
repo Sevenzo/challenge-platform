@@ -5,7 +5,7 @@
 
       <div class="col-xs-2">
         <div class='experience-user center-block text-center'>
-          <%= render partial: 'shared/avatar', locals: { user: current_user, avatar_style: "width:3.5em" } %>
+          <%= render partial: 'shared/avatar', locals: { user: current_user, avatar_style: "width:3.5em" }, cache: true %>
           <% if user_signed_in? %>
             <div class="user-caption">
               <p class='user-name'><%= link_to "#{current_user.display_name}", user_path(current_user) %></p>
@@ -20,7 +20,7 @@
           <%= form_for(@experience, url: url) do |f| %>
             <%= f.hidden_field :theme_id %>
             <%= f.hidden_field :published, value: nil, 'ng-value' => 'published' %>
-            <%= render partial: 'layouts/error_messages', locals: { model: @experience } %>
+            <%= render partial: 'layouts/error_messages', locals: { model: @experience }, cache: true %>
 
             <div class='form-group'>
               <%= f.text_area :description, placeholder: "Please describe your experience as it relates to this theme and we'll share it with this challenge.", class: 'redactor form-control', autofocus: true, rows: 4 %>

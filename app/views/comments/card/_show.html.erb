@@ -2,7 +2,7 @@
   <div class="media media-commenter pull-left">
     <p class="timestamp"><%= "#{time_ago_in_words(comment.created_at).titleize} Ago" %></p>
     <div class="media-left">
-      <%= render partial: 'shared/avatar', locals: { user: comment.user, avatar_style: 'width:2.25em' } %>
+      <%= render partial: 'shared/avatar', locals: { user: comment.user, avatar_style: 'width:2.25em' }, cache: true %>
     </div>
     <div class="media-body" style='<%= 'padding-left: 0em' if comment.user.avatar.present? %>'>
       <div class='user-caption' style='<%= 'margin-top: 0em' if comment.user.avatar.present? %>'>
@@ -47,7 +47,7 @@
     </li>
 
     <li id="comment-<%= comment.id %>-like">
-      <%= render partial: 'comments/card/like', locals: { comment: comment } %>
+      <%= render partial: 'comments/card/like', locals: { comment: comment }, cache: true %>
     </li>
 
     <li class="dropdown">

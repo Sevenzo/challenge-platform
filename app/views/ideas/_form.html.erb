@@ -16,7 +16,7 @@
           <div class='clearfix'></div>
         <% end %>
 
-        <%= render partial: 'layouts/error_messages', locals: { model: @idea } %>
+        <%= render partial: 'layouts/error_messages', locals: { model: @idea }, cache: true %>
 
         <div class='form-group'>
           <%= f.text_field :title, placeholder: "What is the title of your idea?", autofocus: true, class: 'form-control input-lg' %>

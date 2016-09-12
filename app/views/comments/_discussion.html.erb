@@ -18,8 +18,8 @@
 
 <div class='well well-lg well-discussion'>
   <% commentable.root_comments.each do |comment| %>
-    <%= render file: 'comments/card', locals: { comment: comment } %>
+    <%= render file: 'comments/card', locals: { comment: comment }, cache: true %>
   <% end %>
 
-  <%= render partial: 'comments/card/new', locals: { comment: Comment.new(commentable_type: commentable.class.to_s, commentable_id: commentable.id) } %>
+  <%= render partial: 'comments/card/new', locals: { comment: Comment.new(commentable_type: commentable.class.to_s, commentable_id: commentable.id) }, cache: true %>
 </div>

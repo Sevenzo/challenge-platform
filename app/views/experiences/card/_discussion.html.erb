@@ -10,7 +10,7 @@
   <%= render file: 'comments/card', locals: { comment: comment } %>
 <% end %>
 
-<%= render partial: 'comments/card/new', locals: { comment: Comment.new(commentable_type: experience.class.to_s, commentable_id: experience.id) } %>
+<%= render partial: 'comments/card/new', locals: { comment: Comment.new(commentable_type: experience.class.to_s, commentable_id: experience.id) }, cache: true %>
 
 <% unless experience.comments_count.zero? || (controller_name == 'experiences' && action_name == 'show') %>
   <hr class='break'>

@@ -2,7 +2,7 @@
 
   <div class="col-xs-2">
     <div class='center-block text-center'>
-      <%= render partial: 'shared/avatar', locals: { user: experience.user, avatar_style: "width:3.75em", font_size: '3em'} %>
+      <%= render partial: 'shared/avatar', locals: { user: experience.user, avatar_style: "width:3.75em", font_size: '3em'}, cache: true %>
       <div class="user-caption">
         <p class='user-name'><%= link_to "#{experience.user.display_name}", user_path(experience.user) %></p>
         <p class='user-title text-default'><%= experience.user.display_organization %></p>
@@ -18,21 +18,21 @@
         <% if user_signed_in? && experience.user == current_user %>
           <div ng-switch="experience_<%= experience.id %>_edit" ng-init="experience_<%= experience.id %>_edit=false">
             <div ng-hide="experience_<%= experience.id %>_edit">
-              <%= render partial: 'experiences/card/show', locals: { experience: experience } %>
+              <%= render partial: 'experiences/card/show', locals: { experience: experience }, cache: true %>
             </div>
 
             <div ng-show="experience_<%= experience.id %>_edit">
-              <%= render partial: 'experiences/card/edit', locals: { experience: experience } %>
+              <%= render partial: 'experiences/card/edit', locals: { experience: experience }, cache: true %>
             </div>
           </div>
         <% else %>
-          <%= render partial: 'experiences/card/show', locals: { experience: experience } %>
+          <%= render partial: 'experiences/card/show', locals: { experience: experience }, cache: true %>
         <% end %>
       </div>
 
       <!-- <div class='well well-experience-discussion' ng-show='experience_<%= experience.id %>_discussion'> -->
         <!-- <div class='experience-discussion'> -->
-          <%#= render partial: 'experiences/card/discussion', locals: { experience: experience } %>
+          <%#= render partial: 'experiences/card/discussion', locals: { experience: experience }, cache: true %>
         <!-- </div> -->
       <!-- </div> -->
     <!-- </div> -->

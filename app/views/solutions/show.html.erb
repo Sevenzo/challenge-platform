@@ -7,13 +7,13 @@
 
       <div class='solution-credit solution-recipe'>
         <h5 class='text-solution'>Implemented by</h5>
-        <%= render partial: 'shared/avatar', locals: { user: @solution.user } %>
+        <%= render partial: 'shared/avatar', locals: { user: @solution.user }, cache: true %>
         <p class='text-small'><%= @solution.user.display_name %></p>
       </div>
 
       <div class='solution-credit solution-ideas'>
         <h5 class='text-solution'>Based on Ideas by</h5>
-        
+
         <ul class='list-inline'>
           <% @solution.ideas.each do |idea| %>
             <li>
@@ -43,7 +43,7 @@
 
       <div class='solution-credit solution-experiences'>
         <h5 class='text-solution'>Inspired by the Experiences of</h5>
-        
+
         <ul class='list-inline'>
           <% @solution.experiences.each do |experience| %>
             <li>
@@ -75,7 +75,7 @@
     <div class='solution-buttons'>
 
       <div id='solution-<%= @solution.id %>-like'>
-        <%= render partial: 'solutions/like' %>
+        <%= render partial: 'solutions/like', cache: true %>
       </div>
 
       <div id='solution-<%= @solution.id %>-discuss' style='margin-bottom:10px'>
@@ -83,7 +83,7 @@
       </div>
 
       <div id='solution-<%= @solution.id %>-share'>
-        <%= render partial: 'layouts/share_button', locals: { url: challenge_solution_stage_solution_story_solution_url(@challenge, @solution.solution_stage, @solution.solution_story, @solution), title: @solution.title.html_safe, description: @solution.description.html_safe, hashtag: @challenge.hashtag } %>
+        <%= render partial: 'layouts/share_button', locals: { url: challenge_solution_stage_solution_story_solution_url(@challenge, @solution.solution_stage, @solution.solution_story, @solution), title: @solution.title.html_safe, description: @solution.description.html_safe, hashtag: @challenge.hashtag }, cache: true %>
       </div>
 
       <% if @solution.file.present? %>
@@ -101,7 +101,7 @@
         <%= @solution.embed.html_safe %>
       </div>
     <% end %>
-    
+
     <div class='content-block'>
       <p><%= @solution.description.html_safe %></p>
     </div>

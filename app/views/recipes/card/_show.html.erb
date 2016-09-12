@@ -21,7 +21,7 @@
         <div class='col-sm-5'>
           <div class="media media-author">
             <div class="media-left">
-              <%= render partial: 'shared/avatar', locals: { user: recipe.user, avatar_style: 'width:2em' } %>
+              <%= render partial: 'shared/avatar', locals: { user: recipe.user, avatar_style: 'width:2em' }, cache: true %>
             </div>
             <div class="media-body" style='<%= 'padding-left: 0em' if recipe.user.avatar.present? %>'>
               <div class='user-caption' style='<%= 'margin-top: 0.5em' if recipe.user.avatar.present? %>'>
@@ -38,7 +38,7 @@
             </li>
 
             <li id='recipe-<%= recipe.id %>-like'>
-              <%= render partial: 'recipes/card/like', locals: { recipe: recipe } %>
+              <%= render partial: 'recipes/card/like', locals: { recipe: recipe }, cache: true %>
             </li>
 
             <li class='dropdown'>
