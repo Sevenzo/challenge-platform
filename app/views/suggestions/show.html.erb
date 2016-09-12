@@ -13,7 +13,7 @@
 
                 <div class="media media-author">
                   <div class="media-left">
-                    <%= render partial: 'shared/avatar', locals: { user: @suggestion.user, avatar_style: "width:4.5em"} %>
+                    <%= render partial: 'shared/avatar', locals: { user: @suggestion.user, avatar_style: "width:4.5em"}, cache: true %>
                   </div>
                   <div class="media-body" style='<%= 'padding-left: 0em' if @suggestion.user.avatar.present? %>'>
                     <div class='user-caption' style='<%= 'margin-top: 0.5em' if @suggestion.user.avatar.present? %>'>
@@ -37,7 +37,7 @@
                       <%= link_to "<i class='fa fa-reply'></i> Discuss".html_safe, "#suggestion-comments", class: 'btn btn-block btn-fa btn-sm btn-rounded btn-info', "du-smooth-scroll" => true %>
                     </div>
                     <div id='suggestion-<%= @suggestion.id %>-share'>
-                      <%= render partial: 'layouts/share_button', locals: {url: suggestion_url(@suggestion), title: @suggestion.title.html_safe, description: @suggestion.description.html_safe, hashtag: '#Challenge'} %>
+                      <%= render partial: 'layouts/share_button', locals: {url: suggestion_url(@suggestion), title: @suggestion.title.html_safe, description: @suggestion.description.html_safe, hashtag: '#Challenge'}, cache: true %>
                     </div>
 
                   </div>
@@ -68,7 +68,7 @@
                 <div class='content-block'>
                   <p class='text-suggestion text-large text-bold text-uppercase'>How much does this affect you?</p>
                   <ul id='suggestion-<%= @suggestion.id %>-vote' class='vote'>
-                    <%= render partial: 'suggestions/card/vote', locals: { suggestion: @suggestion } %>
+                    <%= render partial: 'suggestions/card/vote', locals: { suggestion: @suggestion }, cache: true %>
                   </ul>
                 </div>
               </div>
@@ -87,7 +87,7 @@
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
 
-        <%= render partial: 'comments/discussion', locals: { commentable: @suggestion } %>
+        <%= render partial: 'comments/discussion', locals: { commentable: @suggestion }, cache: true %>
 
       </div>
     </div>
@@ -102,7 +102,7 @@
         <h2 class='section-title text-submit'>Know people who have something to add to this conversation?</h2>
         <p class='section-description'>More people means more problems solved. Share this Suggestion!</p>
 
-        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: ENV.fetch('COMPANY_NAME'), tweet: "Take the challenge! If you use video for professional learning, share your Suggestion.", title: "Join #{ENV.fetch('APP_NAME')}!", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "Join me on #{ENV.fetch('APP_NAME')}!" } %>
+        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: ENV.fetch('COMPANY_NAME'), tweet: "Take the challenge! If you use video for professional learning, share your Suggestion.", title: "Join #{ENV.fetch('APP_NAME')}!", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "Join me on #{ENV.fetch('APP_NAME')}!" }, cache: true %>
 
       </div>
     </div>

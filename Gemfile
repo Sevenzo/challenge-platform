@@ -68,6 +68,7 @@ gem 'mailkick'
 gem 'newrelic_rpm'
 gem 'memcachier'
 gem 'dalli'
+gem 'multi_fetch_fragments'
 
 ## DELAYED JOBS
 gem 'sidekiq'

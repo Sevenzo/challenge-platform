@@ -1,11 +1,11 @@
-<%= render partial: 'challenges/header' %>
+<%= render partial: 'challenges/header', cache: true %>
 
 <div id='experience-overview'>
   <div class='container'>
     <div class='row'>
       <div class='col-md-10 col-md-offset-1'>
 
-        <%= render partial: 'experiences/header' %>
+        <%= render partial: 'experiences/header', cache: true %>
 
         <div class='well well-experience'>
           <span class="label label-experience pull-left"><i class='fa fa-comment'></i> Experience</span>
@@ -17,7 +17,7 @@
 
                 <div class="media media-author">
                   <div class="media-left">
-                    <%= render partial: 'shared/avatar', locals: { user: @experience.user, avatar_style: "width:4.5em"} %>
+                    <%= render partial: 'shared/avatar', locals: { user: @experience.user, avatar_style: "width:4.5em"}, cache: true %>
                   </div>
                   <div class="media-body" style='<%= 'padding-left: 0em' if @experience.user.avatar.present? %>'>
                     <div class='user-caption' style='<%= 'margin-top: 0.5em' if @experience.user.avatar.present? %>'>
@@ -39,16 +39,16 @@
                         </div>
                       <% end %>
                       <div id='experience-<%= @experience.id %>-like'>
-                        <%= render partial: 'experiences/like' %>
+                        <%= render partial: 'experiences/like', cache: true %>
                       </div>
                       <div id='experience-<%= @experience.id %>-discuss' style='margin-bottom:10px'>
                         <%= link_to "<i class='fa fa-reply'></i> Discuss".html_safe, "#experience-comments", class: 'btn btn-block btn-fa btn-sm btn-rounded btn-info', "du-smooth-scroll" => true %>
                       </div>
                       <div id='experience-<%= @experience.id %>-share'>
-                        <%= render partial: 'layouts/share_button', locals: {url: challenge_experience_stage_theme_experience_url(@challenge, @experience.experience_stage, @experience.theme, @experience), title: @experience.title.html_safe, description: @experience.description.html_safe, hashtag: @challenge.hashtag} %>
+                        <%= render partial: 'layouts/share_button', locals: {url: challenge_experience_stage_theme_experience_url(@challenge, @experience.experience_stage, @experience.theme, @experience), title: @experience.title.html_safe, description: @experience.description.html_safe, hashtag: @challenge.hashtag}, cache: true %>
                       </div>
                     <% else %>
-                      <%= render partial: 'shared/draft', locals: { edit_path: edit_challenge_experience_stage_theme_experience_path(@challenge, @experience.experience_stage, @experience.theme, @experience), delete_path: challenge_experience_stage_theme_experience_path(@challenge, @experience.experience_stage, @experience.theme, @experience) } %>
+                      <%= render partial: 'shared/draft', locals: { edit_path: edit_challenge_experience_stage_theme_experience_path(@challenge, @experience.experience_stage, @experience.theme, @experience), delete_path: challenge_experience_stage_theme_experience_path(@challenge, @experience.experience_stage, @experience.theme, @experience) }, cache: true %>
                     <% end %>
                   </div>
                 </div>
@@ -96,7 +96,7 @@
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
 
-        <%= render partial: 'comments/discussion', locals: { commentable: @experience } %>
+        <%= render partial: 'comments/discussion', locals: { commentable: @experience }, cache: true %>
 
       </div>
     </div>
@@ -111,7 +111,7 @@
         <h2 class='section-title text-submit'>Know people who have something to add to this conversation?</h2>
         <p class='section-description'>More people means more problems solved. Share this challenge!</p>
 
-        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: @challenge.hashtag, tweet: "Take the #{@challenge.title}! If you use video for professional learning, share your experience.", title: "Share Your Experience Using Video", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "Do you use video to learn? Join the #{@challenge.title}!" } %>
+        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: @challenge.hashtag, tweet: "Take the #{@challenge.title}! If you use video for professional learning, share your experience.", title: "Share Your Experience Using Video", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "Do you use video to learn? Join the #{@challenge.title}!" }, cache: true %>
 
       </div>
     </div>

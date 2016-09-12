@@ -149,7 +149,7 @@
     </div>
   </div>
 
-  <%= render partial: 'devise/registrations/forms/avatar', locals: { f: f } %>
+  <%= render partial: 'devise/registrations/forms/avatar', locals: { f: f }, cache: true %>
 
   <div class='form-group'>
     <%= f.label :twitter %>

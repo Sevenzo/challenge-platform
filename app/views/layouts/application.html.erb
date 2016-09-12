@@ -11,25 +11,25 @@
     <%= favicon_link_tag 'favicon.png', type: 'image/png' %>
     <%= favicon_link_tag 'favicon.png', type: 'image/png', rel: 'apple-touch-icon' %>
 
-    <%= render partial: 'layouts/shim' %>
-    <%= render partial: 'layouts/google' if ENV['GA_KEY'].present? %>
-    <%= render partial: 'layouts/heap' if ENV['HEAP_APP_ID'].present? %>
-    <%= render partial: 'layouts/twitter' %>
-    <%= render partial: 'shared/cards/facebook' %>
+    <%= render partial: 'layouts/shim', cache: true %>
+    <%= render partial: 'layouts/google', cache: true if ENV['GA_KEY'].present? %>
+    <%= render partial: 'layouts/heap', cache: true if ENV['HEAP_APP_ID'].present? %>
+    <%= render partial: 'layouts/twitter', cache: true %>
+    <%= render partial: 'shared/cards/facebook', cache: true %>
 
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <%= render partial: 'layouts/facebook' %>
-    <%= render partial: 'layouts/header' unless @hide_navs %>
-    <%= render partial: 'layouts/flashes' unless @hide_navs %>
+    <%= render partial: 'layouts/facebook', cache: true %>
+    <%= render partial: 'layouts/header', cache: true unless @hide_navs %>
+    <%= render partial: 'layouts/flashes', cache: true unless @hide_navs %>
 
     <div class='page-wrap'>
       <%= yield %>
     </div>
 
-    <%= render partial: 'layouts/footer' unless @hide_navs %>
+    <%= render partial: 'layouts/footer', cache: true unless @hide_navs %>
 
     <script>
       angular.element(document).ready(function() {angular.bootstrap(document, ['CPApp']);});

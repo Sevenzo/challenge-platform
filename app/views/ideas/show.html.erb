@@ -1,11 +1,11 @@
-<%= render partial: 'challenges/header' %>
+<%= render partial: 'challenges/header', cache: true %>
 
 <div id='idea-overview'>
   <div class='container'>
     <div class='row'>
       <div class='col-md-10 col-md-offset-1'>
 
-        <%= render partial: 'ideas/header' %>
+        <%= render partial: 'ideas/header', cache: true %>
 
         <div class='well well-idea'>
           <span class="label label-idea pull-left"><i class='fa fa-lightbulb-o'></i> Idea</span>
@@ -17,7 +17,7 @@
 
                 <div class="media media-author">
                   <div class="media-left">
-                    <%= render partial: 'shared/avatar', locals: { user: @idea.user, avatar_style: 'width:4.5em' } %>
+                    <%= render partial: 'shared/avatar', locals: { user: @idea.user, avatar_style: 'width:4.5em' }, cache: true %>
                   </div>
                   <div class="media-body" style='<%= 'padding-left: 0em' if @idea.user.avatar.present? %>'>
                     <div class='user-caption' style='<%= 'margin-top: 0.5em' if @idea.user.avatar.present? %>'>
@@ -40,7 +40,7 @@
                       <% end %>
 
                       <div id='idea-<%= @idea.id %>-like'>
-                        <%= render partial: 'ideas/like' %>
+                        <%= render partial: 'ideas/like', cache: true %>
                       </div>
 
                       <div id='idea-<%= @idea.id %>-discuss' style='margin-bottom:10px'>
@@ -48,7 +48,7 @@
                       </div>
 
                       <div id='idea-<%= @idea.id %>-share'>
-                        <%= render partial: 'layouts/share_button', locals: { url: challenge_idea_stage_problem_statement_idea_url(@challenge, @idea.idea_stage, @idea.problem_statement, @idea), title: @idea.title.html_safe, description: @idea.description.html_safe, hashtag: @challenge.hashtag } %>
+                        <%= render partial: 'layouts/share_button', locals: { url: challenge_idea_stage_problem_statement_idea_url(@challenge, @idea.idea_stage, @idea.problem_statement, @idea), title: @idea.title.html_safe, description: @idea.description.html_safe, hashtag: @challenge.hashtag }, cache: true %>
                       </div>
 
                       <%= link_to new_challenge_idea_stage_problem_statement_idea_path(@challenge, @idea.idea_stage, @idea.problem_statement, refinement_parent_id: @idea.id), class: 'btn btn-block btn-fa btn-sm btn-rounded btn-info', data: { toggle: 'popover', trigger: 'hover', placement: 'bottom', container: '#idea-overview', html: 'true', content: "<p class='text-center text-bold'>Inspired to improve this idea?</p><p class='text-lighter zero-margin-bottom'>Create a refined version. Refinements are treated as separate ideas, but refer back to the original with a linked reference.</p>"}, id: 'refinement-link' do %>
@@ -56,7 +56,7 @@
                       <% end unless @challenge.stage_number == 4 %>
                       <script>$(function(){setTimeout(function(){$("#refinement-link").popover('show');}, 2000);});</script>
                     <% else %>
-                      <%= render partial: 'shared/draft', locals: { edit_path: edit_challenge_idea_stage_problem_statement_idea_path(@challenge, @idea.idea_stage, @idea.problem_statement, @idea), delete_path: challenge_idea_stage_problem_statement_idea_path(@challenge, @idea.idea_stage, @idea.problem_statement, @idea) } %>
+                      <%= render partial: 'shared/draft', locals: { edit_path: edit_challenge_idea_stage_problem_statement_idea_path(@challenge, @idea.idea_stage, @idea.problem_statement, @idea), delete_path: challenge_idea_stage_problem_statement_idea_path(@challenge, @idea.idea_stage, @idea.problem_statement, @idea) }, cache: true %>
                     <% end %>
 
                   </div>
@@ -119,7 +119,7 @@
 
                   <div class="media media-refinement">
                     <div class="media-left">
-                      <%= render partial: 'shared/avatar', locals: { user: @idea.refinement_parent.user, avatar_style: 'width:2.25em'} %>
+                      <%= render partial: 'shared/avatar', locals: { user: @idea.refinement_parent.user, avatar_style: 'width:2.25em'}, cache: true %>
                     </div>
                     <div class="media-body" style='<%= 'padding-left: 0em;padding-top:0em' if @idea.refinement_parent.user.avatar.present? %>'>
                       <p class='text-large'>
@@ -135,7 +135,7 @@
 
                   <div class='row'>
                     <% @idea.refinements.each do |refinement| %>
-                      <%= render partial: 'ideas/card/show', locals: { idea: refinement, columns: 'col-sm-6' } %>
+                      <%= render partial: 'ideas/card/show', locals: { idea: refinement, columns: 'col-sm-6' }, cache: true %>
                     <% end %>
                   </div>
                 <% end %>
@@ -154,7 +154,7 @@
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
 
-        <%= render partial: 'comments/discussion', locals: { commentable: @idea } %>
+        <%= render partial: 'comments/discussion', locals: { commentable: @idea }, cache: true %>
 
       </div>
     </div>
@@ -169,7 +169,7 @@
         <h2 class='section-title text-submit'>Know people who have something to add to this conversation?</h2>
         <p class='section-description'>More people means more problems solved. Share this challenge!</p>
 
-        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: @challenge.hashtag, tweet: "Educators who use video...the #{@challenge.title} needs your ideas!", title: "Calling All Educators Who Use Video", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "We need your ideas. Take the #{@challenge.title}." } %>
+        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: @challenge.hashtag, tweet: "Educators who use video...the #{@challenge.title} needs your ideas!", title: "Calling All Educators Who Use Video", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "We need your ideas. Take the #{@challenge.title}." }, cache: true %>
 
       </div>
     </div>

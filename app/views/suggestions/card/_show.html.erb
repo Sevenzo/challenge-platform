@@ -44,7 +44,7 @@
 
   <div class="col-sm-5">
     <ul id='suggestion-<%= suggestion.id %>-vote' class='vote'>
-      <%= render partial: 'suggestions/card/vote', locals: { suggestion: suggestion } %>
+      <%= render partial: 'suggestions/card/vote', locals: { suggestion: suggestion }, cache: true %>
     </ul>
   </div>
 

@@ -44,7 +44,7 @@
   <div class='experience-actions'>
     <ul class='actions list-inline'>
       <li id="experience-<%= experience.id %>-like">
-        <%= render partial: 'experiences/card/like', locals: { challenge: @challenge, experience_stage: experience.experience_stage, experience: experience }%>
+        <%= render partial: 'experiences/card/like', locals: { challenge: @challenge, experience_stage: experience.experience_stage, experience: experience }, cache: true %>
       </li>
 
       <li id='experience-<%= experience.id %>-comments'>
@@ -52,7 +52,7 @@
       </li>
 
       <!-- <li id='experience-<%#= experience.id %>-share'> -->
-        <%#= link_to 'Share', '#', class: 'list-link', onclick: 'return false;', data: { container: 'body', toggle: 'popover', placement: 'bottom', html: true, trigger: 'focus', delay: {'hide': 1000}, content: "#{render partial: 'layouts/share_popover', locals: { url: challenge_experience_stage_theme_experience_url(@challenge, experience.experience_stage, experience.theme, experience), title: experience.title.html_safe, description: experience.description.html_safe, hashtag: @challenge.hashtag }}"} %>
+        <%#= link_to 'Share', '#', class: 'list-link', onclick: 'return false;', data: { container: 'body', toggle: 'popover', placement: 'bottom', html: true, trigger: 'focus', delay: {'hide': 1000}, content: "#{render partial: 'layouts/share_popover', locals: { url: challenge_experience_stage_theme_experience_url(@challenge, experience.experience_stage, experience.theme, experience), title: experience.title.html_safe, description: experience.description.html_safe, hashtag: @challenge.hashtag }}"}, cache: true %>
       <!-- </li> -->
 
       <li class='dropdown'>

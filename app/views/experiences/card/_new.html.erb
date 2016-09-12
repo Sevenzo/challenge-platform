@@ -8,7 +8,7 @@
   <% else %>
     <div class="col-xs-2">
       <div class='center-block text-center'>
-        <%= render partial: 'shared/avatar', locals: { user: current_user, avatar_style: "width:3.5em"} %>
+        <%= render partial: 'shared/avatar', locals: { user: current_user, avatar_style: "width:3.5em"}, cache: true %>
       </div>
     </div>
 
@@ -19,7 +19,7 @@
         </div>
 
         <div ng-show='theme_<%= theme.id %>_draft' class='well well-experience'>
-          <%= render partial: 'experiences/card/form', locals: { experience: new_experience, theme: theme, url: challenge_experience_stage_theme_experiences_path(@challenge, @challenge.experience_stage, theme), cancel_path: "theme_#{theme.id}_draft=false", submit_text: 'Share'} %>
+          <%= render partial: 'experiences/card/form', locals: { experience: new_experience, theme: theme, url: challenge_experience_stage_theme_experiences_path(@challenge, @challenge.experience_stage, theme), cancel_path: "theme_#{theme.id}_draft=false", submit_text: 'Share'}, cache: true %>
           <div class='clearfix'></div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-<%= render partial: 'challenges/header' %>
+<%= render partial: 'challenges/header', cache: true %>
 
 <div id='idea_stage-overview'>
   <div class='container'>
@@ -21,7 +21,7 @@
               <div class="featured-contributors">
                 <h6 class='zero-margin-bottom'>Featured Contributions</h6>
                 <% @featured_ideas.each do |idea| %>
-                  <%= render partial: 'shared/avatar', locals: { user:  idea.user, circle_font_size: '1.8em', inverse_font_size: '0.76em', avatar_style: 'width:2em;margin-right:0.5em', link_path: challenge_idea_stage_problem_statement_idea_path(@challenge, @idea_stage, idea.problem_statement, idea) } %>
+                  <%= render partial: 'shared/avatar', locals: { user:  idea.user, circle_font_size: '1.8em', inverse_font_size: '0.76em', avatar_style: 'width:2em;margin-right:0.5em', link_path: challenge_idea_stage_problem_statement_idea_path(@challenge, @idea_stage, idea.problem_statement, idea) }, cache: true %>
                 <% end %>
               </div>
             <% end %>
@@ -130,7 +130,7 @@
                   </div>
                 <% end %>
 
-                <%= render partial: 'ideas/card/new', locals: { problem_statement: problem_statement } unless @challenge.stage_number == 4 %>
+                <%= render partial: 'ideas/card/new', locals: { problem_statement: problem_statement }, cache: true unless @challenge.stage_number == 4 %>
               </div>
 
               <% if problem_statement.ideas.published.count > (@challenge.stage_number == 4 ? 6 : 5) %>
@@ -148,7 +148,7 @@
         <h2 class='section-title text-idea'>Know people who have something to add to this conversation?</h2>
         <p class='section-description'>More people means more problems solved. Share this challenge!</p>
 
-        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: @challenge.hashtag, tweet: "Educators who use video...the #{@challenge.title} needs your ideas!", title: "Calling All Educators Who Use Video", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "We need your ideas. Take the #{@challenge.title}." } %>
+        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: @challenge.hashtag, tweet: "Educators who use video...the #{@challenge.title} needs your ideas!", title: "Calling All Educators Who Use Video", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "We need your ideas. Take the #{@challenge.title}." }, cache: true %>
 
       </div>
     </div>

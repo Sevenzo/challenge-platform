@@ -12,8 +12,8 @@
           <h2 class='suggestion-title'>New Suggestion</h2>
         </div>
 
-        <div class="well well-lg well-suggestion"> 
-          <%= render partial: 'suggestions/form', locals: { url: suggestions_path, cancel_path: root_path, submit_text: "Share" } %>
+        <div class="well well-lg well-suggestion">
+          <%= render partial: 'suggestions/form', locals: { url: suggestions_path, cancel_path: root_path, submit_text: "Share" }, cache: true %>
         </div>
 
       </div>

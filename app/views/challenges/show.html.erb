@@ -1,4 +1,4 @@
-<%= render partial: 'challenges/header' %>
+<%= render partial: 'challenges/header', cache: true %>
 
 <div id='challenge-overview' style='background-image:url("<%= @challenge.banner.present? ? @challenge.banner.url.html_safe : asset_path('bg.png') %>")'>
   <div class='container'>
@@ -132,7 +132,7 @@
     <div class='row'>
       <div class='col-md-10 col-md-offset-1'>
 
-        <%= render 'challenges/featured' %>
+        <%= render 'challenges/featured', cache: true %>
 
       </div>
     </div>
@@ -226,7 +226,7 @@
         <p class='section-description'>More people means more problems solved. Share this challenge!</p>
 
 
-        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: @challenge.hashtag, tweet: "The #{@challenge.title} is LIVE! Are you an innovative educator? Join us!", title: "Join #{ENV.fetch('APP_NAME')}!", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "Join me on #{@challenge.title}!" } %>
+        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: @challenge.hashtag, tweet: "The #{@challenge.title} is LIVE! Are you an innovative educator? Join us!", title: "Join #{ENV.fetch('APP_NAME')}!", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "Join me on #{@challenge.title}!" }, cache: true %>
 
       </div>
     </div>

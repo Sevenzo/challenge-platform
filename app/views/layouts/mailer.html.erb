@@ -1,11 +1,11 @@
-<%= render partial: 'mailers/shared/header', locals: {header: @header} %>
+<%= render partial: 'mailers/shared/header', locals: {header: @header}, cache: true %>
 
-<%= render partial: 'mailers/shared/intro', locals: {resource: @resource} %>
+<%= render partial: 'mailers/shared/intro', locals: {resource: @resource}, cache: true %>
 
 <%= yield %>
 
-<%= render partial: 'mailers/shared/outro' %>
+<%= render partial: 'mailers/shared/outro', cache: true %>
 
 <%= yield(:callout) %>
 
-<%= render partial: 'mailers/shared/footer' %>
+<%= render partial: 'mailers/shared/footer', cache: true %>

@@ -1,4 +1,4 @@
-<%= render partial: 'challenges/header' %>
+<%= render partial: 'challenges/header', cache: true %>
 
 <div id="recipe_stage-overview">
   <div class="container">
@@ -21,7 +21,7 @@
               <div class="featured-contributors">
                 <h6 class='zero-margin-bottom'>Featured Contributions</h6>
                 <% @featured_recipes.each do |recipe| %>
-                  <%= render partial: 'shared/avatar', locals: { user:  recipe.user, circle_font_size: '1.8em', inverse_font_size: '0.76em', avatar_style: 'width:2em;margin-right:0.5em', link_path: challenge_recipe_stage_cookbook_recipe_path(@challenge, @recipe_stage, recipe.cookbook, recipe) } %>
+                  <%= render partial: 'shared/avatar', locals: { user:  recipe.user, circle_font_size: '1.8em', inverse_font_size: '0.76em', avatar_style: 'width:2em;margin-right:0.5em', link_path: challenge_recipe_stage_cookbook_recipe_path(@challenge, @recipe_stage, recipe.cookbook, recipe) }, cache: true %>
                 <% end %>
               </div>
             <% end %>
@@ -142,7 +142,7 @@
                 </div>
               <% end %>
 
-              <%= render partial: 'recipes/card/new', locals: { cookbook: cookbook } if OPEN_RECIPE_SUBMISSIONS && @challenge.stage_number != 4 %>
+              <%= render partial: 'recipes/card/new', locals: { cookbook: cookbook }, cache: true if OPEN_RECIPE_SUBMISSIONS && @challenge.stage_number != 4 %>
 
               <% if cookbook.recipes.published.count > 3 %>
                 <p class='center-block text-center'>
@@ -162,7 +162,7 @@
         <h2 class='section-title text-submit'>Know people who have something to add to this conversation?</h2>
         <p class='section-description'>More people means more problems solved. Share this challenge!</p>
 
-        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: @challenge.hashtag, tweet: "Make good ideas GREAT! Join the #{@challenge.title}.", title: "Make Good Ideas GREAT!", description: "Educators from across America are sharing amazing ideas on how to use video to support their learning. Now it's time to make those ideas real. Join the #{@challenge.title}.", subject: "Help make good ideas GREAT. Join the #{@challenge.title}" } %>
+        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: @challenge.hashtag, tweet: "Make good ideas GREAT! Join the #{@challenge.title}.", title: "Make Good Ideas GREAT!", description: "Educators from across America are sharing amazing ideas on how to use video to support their learning. Now it's time to make those ideas real. Join the #{@challenge.title}.", subject: "Help make good ideas GREAT. Join the #{@challenge.title}" }, cache: true %>
 
       </div>
     </div>

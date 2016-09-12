@@ -1,5 +1,5 @@
 <%= form_for(@suggestion, url: url) do |f| %>
-  <%= render partial: 'layouts/error_messages', locals: { model: @suggestion } %>
+  <%= render partial: 'layouts/error_messages', locals: { model: @suggestion }, cache: true %>
   <div class='form-group'>
     <%= f.text_field :title, placeholder: "Give it a title. Name a challenge we should take on.", class: 'form-control input-lg' %>
   </div>

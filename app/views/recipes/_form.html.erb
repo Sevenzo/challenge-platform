@@ -2,7 +2,7 @@
   <%= f.hidden_field :cookbook_id %>
   <%= f.hidden_field :published, value: nil, 'ng-value' => 'published' %>
 
-  <%= render partial: 'layouts/error_messages', locals: { model: @recipe } %>
+  <%= render partial: 'layouts/error_messages', locals: { model: @recipe }, cache: true %>
 
   <div class='form-group'>
     <%= f.text_field :title, placeholder: @recipe.recipe_stage.title_instructions,  autofocus: true, class: 'form-control input-lg' %>
@@ -37,7 +37,7 @@
 
         <div id='steps'>
           <%= f.fields_for :steps do |step| %>
-            <%= render partial: 'recipes/step_fields', locals: { f: step } %>
+            <%= render partial: 'recipes/step_fields', locals: { f: step }, cache: true %>
           <% end %>
         </div>
 
