@@ -31,7 +31,7 @@ body {
 }
 .navbar-inverse {
   background-color: transparent;
-  border: none; 
+  border: none;
 }
 
 .navbar-brand{
@@ -77,63 +77,63 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#68c4d9', end
 .map-position{
   z-index: 30;
   position:absolute;
- 
+
   }
 
 
  .popins{
   height:700px;
-  z-index: 40; 
+  z-index: 40;
  }
 
 .box1{}
 
 .image1{
 position:absolute;
-  top: 450px; 
-  left:390px; 
-z-index: 50; 
+  top: 450px;
+  left:390px;
+z-index: 50;
 }
 
 .box2{}
 
 .image2{
 position:absolute;
-  top: 350px; 
-  left:180px; 
-z-index: 50; 
+  top: 350px;
+  left:180px;
+z-index: 50;
 }
 
 .box3{}
 
 .image3{
 position:absolute;
-  top: 180px; 
-  left:850px; 
-z-index: 50; 
+  top: 180px;
+  left:850px;
+z-index: 50;
 }
 
 .box4{}
 
 .image4{
 position:absolute;
-  top: 185px; 
-  left:90px; 
-z-index: 50; 
+  top: 185px;
+  left:90px;
+z-index: 50;
 }
 .box5{}
 .image5{
 position:absolute;
-  top:500px; 
-  left:800px; 
-z-index: 50; 
+  top:500px;
+  left:800px;
+z-index: 50;
 }
 
 .boxes-quote{
   position:absolute;
-  top:200px; 
-   
-  z-index: 51; 
+  top:200px;
+
+  z-index: 51;
   display: block;
   text-align: center;
   font-size: 27px;
@@ -142,7 +142,7 @@ z-index: 50;
 }
 
 .what-does{
-  z-index: 60; 
+  z-index: 60;
   text-align: center;
   color: #ffffff;
   text-shadow: 2px 2px #015065;
@@ -155,7 +155,7 @@ z-index: 50;
   }
 .belonging-form > .featurette-heading {
     margin-top: 30vh;
-    
+
 }
 .space{
   margin-bottom: 20px;

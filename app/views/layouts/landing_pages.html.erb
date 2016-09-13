@@ -8,13 +8,20 @@
   <meta name="description" content="">
   <meta name="author" content="Sevenzo">
   <link rel="icon" href="../../favicon.ico">
-<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed" rel="stylesheet">
   <title>Sevenzo</title>
 
   <!-- Bootstrap core CSS -->
   <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
   <%= stylesheet_link_tag "landing_pages/bootstrap" %>
 
+  <%= stylesheet_link_tag  'application', media: 'all' %>
+  <%= favicon_link_tag 'favicon.png', type: 'image/png' %>
+  <%= favicon_link_tag 'favicon.png', type: 'image/png', rel: 'apple-touch-icon' %>
+
+  <!-- Custom styles for this site-->
+  <!-- <link href="css/style.css" rel="stylesheet"> -->
+  <%= stylesheet_link_tag "landing_pages/style" %>
 
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <!-- <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
@@ -24,14 +31,11 @@
   <!-- <script src="js/ie-emulation-modes-warning.js"></script> -->
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-      <!-- Custom styles for this site-->
-      <!-- <link href="css/style.css" rel="stylesheet"> -->
-      <%= stylesheet_link_tag "landing_pages/style" %>
-    </head>
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
 <!-- NAVBAR
   ================================================== -->
   <body>
