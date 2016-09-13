@@ -1,1 +1,1 @@
-//= require landing_pages
+//= require_tree ./landing_pages
