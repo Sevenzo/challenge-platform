@@ -38,6 +38,7 @@ class ApplicationController < ActionController::Base
 private
 
   def capture_referrer_id
+    return if user_signed_in?
     session[:referrer_id] ||= params[:referrer_id] if params[:referrer_id]
   end
 
