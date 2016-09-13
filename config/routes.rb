@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   }
   resources :users, only: [:show]
 
-  root to: 'home#index'
+  root to: 'landing_pages#index'
+  # root to: 'home#index'
   match 'preview',          to: 'home#preview',         via: :get
   match 'about',            to: 'home#about',           via: :get
   match 'privacy',          to: 'home#privacy',         via: :get
