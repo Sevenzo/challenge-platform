@@ -19,6 +19,8 @@ module ChallengePlatform
       host: ENV.fetch('SITE_HOST')
     }
 
+    config.assets.precompile += %w( landing_pages.js )
+
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{config.root}/lib/modules)
