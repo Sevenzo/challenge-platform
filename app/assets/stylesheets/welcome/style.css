@@ -32,6 +32,7 @@ body {
 .navbar-inverse {
   background-color: transparent;
   border: none;
+  background-image: none;
 }
 
 .navbar-brand{

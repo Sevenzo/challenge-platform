@@ -11,15 +11,9 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed" rel="stylesheet">
   <title>Sevenzo</title>
 
-  <!-- Bootstrap core CSS -->
-  <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
-
   <%= stylesheet_link_tag "welcome" %>
   <%= favicon_link_tag 'favicon.png', type: 'image/png' %>
   <%= favicon_link_tag 'favicon.png', type: 'image/png', rel: 'apple-touch-icon' %>
-
-  <!-- Custom styles for this site-->
-  <!-- <link href="css/style.css" rel="stylesheet"> -->
 
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <!-- <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
@@ -49,7 +43,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#"><img src="img/sevenzo-wht.png"></a>
+              <a class="navbar-brand" href="#"><%= image_tag "welcome/sevenzo-wht.png" %></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav" style="float: right">
@@ -82,27 +76,27 @@
     <div id="myMap" class=" topMap">
      <div class="row">
       <div class="map-section">
-        <img class="map-position" src="img/map2.png">
+        <%= image_tag "welcome/map.png", class: "map-position" %>
         <div class="boxes">
           <div class="box1">
-            <img class="image1" src="img/michelle.png">
-            <span class="boxes-quote"><em>OMG I'm sooo Drunk</em> - Michelle</span>
+            <%= image_tag "welcome/michelle.png", class: "image1" %>
+            <!-- <span class="boxes-quote"><em>OMG I'm sooo Drunk</em> - Michelle</span> -->
           </div>
           <div class="box2">
-            <img class="image2" src="img/rob.png">
-            <span class="boxes-quote"><em>Pwning Noobs!</em> - R0bot</span>
+            <%= image_tag "welcome/rob.png", class: "image2" %>
+            <!-- <span class="boxes-quote"><em>Pwning Noobs!</em> - R0bot</span> -->
           </div>
           <div class="box3">
-            <img class="image3" src="img/guy.png">
-            <span class="boxes-quote"><em>BAM Kick it up!!!!!</em>  - Guy</span>
+            <%= image_tag "welcome/guy.png", class: "image3" %>
+            <!-- <span class="boxes-quote"><em>BAM Kick it up!!!!!</em>  - Guy</span> -->
           </div>
           <div class="box4">
-            <img  class="image4" src="img/kim.png">
-            <span class="boxes-quote"><em>Owning Things</em>  - Kim</span>
+            <%= image_tag "welcome/kim.png", class: "image4" %>
+            <!-- <span class="boxes-quote"><em>Owning Things</em>  - Kim</span> -->
           </div>
           <div class="box5">
-            <img class="image5" src="img/jong.png">
-            <span class="boxes-quote"><em>I guess just feeling cared for.</em>  - Kim</span>
+            <%= image_tag "welcome/jong.png", class: "image5" %>
+            <!-- <span class="boxes-quote"><em>I guess just feeling cared for.</em>  - Kim</span> -->
           </div>
         </div>
 
@@ -114,7 +108,7 @@
                 <h2 class="featurette-heading"><p>What does "belonging" mean to you?<p></h2>
                 <div class="form-group row">
                   <div class="col-xs-10 col-lg-offset-1">
-                    <input class="form-control calltoaction space " type="text" value="To me &quot;belonging&quot; means..." id="belong-means">
+                    <input class="form-control calltoaction space " type="text" placeholder="To me &quot;belonging&quot; means..." id="belong-means">
                   </div>
               </div>
               <button type="submit" class="btn btn-primary">Sign in with Facebook</button>
