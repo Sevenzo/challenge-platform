@@ -11,9 +11,13 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed" rel="stylesheet">
   <title>Sevenzo</title>
 
+  <%= stylesheet_link_tag "application" %>
   <%= stylesheet_link_tag "welcome" %>
   <%= favicon_link_tag 'favicon.png', type: 'image/png' %>
   <%= favicon_link_tag 'favicon.png', type: 'image/png', rel: 'apple-touch-icon' %>
+
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "welcome" %>
 
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <!-- <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
@@ -209,13 +213,5 @@
         </div>
         </div>
       </footer>
-
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <%= javascript_include_tag "welcome" %>
   </body>
   </html>
