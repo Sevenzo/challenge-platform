@@ -14,7 +14,7 @@ function transitionBox(from, to) {
         to.fadeIn(500, function () {
             setTimeout(function () {
                 transitionBox(to, nextTo);
-            }, 5000);
+            }, 3000);
         });
     }
     
