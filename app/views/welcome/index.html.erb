@@ -95,7 +95,7 @@
                     <a href="#" class="dropdown-toggle user" data-toggle="dropdown">
                       <span style='padding:0px 10px 0px 0px;position:relative;top:1px'><%= current_user.first_name %></span>
                       <% if current_user.avatar.present? %>
-                        <%= image_tag(current_user.avatar.thumb.url, size: '30x30', class: 'img-circle negative-top-padding') %>
+                        <%= image_tag(current_user.avatar.thumb.url, size: '30x30', class: 'img-circle', style: 'margin-top: -10px') %>
                       <% end %>
                     </a>
                     <ul class="dropdown-menu">
