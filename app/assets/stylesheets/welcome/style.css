@@ -35,7 +35,7 @@ body {
 }
 
 .navbar-brand{
-  padding: 0px;
+  padding: 4px 0px 0px 0px;
 }
 .navbar-inverse .navbar-nav>li>a{
   color: #ffffff;
@@ -49,6 +49,17 @@ body {
   background-color: transparent;
   font-weight: bold;
 }
+
+.affix {
+  background-color: #0B3F57;
+  transition: background-color 2s ease 0s;
+}
+
+#navbar {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .topMap {
   height: 850px;
   margin-bottom: 60px;
@@ -354,7 +365,7 @@ color: #ffffff;
 
   /* The navbar becomes detached from the top, so we round the corners */
   .navbar-wrapper .navbar {
-    border-radius: 4px;
+    /*border-radius: 4px;*/
   }
 
   /* Bump up size of carousel content */
