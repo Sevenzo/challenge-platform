@@ -335,55 +335,24 @@
 
 <!-- START THE FEATURETTES -->
 
+<hr class="featurette-divider">
 
-<div class="container marketing">
+<div class="row featurette aboutus">
+  <div class="col-md-8 col-md-push-2 text-center ">
+    <h2>About Sevenzo</h2>
 
-  <hr class="featurette-divider">
+    <p>Sevenzo is a new social impact nonprofit dedicated to building community to spread what works so that all learners can reach their full potential. Our name means the communal effort that makes change possible. With your help, we can ensure that all students feel a sense of belonging in their schools and communities so that they can learn and thrive.</p>
 
-  <div class="row featurette">
-    <div class="col-md-12 text-center">
-      <h2>Get the Sevenzo newsletter!!</h2>
-
-      <p>Keep in touch!</p>
-
-      <form action="" method="post">
-
-       <input type="text" id="" name="" placeholder="First Name">
-       <input type="text" id="" name="" placeholder="Last Name">
-       <input type="text" id="" name="" placeholder="your@email.com">
-
-       <input type="submit" value="Subscribe Now!" class="btn btn-large" />
-     </form>
-
-   </div></div>
-   <hr class="featurette-divider">
-   <div class="row featurette">
-
-    <div class="col-md-6">
-      <a class="twitter-timeline"  data-height="500" href="https://twitter.com/sevenzoedu">Join the Conversation!</a> <script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </div>
+    <%= link_to "Read Our Story", about_path, class: "btn btn-primary" %>
   </div>
 </div>
 <hr class="featurette-divider">
 
-  <div class="row featurette aboutus">
-    <div class="col-md-8 col-md-push-2 text-center ">
-          <h2>About Sevenzo</h2>
-
-         <p>Sevenzo is a new social impact nonprofit dedicated to building community to spread what works so that all learners can reach their full potential. Our name means the communal effort that makes change possible. With your help, we can ensure that all students feel a sense of belonging in their schools and communities so that they can learn and thrive.</p>
-
-  <%= link_to "Read Our Story", about_path, class: "btn btn-primary" %>
-</div>
-
-</div>
-<hr class="featurette-divider">
-
-  <div class="row featurette">
-    <div class="col-md-12 text-center">
-          <h2>Know someone who's making a difference?</h2>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Tell us about them!</button>
-</div>
-
+<div class="row featurette">
+  <div class="col-md-12 text-center">
+    <h2>Join the Belonging Challenge and help us find what's already working</h2>
+    <%= link_to "Get Started!", new_user_registration_path, class: "btn btn-primary" %>
+  </div>
 </div>
 <hr class="featurette-divider">
 
@@ -400,10 +369,16 @@
   <div class="row">
     <div class="col-md-4 text-center">
       <h3>Links</h3>
-      <p>Blog</p>
-      <p>Careers</p>
-      <p>Terms & Conditions </p>
-      <p>Privacy Policy</p>
+      <p><%= link_to "About", about_path %></p>
+      <p><%= link_to "Blog", ENV['MEDIUM_URL'], target: '_blank' %></p>
+      <% if user_signed_in? %>
+        <p><%= link_to "<i class='fa fa-user'></i> Profile".html_safe, user_path(current_user) %></p>
+        <p><%= link_to "<i class='fa fa-gears'></i> Settings".html_safe, edit_user_registration_path %></p>
+        <p><%= link_to "<i class='fa fa-sign-out'></i> Sign Out".html_safe, destroy_user_session_path, method: :delete %></p>
+      <% else %>
+        <p><%= link_to "Sign In", new_user_session_path %></p>
+        <p><%= link_to "Sign Up", new_user_registration_path, class: 'p' %></p>
+      <% end %>
     </div>
     <div class="col-md-4">
     </div>
@@ -415,7 +390,7 @@
 
   <div class="row">
     <div class="col-md-4 col-md-push-4 text-center">
-      <p>&copy; 2016 Sevenzo &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      <p>&copy; 2016 Sevenzo &middot; <%= link_to "Privacy", privacy_path %> &middot; <%= link_to "Terms", terms_path %></p>
     </div>
   </div>
 
