@@ -173,8 +173,8 @@
                     <input class="form-control calltoaction space " type="text" placeholder="To me &quot;belonging&quot; means..." id="belong-means">
                   </div>
                 </div>
-                <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-lg btn-social btn-facebook", type: "submit" do %>
-                   <span class="fa fa-facebook"></span> Sign Up with Facebook
+                <%= link_to new_user_registration_path, class: "btn btn-lg btn-primary", type: "submit" do %>
+                  Submit & Sign Up
                 <% end %>
 
               </form>
@@ -377,7 +377,7 @@
         <p><%= link_to "<i class='fa fa-sign-out'></i> Sign Out".html_safe, destroy_user_session_path, method: :delete %></p>
       <% else %>
         <p><%= link_to "Sign In", new_user_session_path %></p>
-        <p><%= link_to "Sign Up", new_user_registration_path, class: 'p' %></p>
+        <p><%= link_to "Sign Up", new_user_registration_path %></p>
       <% end %>
     </div>
     <div class="col-md-4">
