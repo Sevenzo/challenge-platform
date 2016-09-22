@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title><%= full_title(yield(:title)) %></title>
+  <base href="/">
+  <meta name="google-site-verification" content="u4p4qpOBjgw-UwR8pXo5VrVxTEHdDqY-WvZuiXdtw_0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <!-- <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+
+  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+  <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <!-- <script src="js/ie-emulation-modes-warning.js"></script> -->
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed" rel="stylesheet">
+
+  <%= stylesheet_link_tag "application", media: 'all' %>
+  <%= stylesheet_link_tag "welcome", media: 'all' %>
+
+  <%= favicon_link_tag 'favicon.png', type: 'image/png' %>
+  <%= favicon_link_tag 'favicon.png', type: 'image/png', rel: 'apple-touch-icon' %>
+
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "welcome" %>
+
+  <%= render partial: 'layouts/shim', cache: true %>
+  <%= render partial: 'layouts/google', cache: true if ENV['GA_KEY'].present? %>
+  <%= render partial: 'layouts/heap', cache: true if ENV['HEAP_APP_ID'].present? %>
+  <%= render partial: 'layouts/twitter', cache: true %>
+  <%= render partial: 'shared/cards/facebook', cache: true %>
+
+  <%= csrf_meta_tags %>
+</head>
+  <body>
+    <%= render partial: 'layouts/facebook', cache: true %>
+
+    <div class='page-wrap'>
+      <%= yield %>
+    </div>
+  </body>
+</html>
