@@ -59,7 +59,6 @@ class User < ActiveRecord::Base
   validates :title,         length: { maximum: 255 }, allow_blank: true
   validates :twitter,       length: { maximum: 16 },  allow_blank: true
   validates :twitter,       presence: true, if: "avatar_option == 'twitter'"
-  validates :uid,           uniqueness: { scope: :provider }, if: "provider.present?"
   validate  :avatar_file_size
 
   def name
