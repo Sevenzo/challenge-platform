@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   has_many :solutions
   has_many :comments
   has_many :suggestions
+  has_many :identities
   belongs_to :referrer, class_name: 'User', foreign_key: :referrer_id
   has_many :referrals,  class_name: 'User', foreign_key: :referrer_id
   store_accessor :notifications, :comment_replied, :comment_posted, :comment_followed
@@ -58,7 +59,6 @@ class User < ActiveRecord::Base
   validates :title,         length: { maximum: 255 }, allow_blank: true
   validates :twitter,       length: { maximum: 16 },  allow_blank: true
   validates :twitter,       presence: true, if: "avatar_option == 'twitter'"
-  validates :uid,           uniqueness: { scope: :provider }, if: "provider.present?"
   validate  :avatar_file_size
 
   def name

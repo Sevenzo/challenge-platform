@@ -60,6 +60,7 @@ gem 'rails_admin'
 gem 'kaminari'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 ## MAILERS
 gem 'mailkick'
