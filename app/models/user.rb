@@ -1,7 +1,4 @@
 class User < ActiveRecord::Base
-  TEMP_EMAIL_PREFIX = 'change@me'
-  TEMP_EMAIL_REGEX = /\Achange@me/
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:twitter, :facebook]
@@ -158,92 +155,36 @@ class User < ActiveRecord::Base
   rescue
   end
 
-  def self.find_for_oauth(auth, signed_in_resource = nil)
-
-    # binding.pry
-
-    # Get the identity and user if they exist.
-    identity = Identity.find_for_oauth(auth)
-
-    # If a signed_in_resource is provided it always overrides the existing user
-    # to prevent the identity being locked with accidentally created accounts.
-    # Note that this may leave zombie accounts (with no associated identity) which
-    # can be cleaned up at a later date.
-    user = signed_in_resource ? signed_in_resource : identity.user
-
-    if user.nil?
-      # Try to find the user by their provider email, if available
-      email = auth.info.email
-      user = User.where(email: email).first if email
-
-      # If there's still no user, we'll treat this as a new user sign up.
-      if user.nil?
-
-        # The auth object differs by provider
-        if auth.provider == 'facebook'
-          first_name = auth.extra.raw_info.first_name
-          last_name = auth.extra.raw_info.last_name
-        elsif auth.provider == 'twitter'
-          first_name = auth.info.name.split(" ").first
-          last_name = auth.info.name.split(" ").last
-        else
-          first_name = ""
-          last_name = ""
-        end
-
-        user = User.new(
-          first_name: first_name,
-          last_name: last_name,
-          location: auth.info.location,
-          email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
-          password: Devise.friendly_token[0, 20],
-          avatar_option: auth.provider,
-          remote_avatar_url: auth.info.image,
-          twitter: auth.provider == 'twitter' ? auth.info.nickname : nil
-        )
-        user.save!
-      end
-    end
-
-    # Associate the identity with the user if neeeded
-    if identity.user != user
-      identity.user = user
-      identity.save!
-    end
-    user
-  end
-
-  def email_verified?
-    self.email && self.email !~ TEMP_EMAIL_REGEX
-  end
-
-  def facebook
-    uid
-  end
-
   # Create a new User with the information that is available after OmniAuth authentication
   def self.create_from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.first_name = auth.info.first_name
-      user.last_name = auth.info.last_name
-      user.email = auth.info.email.downcase
-      user.location = auth.info.location
-      user.password = Devise.friendly_token[0, 20]
-      user.avatar_option = auth.provider
-      user.remote_avatar_url = auth.info.image
+    # The auth object differs by provider
+    if auth.provider == 'facebook'
+      first_name = auth.extra.raw_info.first_name
+      last_name = auth.extra.raw_info.last_name
+    elsif auth.provider == 'twitter'
+      first_name = auth.info.name.split(" ").first
+      last_name = auth.info.name.split(" ").last
+    else
+      first_name = ""
+      last_name = ""
     end
+
+    user = User.new(
+      first_name: first_name,
+      last_name: last_name,
+      email: auth.info.email.downcase,
+      password: Devise.friendly_token[0, 20],
+      avatar_option: auth.provider,
+      remote_avatar_url: auth.info.image,
+      twitter: auth.provider == 'twitter' ? auth.info.nickname : nil,
+      location: auth.info.location
+    )
+    user.save!
   end
 
-  # Update an existing User usting the information that is available after OmniAuth authentication
-  def update_from_omniauth(auth)
-    self.tap do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.location = auth.info.location unless user.location.present?
-      user.avatar_option = auth.provider
-      user.remote_avatar_url = auth.info.image
-    end
-    self.save!
+  # TODO(Stedman): refactor avatar_uploader.rb and remove this.
+  def facebook
+    uid
   end
 
   # <p class='select-help'>I am currently training to be a teacher in a whole class, resource, or one-on-one setting.</p>
