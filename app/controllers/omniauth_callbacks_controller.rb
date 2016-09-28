@@ -1,34 +1,17 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
-  def self.provides_callback_for(provider)
-    class_eval %Q{
-      def #{provider}
-        @user = User.find_for_oauth(env["omniauth.auth"], current_user)
-
-        binding.pry
-        if @user.persisted? #even new users will be persisted at this point. Soooo need some other measure of whether they're "new" or not.
-          sign_in_and_redirect @user, event: :authentication
-          set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
-        else
-          session["devise.#{provider}_data"] = env["omniauth.auth"]
-          redirect_to new_user_registration_path
-        end
-
-
-      end
-    }
-  end
-
+  # Create callback methods for each provider
   [:twitter, :facebook].each do |provider|
     define_method provider do
       auth = request.env['omniauth.auth']
 
-      # =====================================
-      # TODO(Stedman): add #{provider} to path
-      return redirect_to user_facebook_omniauth_authorize(
-          auth_type: 'rerequest',
-          scope: 'email,public_profile'
-        ) if auth.info.email.blank?
+      if auth.info.email.blank?
+        return redirect_to send("user_#{provider}_omniauth_authorize(
+            auth_type: 'rerequest',
+            scope: 'email,public_profile')")
+      else
+        email = auth.info.email.blank?
+      end
 
       # Find or create the identity with the given provider and uid.
       @identity = Identity.find_or_create_from_omniauth(auth)
@@ -39,7 +22,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
           # account. But we found the identity and the user associated with it
           # is the current user. So the identity is already associated with
           # this user. So let's display an error message.
-          redirect_to root_url, notice: "Already linked that account!"
+          redirect_to root_url, notice: "Already linked your #{provider} account!"
         else
           # A currently signed in user always overrides the existing user
           # to prevent the identity being locked with accidentally created accounts.
@@ -48,9 +31,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
           @identity.user = current_user
           @identity.save
 
-          # =====================================
-          # TODO(Stedman): Provider name:
-          redirect_to root_url, notice: "Successfully linked that account!"
+          redirect_to root_url, notice: "Successfully linked your #{provider} account!"
         end
       else
         @user = User.where(email: email).first

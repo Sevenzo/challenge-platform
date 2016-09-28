@@ -180,6 +180,7 @@ class User < ActiveRecord::Base
       location: auth.info.location
     )
     user.save!
+    user
   end
 
   # TODO(Stedman): refactor avatar_uploader.rb and remove this.
