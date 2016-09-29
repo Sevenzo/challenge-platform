@@ -46,7 +46,7 @@ gem 'carrierwave-aws'
 gem 'carrierwave_backgrounder'
 
 ## VOTING
-gem 'acts_as_votable', github: 'ryanto/acts_as_votable'
+gem 'acts_as_votable', git: 'https://github.com/ryanto/acts_as_votable'
 
 ## COMMENTING
 gem 'acts_as_commentable_with_threading'
