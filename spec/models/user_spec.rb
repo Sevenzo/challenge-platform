@@ -13,6 +13,7 @@ describe User do
   it { is_expected.to have_many(:comments) }
   it { is_expected.to belong_to(:referrer).class_name('User').with_foreign_key(:referrer_id) }
   it { is_expected.to have_many(:referrals).class_name('User').with_foreign_key(:referrer_id) }
+  it { is_expected.to have_many(:identities) }
 
   it { is_expected.to validate_presence_of(:first_name) }
   it { is_expected.to validate_length_of(:first_name).is_at_most(255) }
