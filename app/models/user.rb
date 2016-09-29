@@ -159,8 +159,8 @@ class User < ActiveRecord::Base
   def self.create_from_omniauth(auth)
     # The auth object differs by provider
     if auth.provider == 'facebook'
-      first_name = auth.extra.raw_info.first_name
-      last_name = auth.extra.raw_info.last_name
+      first_name = auth.info.first_name
+      last_name = auth.info.last_name
     elsif auth.provider == 'twitter'
       first_name = auth.info.name.split(" ").first
       last_name = auth.info.name.split(" ").last
@@ -183,9 +183,8 @@ class User < ActiveRecord::Base
     user
   end
 
-  # TODO(Stedman): refactor avatar_uploader.rb and remove this.
   def facebook
-    uid
+    identities.where(provider: 'facebook').last.uid
   end
 
   # <p class='select-help'>I am currently training to be a teacher in a whole class, resource, or one-on-one setting.</p>

@@ -22,7 +22,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
           # account. But we found the identity and the user associated with it
           # is the current user. So the identity is already associated with
           # this user. So let's display an error message.
-          redirect_to root_url, notice: "Already linked your #{provider} account!"
+          redirect_to root_url, notice: "Already linked your #{provider.capitalize} account!"
         else
           # A currently signed in user always overrides the existing user
           # to prevent the identity being locked with accidentally created accounts.
@@ -30,8 +30,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
           # can be cleaned up at a later date.
           @identity.user = current_user
           @identity.save
+          set_twitter_username(current_user, auth)
 
-          redirect_to root_url, notice: "Successfully linked your #{provider} account!"
+          redirect_to root_url, notice: "Successfully linked your #{provider.capitalize} account!"
         end
       else
         @user = User.where(email: email).first
@@ -44,17 +45,29 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
           # Associate the identity and log that user in.
           @identity.user = @user
           @identity.save
+          set_twitter_username(@user, auth)
 
           sign_in_and_redirect @user, event: :authentication
         else
           # No user associated with this identity; treat this like a new user sign up.
           @user = User.create_from_omniauth(env["omniauth.auth"])
+          @identity.user = @user
+          @identity.save
 
           sign_in_and_redirect @user
         end
       end
     end # define_method provider
   end # [:twitter, :facebook]
+
+  # TODO(Stedman): We need this because we're setting the twitter username on the User.
+  # In the future we should add a username attribute to the Identity.
+  def set_twitter_username(user, auth)
+    if (auth.provider == 'twitter')
+      user.twitter = auth.info.nickname
+      user.save!
+    end
+  end
 
   def failure
     flash[:danger] = "Sorry, there was an error logging you in. Please try again, or contact us at <a href='mailto:#{ENV.fetch('APP_EMAIL')}' target='_blank'>#{ENV.fetch('APP_EMAIL')}</a> for further assistance.".html_safe

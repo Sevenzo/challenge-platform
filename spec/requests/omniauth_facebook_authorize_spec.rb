@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'support/omniauth_helpers'
+require 'pry'
 
 RSpec.describe 'Facebook OAuth authorization', type: :request do
 
@@ -37,7 +38,9 @@ RSpec.describe 'Facebook OAuth authorization', type: :request do
   before { OmniAuth.config.mock_auth[oauth_strategy[:strategy]] = nil }
 
   context 'with valid login info for a new user' do
-    before { omniauth_authenticate(valid_oauth_login) }
+    before {
+      omniauth_authenticate(valid_oauth_login)
+    }
 
     it 'creates a new user' do
       expect(response).to be_redirect
