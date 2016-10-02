@@ -1,0 +1,19 @@
+$('div#inquiry').hide('slow')
+<% if @inquiry.errors.any? %>
+  var errors = '';
+  $('div#inquiry').removeClass('alert-success');
+  $('div#inquiry').addClass('alert-danger');
+  $('div#inquiry').html("Sorry, there were <%= pluralize(@inquiry.errors.count, 'error') %> with your submission, please try again:");
+  $('div#inquiry').append("<ul id='error-list'></ul>");
+  <% @inquiry.errors.full_messages.each do |msg|  %>
+    errors += "<li><%= msg %></li>";
+  <% end %>
+  $('ul#error-list').html(errors);
+  $('div#inquiry').show('slow');
+<% else %>
+  $('div#inquiry').removeClass('alert-danger');
+  $('div#inquiry').addClass('alert-success');
+  $('div#inquiry').html("Thanks for your interest, we'll be in touch shortly!");
+  $('div#inquiry').append("<button type='button' class='close' data-dismiss='alert'>&times;</button>");
+  $('div#inquiry').show('slow');
+<% end %>
