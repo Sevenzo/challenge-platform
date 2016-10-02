@@ -38,7 +38,7 @@ class Challenge < ActiveRecord::Base
     when 'solution'
       solution_stage.solutions.first(2)
     else
-      nil
+      []
     end
   end
 
@@ -57,7 +57,7 @@ class Challenge < ActiveRecord::Base
     when 'solution'
       4
     else
-      1
+      0
     end
   end
 

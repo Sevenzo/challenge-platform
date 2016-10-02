@@ -1,0 +1,18 @@
+<div id='challenge-map' style="background-image:url('<%= asset_path("home/map_color.png") %>')">
+  <div class='opacity-layer'>
+    <div class='opacity-content'>
+      <div class='container'>
+        <div class='row'>
+          <div class='col-md-10 col-md-offset-1'>
+
+            <h1 class="section-title text-center"><%= challenge.headline %></h1>
+            <p class='section-description'>Educators from across the country are talking about our first challenge. Share your voice below!</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render partial: "challenges/comment", locals: { challenge: @challenge } %>

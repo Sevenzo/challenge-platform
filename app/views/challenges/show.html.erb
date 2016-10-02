@@ -86,17 +86,15 @@
                 <% end %>
               </div>
 
-              <div class='stage-cta'>
-                <% if @challenge.stage_number == stage[:number] %>
-                  <%= link_to 'Tell Your Story', challenge_active_stage_path(@challenge), class: 'btn btn-info btn-rounded text-small' unless stage[:name] == 'solution' %>
-                <% else %>
-                  <% if @challenge.stage_number > stage[:number] %>
+              <% if @challenge.active_stage.present? %>
+                <div class='stage-cta'>
+                  <% if @challenge.stage_number == stage[:number] %>
+                    <%= link_to 'Tell Your Story', challenge_active_stage_path(@challenge), class: 'btn btn-info btn-rounded text-small' unless stage[:number] == 4 %>
+                  <% elsif @challenge.stage_number > stage[:number] %>
                     <p class='text-small'><%= link_to 'Completed', eval("challenge_#{stage[:name]}_stage_path(@challenge, @challenge.#{stage[:name]}_stage)"), class: "completed text-default" %></p>
-                  <% else %>
-                    <!-- <p class='text-small pending'>Not yet active</p> -->
                   <% end %>
-                <% end %>
-              </div>
+                </div>
+              <% end %>
             </div>
           <% end %>
         </div>
@@ -118,26 +116,20 @@
           </div>
         </div>
 
-        <div class='text-center center-block' style='margin:3em 0em -2em'>
-          <%= link_to "Get Started Now", challenge_active_stage_path(@challenge), class: 'btn btn-lg btn-longer btn-rounded btn-info' %>
-        </div>
+        <% if @challenge.active_stage.present? %>
+          <hr class='short'>
+          <div class='text-center center-block'>
+            <%= link_to "Get Started Now", challenge_active_stage_path(@challenge), class: 'btn btn-lg btn-longer btn-rounded btn-info' %>
+          </div>
+        <% end %>
 
       </div>
     </div>
   </div>
 </div>
 
-<div id='challenge-featured'>
-  <div class="container">
-    <div class='row'>
-      <div class='col-md-10 col-md-offset-1'>
-
-        <%= render 'challenges/featured', cache: true %>
-
-      </div>
-    </div>
-  </div>
-</div>
+<% partial = @challenge.featured_contributions.present? ? 'featured' : 'comment' %>
+<%= render partial: "challenges/#{partial}", locals: { challenge: @challenge } %>
 
 <div id='challenge-panel'>
   <div class='container'>
