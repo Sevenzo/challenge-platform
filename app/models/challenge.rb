@@ -17,6 +17,8 @@ class Challenge < ActiveRecord::Base
   mount_uploader :banner, ImageUploader
   process_in_background :banner
 
+  acts_as_commentable
+
   def self.featured
     where(featured: true).where('starts_at < ?', Time.now).where('ends_at > ?', Time.now).first
   end
