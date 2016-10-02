@@ -10,10 +10,10 @@
             <ul id='footer-legal' class='list-inline'>
               <li><%= link_to 'Terms', terms_path %></li>
               <li><%= link_to 'Privacy', privacy_path %></li>
-              <li><%= link_to "<i class='fa fa-twitter'></i>".html_safe, ENV['TWITTER_URL'], target: '_blank' %></li>
-              <li><%= link_to "<i class='fa fa-facebook'></i>".html_safe, ENV['FACEBOOK_URL'], target: '_blank' %></li>
-              <li><%= link_to "<i class='fa fa-linkedin'></i>".html_safe, ENV['LINKEDIN_URL'], target: '_blank' %></li>
-              <li><%= link_to "<i class='fa fa-medium' style='font-size: 1.25em;vertical-align: bottom;'></i>".html_safe, ENV['MEDIUM_URL'], target: '_blank' %></li>
+              <li><%= link_to "<i class='fa fa-twitter fa-1-25x'></i>".html_safe, ENV.fetch('TWITTER_URL'), target: '_blank' %></li>
+              <li><%= link_to "<i class='fa fa-facebook fa-1-25x'></i>".html_safe, ENV.fetch('FACEBOOK_URL'), target: '_blank' %></li>
+              <li><%= link_to "<i class='fa fa-linkedin fa-1-25x'></i>".html_safe, ENV.fetch('LINKEDIN_URL'), target: '_blank' %></li>
+              <li><%= link_to "<i class='fa fa-medium fa-1-25x'></i>".html_safe, ENV.fetch('MEDIUM_URL'), target: '_blank' %></li>
             </ul>
           </div>
 
