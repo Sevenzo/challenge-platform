@@ -8,9 +8,10 @@
     @extend .btn-rounded
     top: 0.675em
     padding: 3px 35px
+    color: white
     &:hover,&:focus,&:active,&.active
       text-decoration: none !important
-      color: $btn-info-color
+      color: white
       background-color: $btn-info-border
       border-color: $btn-info-border
   #navbar-hamburger
@@ -51,10 +52,9 @@
     a
       @extend .text-lighter
       @extend .text-normal
-      color: white      
       position: relative
       top: 12px
       padding: 15px
       &:hover,&:focus,&:active,&.active
-        color: white
+        color: $navbar-default-link-hover-color
         @extend .text-underline
