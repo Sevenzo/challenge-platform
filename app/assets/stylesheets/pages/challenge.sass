@@ -21,27 +21,15 @@
     .badge
       @extend .text-default, .text-small
       +border-radius(2em)
+      line-height: 2em
       background-color: white
       padding: 5px 15px
-      vertical-align: bottom
       .fa
-        min-height: 1.1em
-        top: 0em
         &.fa-check
           @extend .text-default
-          font-size: 1.1em
-          top: -0.1em
-      .fa-stack
-        height: 1.7em
-        width: 1.8em
-        vertical-align: bottom
-        .fa-stack-2x
-          font-size: 1.8em
       .headline
         @extend .hidden-xs
         @extend .text-bolder
-        top: -0.3em
-        position: relative
       &.active
         // background-color: #E9E9E9 !important
       &.selected
@@ -68,9 +56,6 @@
         background-color: $solution !important
     .fa-play
       color: #CECFD0
-      position: relative
-      top: -0.4em
-      margin: 0em 1em
 
 #challenge-overview
   padding: 4.5em 0em 1.5em
