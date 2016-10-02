@@ -67,41 +67,26 @@
   </div>
 </div>
 
-<div id='landing-featured'>
-  <div class="container">
-    <div class='row'>
-      <div class='col-md-10 col-md-offset-1'>
+<div id='landing-map' style="background-image:url('<%= asset_path("home/map_color.png") %>')">
+  <div class='opacity-layer'>
+    <div class='opacity-content'>
+      <div class='container'>
+        <div class='row'>
+          <div class='col-md-10 col-md-offset-1'>
 
-        <% if @challenge %>
-          <% if @challenge.active_stage %>
-            <%= render 'challenges/featured', cache: true %>
-          <% else %>
-            <h2 class="section-title">What does "belonging" mean to others?</h2>
-            <p class='section-description' style='margin-bottom:2em'>We interviewed students, parents, educators and researchers to find out what belonging means to them.</p>
+            <h2 class="text-center">About <%= ENV.fetch('APP_NAME') %></h2>
+            <div class="row" style='margin-bottom:15px'>
+              <div class='col-sm-10 col-sm-offset-1'>
+                <p class='section-description'><%= ENV.fetch('APP_NAME') %> is a new social impact nonprofit dedicated to building community to spread what works so that all learners can reach their full potential. Our name means the communal effort that makes change possible. With your help, we can ensure that all students feel a sense of belonging in their schools and communities so that they can learn and thrive.</p>
 
-            <% t('home.belonging').each_slice(3) do |people| %>
-              <div class="row" style='margin-bottom:2em'>
-                <% people.each do |person| %>
-                  <div class="col-sm-4">
-                    <div class="media text-center">
-                      <%= image_tag "home/#{person[:key]}.jpg", class: 'img-circle', width: '50%' %>
-                      <div class="media-body">
-                        <p class="media-heading"><%= person[:message] %></p>
-                        <h5>
-                          <%= person[:name] %>
-                          <br>
-                          <small><%= person[:title] %></small>
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
+                <div class='center-block text-center'>
+                  <%= link_to 'Read Our Story', about_path, class: 'btn btn-lg btn-info btn-rounded' %>
+                </div>
               </div>
-            <% end %>
+            </div>
 
-          <% end %>
-        <% end %>
-
+          </div>
+        </div>
       </div>
     </div>
   </div>
