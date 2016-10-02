@@ -36,7 +36,7 @@
 .row-process
   @extend .center-block, .text-center
   padding-top: 30px
-  .fa-play
+  .fa-angle-right
     float: right
     top: 1em
     position: relative
@@ -48,18 +48,9 @@
     .fa-stack-2x
       font-size: 9em !important
     .fa-stack-1x
-      &.fa-comment
+      &.fa-comment, &.fa-lightbulb-o, &.fa-flask, &.fa-play
         @extend .fa-4x
-        top: 0.8em
-      &.fa-lightbulb-o
-        @extend .fa-4x
-        top: 0.8em
-      &.fa-flask
-        @extend .fa-4x
-        top: 0.8em
-      &.fa-puzzle-piece
-        @extend .fa-4x
-        top: 0.8em
+        top: 0.85em
   .caption
     @extend .text-center
     @extend .text-black

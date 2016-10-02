@@ -8,7 +8,7 @@
 
             <%= link_to eval("challenge_#{stage[:name]}_stage_path(@challenge, @challenge.#{stage[:name]}_stage)") do %>
               <span class="badge badge-<%= stage[:name] %> <%= 'active' if @challenge.stage_number >= stage[:number] %> <%= 'selected' if eval("params[:#{stage[:name]}_stage_id] || @#{stage[:name]}_stage") %>">
-                
+
                 <% if stage[:name] == @challenge.active_stage %>
                   <span class="fa-stack">
                     <i class="fa fa-stack-2x fa-circle text-<%= eval("params[:#{stage[:name]}_stage_id] || @#{stage[:name]}_stage") ? 'white' : stage[:name] %>"></i>
@@ -17,14 +17,14 @@
                 <% else %>
                   <i class='fa <%= stage[:icon] %> text-<%= eval("params[:#{stage[:name]}_stage_id] || @#{stage[:name]}_stage") ? 'white' : stage[:name] %>'></i>
                 <% end %>
-                
+
                 <%= "<i class='fa fa-check'></i>".html_safe if @challenge.stage_number > stage[:number] %>
 
                 <span class='headline text-<%= stage[:name] if @challenge.stage_number == stage[:number] %>'><%= stage[:headline] %></span>
               </span>
             <% end %>
 
-            <%= "<i class='fa fa-play'></i>".html_safe unless index+1 == Challenge::STAGES.length %>
+            <%= "<i class='fa fa-angle-right'></i>".html_safe unless index+1 == Challenge::STAGES.length %>
 
           <% end %>
         </div>
