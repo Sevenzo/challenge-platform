@@ -20,7 +20,7 @@
   <div class="container">
     <div class="row about-nav-links">
       <div class='col-xs-2 about-nav-link' href='#about-story' du-smooth-scroll du-scrollspy offset='40'><i class='fa fa-book'></i> <span class='hidden-xs'>Story</span></div>
-      <div class='col-xs-2 about-nav-link' href='#about-works' du-smooth-scroll du-scrollspy offset='40'><i class='fa fa-gears'></i> <span class='hidden-xs'>Works</span></div>
+      <div class='col-xs-2 about-nav-link' href='#about-works' du-smooth-scroll du-scrollspy offset='40'><i class='fa fa-gears'></i> <span class='hidden-xs'>Process</span></div>
       <div class='col-xs-2 about-nav-link' href='#about-team' du-smooth-scroll du-scrollspy offset='40'><i class='fa fa-group'></i> <span class='hidden-xs'>Team</span></div>
       <div class='col-xs-2 about-nav-link' href='#about-press' du-smooth-scroll du-scrollspy offset='40'><i class='fa fa-newspaper-o'></i> <span class='hidden-xs'>Press</span></div>
       <a class='col-xs-2 about-nav-link' href='/guidelines'><i class='fa fa-question-circle'></i> <span class='hidden-xs'>Guidelines</span></a>
@@ -37,13 +37,29 @@
 
     <div class='row' style='margin-bottom:20px'>
       <div class='col-md-5'>
-        <%= image_tag "about/teachers.jpg", width: '100%' %>
+        <%= image_tag "about/teachers2.jpg", width: '100%' %>
       </div>
 
       <div class='col-md-7'>
-        <p class='text-large text-left'>While innovative ideas, practices and tools have the potential to transform learning for all students and close the achievement gap, many of these are not sticking or spreading beyond a few pockets of excellence. Sevenzo provides a space where educators can openly exchange promising practice, translate that practice into personal action and test that practice in a safe environment with the support of other like-minded people.</p>
+        <p class='text-medium'>While innovative ideas, practices and tools have the potential to transform learning for all students and close the achievement gap, many of these are not sticking or spreading beyond a few pockets of excellence. Sevenzo provides a space where educators can openly exchange promising practice, translate that practice into personal action and test that practice in a safe environment with the support of other like-minded people.</p>
 
-        <p class='text-large text-left'>The Sevenzo model was first piloted in 2015 through the Bill & Melinda Gates Foundation as the <%= link_to 'Redesign Challenge', 'https://redesignchallenge.org', target: '_blank' %>, engaging thousands of educators from across the country around a problem of practice. Founded in Pittsburgh in 2016, the new organization is building on the early traction of this pilot. Join us to bring educators together around the biggest challenges and most promising ideas in education.</p>
+        <p class='text-medium'>The Sevenzo model was first piloted in 2015 through the Bill & Melinda Gates Foundation as the <%= link_to 'Redesign Challenge', 'https://redesignchallenge.org', target: '_blank' %>, engaging thousands of educators from across the country around a problem of practice. Founded in Pittsburgh in 2016, the new organization is building on the early traction of this pilot. Join us to bring educators together around the biggest challenges and most promising ideas in education.</p>
+
+        <p class='text-medium'><%= link_to "Join our movement", new_user_registration_path %> and lend your voice to the conversation.</p>
+      </div>
+    </div>
+
+    <hr class='break'>
+
+    <h2 class="section-title" style='margin-bottom:1em'>Why <%= ENV.fetch('APP_NAME') %>?</h2>
+
+    <div class='row' style='margin-bottom:20px'>
+      <div class='col-md-7'>
+        <p class='text-medium'>We have talked to thousands of educators who have told us that they feel isolated and are looking for a space where peer-to-peer conversations about what works in education are taking place on a national scale. Many educators cited Twitter as the "best PD they’ve ever had" but they often expressed frustration with scheduled chat times and, sometimes intimidating, rapid-fire Twitter chat formats. In addition, educators were often overwhelmed by the amount of ‘noise’ on social media feeds. In this online community educators, like you, can collaborate anytime and anywhere around topics that have highest potential for impact. Think of this platform as a community tent. A place where both what works, and how it works, can be discovered.</p>
+      </div>
+
+      <div class='col-md-5'>
+        <%= image_tag "about/teachers.jpg", width: '100%' %>
       </div>
     </div>
 
@@ -58,25 +74,14 @@
         <h2 class="section-title" style='margin-bottom:10px'>What we do</h2>
         <p class='section-description' style='margin-bottom:2em'>We challenge this community to come together around issues that deeply impact students’ ability to learn and thrive.</p>
 
-        <div class='row'>
-          <div class="col-md-4">
-            <div class="center-block text-center"><i class="fa fa-comments fa-5x text-link"></i></div>
-            <h2 class='lead text-center'>Build Community.</h2>
-            <p class='text-center'>We bring people like you into an online conversation around issues that matter to young people.</p>
-          </div>
+        <%= render partial: 'home/work' %>
 
-          <div class="col-md-4">
-            <div class="center-block text-center"><i class="fa fa-lightbulb-o fa-5x text-link"></i></div>
-            <h2 class='lead text-center'>Find Bright Spots.</h2>
-            <p class='text-center'>We crowdsource promising approaches and work with educators to turn them into recipes others can try.</p>
-          </div>
+        <hr class='break'>
 
-          <div class="col-md-4">
-            <div class="center-block text-center"><i class="fa fa-group fa-5x text-link"></i></div>
-            <h2 class='lead text-center'>Spread What Works.</h2>
-            <p class='text-center'>We run programs that support educators to try out and adapt those promising approaches to their own context.</p>
-          </div>
-        </div>
+        <h2 class="section-title" style='margin-bottom:10px'>How it works</h2>
+        <p class='section-description' style='margin-bottom:2em'>Each Challenge will go through four phases:</p>
+
+        <%= render partial: 'home/process' %>
 
       </div>
     </div>

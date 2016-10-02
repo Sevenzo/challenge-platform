@@ -1,7 +1,7 @@
 ## IMPORTING ALL CSV DATA
-require_relative 'imports/states.rb'
-require_relative 'imports/districts.rb'
-require_relative 'imports/schools.rb'
+# require_relative 'imports/states.rb'
+# require_relative 'imports/districts.rb'
+# require_relative 'imports/schools.rb'
 
 ## SEEDING USERS
 require_relative 'users/admins.rb'

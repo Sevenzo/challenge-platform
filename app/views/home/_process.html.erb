@@ -1,0 +1,16 @@
+<div class='row row-process'>
+  <% Challenge::STAGES.each_with_index do |stage, index| %>
+    <div class="col-xs-6 col-sm-3" style='margin-bottom:15px'>
+      <span class="fa-stack challenge-fa-bubble text-<%= stage[:name] %>">
+        <i class="fa fa-stack-2x fa-circle"></i>
+        <i class="fa fa-stack-1x fa-inverse <%= stage[:icon] %>"></i>
+      </span>
+      <%= content_tag(:i, '', class: 'fa fa-play', style: ('color: transparent' if stage[:name] == 'solution') ) %>
+      <div class='clearfix'></div>
+      <div class="caption">
+        <h4><%= "#{index+1}. #{stage[:headline]}" %></h4>
+        <p class='description'><%= stage[:description] %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
