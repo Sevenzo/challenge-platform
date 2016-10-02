@@ -69,19 +69,19 @@
                     <% end %>
                   <% end %>
 
-                  <%= content_tag(:i, '', class: 'fa fa-play', style: ('color: transparent' if stage[:name] == 'solution') ) %>
+                  <%= content_tag(:i, '', class: 'fa fa-play', style: ('color: transparent' if stage[:number] == 4) ) %>
 
                   <div class='clearfix'></div>
                   <div class="caption">
                     <h4 class='text-black'>
                       <% if @challenge.stage_number > stage[:number] %>
                         <i class='fa icon-check'></i>
-                        <%= pluralize(eval("@challenge.#{stage[:name]}_stage.#{stage[:name].pluralize}.published.count"), stage[:name]).titleize %> <%= stage[:action].titleize %>
+                        <%= pluralize(eval("@challenge.#{stage[:name]}_stage.#{stage[:name].pluralize}.published.count"), stage[:alias]).titleize %> <%= stage[:action].titleize %>
                       <% else %>
                         <%= stage[:headline] %>
                       <% end %>
                     </h4>
-                    <p class='description'><%= stage[:description] %></p>
+                    <p class='description'><%= stage[:description].sub('solving the challenge', @challenge.goal) %></p>
                   </div>
                 <% end %>
               </div>

@@ -1,6 +1,7 @@
 challenge = Challenge.create!(
   title: 'The Belonging Challenge',
   headline: "How do we create a sense of belonging for students in school and community?",
+  goal: 'creating a sense of belonging',
   video_url: 'https://www.youtube.com/watch?v=lvRBFdISNeo',
   remote_banner_url: 'https://s3-us-west-2.amazonaws.com/redesign-challenge-local/documents/bg.png',
   hashtag: 'edubelong',

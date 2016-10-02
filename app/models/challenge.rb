@@ -65,35 +65,39 @@ class Challenge < ActiveRecord::Base
     {
       number: 1,
       name: 'experience',
+      alias: 'insight',
       action: 'shared',
       icon: 'fa-comment',
-      headline: 'Share Experiences',
-      description: 'Tell others about your experience with this challenge.'
+      headline: 'Share Insights',
+      description: "Share your thinking about why solving the challenge is important for our students and find inspiration in other's stories."
     },
     {
       number: 2,
       name: 'idea',
+      alias: 'bright spot',
       action: 'contributed',
       icon: 'fa-lightbulb-o',
-      headline: 'Contribute Ideas',
-      description: 'Contribute and compare ideas you might use to solve this challenge.'
+      headline: 'Contribute Bright Spots',
+      description: "Share what you or others are already doing that's solving the challenge for students."
     },
     {
       number: 3,
       name: 'recipe',
+      alias: 'recipe',
       action: 'developed',
       icon: 'fa-flask',
       headline: 'Develop Recipes',
-      description: 'Develop and propose different recipes to tackling this challenge.'
+      description: 'Co-design recipes that will bring the selected bright spots to life in other places.'
     },
     {
       number: 4,
       name: 'solution',
-      action: 'tried',
+      alias: 'story',
+      action: 'share',
       icon: 'fa-puzzle-piece',
-      headline: 'See Your Solutions',
-      description: 'See stories of how real schools have adopted the solutions you’ve inspired, or try them out yourself!'
+      headline: 'Implement and Share Stories',
+      description: 'Try out and refine the bright spots with other peers and share your implementation stories!'
     }
-  ].freeze
+  ]
 
 end
