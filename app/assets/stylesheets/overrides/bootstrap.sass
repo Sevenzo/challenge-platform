@@ -78,25 +78,25 @@ blockquote.quote
 
 .label-experience
   @extend .label
-  padding: 0.25em 3em 0.75em
+  padding: 0.75em 3em
   border-radius: 0.5em 0em 0em 0em
   background-color: $experience !important
 
 .label-idea
   @extend .label
-  padding: 0.25em 3em 0.75em
+  padding: 0.75em 3em
   border-radius: 0.5em 0em 0em 0em
   background-color: $idea !important
 
 .label-recipe
   @extend .label
-  padding: 0.25em 3em 0.75em
+  padding: 0.75em 3em
   border-radius: 0.5em 0em 0em 0em
   background-color: $recipe !important
 
 .label-solution
   @extend .label
-  padding: 0.25em 3em 0.75em
+  padding: 0.75em 3em
   border-radius: 0.5em 0em 0em 0em
   background-color: $solution !important
 
@@ -181,3 +181,23 @@ a:focus,a:active,a:active:focus, .submit-link
 
 .badge-green
   background-color: $footerBG !important
+
+.carousel-control
+  background-image: none !important
+  width: 5%
+  height: 50%
+  top: 20%
+  &.left
+    left: 5px
+  &.right
+    right: 5px
+
+.carousel-indicators
+  bottom: -25px
+  li
+    border: 1px solid $link-color
+    &.active
+      background-color: $link-color
+
+.well-white
+  background-color: white

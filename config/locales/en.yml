@@ -65,3 +65,143 @@ en:
       hour:   "Hour"
       minute: "Minute"
       second: "Seconds"
+  home:
+    belonging:
+      - key: danyelle
+        name: Danyelle Durall
+        title: DC parent & educator
+        message: When my children and students have the same access & aspirations as their peers, whether black, white, or Hispanic.
+      - key: jonathan
+        name: Jonathan Rivers
+        title: DC school social worker
+        message: Absolutely essential for students to feel that they are able to grow and trust.
+      - key: mai
+        name: Mai S.
+        title: DC school social worker
+        message: People accepting me as a black muslim girl and acknowledging me as a regular human being.
+      - key: jada
+        name: Jada P.
+        title: DC student
+        message: A place where you are supposed to be and where you are needed
+      - key: paige
+        name: Paige Hoffman
+        title: DC Public Schools staff
+        message: When the weight of the world and all the expectations people have of you just come off.
+      - key: william
+        name: William Gardener
+        title: DC uncle
+        message: Being a productive part of my community where we all work together to educate our children.
+  about:
+    team:
+      - key: masa
+        name: Masa Uzicanin
+        title: Executive Director, Founder
+        bio: Masa Uzicanin is the Founder & Executive Director of Sevenzo, which she developed and piloted as a Program Officer at the Bill & Melinda Gates Foundation. Masa started her career as an elementary school teacher in Harlem, New York and then worked at the New Jersey Department of Education where she designed and coordinated professional development activity across New Jersey's Abbott districts. Her product development experience comes from Wireless Generation (now Amplify), where she served as Director of Research & Development, bringing to market various products and securing external funding for product evaluation. At the Bill & Melinda Gates Foundation, Masa developed and managed a portfolio of investments in K-12 education focused on rapid innovation. The goal of the portfolio was to accelerate the rate at which innovative ideas, tools and processes take root in real schools and classrooms - Sevenzo was born out of this portfolio.
+        twitter: https://twitter.com/masauzicanin
+        linkedin: https://www.linkedin.com/in/masa-uzicanin-6861b41
+        email: masa@sevenzo.org
+      - key: christina
+        name: Christina Esquivel
+        title: Program Director
+        bio: Christina Esquivel is the Program Director of Sevenzo and part of the founding team. Christina led the education strategy at Mobility Labs, where she worked closely with educators and K-12 leaders to build digital tools for social good. She previously worked at the Bill & Melinda Gates Foundation, providing programmatic & research support across multiple initiatives in K-12 Education. Christina is a graduate of Brown University with a concentration in Latin American History. While there, she received an Undergraduate Research Award to conduct research on civil rights movements in the United States.
+        twitter: https://twitter.com/christinabesq
+        linkedin: https://www.linkedin.com/in/christinaesquivel
+        email: christina@sevenzo.org
+    board:
+      - key: greg
+        name: Greg Gunn
+        title: Co-Founder
+        organization: Lingo Ventures
+        bio: Greg Gunn is the co-founder of Lingo Ventures and an Entrepreneur in Residence at City Light Capital, where he focuses on early stage venture capital investments in educational software and services companies. In 2000, he co-founded Wireless Generation, a leading educational software company now serving more than 3 million children with groundbreaking assessment and instruction products. As President, Greg created and led the product development team and shipped the award-winning mCLASS® handheld formative assessment platform. He revamped the company’s sales division and personally landed key state and district sales, which tripled the company’s revenue in 18 months. As Chief Scientist, he designed highly effective professional development techniques and created the company’s analytics and data mining division, responsible for turning raw data into new insights about student learning. The company was sold to News Corporation in December 2010. <br><br> Greg holds a bachelor’s degree in physics from the University of Chicago, an MBA and Master’s in Computer Science from the Massachusetts Institute of Technology, and was a Rhodes Scholar. He currently is a trustee of the Nellie Mae Education Foundation and of the Center for Excellence in Education. He was named one of Fast Company magazine’s “100 Most Creative People in Business” in 2012 and was recently profiled in NationSwell’s “How Star Trek Is Inspiring Diversity in the Workplace.” He serves as an expert-in-residence at Harvard University’s Innovation Lab and is on the faculty of the Harvard Graduate School of Education.
+        twitter: https://twitter.com/ggunn98
+        linkedin: https://www.linkedin.com/in/greg-gunn-1061388
+      - key: lance
+        name: Lance Mansfield
+        title: Principal
+        organization: Mansfield Consulting
+        bio: Lance Mansfield has over 20 years experience designing products and services that enable change in the healthcare and mobile industries.  He is currently Vice President, Products for Passport Health Communications, a privately held software and solutions company that helps health providers secure payment for their services.  Lance leads Passport's acquisition and new product investment strategy as well as managing Passport's Best Payment and Patient Self-Service product suites. <br><br> Prior to Passport, Lance was Chief Technical Officer of Verus, a venture-funded healthcare software as a service provider.  He has also held product leadership positions for Amdocs, Blucora and Cisco, focused on consumer mobile data services. Mansfield is a graduate of MIT, where he received dual degrees in business and engineering as a Leaders for Global Operations fellow.  He lives in Seattle, WA with his wife and daughter, where he serves on the advisory boards for Year Up-MPM, Cascade Link and Seattle Pacific University's EECS program.
+        twitter: https://twitter.com/lmansfield17
+        linkedin: https://www.linkedin.com/in/lancemansfield
+      - key: masuma
+        name: Masuma Henry
+        title: Executive Director
+        organization: Artefact
+        bio: Masuma believes that solving challenging problems with design can be a transformative ‘make over’. As Executive Director of Product Design and Innovation at Artefact she leads company strategy, ensuring they continue to do quality design that they believe in while solving client’s toughest challenges. <br><br> Masuma’s work with consumer electronic, technology, and healthcare companies have helped realize nascent technologies into scalable product experiences and strategies, across several industries. She’s worked with global health non-profit, PATH, to discover cultural barriers that contribute to infections in rural Uganda and Bangladesh. Working with Microsoft, she oversaw the design of collaboration products for workplaces of the future. And, she has created visions for the effects of technology convergence in consumers’ homes for leading electronics companies. <br><br> Before joining Artefact, Masuma directed Microsoft’s emerging markets design division which focused on developing products for underserved populations in countries such as India, Brazil, and China. In her spare time, she volunteers at YearUp mentoring low-income students on their journey to become professional technologists. She also loves traveling to pretty much anywhere.
+        twitter: https://twitter.com/masuma_henry
+        linkedin: https://www.linkedin.com/in/masumahenry
+    advisors:
+      - key: christopher
+        name: Christopher Bronke
+        title: English Teacher & Dept. Chair
+        organization: Downers Grove North HS
+        link: https://twitter.com/MrBronke
+      - key: brad
+        name: Brad Clark
+        title: Director of the Kentucky State Teacher Fellows Program
+        organization: Hope Street Group
+        link: https://twitter.com/notbradclark
+      - key: paige
+        name: Paige Hoffman
+        title: Innovation and Design Manager
+        organization: DC Public Schools
+        link: https://www.linkedin.com/in/paige-l-hoffman-798243b6
+      - key: karan
+        name: Karan Jain
+        title: Software Engineer
+        organization: Chalk Schools
+        link: https://www.twitter.com/krnjn
+      - key: michelle
+        name: Michelle King
+        title: Teacher
+        organization: Environmental Chater School
+        link: https://twitter.com/LrningInstigatr
+      - key: stephan
+        name: Stephan Mueller
+        title: Chief Operating Officer
+        organization: Thrill Mill
+        link: https://twitter.com/stephanfmueller
+      - key: mike
+        name: Mike Szegedy
+        title: UX Designer/Researcher
+        organization: Carnegie Mellon University
+        link: https://www.linkedin.com/in/michaelszegedy
+    partners:
+      - key: cfa
+        name: Community Foundation for the Alleghenies
+        link: https://cfalleghenies.org/
+      - key: nellie_mae
+        name: Nellie Mae Education Foundation
+        link: http://www.nmefoundation.org/
+      - key: thrill_mill
+        name: Thrill Mill Incubator
+        link: http://www.thrillmill.com/
+      - key: raikes
+        name: The Raikes Foundation
+        link: http://www.raikesfoundation.org/
+      - key: artefact
+        name: Artefact Group
+        link: https://www.artefactgroup.com/
+      - key: lingo
+        name: Lingo Ventures
+        link: http://lingoventures.us/
+    press:
+      - key: edsurge
+        publication: EdSurge
+        date: February 4, 2016
+        snippet: RDC (a workshop with teachers tackling common challenges in K-12) was an experience that flew in real experts in technology, design thinking, media, and education. These experts hung around, asked questions, listened, and advised.
+        link: https://www.edsurge.com/news/2016-02-04-i-m-a-teacher-that-hates-technology-so-let-me-design-the-products
+      - key: hechinger
+        publication: The Hechinger Report
+        date: August 25, 2015
+        snippet: They are soliciting ideas and seeking applications from people who want to take part in educator-run meetings that are “an open dialogue between those who often make the decisions and those who have to live with those decisions.”
+        link: http://hechingerreport.org/ready-or-not-here-it-comes-remaking-teacher-training-with-an-innovative-twist/
+      - key: getting_smart
+        publication: Getting Smart
+        date: October 22, 2015
+        snippet: These promising models are still on the cutting edge, but we’re seeing them catch hold, especially among the educators who have been calling for transformation in PD.
+        link: http://gettingsmart.com/2015/10/transformative-professional-learning-getting-better-is-getting-easier/
+      - key: edweek
+        publication: Education Week
+        date: September 28, 2015
+        snippet: She is overseeing the foundation's Redesign Challenge, which uses a crowdsourcing model to tap into educators' and stakeholders' ideas for improving education.
+        link: http://www.edweek.org/ew/articles/2015/09/30/video-gaining-as-key-tool-in-teacher-learning.html
