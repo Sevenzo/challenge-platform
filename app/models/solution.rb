@@ -24,7 +24,7 @@ class Solution < ActiveRecord::Base
   acts_as_paranoid column: :destroyed_at
 
   def icon
-    'fa-puzzle-piece'
+    'fa-play'
   end
 
 end

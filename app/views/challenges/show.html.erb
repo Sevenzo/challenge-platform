@@ -69,7 +69,7 @@
                     <% end %>
                   <% end %>
 
-                  <%= content_tag(:i, '', class: 'fa fa-play', style: ('color: transparent' if stage[:number] == 4) ) %>
+                  <%= content_tag(:i, '', class: 'fa fa-angle-right', style: ('color: transparent' if index + 1 == Challenge::STAGES.length) ) %>
 
                   <div class='clearfix'></div>
                   <div class="caption">
@@ -89,7 +89,7 @@
               <% if @challenge.active_stage.present? %>
                 <div class='stage-cta'>
                   <% if @challenge.stage_number == stage[:number] %>
-                    <%= link_to 'Tell Your Story', challenge_active_stage_path(@challenge), class: 'btn btn-info btn-rounded text-small' unless stage[:number] == 4 %>
+                    <%= link_to 'Tell Your Story', challenge_active_stage_path(@challenge), class: 'btn btn-info btn-rounded text-small' unless index + 1 == Challenge::STAGES.length %>
                   <% elsif @challenge.stage_number > stage[:number] %>
                     <p class='text-small'><%= link_to 'Completed', eval("challenge_#{stage[:name]}_stage_path(@challenge, @challenge.#{stage[:name]}_stage)"), class: "completed text-default" %></p>
                   <% end %>
@@ -128,7 +128,7 @@
   </div>
 </div>
 
-<% partial = @challenge.featured_contributions.present? ? 'featured' : 'comment' %>
+<% partial = @challenge.featured_contributions.present? ? 'featured' : 'map' %>
 <%= render partial: "challenges/#{partial}", locals: { challenge: @challenge } %>
 
 <div id='challenge-panel'>

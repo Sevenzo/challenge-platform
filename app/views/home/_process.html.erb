@@ -5,7 +5,7 @@
         <i class="fa fa-stack-2x fa-circle"></i>
         <i class="fa fa-stack-1x fa-inverse <%= stage[:icon] %>"></i>
       </span>
-      <%= content_tag(:i, '', class: 'fa fa-play', style: ('color: transparent' if stage[:name] == 'solution') ) %>
+      <%= content_tag(:i, '', class: 'fa fa-angle-right', style: ('color: transparent' if index + 1 == Challenge::STAGES.length) ) %>
       <div class='clearfix'></div>
       <div class="caption">
         <h4><%= "#{index+1}. #{stage[:headline]}" %></h4>
