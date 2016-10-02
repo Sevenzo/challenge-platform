@@ -1,4 +1,5 @@
 $(function () {
-  $('[data-toggle="popover"]').popover();
+  $('[data-toggle=tooltip]').tooltip({container: 'body'});
+  $('[data-toggle="popover"]').popover({html: true});
   $('.radio-switch').bootstrapSwitch();
 });

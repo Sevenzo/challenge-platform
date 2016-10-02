@@ -16,12 +16,16 @@ Rails.application.routes.draw do
   root to: 'home#index'
   match 'preview',          to: 'home#preview',         via: :get
   match 'about',            to: 'home#about',           via: :get
+  match 'guidelines',       to: 'home#guidelines',      via: :get
+  match 'contact',          to: 'home#contact',         via: :get
   match 'privacy',          to: 'home#privacy',         via: :get
   match 'terms',            to: 'home#terms',           via: :get
 
   match 'states/search',    to: 'states#search',        via: :get
   match 'districts/search', to: 'districts#search',     via: :get
   match 'schools/search',   to: 'schools#search',       via: :get
+
+  resources :inquiries,       only: [:create]
 
   resources :challenges, only: [:show, :index] do
     resources :experience_stages, only: [:show] do
