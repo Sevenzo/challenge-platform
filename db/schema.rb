@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161002200024) do
+ActiveRecord::Schema.define(version: 20161003134825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,8 +37,9 @@ ActiveRecord::Schema.define(version: 20161002200024) do
     t.string   "cta"
     t.string   "banner"
     t.boolean  "featured"
-    t.integer  "comments_count", default: 0
+    t.integer  "comments_count",      default: 0
     t.string   "goal"
+    t.string   "comment_placeholder"
   end
 
   create_table "comments", force: :cascade do |t|

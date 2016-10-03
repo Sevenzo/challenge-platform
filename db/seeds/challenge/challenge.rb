@@ -11,6 +11,7 @@ challenge = Challenge.create!(
   outcome: "Sevenzo fosters a community of dedicated educators who, for this first challenge, will think hard to transform how video is used in professional learning. This is a real opportunity to change how we do things in K-12 education. In the Redesign Challenge, good ideas surface to the top no matter what your position is.",
   help: "There are four ways you can get involved over the course of the Challenge: <b>share</b> your story, <b>contribute</b> ideas for how to improve classroom video, <b>develop</b> those recipes, and <b>try out</b> popular solutions in your classroom. You'll eventually be able to participate in any stage. Ready? Scroll down to click \"Get Started\".",
   cta: 'What does belonging mean to you?',
+  comment_placeholder: 'Belonging to me is...',
   starts_at: Time.now,
   ends_at: 1.month.from_now,
   featured: true

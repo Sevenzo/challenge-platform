@@ -66,7 +66,7 @@ en:
       minute: "Minute"
       second: "Seconds"
   challenges:
-    featured:
+    '1':
       - key: danyelle
         name: Danyelle D.
         title: Parent
