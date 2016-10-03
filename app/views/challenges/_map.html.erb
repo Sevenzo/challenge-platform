@@ -1,49 +1,55 @@
 <div id='challenge-map' style="background-image:url('<%= asset_path("home/map_color.png") %>')">
   <div class='opacity-layer'>
     <div class='opacity-content'>
+
       <div class='container'>
+
         <div class='row'>
           <div class='col-md-10 col-md-offset-1'>
 
-          <% if current_page?(root_path) %>
-            <h2 class="section-title text-center">
-              <%= challenge.headline %>
-              <br>
-              <small class='text-white'>Educators from across the country are talking about our first challenge. Share your voice below!</small>
-            </h2>
-          <% else %>
-            <h2 class="section-title text-center">
-              Here's what people are saying about <%= challenge.goal %>.
-              <br>
-              <small class='text-white'>Share your voice below!</small>
-            </h2>
-          <% end %>
+          <% title = current_page?(root_path) ? challenge.headline : "Here's what people are saying about #{challenge.goal}." %>
+          <% subtitle = current_page?(root_path) ? "People across the country are talking about our first challenge. Share your voice below!" : "Share your voice below!" %>
 
-          <div class='row' style='margin-top: 2em'>
-            <div class='col-sm-8 col-sm-offset-2'>
-              <% @challenge.root_comments.each_with_index do |comment, index| %>
-                <% image = comment.user.avatar.profile.url %>
-                <% quote = comment.body %>
-                <% source = "#{comment.user.display_name}, #{comment.user.display_organization}" %>
-                <% content = "<p>\"#{quote}\"</p><div class='text-right'>– #{source}</div>" %>
+          <h2 class="section-title text-center">
+            <%= title %><br><small class='text-white'><%= subtitle %></small>
+          </h2>
 
-                <%= image_tag image, class: 'map-avatar', data: { toggle: 'popover', placement: 'right', html: true, content: content, animation: false }, id: "comment-#{index+1}" %>
-              <% end %>
+          <div class='row'>
+            <div class='col-sm-10 col-sm-offset-1'>
+              <div id='featured-comment'></div>
 
               <script>
                 $(function(){
-                  _.map(<%= [*1..@challenge.root_comments.count] %>, function(index){
-                    var html_element = "#comment-" + index;
-                    setTimeout(function(){
-                      $(html_element).show();
-                      $(html_element).popover('show');
-                    }, index*500);
+                  var comments = <%= t('challenges.featured').to_json.html_safe %>;
+                  var images = <%= t('challenges.featured').map{ |person| asset_path("home/#{person[:key]}.png") }.to_json.html_safe %>;
+
+                  var comment = _.template('<img src="<{= image }>" data-content="&quot;<{= content }>&quot;" data-placement="bottom" data-toggle="popover" class="comment-avatar">');
+
+                  var index = 0;
+                  function changeComment() {
+                    if(index > comments.length-1){index = 0;}
+
+                    $('#featured-comment').fadeOut(1000);
+                    $('.comment-avatar').hide(1000, function() {
+                      $('.comment-avatar').popover('hide');
+                    });
 
                     setTimeout(function(){
-                      $(html_element).hide();
-                      $(html_element).popover('hide');
-                    }, index*10000);
-                  });
+                      $('#featured-comment').css('text-align', _.sample(['left', 'right', 'center']));
+                      $('#featured-comment').css('top', _.sample(_.range(0, 125)));
+                      $('#featured-comment').html(comment({content: comments[index].content,image: images[index]}));
+
+                      $('#featured-comment').show();
+                      $('.comment-avatar').show(1000, function() {
+                        $('.comment-avatar').popover('show');
+                      });
+
+                      index++;
+                    }, 1000);
+                  }
+                  changeComment();
+
+                  setInterval(function () { changeComment() }, 10000);
                 });
               </script>
             </div>
@@ -52,8 +58,19 @@
           </div>
         </div>
       </div>
+
+      <div id='challenge-form-overlay'>
+        <div class='container'>
+          <div class='row'>
+            <div class='col-md-10 col-md-offset-1'>
+
+              <%= render partial: "challenges/comment", locals: { challenge: @challenge } %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
-
-<%= render partial: "challenges/comment", locals: { challenge: @challenge } %>
