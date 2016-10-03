@@ -185,21 +185,17 @@ class User < ActiveRecord::Base
     self.save!
   end
 
-  # <p class='select-help'>I am currently training to be a teacher in a whole class, resource, or one-on-one setting.</p>
-  # <p class='select-help'>I am currently working with a whole class in a classroom, in small groups in a resource room, or one-on-one inside or outside a regular classroom.</p>
-  # <p class='select-help'>I am currently a teacher and I spend a portion of my time supporting other adults in my school.</p>
-  # <p class='select-help'>I spend the majority of my time supporting the professional development of adults in my school.</p>
-  # <p class='select-help'>I am an administrator in a school (principal, assistant principal, dean, etc.).</p>
-
   ROLES = {
-    'Student' => 'Student',
     'Pre-Service Teacher' => 'Pre-Service Teacher',
     'Current Teacher' => 'Current Teacher',
     'Teacher Leader' => 'Teacher Leader',
     'Instructional Coach' => 'Instructional Coach',
-    'School Leader' => 'School Leader',
+    'School Administrator' => 'School Administrator',
+    'School Support Staff' => 'School Support Staff',
     'District or CMO Staff' => 'LEA Staff',
     'State Educational Agency Staff' => 'SEA Staff',
+    'Student' => 'Student',
+    'Parent' => 'Parent',
     'Other' => 'Other'
   }.freeze
 
