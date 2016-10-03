@@ -121,8 +121,9 @@
   background-size: cover
   background-position: 50% 0%
   text-align: center
+  position: relative
   .opacity-layer
-    height: 500px
+    height: 600px
     padding: 30px 0px
     background: rgba(104, 196 ,217, 0.1)
     color: white
@@ -130,11 +131,23 @@
       margin: 0.5em 0
     .section-description
       color: white
-  .map-avatar
-    @extend .img-circle
-    width: 4em
-    display: none
-    box-shadow: 0px 0px 10px 5px #ddd
+  #featured-comment
+    position: relative
+    .user-avatar
+      @extend .img-circle
+      width: 4em
+      display: none
+      box-shadow: 0px 0px 10px 5px #ddd
+    .comment-avatar
+      max-width: 25%
+      display: none
+  #challenge-form-overlay
+    padding: 10px 0px 30px
+    background: rgba(0,0,0,0.5)
+    color: white
+    position: absolute
+    bottom: 0
+    width: 100%
 
 #challenge-form
   padding: 30px 0px

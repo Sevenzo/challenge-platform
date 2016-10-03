@@ -65,32 +65,24 @@ en:
       hour:   "Hour"
       minute: "Minute"
       second: "Seconds"
-  home:
-    belonging:
+  challenges:
+    featured:
       - key: danyelle
-        name: Danyelle Durall
-        title: DC parent & educator
-        message: When my children and students have the same access & aspirations as their peers, whether black, white, or Hispanic.
+        name: Danyelle D.
+        title: Parent
+        content: When my children and students have the same access & aspirations as their peers, whether black, white, or Hispanic.
       - key: jonathan
-        name: Jonathan Rivers
-        title: DC school social worker
-        message: Absolutely essential for students to feel that they are able to grow and trust.
-      - key: mai
-        name: Mai S.
-        title: DC school social worker
-        message: People accepting me as a black muslim girl and acknowledging me as a regular human being.
+        name: Jonathan R.
+        title: Educator
+        content: Absolutely essential for students to feel that they are able to grow and trust.
       - key: jada
         name: Jada P.
-        title: DC student
-        message: A place where you are supposed to be and where you are needed
+        title: Student
+        content: A place where you are supposed to be and where you are needed
       - key: paige
-        name: Paige Hoffman
-        title: DC Public Schools staff
-        message: When the weight of the world and all the expectations people have of you just come off.
-      - key: william
-        name: William Gardener
-        title: DC uncle
-        message: Being a productive part of my community where we all work together to educate our children.
+        name: Paige H.
+        title: Educator
+        content: When the weight of the world and all the expectations people have of you just come off.
   about:
     team:
       - key: masa
