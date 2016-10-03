@@ -20,8 +20,8 @@
 
               <script>
                 $(function(){
-                  var comments = <%= t('challenges.featured').to_json.html_safe %>;
-                  var images = <%= t('challenges.featured').map{ |person| asset_path("home/#{person[:key]}.png") }.to_json.html_safe %>;
+                  var comments = <%= t("challenges.#{challenge.id}").to_json.html_safe %>;
+                  var images = <%= t("challenges.#{challenge.id}").map{ |person| asset_path("home/#{person[:key]}.png") }.to_json.html_safe %>;
 
                   var comment = _.template('<img src="<{= image }>" data-content="&quot;<{= content }>&quot;" data-placement="bottom" data-toggle="popover" class="comment-avatar">');
 
