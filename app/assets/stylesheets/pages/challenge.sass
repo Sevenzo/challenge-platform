@@ -119,10 +119,10 @@
 #challenge-map
   background-repeat: no-repeat
   background-size: cover
-  background-position: center
+  background-position: 50% 0%
   text-align: center
   .opacity-layer
-    height: 600px
+    height: 500px
     padding: 30px 0px
     background: rgba(104, 196 ,217, 0.1)
     color: white
@@ -130,6 +130,11 @@
       margin: 0.5em 0
     .section-description
       color: white
+  .map-avatar
+    @extend .img-circle
+    width: 4em
+    display: none
+    box-shadow: 0px 0px 10px 5px #ddd
 
 #challenge-form
   padding: 30px 0px
