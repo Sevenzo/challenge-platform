@@ -6,8 +6,11 @@
           <div class='col-md-10 col-md-offset-1'>
 
           <% if current_page?(root_path) %>
-            <h1 class="section-title text-center"><%= challenge.headline %></h1>
-            <p class='section-description'>Educators from across the country are talking about our first challenge. Share your voice below!</p>
+            <h2 class="section-title text-center">
+              <%= challenge.headline %>
+              <br>
+              <small class='text-white'>Educators from across the country are talking about our first challenge. Share your voice below!</small>
+            </h2>
           <% else %>
             <h2 class="section-title text-center">
               Here's what people are saying about <%= challenge.goal %>.
@@ -15,6 +18,36 @@
               <small class='text-white'>Share your voice below!</small>
             </h2>
           <% end %>
+
+          <div class='row' style='margin-top: 2em'>
+            <div class='col-sm-8 col-sm-offset-2'>
+              <% @challenge.root_comments.each_with_index do |comment, index| %>
+                <% image = comment.user.avatar.profile.url %>
+                <% quote = comment.body %>
+                <% source = "#{comment.user.display_name}, #{comment.user.display_organization}" %>
+                <% content = "<p>\"#{quote}\"</p><div class='text-right'>– #{source}</div>" %>
+
+                <%= image_tag image, class: 'map-avatar', data: { toggle: 'popover', placement: 'right', html: true, content: content, animation: false }, id: "comment-#{index+1}" %>
+              <% end %>
+
+              <script>
+                $(function(){
+                  _.map(<%= [*1..@challenge.root_comments.count] %>, function(index){
+                    var html_element = "#comment-" + index;
+                    setTimeout(function(){
+                      $(html_element).show();
+                      $(html_element).popover('show');
+                    }, index*500);
+
+                    setTimeout(function(){
+                      $(html_element).hide();
+                      $(html_element).popover('hide');
+                    }, index*10000);
+                  });
+                });
+              </script>
+            </div>
+          </div>
 
           </div>
         </div>
