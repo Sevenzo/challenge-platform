@@ -113,7 +113,7 @@ describe Challenge do
     it 'returns nothing for a bogus stage' do
       challenge.active_stage = 'bogus'
       result = challenge.featured_contributions
-      expect(result).to be_nil
+      expect(result).to eq []
     end
   end
 
