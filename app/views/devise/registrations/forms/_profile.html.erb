@@ -17,7 +17,7 @@
     <label for='user_organization' ng-show="role == 'Other'">Which organization do you work for?*</label>
     <div class="input-group">
       <span class="input-group-addon"><i class='fa fa-bank'></i></span>
-      <%= f.text_field :organization, required: true, class: 'form-control', 'ng-model' => 'organization' %>
+      <%= f.text_field :organization, required: true, class: 'form-control' %>
     </div>
   </div>
 
@@ -26,7 +26,7 @@
     <label for='user_title' ng-show="role == 'Current Teacher' || role == 'Teacher Leader' || role == 'Instructional Coach' || role == 'School Administrator' || role == 'School Support Staff'">Which grade(s) and subject area(s) do you support/teach?</label>
     <label for='user_title' ng-show="role == 'Student'">What grade are you in?</label>
     <label for='user_title' ng-show="role == 'Parent'">What grade is your student in?</label>
-    <%= f.text_field :title, class: 'form-control', 'ng-model' => 'title' %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
 
   <hr>
