@@ -28,7 +28,7 @@ module ChallengesHelper
       'margin: 0.25em 1.5em'
     else
       'margin: 0.25em 1.5em'
-    end    
+    end
   end
 
   def time_left(stage)

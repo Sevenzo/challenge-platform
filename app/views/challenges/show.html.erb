@@ -21,22 +21,34 @@
   </div>
 </div>
 
-<div id='challenge-description'>
-  <div class='container'>
-    <div class='row'>
-      <div class='col-md-10 col-md-offset-1'>
-
-        <%= @challenge.description.html_safe if @challenge.description.present? %>
-
-      </div>
-    </div>
-  </div>
-</div>
-
 <div id='challenge-details'>
   <div class='container'>
     <div class='row'>
       <div class='col-md-10 col-md-offset-1'>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <h3 class='text-bold'>The Challenge</h3>
+            <p><%= @challenge.background.html_safe %></p>
+          </div>
+          <div class="col-sm-4">
+            <h3 class='text-bold'>The Goal</h3>
+            <p><%= @challenge.outcome.html_safe %></p>
+          </div>
+          <div class="col-sm-4">
+            <h3 class='text-bold'>Your Role</h3>
+            <p><%= @challenge.help.html_safe %></p>
+          </div>
+        </div>
+
+        <div class='text-center center-block'>
+          <% btn_path = @challenge.active_stage.present? ? challenge_active_stage_path(@challenge) : '#challenge-map' %>
+          <%= link_to "Join the conversation", btn_path, class: 'btn btn-lg btn-longer btn-rounded btn-info', 'du-smooth-scroll' => 'true' %>
+        </div>
+
+        <hr class='short'>
+
+        <%= @challenge.description.html_safe if @challenge.description.present? %>
 
         <!-- Experience Process Bubbles: START -->
         <div id='challenge-process' class='row'>
@@ -99,29 +111,6 @@
           <% end %>
         </div>
         <!-- Experience Process Bubbles: END -->
-
-
-        <div class="row">
-          <div class="col-sm-4">
-            <h3 class='text-bold'>The Challenge</h3>
-            <p><%= @challenge.background.html_safe %></p>
-          </div>
-          <div class="col-sm-4">
-            <h3 class='text-bold'>The Goal</h3>
-            <p><%= @challenge.outcome.html_safe %></p>
-          </div>
-          <div class="col-sm-4">
-            <h3 class='text-bold'>Your Role</h3>
-            <p><%= @challenge.help.html_safe %></p>
-          </div>
-        </div>
-
-        <% if @challenge.active_stage.present? %>
-          <hr class='short'>
-          <div class='text-center center-block'>
-            <%= link_to "Get Started Now", challenge_active_stage_path(@challenge), class: 'btn btn-lg btn-longer btn-rounded btn-info' %>
-          </div>
-        <% end %>
 
       </div>
     </div>
