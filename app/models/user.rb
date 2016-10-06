@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   has_many :solutions
   has_many :comments
   has_many :suggestions
-  has_many :identities
+  has_many :identities, dependent: :destroy
   belongs_to :referrer, class_name: 'User', foreign_key: :referrer_id
   has_many :referrals,  class_name: 'User', foreign_key: :referrer_id
   store_accessor :notifications, :comment_replied, :comment_posted, :comment_followed
@@ -88,11 +88,7 @@ class User < ActiveRecord::Base
   end
 
   def profile_complete?
-    role.present? ||
-    organization.present? ||
-    title.present? ||
-    twitter.present? ||
-    habtm_organizations?
+    role.present?
   end
 
   def states_json
