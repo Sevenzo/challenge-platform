@@ -59,7 +59,7 @@
           <% end %>
 
           <% Challenge::STAGES.each_with_index do |stage, index| %>
-            <div class="col-xs-6 col-sm-3" style='margin-bottom:15px'>
+            <div class="col-sm-3" style='margin-bottom:15px'>
               <div class='stage-recap'>
                 <%= link_to eval("challenge_#{stage[:name]}_stage_path(@challenge, @challenge.#{stage[:name]}_stage)") do %>
                   <% if @challenge.stage_number == stage[:number] %>
@@ -81,7 +81,7 @@
                     <% end %>
                   <% end %>
 
-                  <%= content_tag(:i, '', class: 'fa fa-angle-right', style: ('color: transparent' if index + 1 == Challenge::STAGES.length) ) %>
+                  <%= content_tag(:i, '', class: 'fa fa-angle-right hidden-xs', style: ('color: transparent' if index + 1 == Challenge::STAGES.length) ) %>
 
                   <div class='clearfix'></div>
                   <div class="caption">

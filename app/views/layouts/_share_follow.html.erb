@@ -1,0 +1,8 @@
+<h2 class="section-title text-submit">Follow Us</h2>
+
+<div class='center-block text-center'>
+  <a href="<%= ENV.fetch('TWITTER_URL') %>" class="twitter-follow-button" data-show-count="true" data-size="large">Follow @<%= ENV.fetch('TWITTER_URL').split('/').last %></a>
+
+  <div class="fb-like" data-href="<%= ENV.fetch('FACEBOOK_URL') %>" data-width="300" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" style='top:10px'></div>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</div>
