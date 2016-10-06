@@ -46,6 +46,8 @@ class Comment < ActiveRecord::Base
   end
 
   def send_notifications
+    return unless commentable.respond_to?(:user)
+
     replied_notification_sent = false; posted_notification_sent = false
 
     ## PARENT COMMENT USER
