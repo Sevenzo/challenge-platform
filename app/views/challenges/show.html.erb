@@ -1,21 +1,25 @@
 <%= render partial: 'challenges/header', cache: true %>
 
 <div id='challenge-overview' style='background-image:url("<%= @challenge.banner.present? ? @challenge.banner.url.html_safe : asset_path('bg.png') %>")'>
-  <div class='container'>
-    <div class='row'>
-      <div class='col-md-10 col-md-offset-1'>
-
+  <div class='opacity-layer'>
+    <div class='opacity-content'>
+      <div class='container'>
         <div class='row'>
-          <div class="col-sm-7">
-            <h1 class='challenge-headline'><%= @challenge.headline.html_safe %></h1>
+          <div class='col-md-10 col-md-offset-1'>
 
-            <%= link_to "<i class='fa icon-twitter' style='font-size:1.5em'></i> ##{@challenge.hashtag.html_safe}".html_safe, "https://twitter.com/hashtag/#{@challenge.hashtag.html_safe}", target: '_blank', class: 'text-white text-lighter text-large' %>
-          </div>
-          <div class="col-sm-5">
-            <%= video_embed(@challenge.video_url) %>
+            <div class='row'>
+              <div class="col-sm-7">
+                <h1 class='challenge-headline'><%= @challenge.headline.html_safe %></h1>
+
+                <%= link_to "<i class='fa icon-twitter' style='font-size:1.5em'></i> ##{@challenge.hashtag.html_safe}".html_safe, "https://twitter.com/hashtag/#{@challenge.hashtag.html_safe}", target: '_blank', class: 'text-white text-lighter text-large' %>
+              </div>
+              <div class="col-sm-5">
+                <%= video_embed(@challenge.video_url) %>
+              </div>
+            </div>
+
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -133,9 +137,9 @@
           </div>
         </div>
 
-        <% if @challenge.panelists.count > 4 %>
+        <% @challenge.panelists.each_slice(4) do |panelists| %>
           <div class='row row-panelists' style='margin-bottom:2em'>
-            <% @challenge.panelists.first(4).each do |panelist| %>
+            <% panelists.each do |panelist| %>
               <div class="col-xs-6 col-sm-3">
                 <%= link_to image_tag(panelist.avatar.profile.url, class: 'img-circle', style: 'width:50%'), '#', data: { toggle: 'modal', target: "#panelist-#{panelist.id}" } %>
                 <div class="user-caption">
@@ -144,52 +148,24 @@
                   <p class='user-title'><%= panelist.organization %></p>
                 </div>
               </div>
-            <% end %>
-          </div>
 
-          <div class='row row-panelists'>
-            <% (@challenge.panelists - @challenge.panelists.first(4)).each do |panelist| %>
-              <div class="col-xs-6 col-sm-3">
-                <%= link_to image_tag(panelist.avatar.profile.url, class: 'img-circle', style: 'width:50%'), '#', data: { toggle: 'modal', target: "#panelist-#{panelist.id}" } %>
-                <div class="user-caption">
-                  <p class='user-name'><%= link_to panelist.name, "#", data: { toggle: 'modal', target: "#panelist-#{panelist.id}" }, class: 'text-default text-bolder' %></p>
-                  <p class='user-title'><%= panelist.title %></p>
-                  <p class='user-title'><%= panelist.organization %></p>
+              <div class="modal fade" id="<%= "panelist-#{panelist.id}" %>">
+                <div class="modal-dialog modal-md">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <p class='panelist-title'>About <%= panelist.name %></p>
+                    </div>
+                    <div class='modal-body'>
+                      <p class='panelist-bio'><%= panelist.bio.present? ? panelist.bio.html_safe : "Not yet provided." %></p>
+                    </div>
+                    <div class='modal-footer'>
+                      <div class='text-center'><%= link_to "View Profile", user_path(panelist) %></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             <% end %>
-          </div>
-        <% else %>
-          <div class='row row-panelists'>
-            <% @challenge.panelists.each do |panelist| %>
-              <div class="col-xs-6 col-sm-3">
-                <%= link_to image_tag(panelist.avatar.profile.url, class: 'img-circle', style: 'width:50%'), '#', data: { toggle: 'modal', target: "#panelist-#{panelist.id}" } %>
-                <div class="user-caption">
-                  <p class='user-name'><%= link_to panelist.name, "#", data: { toggle: 'modal', target: "#panelist-#{panelist.id}" }, class: 'text-default text-bolder' %></p>
-                  <p class='user-title'><%= panelist.title %></p>
-                  <p class='user-title'><%= panelist.organization %></p>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-
-        <% @challenge.panelists.each do |panelist| %>
-          <div class="modal fade" id="<%= "panelist-#{panelist.id}" %>">
-            <div class="modal-dialog modal-md">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <p class='panelist-title'>About <%= panelist.name %></p>
-                </div>
-                <div class='modal-body'>
-                  <p class='panelist-bio'><%= panelist.bio.present? ? panelist.bio.html_safe : "Not yet provided." %></p>
-                </div>
-                <div class='modal-footer'>
-                  <div class='text-center'><%= link_to "View Profile", user_path(panelist) %></div>
-                </div>
-              </div>
-            </div>
           </div>
         <% end %>
 
