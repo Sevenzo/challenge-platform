@@ -32,6 +32,8 @@ class User::ParameterSanitizer < Devise::ParameterSanitizer
       :remote_avatar_url,
       :remove_avatar,
       :avatar_cache,
+      :process_avatar_upload,
+      :avatar_processing,
       :role,
       :title,
       :organization,
