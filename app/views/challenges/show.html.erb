@@ -140,7 +140,7 @@
         <% @challenge.panelists.each_slice(4) do |panelists| %>
           <div class='row row-panelists'>
             <% panelists.each do |panelist| %>
-              <div class="col-sm-3" style='margin-bottom:1em'>
+              <div class="col-sm-3" style='margin-bottom:2em'>
                 <%= link_to image_tag(panelist.avatar.profile.url, class: 'img-circle', style: 'max-width:100px'), '#', data: { toggle: 'modal', target: "#panelist-#{panelist.id}" } %>
                 <div class="user-caption">
                   <p class='user-name'><%= link_to panelist.name, "#", data: { toggle: 'modal', target: "#panelist-#{panelist.id}" }, class: 'text-default text-bolder' %></p>
