@@ -15,7 +15,7 @@
               <% if user_signed_in? %>
                 <% btn_path = challenge_active_stage_path(@challenge); btn_text = "Return to Challenge" %>
               <% else %>
-                <% btn_path = challenge_path(@challenge); btn_text = "Our First Challenge" %>
+                <% btn_path = challenge_path(@challenge); btn_text = "Join Us" %>
               <% end %>
             <% else %>
               <% btn_path = about_path; btn_text = "Learn More" %>
@@ -64,6 +64,52 @@
 
         <%= render partial: 'home/process' %>
 
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id='landing-community' style="background-image:url('<%= asset_path("home/bg.jpg") %>')">
+  <div class='opacity-layer'>
+    <div class='opacity-content'>
+      <div class='container'>
+        <div class='row'>
+          <div class='col-md-10 col-md-offset-1'>
+
+            <h2 class="section-title">Our Community</h2>
+            <p class='section-description' style='margin-bottom: 2em'>It takes a village to tackle the most challenging barriers to young people’s ability to learn and thrive. As such, we welcome all educators including classroom teachers, teacher leaders, coaches, administrators, support staff and out of school mentors into this online community.</p>
+
+            <div class='row'>
+              <% t('home.testimonials').each do |testimonial| %>
+                <div class='col-sm-4'>
+                  <div class='well well-testimonial'>
+                    <p class='text-lighter text-center text-green'>
+                      <i class='fa fa-quote-left fa-2x'></i>
+                      &nbsp;
+                      <%= testimonial[:quote] %>
+                    </p>
+                  </div>
+
+                  <div class="media text-center">
+                    <%= image_tag "home/#{testimonial[:key]}.png", class: 'img-rounded half-margin-bottom' %>
+                    <div class="media-body">
+                      <p>
+                        <strong><%= testimonial[:name] %></strong><br>
+                        <% testimonial[:titles].each do |title| %>
+                          <%= title %><br>
+                        <% end %>
+                        <%= testimonial[:organization] %><br>
+                        <abbr><i class='fa fa-twitter-square fa-1-25x'></i></abbr>
+                        <%= link_to "@#{testimonial[:twitter]}", "https://twitter.com/intent/user?screen_name=#{testimonial[:twitter]}", target: '_blank', style: 'link-white' %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>

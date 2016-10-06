@@ -83,6 +83,32 @@ en:
         name: Paige H.
         title: Educator
         content: When the weight of the world and all the expectations people have of you just come off.
+  home:
+    testimonials:
+      - key: ashley
+        quote: Teachers love to share ideas, especially when those ideas better the lives and learning of our students. My experience is now radically changing the culture of our school and all of our students in it.
+        name: Ashley Lamb­-Sinclair
+        titles:
+          - High School English Teacher
+          - 2016 Kentucky Teacher of the Year
+        organization: Oldham County Schools, KY
+        twitter: AshleyLambS
+      - key: chris
+        quote: The recipes are important. Teachers do this all the time with differentiation. Teachers need to make things relevant for their setting but shouldn't be reinventing the wheel each time.
+        name: Chris Bruggeman
+        titles:
+          - Technology Coordinator
+          - Teacher Development
+        organization: Academy for Urban School Leadership, IL
+        twitter: ManicTeacher
+      - key: jessica
+        quote: What prompted me to apply was that it was led by educators for educators. I especially enjoyed connecting with other educators who weren't necessarily in my network.
+        name: Jessica Joy Cuthbertson
+        titles:
+          - Teacher on Special Assignment
+          - Teacher Leadership
+        organization: Aurora Public Schools, CO
+        twitter: JJCuthy
   about:
     team:
       - key: masa
