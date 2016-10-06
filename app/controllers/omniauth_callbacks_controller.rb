@@ -10,7 +10,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
             auth_type: 'rerequest',
             scope: 'email,public_profile')")
       else
-        email = auth.info.email.blank?
+        email = auth.info.email
       end
 
       # Find or create the identity with the given provider and uid.
@@ -39,6 +39,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
         if @identity.user.present?
           # The identity we found had a user associated with it, so we log them in
+          flash[:notice] = "Sccessfully logged in with #{provider.capitalize}!"
           sign_in_and_redirect @identity.user, event: :authentication
         elsif @user
           # A user with the provider's email address already exists.
@@ -47,6 +48,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
           @identity.save
           set_twitter_username(@user, auth)
 
+          flash[:notice] = "Successfully linked your #{provider.capitalize} account!"
           sign_in_and_redirect @user, event: :authentication
         else
           # No user associated with this identity; treat this like a new user sign up.
