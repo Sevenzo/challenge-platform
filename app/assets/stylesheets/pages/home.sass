@@ -10,55 +10,12 @@
     .embed-responsive
       margin-top: 30px
 
-#landing-challenge
-  padding: 30px 0px
-  background-color: white
-  .panel-cp
-    margin-top: 1.5em
-    +border-radius(20px)
-    border-color: $solution
-    .panel-heading
-      +border-radius(18px)
-      border-bottom-right-radius: 0px
-      border-bottom-left-radius: 0px
-      background-color: $solution
-      border-color: $solution
-      color: white
-  .well-challenge
-    background-repeat: no-repeat
-    background-size: cover
-    background-position: 0% 0%
-    color: white
-    position: relative
-    min-height: 420px
-    .well-content
-      margin: 5em 2em 0em
-      .well-title
-        margin-bottom: 20px
-      .well-subtitle
-        @extend .text-large
-        margin-bottom: 40px
-  h2
-    .link-span
-      padding-left: 20px
-      a
-        color: $link-color
-
-#landing-featured
-  padding: 30px 0px
-  background-color: $lightGrayBG
-
-#landing-report
-  padding: 30px 0px
-  background-color: $lightGrayBG
-
 #landing-what
   padding: 30px 0px
-  background-color: $lightGrayBG
+  background-color: white
 
 #landing-stages
   padding: 30px 0px
-  background-color: white
 
 #landing-suggest
   padding: 30px 0px
@@ -68,14 +25,37 @@
       color: $gray
       @extend .text-lighter
 
+#landing-community
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: 50% 25%
+  .opacity-layer
+    background-color: rgba(47,52,64,0.35)
+    .opacity-content
+      @extend .text-white
+      padding: 30px 0
+      .section-description
+        @extend .text-white
+      .well-testimonial
+        @extend .well-white
+        min-height: 195px
+      .media-body
+        a
+          @extend .text-white
+          @extend .text-italic
+
 #landing-invite
   padding: 30px 0px
   background-color: $lightGrayBG
 
+.row-work
+  @extend .center-block, .text-center
+  padding: 10px 0px
+
 .row-process
   @extend .center-block, .text-center
   padding-top: 30px
-  .fa-play
+  .fa-angle-right
     float: right
     top: 1em
     position: relative
@@ -87,18 +67,9 @@
     .fa-stack-2x
       font-size: 9em !important
     .fa-stack-1x
-      &.icon-experience
-        font-size: 5em !important
-        top: 0.45em
-      &.icon-idea
-        font-size: 6.5em !important
-        top: 0.175em
-      &.icon-recipe
-        font-size: 6.5em !important
-        top: 0.175em
-      &.icon-story
-        font-size: 6.5em !important
-        top: 0.175em
+      &.fa-comment, &.fa-lightbulb-o, &.fa-flask, &.fa-play-circle-o
+        @extend .fa-4x
+        top: 0.85em
   .caption
     @extend .text-center
     @extend .text-black

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923044203) do
+ActiveRecord::Schema.define(version: 20161006154157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,9 @@ ActiveRecord::Schema.define(version: 20160923044203) do
     t.string   "cta"
     t.string   "banner"
     t.boolean  "featured"
+    t.integer  "comments_count",      default: 0
+    t.string   "goal"
+    t.string   "comment_placeholder"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -292,6 +295,15 @@ ActiveRecord::Schema.define(version: 20160923044203) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
+  create_table "inquiries", force: :cascade do |t|
+    t.string   "email"
+    t.string   "category"
+    t.text     "subject"
+    t.text     "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "mailkick_opt_outs", force: :cascade do |t|
     t.string   "email"
@@ -632,12 +644,9 @@ ActiveRecord::Schema.define(version: 20160923044203) do
     t.string   "role"
     t.string   "organization"
     t.boolean  "admin",                  default: false
-    t.string   "ga_dimension"
     t.string   "title"
-    t.boolean  "video_access",           default: false
     t.string   "twitter"
     t.string   "avatar"
-    t.boolean  "future_participant",     default: true
     t.string   "color"
     t.text     "bio"
     t.integer  "referrer_id"
@@ -648,6 +657,7 @@ ActiveRecord::Schema.define(version: 20160923044203) do
     t.string   "uid"
     t.string   "facebook"
     t.string   "location"
+    t.boolean  "avatar_processing",      default: false,                                                                             null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

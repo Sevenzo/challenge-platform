@@ -1,5 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe Identity, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Identity do
+
+  it { is_expected.to belong_to(:user) }
+
+  it { is_expected.to validate_presence_of(:uid) }
+  it { is_expected.to validate_uniqueness_of(:uid).scoped_to(:provider) }
+  it { is_expected.to validate_presence_of(:provider) }
 end

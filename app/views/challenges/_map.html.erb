@@ -1,0 +1,75 @@
+<div id='challenge-map' style="background-image:url('<%= asset_path("home/map_color.png") %>')">
+  <div class='opacity-layer'>
+    <div class='opacity-content'>
+
+      <div class='container'>
+
+        <div class='row'>
+          <div class='col-md-10 col-md-offset-1'>
+
+          <h2 class="section-title text-center">
+            Here's what people are saying about <%= challenge.goal %>.
+            <br>
+            <small class='text-white'>Share your voice below!</small>
+          </h2>
+
+          <div class='row'>
+            <div class='col-sm-10 col-sm-offset-1'>
+              <div id='featured-comment'></div>
+
+              <script>
+                $(function(){
+                  var comments = <%= t("challenges.#{challenge.id}").to_json.html_safe %>;
+                  var images = <%= t("challenges.#{challenge.id}").map{ |person| asset_path("home/#{person[:key]}.png") }.to_json.html_safe %>;
+
+                  var comment = _.template('<img src="<{= image }>" data-content="&quot;<{= content }>&quot;" data-placement="bottom" data-toggle="popover" class="comment-avatar">');
+
+                  var index = 0;
+                  function changeComment() {
+                    if(index > comments.length-1){index = 0;}
+
+                    $('#featured-comment').fadeOut(1000);
+                    $('.comment-avatar').hide(1000, function() {
+                      $('.comment-avatar').popover('hide');
+                    });
+
+                    setTimeout(function(){
+                      $('#featured-comment').css('text-align', _.sample(['left', 'right', 'center']));
+                      $('#featured-comment').css('top', _.sample(_.range(0, 125)));
+                      $('#featured-comment').html(comment({content: comments[index].content,image: images[index]}));
+
+                      $('#featured-comment').show();
+                      $('.comment-avatar').show(1000, function() {
+                        $('.comment-avatar').popover('show');
+                      });
+
+                      index++;
+                    }, 1000);
+                  }
+                  changeComment();
+
+                  setInterval(function () { changeComment() }, 10000);
+                });
+              </script>
+            </div>
+          </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div id='challenge-form-overlay'>
+        <div class='container'>
+          <div class='row'>
+            <div class='col-md-10 col-md-offset-1'>
+
+              <%= render partial: "challenges/comment", locals: { challenge: @challenge } %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

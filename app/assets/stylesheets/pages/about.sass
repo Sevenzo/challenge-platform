@@ -1,7 +1,90 @@
-#about
+#about-splash
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: 50% 20%
+  color: white
+  text-align: center
+  hr
+    @extend hr.short
+    border-top: 1px solid white
+    width: 50%
+    margin: 20px auto
+  .opacity-layer
+    padding: 50px 0px
+    background: rgba(0, 179, 216, 0.8)
+  .splash-title
+    font-size: 3.5em
+    line-height: 1.2em
+  .splash-subtitle
+    font-size: 1.7em
+  .splash-learn
+    margin: 20px auto 0px
+    &:hover
+      cursor: pointer
+  .splash-donor-cta
+    h2
+      margin-top: 0px
+    .btn
+      margin-bottom: 10px
+  .splash-nonprofit-cta
+    a
+      color: white
+      text-decoration: underline
+    p
+      margin-bottom: 0px
+
+#about-nav
+  color: $link-color
+  @extend .text-center
+  z-index: 1000
   background-color: white
-  padding: 40px 0px
-  .section-list
-    margin-bottom: 20px
-    li
-      font-size: 1.2em
+  width: 100%
+  margin-top: -15px
+  box-shadow: 0px 5px 10px rgba(2, 1, 1, 0.27)
+  &.affix
+    top: 0
+    margin-top: 0px
+  .about-nav-links
+    a
+      color: $link-color
+      &:hover,&:active
+        background-color: $link-color
+        color: white
+        text-decoration: none
+    .about-nav-link
+      padding: 10px 0
+      &:hover,&.active
+        background-color: $link-color
+        color: white
+        cursor: pointer
+
+#about-story
+  padding: 30px 20px
+
+#about-works
+  padding: 30px 20px
+  background-color: white
+
+#about-team
+  padding: 30px 0
+  background-color: white
+  .media-team
+    .media-left
+      img
+        width: 80px
+        @media (max-width: 480px)
+          width: 60px
+    .media-heading
+      a
+        color: #333
+        .fa
+          font-size: 1.2em
+  .row-advisors
+    margin-bottom: 30px
+
+#about-press
+  padding: 30px 0
+  background-color: $lightGrayBG
+
+#about-cta
+  padding: 30px 0

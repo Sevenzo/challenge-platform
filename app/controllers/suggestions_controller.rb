@@ -1,7 +1,11 @@
 class SuggestionsController < ApplicationController
-  before_action :authenticate_user!,  except: [:new, :create, :show, :like]
+  before_action :authenticate_user!,  except: [:index, :new, :create, :show, :like]
   before_action :load_suggestion,     only:   [:show, :edit, :update, :destroy, :like, :unlike]
   before_action :authorize_user!,     only:   [:edit, :update, :destroy]
+
+  def index
+    @suggestions = Suggestion.all
+  end
 
   def new
     @suggestion = Suggestion.new

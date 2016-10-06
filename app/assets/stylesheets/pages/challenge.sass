@@ -21,27 +21,15 @@
     .badge
       @extend .text-default, .text-small
       +border-radius(2em)
+      line-height: 2em
       background-color: white
       padding: 5px 15px
-      vertical-align: bottom
       .fa
-        min-height: 1.1em
-        top: 0em
         &.fa-check
           @extend .text-default
-          font-size: 1.1em
-          top: -0.1em
-      .fa-stack
-        height: 1.7em
-        width: 1.8em
-        vertical-align: bottom
-        .fa-stack-2x
-          font-size: 1.8em
       .headline
         @extend .hidden-xs
         @extend .text-bolder
-        top: -0.3em
-        position: relative
       &.active
         // background-color: #E9E9E9 !important
       &.selected
@@ -66,14 +54,10 @@
     .badge-solution
       &.selected
         background-color: $solution !important
-    .fa-play
+    .fa-angle-right
       color: #CECFD0
-      position: relative
-      top: -0.4em
-      margin: 0em 1em
 
 #challenge-overview
-  padding: 4.5em 0em 1.5em
   background-repeat: no-repeat
   background-size: cover
   background-position: 50% 0%
@@ -82,6 +66,10 @@
     margin-bottom: 20px
   .embed-responsive
     margin-top: 10px
+  .opacity-layer
+    background-color: rgba(47, 52, 64, 0.35)
+    .opacity-content
+      padding: 4.5em 0em 1.5em
 
 #challenge-description
   padding: 20px 0px 0px
@@ -90,19 +78,10 @@
 #challenge-details
   padding: 15px 0px 30px
   background-color: $lightGrayBG
-  .section-title
-    color: $text-color
-    font-weight: bold
-    font-size: 1.9em
-    line-height: 1.4em
-  .section-description
-    font-size: 1.5em
-    margin-bottom: 30px
   h3
     font-size: 2em
   #challenge-process
     @extend .row-process
-    margin-bottom: 45px
     .col-xs-6,.col-sm-3
       min-height: 300px
       .stage-recap
@@ -131,6 +110,50 @@
         .btn
           @extend .text-small
 
+#challenge-map
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: 50% 0%
+  text-align: center
+  position: relative
+  .opacity-layer
+    height: 600px
+    padding: 30px 0px
+    background: rgba(104, 196 ,217, 0.1)
+    color: white
+    .section-title
+      margin: 0.5em 0
+    .section-description
+      color: white
+  #featured-comment
+    position: relative
+    .user-avatar
+      @extend .img-circle
+      width: 4em
+      display: none
+      box-shadow: 0px 0px 10px 5px #ddd
+    .comment-avatar
+      max-width: 25%
+      display: none
+  #challenge-form-overlay
+    padding: 10px 0px 30px
+    background: rgba(0,0,0,0.5)
+    color: white
+    position: absolute
+    bottom: 0
+    width: 100%
+
+#challenge-form
+  padding: 30px 0px
+  background-color: black
+  color: white
+  .section-title
+    margin: 0 auto
+
+#challenge-featured
+  padding: 30px 0px
+  background-color: $lightGrayBG
+
 #challenge-panel
   padding: 30px 0px
   background-color: white
@@ -142,10 +165,6 @@
     @extend .text-center
     @extend .text-large
     margin: 0px
-
-#challenge-featured
-  padding: 30px 0px
-  background-color: $lightGrayBG
 
 #challenge-invite
   padding: 30px 0px
