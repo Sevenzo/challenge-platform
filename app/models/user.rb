@@ -184,7 +184,8 @@ class User < ActiveRecord::Base
   end
 
   def facebook
-    identities.where(provider: 'facebook').last.uid
+    facebook_identity = identities.where(provider: 'facebook').last
+    facebook_identity ? facebook_identity.uid : nil
   end
 
   ROLES = {
