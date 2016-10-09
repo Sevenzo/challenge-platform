@@ -15,9 +15,11 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    if model.twitter.present?
+    providers = model.identities.map(&:provider)
+
+    if providers.include?('twitter')
       "http://avatars.io/twitter/#{model.twitter}/large"
-    elsif model.facebook.present?
+    elsif providers.include?('facebook')
       "http://avatars.io/facebook/#{model.facebook}/large"
     else
       "http://avatars.io/gravatar/#{model.email}/large"
