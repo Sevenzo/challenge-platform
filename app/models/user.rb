@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: [:facebook]
+         :omniauthable, omniauth_providers: [:twitter, :facebook]
 
   ## Rails Admin
   rails_admin do
@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   has_many :solutions
   has_many :comments
   has_many :suggestions
-  has_many :identities
+  has_many :identities, dependent: :destroy
   belongs_to :referrer, class_name: 'User', foreign_key: :referrer_id
   has_many :referrals,  class_name: 'User', foreign_key: :referrer_id
   store_accessor :notifications, :comment_replied, :comment_posted, :comment_followed
@@ -59,7 +59,6 @@ class User < ActiveRecord::Base
   validates :title,         length: { maximum: 255 }, allow_blank: true
   validates :twitter,       length: { maximum: 16 },  allow_blank: true
   validates :twitter,       presence: true, if: "avatar_option == 'twitter'"
-  validates :uid,           uniqueness: { scope: :provider }, if: "provider.present?"
   validate  :avatar_file_size
 
   def name
@@ -89,11 +88,7 @@ class User < ActiveRecord::Base
   end
 
   def profile_complete?
-    role.present? ||
-    organization.present? ||
-    title.present? ||
-    twitter.present? ||
-    habtm_organizations?
+    role.present?
   end
 
   def states_json
@@ -156,33 +151,37 @@ class User < ActiveRecord::Base
   rescue
   end
 
-  def facebook
-    uid
-  end
-
   # Create a new User with the information that is available after OmniAuth authentication
   def self.create_from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.first_name = auth.info.first_name
-      user.last_name = auth.info.last_name
-      user.email = auth.info.email.downcase
-      user.location = auth.info.location
-      user.password = Devise.friendly_token[0, 20]
-      user.avatar_option = auth.provider
-      user.remote_avatar_url = auth.info.image
+    # The auth object differs by provider
+    if auth.provider == 'facebook'
+      first_name = auth.info.first_name
+      last_name = auth.info.last_name
+    elsif auth.provider == 'twitter'
+      first_name = auth.info.name.split(" ").first
+      last_name = auth.info.name.split(" ").last
+    else
+      first_name = ""
+      last_name = ""
     end
+
+    user = User.new(
+      first_name: first_name,
+      last_name: last_name,
+      email: auth.info.email.downcase,
+      password: Devise.friendly_token[0, 20],
+      avatar_option: auth.provider,
+      remote_avatar_url: auth.info.image,
+      twitter: auth.provider == 'twitter' ? auth.info.nickname : nil,
+      location: auth.info.location
+    )
+    user.save!
+    user
   end
 
-  # Update an existing User usting the information that is available after OmniAuth authentication
-  def update_from_omniauth(auth)
-    self.tap do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.location = auth.info.location unless user.location.present?
-      user.avatar_option = auth.provider
-      user.remote_avatar_url = auth.info.image
-    end
-    self.save!
+  def facebook
+    facebook_identity = identities.where(provider: 'facebook').last
+    facebook_identity ? facebook_identity.uid : nil
   end
 
   ROLES = {
