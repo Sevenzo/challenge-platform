@@ -3,21 +3,22 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # Create callback methods for each provider
   [:twitter, :facebook].each do |provider|
     define_method provider do
+
       auth = request.env['omniauth.auth']
 
       if auth.info.email.blank?
         return redirect_to send("user_#{provider}_omniauth_authorize(auth_type: 'rerequest', scope: 'email,public_profile')")
       else
-        email = auth.info.email
+        email = auth.info.email.downcase
       end
 
       # Find or create the identity with the given provider and uid.
-      identity = Identity.find_or_create_by(provider: auth.provider, uid: auth.uid)
-      user = User.where(email: email).first
+      identity = Identity.find_or_create_from_omniauth(auth)
+      user = User.find_by(email: email)
 
       if identity.user.present?
         # The identity we found had a user associated with it, so we log them in
-        flash[:notice] = "Sccessfully logged in with #{provider.capitalize}!"
+        flash[:notice] = "Successfully logged in with #{provider.capitalize}!"
         sign_in_and_redirect identity.user, event: :authentication
       elsif user
         # A user with the provider's email address already exists.
@@ -28,11 +29,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         sign_in_and_redirect user, event: :authentication
       else
         # No user associated with this identity; treat this like a new user sign up.
-        user = User.create_from_omniauth(auth)
+        user = User.send("create_from_#{provider}", auth)
         identity.update!(user: user)
 
         sign_in_and_redirect user
       end
+
     end # define_method provider
   end # [:twitter, :facebook]
 

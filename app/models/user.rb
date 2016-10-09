@@ -43,10 +43,7 @@ class User < ActiveRecord::Base
     user.display_name = "#{user.first_name} #{user.last_name[0]}"
   end
 
-  before_save do |user|
-    user.email = user.email.downcase
-    user.twitter = user.twitter.sub('@','') if user.twitter.present?
-  end
+  before_save { |user| user.email = user.email.downcase }
 
   MAX_AVATAR_SIZE = 3
 
@@ -57,8 +54,6 @@ class User < ActiveRecord::Base
   validates :role,          presence: true, length: { maximum: 255 }, on: :update
   validates :organization,  presence: true, length: { maximum: 255 }, on: :update
   validates :title,         length: { maximum: 255 }, allow_blank: true
-  validates :twitter,       length: { maximum: 16 },  allow_blank: true
-  validates :twitter,       presence: true, if: "avatar_option == 'twitter'"
   validate  :avatar_file_size
 
   def name
@@ -96,24 +91,52 @@ class User < ActiveRecord::Base
     solutions.exists?(['published_at IS NULL'])
   end
 
+  def self.create_from_twitter(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.first_name = auth.info.name.split(' ').first
+      user.last_name = auth.info.name.split(' ').last
+      user.email = auth.info.email.downcase
+      user.location = auth.info.location
+      user.password = Devise.friendly_token[0, 20]
+      user.avatar_option = auth.provider
+      user.remote_avatar_url = auth.info.image.sub('_normal', '_400x400')
+    end
+  end
+
+  def twitter
+    identities.find_by(provider: 'twitter')
+  end
+
   def set_avatar_from_twitter
     best_avatar_url = nil
 
     if twitter.present? && avatar_option == 'twitter'
       begin
-        twitter_rest_client = Twitter::REST::Client.new(TWITTER_CONFIG)
-        twitter_user_object = twitter_rest_client.user(twitter)
-        best_avatar_url = twitter_user_object.profile_image_url_https.to_s.sub('_normal', '_400x400')
-      rescue Twitter::Error::NotFound
-        twitter = nil
+        best_avatar_url = twitter.data.info.image.sub('_normal', '_400x400')
       rescue
-        best_avatar_url = "https://avatars.io/twitter/#{twitter}/large"
+        best_avatar_url = "https://avatars.io/twitter/#{twitter.data.info.nickname}/large"
       end
     end
 
     self.remote_avatar_url = best_avatar_url
     self.save!
   rescue
+  end
+
+  def self.create_from_facebook(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
+      user.email = auth.info.email.downcase
+      user.location = auth.info.location
+      user.password = Devise.friendly_token[0, 20]
+      user.avatar_option = auth.provider
+      user.remote_avatar_url = auth.info.image
+    end
+  end
+
+  def facebook
+    identities.find_by(provider: 'facebook')
   end
 
   def set_avatar_from_facebook
@@ -121,48 +144,15 @@ class User < ActiveRecord::Base
 
     if facebook.present? && avatar_option == 'facebook'
       begin
-        best_avatar_url = "https://graph.facebook.com/v2.6/#{facebook}/picture?width=400&height=400"
+        best_avatar_url = "https://graph.facebook.com/v2.6/#{facebook.uid}/picture?width=400&height=400"
       rescue
-        best_avatar_url = "https://avatars.io/facebook/#{facebook}/large"
+        best_avatar_url = "https://avatars.io/facebook/#{facebook.uid}/large"
       end
     end
 
     self.remote_avatar_url = best_avatar_url
     self.save!
   rescue
-  end
-
-  def facebook
-    facebook_identity = identities.where(provider: 'facebook').last
-    facebook_identity ? facebook_identity.uid : nil
-  end
-
-  # Create a new User with the information that is available after OmniAuth authentication
-  def self.create_from_omniauth(auth)
-    # The auth object differs by provider
-    if auth.provider == 'facebook'
-      first_name = auth.info.first_name
-      last_name = auth.info.last_name
-    elsif auth.provider == 'twitter'
-      first_name = auth.info.name.split(" ").first
-      last_name = auth.info.name.split(" ").last
-    else
-      first_name = ""
-      last_name = ""
-      end
-
-    user = User.new(
-      first_name: first_name,
-      last_name: last_name,
-      email: auth.info.email.downcase,
-      password: Devise.friendly_token[0, 20],
-      avatar_option: auth.provider,
-      remote_avatar_url: auth.info.image,
-      twitter: auth.provider == 'twitter' ? auth.info.nickname : nil,
-      location: auth.info.location
-    )
-    user.save!
-    user
   end
 
   ROLES = {

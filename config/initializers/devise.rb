@@ -246,11 +246,7 @@ Devise.setup do |config|
     :twitter,
     ENV.fetch('TWITTER_CONSUMER_KEY'),
     ENV.fetch('TWITTER_CONSUMER_SECRET'),
-    scope: 'email,public_profile,user_location',
-    info_fields: 'email,name,nickname,image,location',
-    image_size: { width: 400, height: 400 },
     secure_image_url: true,
-    callback_url: "#{ENV.fetch('SITE_PROTOCOL')}://#{ENV.fetch('SITE_HOST')}/users/auth/twitter/callback",
     client_options: { ssl: { verify: !Rails.env.development? } }
   )
 
