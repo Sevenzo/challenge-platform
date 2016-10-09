@@ -3,6 +3,6 @@ class Identity < ActiveRecord::Base
 
   ## VALIDATIONS
   validates :uid,       presence: true, uniqueness: { scope: :provider }
-  validates :provider,  presence:  true
+  validates :provider,  presence: true
 
 end
