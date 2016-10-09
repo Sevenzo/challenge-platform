@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   validates :last_name,     presence: true, length: { maximum: 255 }
   validates :display_name,  presence: true, length: { maximum: 255 }, on: :update
   validates :role,          presence: true, length: { maximum: 255 }, on: :update
-  validates :organization,  length: { maximum: 255 }, allow_blank: true
+  validates :organization,  presence: true, length: { maximum: 255 }, on: :update
   validates :title,         length: { maximum: 255 }, allow_blank: true
   validates :twitter,       length: { maximum: 16 },  allow_blank: true
   validates :twitter,       presence: true, if: "avatar_option == 'twitter'"
