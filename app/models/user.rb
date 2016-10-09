@@ -67,17 +67,7 @@ class User < ActiveRecord::Base
   end
 
   def display_organization
-    if organization.present?
-      organization
-    elsif schools.present?
-      schools.first.name
-    elsif districts.present?
-      districts.first.name
-    elsif states.present?
-      states.first.name
-    else
-      ''
-    end
+    organization.to_s.truncate(50)
   end
 
   def initials
