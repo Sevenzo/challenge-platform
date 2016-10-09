@@ -84,16 +84,8 @@ class User < ActiveRecord::Base
     "#{first_name[0]}#{last_name[0]}"
   end
 
-  def habtm_organizations?
-    states.present? || districts.present? || schools.present?
-  end
-
   def profile_complete?
-    role.present? ||
-    organization.present? ||
-    title.present? ||
-    twitter.present? ||
-    habtm_organizations?
+    role.present? && organization.present?
   end
 
   def states_json
@@ -108,16 +100,11 @@ class User < ActiveRecord::Base
     schools.to_json(only: [:id, :name, :location_city, :location_state])
   end
 
-  def is_school_role?
-    ['Student', 'Current Teacher', 'Teacher Leader', 'Instructional Coach', 'School Leader'].include?(role)
-  end
-
-  def is_on_panel?(challenge)
-    panels.exists?(challenge_id: challenge.id)
-  end
-
   def has_draft_submissions?
-    experiences.exists?(['published_at IS NULL']) || ideas.exists?(['published_at IS NULL']) || recipes.exists?(['published_at IS NULL']) || solutions.exists?(['published_at IS NULL'])
+    experiences.exists?(['published_at IS NULL']) ||
+    ideas.exists?(['published_at IS NULL']) ||
+    recipes.exists?(['published_at IS NULL']) ||
+    solutions.exists?(['published_at IS NULL'])
   end
 
   def set_avatar_from_twitter
