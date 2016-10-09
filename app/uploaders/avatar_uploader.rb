@@ -15,16 +15,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    providers = model.identities.map(&:provider)
-
-    if providers.include?('twitter')
-      "http://avatars.io/twitter/#{model.twitter}/large"
-    elsif providers.include?('facebook')
-      "http://avatars.io/facebook/#{model.facebook}/large"
-    else
-      "http://avatars.io/gravatar/#{model.email}/large"
-      # [version_name, "default.png"].compact.join('_')
-    end
+    "http://avatars.io/gravatar/#{model.email}/large"
   end
 
   # Create different versions of your uploaded files:
