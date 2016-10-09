@@ -14,7 +14,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
 
       # Find or create the identity with the given provider and uid.
-      @identity = Identity.find_or_create_from_omniauth(auth)
+      @identity = Identity.find_or_create_by(provider: auth.provider, uid: auth.uid)
 
       if signed_in?
         if @identity.user == current_user
