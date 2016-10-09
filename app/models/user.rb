@@ -103,6 +103,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def update_from_twitter(auth)
+    self.tap do |user|
+      user.location = auth.info.location unless user.location.present?
+      user.avatar_option = auth.provider
+      user.remote_avatar_url = auth.info.image.sub('_normal', '_400x400')
+    end
+    self.save!
+  end
+
   def twitter
     identities.find_by(provider: 'twitter')
   end
@@ -133,6 +142,15 @@ class User < ActiveRecord::Base
       user.avatar_option = auth.provider
       user.remote_avatar_url = auth.info.image
     end
+  end
+
+  def update_from_facebook(auth)
+    self.tap do |user|
+      user.location = auth.info.location unless user.location.present?
+      user.avatar_option = auth.provider
+      user.remote_avatar_url = auth.info.image
+    end
+    self.save!
   end
 
   def facebook
