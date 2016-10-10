@@ -242,6 +242,14 @@ Devise.setup do |config|
     client_options: { ssl: { verify: !Rails.env.development? } }
   )
 
+  config.omniauth(
+    :twitter,
+    ENV.fetch('TWITTER_CONSUMER_KEY'),
+    ENV.fetch('TWITTER_CONSUMER_SECRET'),
+    secure_image_url: true,
+    client_options: { ssl: { verify: !Rails.env.development? } }
+  )
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

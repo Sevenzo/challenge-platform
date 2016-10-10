@@ -1,10 +1,12 @@
 <div class='form-group' ng-init="avatar_option='<%= resource.avatar_option %>'">
   <%= f.label :avatar, 'Profile Photo'.html_safe %><br>
-  <label class="radio-inline text-normal">
-    <%= f.radio_button :avatar_option, 'twitter', 'ng-model' => 'avatar_option' %>
-    <small>Twitter</small>
-  </label>
-  <% if resource.provider == 'facebook' && resource.uid.present? %>
+  <% if resource.twitter %>
+    <label class="radio-inline text-normal">
+      <%= f.radio_button :avatar_option, 'twitter', 'ng-model' => 'avatar_option' %>
+      <small>Twitter</small>
+    </label>
+  <% end %>
+  <% if resource.facebook %>
     <label class="radio-inline text-normal">
       <%= f.radio_button :avatar_option, 'facebook', 'ng-model' => 'avatar_option' %>
       <small>Facebook</small>

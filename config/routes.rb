@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'omniauth_callbacks'
   }
   resources :users, only: [:show]
+  resources :identities, only: [:destroy]
 
   root to: 'home#index'
   match 'preview',          to: 'home#preview',         via: :get

@@ -13,7 +13,7 @@ describe User do
   it { is_expected.to have_many(:comments) }
   it { is_expected.to belong_to(:referrer).class_name('User').with_foreign_key(:referrer_id) }
   it { is_expected.to have_many(:referrals).class_name('User').with_foreign_key(:referrer_id) }
-  it { is_expected.to have_many(:identities) }
+  it { is_expected.to have_many(:identities).dependent(:destroy) }
 
   it { is_expected.to validate_presence_of(:first_name) }
   it { is_expected.to validate_length_of(:first_name).is_at_most(255) }
@@ -23,9 +23,9 @@ describe User do
   it { is_expected.to validate_length_of(:display_name).is_at_most(255).on(:update) }
   it { is_expected.to validate_presence_of(:role).on(:update) }
   it { is_expected.to validate_length_of(:role).is_at_most(255).on(:update) }
+  it { is_expected.to validate_presence_of(:organization).on(:update) }
   it { is_expected.to validate_length_of(:organization).is_at_most(255).on(:update) }
   it { is_expected.to validate_length_of(:title).is_at_most(255) }
-  it { is_expected.to validate_length_of(:twitter).is_at_most(16) }
 
   describe '#has_draft_submissions?' do
     context 'with an entity that is unpublished' do
