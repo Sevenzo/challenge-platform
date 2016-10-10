@@ -235,7 +235,7 @@ Devise.setup do |config|
     ENV.fetch('FACEBOOK_APP_ID'),
     ENV.fetch('FACEBOOK_APP_SECRET'),
     scope: 'email,public_profile,user_location',
-    info_fields: 'email,first_name,last_name,location',
+    info_fields: 'email,first_name,last_name,location,link,age_range,gender',
     image_size: { width: 400, height: 400 },
     secure_image_url: true,
     callback_url: "#{ENV.fetch('SITE_PROTOCOL')}://#{ENV.fetch('SITE_HOST')}/users/auth/facebook/callback",
