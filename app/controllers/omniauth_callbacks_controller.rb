@@ -29,6 +29,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
           if user.nil?
             user = User.send("create_from_#{provider}", auth)
           else
+            existing_identity = user.send(provider)
+            existing_identity.destroy! if existing_identity
             user.send("update_from_#{provider}", auth)
           end
 
