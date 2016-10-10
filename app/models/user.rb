@@ -91,8 +91,10 @@ class User < ActiveRecord::Base
     solutions.exists?(['published_at IS NULL'])
   end
 
+  ## Twitter Oauth Methods
+
   def self.create_from_twitter(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    create do |user|
       user.first_name = auth.info.name.split(' ').first
       user.last_name = auth.info.name.split(' ').last
       user.email = auth.info.email.downcase
@@ -109,7 +111,7 @@ class User < ActiveRecord::Base
       user.avatar_option = auth.provider
       user.remote_avatar_url = auth.info.image.sub('_normal', '_400x400')
     end
-    self.save!
+    self.save!(validate: false)
   end
 
   def twitter
@@ -128,12 +130,14 @@ class User < ActiveRecord::Base
     end
 
     self.remote_avatar_url = best_avatar_url
-    self.save!
+    self.save!(validate: false)
   rescue
   end
 
+  ## Facebook Oauth Methods
+
   def self.create_from_facebook(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    create do |user|
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.email = auth.info.email.downcase
@@ -150,7 +154,7 @@ class User < ActiveRecord::Base
       user.avatar_option = auth.provider
       user.remote_avatar_url = auth.info.image
     end
-    self.save!
+    self.save!(validate: false)
   end
 
   def facebook
@@ -169,7 +173,7 @@ class User < ActiveRecord::Base
     end
 
     self.remote_avatar_url = best_avatar_url
-    self.save!
+    self.save!(validate: false)
   rescue
   end
 
