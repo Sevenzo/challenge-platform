@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161010000503) do
+ActiveRecord::Schema.define(version: 20161010002642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -655,8 +655,6 @@ ActiveRecord::Schema.define(version: 20161010000503) do
     t.string   "display_name"
     t.string   "avatar_option",          default: "upload"
     t.hstore   "notifications",          default: {"comment_posted"=>"true", "comment_replied"=>"true", "comment_followed"=>"true"}
-    t.string   "provider"
-    t.string   "uid"
     t.string   "facebook"
     t.string   "location"
     t.boolean  "avatar_processing",      default: false,                                                                             null: false
