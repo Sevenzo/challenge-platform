@@ -4,7 +4,7 @@
   <%= f.hidden_field :remember_me, value: true %>
 
   <div class='row row-fields'>
-    <div id='email' class='col-sm-5'>
+    <div id='email' class='col-md-5'>
       <div class='form-group'>
         <%= f.label :email %>
         <%= f.email_field :email, autofocus: true, required: true, class: 'form-control input-lg' %>
@@ -19,14 +19,14 @@
       <%= f.submit "Sign In", class: 'btn btn-info btn-block btn-lg' %>
     </div>
 
-    <div id='or' class='col-sm-2'>
+    <div id='or' class='col-md-2'>
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-stack-1x fa-inverse">or</i>
       </span>
     </div>
 
-    <div id='oauth' class='col-sm-5'>
+    <div id='oauth' class='col-md-5'>
       <label>Sign in with Facebook</label>
       <div class='form-group'>
         <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-block btn-lg btn-social btn-facebook" do %>
