@@ -26,6 +26,7 @@ describe User do
   it { is_expected.to validate_presence_of(:organization).on(:update) }
   it { is_expected.to validate_length_of(:organization).is_at_most(255).on(:update) }
   it { is_expected.to validate_length_of(:title).is_at_most(255) }
+  it { is_expected.to validate_length_of(:twitter).is_at_most(16) }
 
   describe '#has_draft_submissions?' do
     context 'with an entity that is unpublished' do

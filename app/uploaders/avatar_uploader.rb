@@ -15,7 +15,11 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    "http://avatars.io/gravatar/#{model.email}/large"
+    if model.twitter.present?
+      "https://avatars.io/twitter/#{model.twitter}/large"
+    else
+      "http://avatars.io/gravatar/#{model.email}/large"
+    end
   end
 
   # Create different versions of your uploaded files:
