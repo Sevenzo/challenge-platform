@@ -18,7 +18,7 @@
 
     <div class='col-xs-4'>
       <div class='row'>
-        <div class='col-sm-5'>
+        <div class='col-sm-6'>
           <div class="media media-author">
             <div class="media-left">
               <%= render partial: 'shared/avatar', locals: { user: recipe.user, avatar_style: 'width:2em' }, cache: true %>
@@ -31,7 +31,7 @@
           </div>
         </div>
 
-        <div class='col-sm-7'>
+        <div class='col-sm-6'>
           <ul class='list-actions'>
             <li id='recipe-<%= recipe.id %>-comments'>
               <%= link_to "<i class='fa fa-comments-o'></i> #{recipe.comments_count unless recipe.comments_count.zero?}".html_safe, challenge_recipe_stage_cookbook_recipe_path(@challenge, recipe.recipe_stage, recipe.cookbook, recipe, { anchor: 'recipe-comments' }) %>

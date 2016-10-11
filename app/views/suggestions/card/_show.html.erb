@@ -3,12 +3,18 @@
     <h3 class="suggestion-title text-black">
       <%= link_to suggestion.title, suggestion_path(suggestion), class: 'text-suggestion' %>
       <br>
-      <small><%= suggestion.user.display_name %> &bull; <%= suggestion.user.display_organization %></small>
+      <small>
+        <%= link_to suggestion.user.display_name, user_path(suggestion.user), class: 'text-lighter' %>
+        &bull;
+        <%= suggestion.user.display_organization %>
+      </small>
     </h3>
   </div>
 
   <div class='col-sm-2'>
-    <p class='suggestion-time'><%= "#{time_ago_in_words(suggestion.created_at)} ago" %></p>
+    <p class='suggestion-time'>
+      <%= link_to "#{time_ago_in_words(suggestion.created_at)} ago", suggestion_path(suggestion) %>
+    </p>
     <% if user_signed_in? && suggestion.user == current_user %>
       <p class='suggestion-actions'>
         <%= link_to "<i class='fa fa-edit'></i> Edit".html_safe, '#', 'ng-click' => "suggestion_#{suggestion.id}_edit=true", onclick: 'return false;' %>
