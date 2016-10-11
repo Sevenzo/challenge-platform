@@ -41,19 +41,21 @@
               <%= render partial: 'recipes/card/like', locals: { recipe: recipe }, cache: true %>
             </li>
 
-            <li class='dropdown'>
-              <a id="recipe-<%= recipe.id %>-other" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" style='right: 0; left: auto;'>
-                <i class='fa fa-ellipsis-h'></i>
-              </a>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="recipe-<%= recipe.id %>-other">
-                <% if user_signed_in? && recipe.user == current_user %>
+            <li id='recipe-<%= recipe.id %>-share'>
+              <%= link_to "<i class='fa fa-share-alt'></i>".html_safe, '#', class: 'list-link', onclick: 'return false;', data: { container: 'body', toggle: 'popover', placement: 'bottom', html: true, trigger: 'focus', delay: {'hide': 500}, content: "#{render partial: 'layouts/share_popover', locals: { url: challenge_recipe_stage_cookbook_recipe_url(@challenge, recipe.recipe_stage, recipe.cookbook, recipe), title: recipe.title.html_safe, description: recipe.description.html_safe, hashtag: @challenge.hashtag }}"}, cache: true %>
+            </li>
+
+            <% if user_signed_in? && recipe.user == current_user %>
+              <li class='dropdown'>
+                <a id="recipe-<%= recipe.id %>-other" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" style='right: 0; left: auto;'>
+                  <i class='fa fa-ellipsis-h'></i>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="recipe-<%= recipe.id %>-other">
                   <li class='dropdown-link'><%= link_to 'Edit', edit_challenge_recipe_stage_cookbook_recipe_path(@challenge, recipe.recipe_stage, recipe.cookbook, recipe) %></li>
                   <li class='dropdown-link'><%= link_to 'Delete', challenge_recipe_stage_cookbook_recipe_path(@challenge, recipe.recipe_stage, recipe.cookbook, recipe.id), method: :delete, data: { confirm: "Are you sure you want to delete your recipe?"} %></li>
-                <% else %>
-                  <li  class='dropdown-link'><%= link_to 'Flag', '#' %></li>
-                <% end %>
-              </ul>
-            </li>
+                </ul>
+              </li>
+            <% end %>
 
           </ul>
         </div>

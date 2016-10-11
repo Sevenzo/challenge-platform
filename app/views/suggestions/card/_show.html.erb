@@ -12,16 +12,7 @@
   </div>
 
   <div class='col-sm-2'>
-    <p class='suggestion-time'>
-      <%= link_to "#{time_ago_in_words(suggestion.created_at)} ago", suggestion_path(suggestion) %>
-    </p>
-    <% if user_signed_in? && suggestion.user == current_user %>
-      <p class='suggestion-actions'>
-        <%= link_to "<i class='fa fa-edit'></i> Edit".html_safe, '#', 'ng-click' => "suggestion_#{suggestion.id}_edit=true", onclick: 'return false;' %>
-        &nbsp; &bull; &nbsp;
-        <%= link_to "<i class='fa fa-trash'></i> Delete".html_safe, suggestion_path(suggestion), method: :delete, data: { confirm: "Are you sure you want to delete your suggestion?"} %>
-      </p>
-    <% end %>
+    <p class='suggestion-time'><%= "#{time_ago_in_words(suggestion.created_at)} ago" %></p>
   </div>
 </div>
 
@@ -55,8 +46,26 @@
   </div>
 
   <div class="col-sm-3">
-    <p id="suggestion-<%= suggestion.id %>-comments" class='suggestion-comments text-right'>
-      <%= link_to "<i class='fa fa-comments-o'></i> #{suggestion.comments_count unless suggestion.comments_count.zero?}".html_safe, suggestion_path(suggestion, { anchor: 'suggestion-comments' }) %>
-    </p>
+    <ul class='actions list-inline text-right'>
+      <li id="suggestion-<%= suggestion.id %>-comments" class='suggestion-comments text-right'>
+        <%= link_to "<i class='fa fa-comments-o'></i> #{suggestion.comments_count unless suggestion.comments_count.zero?}".html_safe, suggestion_path(suggestion, { anchor: 'suggestion-comments' }) %>
+      </li>
+
+      <li id='suggestion-<%= suggestion.id %>-share'>
+        <%= link_to "<i class='fa fa-share-alt'></i>".html_safe, '#', class: 'list-link', onclick: 'return false;', data: { container: 'body', toggle: 'popover', placement: 'bottom', html: true, trigger: 'focus', delay: {'hide': 500}, content: "#{render partial: 'layouts/share_popover', locals: { url: suggestion_url(suggestion), title: suggestion.title.html_safe, description: suggestion.description.html_safe, hashtag: '' }}"}, cache: true %>
+      </li>
+
+      <% if user_signed_in? && suggestion.user == current_user %>
+        <li class='dropdown'>
+          <a id="suggestion-<%= suggestion.id %>-other" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" style='right: 0; left: auto;'>
+            <i class='fa fa-ellipsis-h'></i>
+          </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="suggestion-<%= suggestion.id %>-other">
+            <li><%= link_to 'Edit', '#', 'ng-click' => "suggestion_#{suggestion.id}_edit=true", onclick: 'return false;' %></li>
+            <li><%= link_to 'Delete', suggestion_path(suggestion), method: :delete, data: { confirm: "Are you sure you want to delete your suggestion?"} %></li>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>

@@ -1,4 +1,7 @@
-<% url = user_signed_in? ? "#{url}?referrer_id=#{current_user.id}" : url %>
+<% if user_signed_in? %>
+  <% referer = "?referrer_id=#{current_user.id}" %>
+  <% url = url.index('#') ? url.insert(url.index('#'), referer) : "#{url}#{referer}" %>
+<% end %>
 
 <ul class="share-popover" style='margin-bottom:0px'>
   <li><%= link_to "<i class='fa fa-twitter'></i>".html_safe, "https://twitter.com/intent/tweet?text=#{url_encode(strip_tags(title))}&url=#{url_encode(url)}&hashtags=#{hashtag}", target: '_blank' %></li>

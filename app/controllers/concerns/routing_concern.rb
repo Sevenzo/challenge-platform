@@ -44,7 +44,7 @@ module RoutingConcern
       if object.paranoia_destroyed?
         root_path(anchor: options[:anchor])
       else
-        suggestion_path(object.id)
+        suggestion_path(object.id, anchor: options[:anchor], temporal_parent_id: options[:temporal_parent_id])
       end
     else
       root_path
