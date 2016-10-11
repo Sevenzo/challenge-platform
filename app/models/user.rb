@@ -43,7 +43,10 @@ class User < ActiveRecord::Base
     user.display_name = "#{user.first_name} #{user.last_name[0]}"
   end
 
-  before_save { |user| user.email = user.email.downcase }
+  before_save do |user|
+    user.email = user.email.downcase
+    user.twitter = user.twitter.sub('@','') if user.twitter.present?
+  end
 
   MAX_AVATAR_SIZE = 3
 
@@ -54,6 +57,7 @@ class User < ActiveRecord::Base
   validates :role,          presence: true, length: { maximum: 255 }, on: :update
   validates :organization,  presence: true, length: { maximum: 255 }, on: :update
   validates :title,         length: { maximum: 255 }, allow_blank: true
+  validates :twitter,       length: { maximum: 16 },  allow_blank: true
   validate  :avatar_file_size
 
   def name
@@ -92,7 +96,6 @@ class User < ActiveRecord::Base
   end
 
   ## Twitter Oauth Methods
-
   def self.create_from_twitter(auth)
     create do |user|
       user.first_name = auth.info.name.split(' ').first
@@ -102,6 +105,7 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0, 20]
       user.avatar_option = auth.provider
       user.remote_avatar_url = auth.info.image.sub('_normal', '_400x400')
+      user.twitter = auth.info.nickname
     end
   end
 
@@ -110,32 +114,39 @@ class User < ActiveRecord::Base
       user.location = auth.info.location unless user.location.present?
       user.avatar_option = auth.provider
       user.remote_avatar_url = auth.info.image.sub('_normal', '_400x400')
+      user.twitter = auth.info.nickname
     end
     self.save!(validate: false)
   end
 
-  def twitter
+  def twitter_identity
     identities.find_by(provider: 'twitter')
   end
 
   def set_avatar_from_twitter
     best_avatar_url = nil
 
-    if twitter.present? && avatar_option == 'twitter'
+    if twitter_identity && (twitter.blank? || twitter == twitter_identity.data.info.nickname)
+      best_avatar_url = twitter_identity.best_avatar_url
+    elsif twitter.present?
       begin
-        best_avatar_url = twitter.data.info.image.sub('_normal', '_400x400')
+        twitter_rest_client = Twitter::REST::Client.new(TWITTER_CONFIG)
+        twitter_user_object = twitter_rest_client.user(twitter)
+        best_avatar_url = twitter_user_object.profile_image_url_https.to_s.sub('_normal', '_400x400')
+      rescue Twitter::Error::NotFound
+        twitter = nil
       rescue
-        best_avatar_url = "https://avatars.io/twitter/#{twitter.data.info.nickname}/large"
+        best_avatar_url = "https://avatars.io/twitter/#{twitter}/large"
       end
     end
 
+    self.avatar_option = 'upload' unless best_avatar_url
     self.remote_avatar_url = best_avatar_url
     self.save!(validate: false)
   rescue
   end
 
   ## Facebook Oauth Methods
-
   def self.create_from_facebook(auth)
     create do |user|
       user.first_name = auth.info.first_name
@@ -157,21 +168,14 @@ class User < ActiveRecord::Base
     self.save!(validate: false)
   end
 
-  def facebook
+  def facebook_identity
     identities.find_by(provider: 'facebook')
   end
 
   def set_avatar_from_facebook
-    best_avatar_url = nil
+    best_avatar_url = facebook_identity ? facebook_identity.best_avatar_url : nil
 
-    if facebook.present? && avatar_option == 'facebook'
-      begin
-        best_avatar_url = "https://graph.facebook.com/v2.6/#{facebook.uid}/picture?width=400&height=400"
-      rescue
-        best_avatar_url = "https://avatars.io/facebook/#{facebook.uid}/large"
-      end
-    end
-
+    self.avatar_option = 'upload' unless best_avatar_url
     self.remote_avatar_url = best_avatar_url
     self.save!(validate: false)
   rescue

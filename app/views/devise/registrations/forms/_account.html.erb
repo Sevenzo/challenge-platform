@@ -26,12 +26,12 @@
   <label>Social Networks</label>
 
   <div class='form-group'>
-    <% if resource.facebook %>
+    <% if resource.facebook_identity %>
       <button class='btn btn-social btn-sm btn-facebook' disabled='disabled'>
         <span class="fa fa-facebook"></span> Connected with Facebook
       </button>
       &nbsp;
-      <small><%= link_to 'Disconnect?', identity_path(resource.facebook), method: :delete, data: { confirm: 'Are you sure you want to disconnect your Facebook account?' } %></small>
+      <small><%= link_to 'Disconnect?', identity_path(resource.facebook_identity), method: :delete, data: { confirm: 'Are you sure you want to disconnect your Facebook account?' } %></small>
     <% else %>
       <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-social btn-sm btn-facebook" do %>
         <span class="fa fa-facebook"></span> Connect with Facebook
@@ -40,12 +40,12 @@
   </div>
 
   <div class='form-group'>
-    <% if resource.twitter %>
+    <% if resource.twitter_identity %>
       <button class='btn btn-social btn-sm btn-twitter' disabled='disabled'>
         <span class="fa fa-twitter"></span> Connected with Twitter
       </button>
       &nbsp;
-      <small><%= link_to 'Disconnect?', identity_path(resource.twitter), method: :delete, data: { confirm: 'Are you sure you want to disconnect your Twitter account?' } %></small>
+      <small><%= link_to 'Disconnect?', identity_path(resource.twitter_identity), method: :delete, data: { confirm: 'Are you sure you want to disconnect your Twitter account?' } %></small>
     <% else %>
       <%= link_to user_twitter_omniauth_authorize_path, class: "btn btn-social btn-sm btn-twitter" do %>
         <span class="fa fa-twitter"></span> Connect with Twitter
