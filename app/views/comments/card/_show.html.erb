@@ -50,18 +50,20 @@
       <%= render partial: 'comments/card/like', locals: { comment: comment }, cache: true %>
     </li>
 
-    <li class="dropdown">
-      <a id="comment-<%= comment.id %>-other" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" style='right: 0; left: auto;'>
-        <i class="fa fa-ellipsis-h"></i>
-      </a>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="comment-<%= comment.id %>-other">
-        <% if user_signed_in? && comment.user == current_user %>
+    <li id='comment-<%= comment.id %>-share'>
+      <%= link_to "<i class='fa fa-share-alt'></i>".html_safe, '#', class: 'list-link', onclick: 'return false;', data: { container: 'body', toggle: 'popover', placement: 'bottom', html: true, trigger: 'focus', delay: {'hide': 500}, content: "#{render partial: 'layouts/share_popover', locals: { url: after_update_object_url_for(comment, anchor: "comment-#{comment.id}"), title: comment.commentable_title.html_safe, description: comment.body.html_safe, hashtag: (@challenge ? @challenge.hashtag : '') }}"}, cache: true %>
+    </li>
+
+    <% if user_signed_in? && comment.user == current_user %>
+      <li class="dropdown">
+        <a id="comment-<%= comment.id %>-other" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" style='right: 0; left: auto;'>
+          <i class="fa fa-ellipsis-h"></i>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="comment-<%= comment.id %>-other">
           <li class='dropdown-link'><%= link_to 'Edit', '#', 'ng-click' => "comment_#{comment.id}_edit=true", onclick: 'return false;' %></li>
           <li class='dropdown-link'><%= link_to 'Delete', comment_path(comment.id), method: :delete, data: { confirm: "Are you sure you want to delete your comment?"} %></li>
-        <% else %>
-          <li class='dropdown-link'><%= link_to 'Flag', '#' %></li>
-        <% end %>
-      </ul>
-    </li>
+        </ul>
+      </li>
+    <% end %>
   </ul>
 </div>
