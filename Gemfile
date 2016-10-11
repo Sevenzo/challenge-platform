@@ -4,7 +4,6 @@ ruby '2.3.1'
 ## RAILS SETUP
 gem 'rails'
 gem 'pg'
-gem 'unicorn'
 gem 'active_model_serializers'
 gem 'uglifier'
 gem 'angular_rails_csrf'
@@ -66,7 +65,6 @@ gem 'omniauth-twitter'
 gem 'mailkick'
 
 ## PERFORMANCE ENHANCEMENTS
-gem 'newrelic_rpm'
 gem 'memcachier'
 gem 'dalli'
 gem 'multi_fetch_fragments'
@@ -105,5 +103,7 @@ group :test do
 end
 
 group :production do
+  gem 'unicorn'
+  gem 'newrelic_rpm'
   gem 'rails_12factor'
 end
