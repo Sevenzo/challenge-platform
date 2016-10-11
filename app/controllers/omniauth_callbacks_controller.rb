@@ -6,7 +6,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       auth = request.env['omniauth.auth']
 
       if auth.info.email.blank?
-        return redirect_to email_missing_oauth_path(provider, auth)
+        flash[:error] = "Sorry, we weren't able to sign you in." \
+          " Please ensure that we can access the email address in your #{provider.capitalize} account."
+        return redirect_to request.referer
       else
         email = auth.info.email.downcase
       end
@@ -20,7 +22,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
           current_user.send("update_from_#{provider}", auth)
           flash[:notice] = "Successfully linked your #{provider.capitalize} account!"
         else # this means someone else has access to that account, do nothing
-          flash[:error] = "Sorry, that #{provider.capitalize} account is registered with another user. If you think that is an error, please contact us at <%= ENV.fetch('APP_EMAIL') %>."
+          flash[:error] = "Sorry, that #{provider.capitalize} account is registered with another user." \
+            " If you think that is an error, please contact us at " \
+            "<a href='mailto:#{ENV.fetch('APP_EMAIL')}' target='_blank'>#{ENV.fetch('APP_EMAIL')}</a>.".html_safe
         end
 
         redirect_to edit_user_registration_path(setting: 'account')
@@ -45,7 +49,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
           end
         end
 
-        flash[:notice] = "Successfully logged in with #{provider.capitalize}!"
+        flash[:notice] = "Successfully signed in with #{provider.capitalize}!"
         sign_in_and_redirect user, event: :authentication
 
       end
@@ -54,20 +58,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def failure
-    flash[:danger] = "Sorry, there was an error logging you in. Please try again, or contact us at <a href='mailto:#{ENV.fetch('APP_EMAIL')}' target='_blank'>#{ENV.fetch('APP_EMAIL')}</a> for further assistance.".html_safe
+    flash[:error] = "Sorry, we weren't able to sign you in. Please try again, or contact us at " \
+      "<a href='mailto:#{ENV.fetch('APP_EMAIL')}' target='_blank'>#{ENV.fetch('APP_EMAIL')}</a>" \
+      " for further assistance.".html_safe
     redirect_to new_user_session_url
-  end
-
-
-private
-
-  def email_missing_oauth_path(provider, auth)
-    case provider
-    when :facebook
-      user_facebook_omniauth_authorize_path(auth_type: 'rerequest', scope: 'email,public_profile,user_location')
-    when :twitter
-      user_twitter_omniauth_authorize_path(auth_type: 'rerequest')
-    end
   end
 
 end
