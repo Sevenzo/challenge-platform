@@ -1,7 +1,4 @@
 Rails.application.configure do
-  require 'www_ditcher'
-  config.middleware.use "WwwDitcher"
-  # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
   config.cache_classes = true
