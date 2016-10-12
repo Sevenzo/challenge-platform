@@ -39,7 +39,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
         if @identity.user.present?
           # The identity we found had a user associated with it, so we log them in
-          flash[:notice] = "Sccessfully logged in with #{provider.capitalize}!"
+          flash[:notice] = "Successfully logged in with #{provider.capitalize}!"
           sign_in_and_redirect @identity.user, event: :authentication
         elsif @user
           # A user with the provider's email address already exists.

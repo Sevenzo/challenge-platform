@@ -74,24 +74,26 @@ RSpec.describe 'Facebook OAuth authorization', type: :request do
       omniauth_authenticate(valid_oauth_login)
     end
 
-    it 'DOES NOT create a new user' do
-      # => "/users/auth/facebook"
-      flash
+    it 'redirects to callback' do
       binding.pry
-      expect(response).to be_redirect
-      expect { follow_redirect! }.not_to change(User, :count)
+      expect(response).to redirect_to '/users/auth/facebook/callback'
     end
 
     context 'redirect to callback' do
       before do
         follow_redirect!
-        expect(response).to redirect_to root_path
-        expect { follow_redirect! }.not_to change(User, :count)
       end
 
       it 'redirects to root path' do
-        binding.pry
-        expect(flash[:notice]).to match(/Already linked your #{provider} account!/)
+        expect(response).to redirect_to root_path
+      end
+
+      it 'does not create a new user' do
+        expect { follow_redirect! }.not_to change(User, :count)
+      end
+
+      it 'displays the expected flash message' do
+        expect(flash[:notice]).to match('Successfully logged in with Facebook!')
       end
     end
   end
