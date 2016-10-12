@@ -51,9 +51,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
         flash[:notice] = "Successfully signed in with #{provider.capitalize}!"
         sign_in_and_redirect user, event: :authentication
-
       end
-
     end
   end
 
