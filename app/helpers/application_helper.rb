@@ -39,6 +39,13 @@ module ApplicationHelper
     @suggestion ||= Suggestion.new
   end
 
+  def nav_link(text, path)
+    options = current_page?(path) ? { class: "active-item" } : {}
+    content_tag(:li, options) do
+      link_to text, path, class: options.empty? ? 'nav-links-left' : 'nav-links-left active'
+    end
+  end
+
 private
 
   def normalize_flash_key(key)
