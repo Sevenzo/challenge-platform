@@ -1,128 +1,47 @@
 <%= render partial: 'challenges/header', cache: true %>
 
-<div id='challenge-overview' style='background-image:url("<%= @challenge.banner.present? ? @challenge.banner.url.html_safe : asset_path('bg.png') %>")'>
-  <div class='opacity-layer'>
-    <div class='opacity-content'>
-      <div class='container'>
-        <div class='row'>
-          <div class='col-md-10 col-md-offset-1'>
-
-            <div class='row'>
-              <div class="col-sm-7">
-                <h1 class='challenge-headline'><%= @challenge.headline.html_safe %></h1>
-
-                <%= link_to "<i class='fa icon-twitter' style='font-size:1.5em'></i> ##{@challenge.hashtag.html_safe}".html_safe, "https://twitter.com/hashtag/#{@challenge.hashtag.html_safe}", target: '_blank', class: 'text-white text-lighter text-large' %>
-              </div>
-              <div class="col-sm-5">
-                <%= video_embed(@challenge.video_url) %>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render partial: 'challenges/overview', locals: { challenge: @challenge }, cache: true %>
 
 <div id='challenge-details'>
   <div class='container'>
     <div class='row'>
       <div class='col-md-10 col-md-offset-1'>
 
-        <div class="row">
-          <div class="col-sm-4">
-            <h3 class='text-bold'>The Challenge</h3>
-            <p><%= @challenge.background.html_safe %></p>
+        <% unless @challenge.background.empty? && @challenge.outcome.empty? && @challenge.help.empty? %>
+          <div class="row">
+            <% unless @challenge.background.empty? %>
+              <div class="col-sm-4">
+                <h3 class='text-bold'>The Challenge</h3>
+                <p><%= @challenge.background.html_safe %></p>
+              </div>
+            <% end %>
+            <% unless @challenge.outcome.empty %>
+              <div class="col-sm-4">
+                <h3 class='text-bold'>The Goal</h3>
+                <p><%= @challenge.outcome.html_safe %></p>
+              </div>
+            <% end %>
+            <% unless @challenge.help %>
+              <div class="col-sm-4">
+                <h3 class='text-bold'>Your Role</h3>
+                <p><%= @challenge.help.html_safe %></p>
+              </div>
+            <% end %>
           </div>
-          <div class="col-sm-4">
-            <h3 class='text-bold'>The Goal</h3>
-            <p><%= @challenge.outcome.html_safe %></p>
-          </div>
-          <div class="col-sm-4">
-            <h3 class='text-bold'>Your Role</h3>
-            <p><%= @challenge.help.html_safe %></p>
-          </div>
-        </div>
 
-        <div class='text-center center-block'>
-          <% btn_path = @challenge.active_stage.present? ? challenge_active_stage_path(@challenge) : '#challenge-map' %>
-          <%= link_to "Join the conversation", btn_path, class: 'btn btn-lg btn-longer btn-rounded btn-info', 'du-smooth-scroll' => 'true' %>
-        </div>
-
-        <hr class='break'>
+          <div class='text-center center-block'>
+            <% btn_path = @challenge.active_stage.present? ? challenge_active_stage_path(@challenge) : '#' %>
+            <%= link_to "Join the conversation", btn_path, class: 'btn btn-lg btn-longer btn-rounded btn-info', 'du-smooth-scroll' => 'true' %>
+          </div>
+          <hr class='break'>
+        <% end %>
 
         <%= @challenge.description.html_safe if @challenge.description.present? %>
-
-        <!-- Experience Process Bubbles: START -->
-        <div id='challenge-process' class='row'>
-          <% if @challenge.incentive.present? %>
-            <div class='col-sm-9 col-sm-offset-3'>
-              <p class='text-center text-recipe'><%= @challenge.incentive.html_safe %></p>
-            </div>
-          <% end %>
-
-          <% Challenge::STAGES.each_with_index do |stage, index| %>
-            <div class="col-sm-3" style='margin-bottom:15px'>
-              <div class='stage-recap'>
-                <%= link_to eval("challenge_#{stage[:name]}_stage_path(@challenge, @challenge.#{stage[:name]}_stage)") do %>
-                  <% if @challenge.stage_number == stage[:number] %>
-                      <span class="fa-stack challenge-fa-bubble text-<%= stage[:name] %> active">
-                        <i class="fa fa-stack-2x fa-circle"></i>
-                        <i class="fa fa-stack-1x fa-inverse <%= stage[:icon] %>"></i>
-                      </span>
-                  <% else %>
-                    <% if @challenge.stage_number > stage[:number] %>
-                      <span class="fa-stack challenge-fa-bubble text-<%= stage[:name] %> completed">
-                        <i class="fa fa-stack-2x fa-circle-thin"></i>
-                        <i class="fa fa-stack-1x text-<%= stage[:name] %> <%= stage[:icon] %>"></i>
-                      </span>
-                    <% else %>
-                      <span class="fa-stack challenge-fa-bubble text-<%= stage[:name] %>-light pending">
-                        <i class="fa fa-stack-2x fa-circle-thin"></i>
-                        <i class="fa fa-stack-1x text-<%= stage[:name] %>-light <%= stage[:icon] %>"></i>
-                      </span>
-                    <% end %>
-                  <% end %>
-
-                  <%= content_tag(:i, '', class: 'fa fa-angle-right hidden-xs', style: ('color: transparent' if index + 1 == Challenge::STAGES.length) ) %>
-
-                  <div class='clearfix'></div>
-                  <div class="caption">
-                    <h4 class='text-black'>
-                      <% if @challenge.stage_number > stage[:number] %>
-                        <i class='fa icon-check'></i>
-                        <%= pluralize(eval("@challenge.#{stage[:name]}_stage.#{stage[:name].pluralize}.published.count"), stage[:alias]).titleize %> <%= stage[:action].titleize %>
-                      <% else %>
-                        <%= stage[:headline] %>
-                      <% end %>
-                    </h4>
-                    <p class='description'><%= stage[:description].sub('solving the challenge', @challenge.goal) %></p>
-                  </div>
-                <% end %>
-              </div>
-
-              <% if @challenge.active_stage.present? %>
-                <div class='stage-cta'>
-                  <% if @challenge.stage_number == stage[:number] %>
-                    <%= link_to 'Tell Your Story', challenge_active_stage_path(@challenge), class: 'btn btn-info btn-rounded text-small' unless index + 1 == Challenge::STAGES.length %>
-                  <% elsif @challenge.stage_number > stage[:number] %>
-                    <p class='text-small'><%= link_to 'Completed', eval("challenge_#{stage[:name]}_stage_path(@challenge, @challenge.#{stage[:name]}_stage)"), class: "completed text-default" %></p>
-                  <% end %>
-                </div>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-        <!-- Experience Process Bubbles: END -->
 
       </div>
     </div>
   </div>
 </div>
-
-<% partial = @challenge.featured_contributions.present? ? 'featured' : 'map' %>
-<%= render partial: "challenges/#{partial}", locals: { challenge: @challenge } %>
 
 <div id='challenge-panel'>
   <div class='container'>
@@ -130,7 +49,7 @@
       <div class='col-md-10 col-md-offset-1'>
 
         <div class="row">
-          <h2 class="text-center">Meet Our Community Guides</h2>
+          <h2 class="text-center">Our community guides</h2>
 
           <div class='col-sm-10 col-sm-offset-1'>
             <p class='section-description'><%= @challenge.panel.about.html_safe %></p>
@@ -174,17 +93,15 @@
   </div>
 </div>
 
-<div id='challenge-invite'>
+<div id='challenge-what-next'>
   <div class="container">
+    <hr class='break' style="width:100%;margin-top:0px">
     <div class='row'>
-      <div class='col-md-10 col-md-offset-1'>
-
-        <h2 class="section-title text-submit" style='margin-bottom:10px'>Know people who have something to add to this conversation?</h2>
-        <p class='section-description'>More people means more problems solved. Share this challenge!</p>
-
-
-        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: @challenge.hashtag, tweet: "The #{@challenge.title} is LIVE! Are you an innovative educator? Join us!", title: "Join #{ENV.fetch('APP_NAME')}!", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "Join me on #{@challenge.title}!" }, cache: true %>
-
+      <div class='col-sm-11 col-sm-offset-1'>
+        <h2 class='section-title'>What challenges should we tackle next?</h2>
+        <p class='section-description'>
+          <%= link_to "Suggest a challenge", suggestions_path, class: "engagement-link" %> that's important to you, and <%= link_to "vote on challenges", suggestions_path, class: "engagement-link" %> suggested by others.
+        </p>
       </div>
     </div>
   </div>

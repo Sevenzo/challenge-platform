@@ -1,26 +1,62 @@
+$fixedFooterHeight: 350px
+
 html
   position: relative
   min-height: 100%
 
 body
-  margin-bottom: 100px
+  margin-bottom: $fixedFooterHeight
   background-color: $lightestGrayBG
 
 #bottom-footer
-  background-color: $navbar-default-bg
+  background-color: $lightGrayBG
   position: absolute
   bottom: 0
   width: 100%
-  height: 100px
-  padding: 20px 0px
+  height: $fixedFooterHeight
+  padding: 60px 0px
   ul
     margin-bottom: 0px
-  ul,li,a,div,span
-    color: white
+  ul,li,a,div,span3
+    color: $lightGrayText
   #footer-social
     a
       font-size: 1.2em
   #footer-legal
     margin-top: 10px
   .row
-    background-color: $navbar-default-bg
+    background-color: $lightGrayBG
+  #app-name
+    padding-bottom: $padding-xl-vertical
+    a
+      font-family: $font-family-title
+      color: $blueText
+      font-size: $font-size-h2 !important
+      font-weight: bold !important
+      font-style: normal
+      font-stretch: normal
+      letter-spacing: 0px
+      margin-bottom: $padding-large-vertical
+      &:hover,&:focus,&:active,&.active
+        text-decoration: none
+  .links-left
+    color: $blueText
+    &:hover,&:focus,&:active,&.active
+      @extend .text-bolder
+      text-decoration: none
+  .links-center
+    &:hover,&:focus,&:active,&.active
+      color: $blueText
+      text-decoration: none
+  .share-buttons
+    color: $blueText
+    &:hover,&:focus,&:active,&.active
+      color: darken($blueText, 15%)
+  .padding-base-vertical
+    padding-bottom: $padding-base-vertical
+  .padding-large-vertical
+    padding-bottom: $padding-large-vertical
+  .padding-xl-vertical
+    padding-bottom: $padding-xl-vertical
+  .padding-xxl-vertical
+    padding-bottom: $padding-xxl-vertical

@@ -1,66 +1,56 @@
-<div id='landing-splash' style="background-image:url('<%= asset_path("landing.png") %>')">
-  <div class='opacity-layer'>
-    <div class='opacity-content'>
-      <div class='container'>
-        <div class='row'>
-          <div class='col-md-10 col-md-offset-1'>
+<style type="text/css">
+#landing-splash {
+    background-image:url('<%= asset_path("Home_hero970.png") %>');
+}
+@media only screen and (max-width: 414px) {
+  #landing-splash {
+      background-image:url('<%= asset_path("Home_hero500.png") %>');
+  }
+}
+</style>
 
-            <h1 class='text-white text-center'>
-              <%= ENV.fetch('APP_NAME') %>
-              <br>
-              <small class='text-white'>Inspiring Communities to Find and Spread What Works</small>
-            </h1>
+<div id='landing-splash'>
+  <div class='opacity-content'>
+          <h2>
+            Inspiring educators to find and share what works
+          </h2>
 
-            <% if @challenge %>
-              <% if user_signed_in? %>
-                <% btn_path = challenge_active_stage_path(@challenge); btn_text = "Return to Challenge" %>
-              <% else %>
-                <% btn_path = challenge_path(@challenge); btn_text = "Join Us" %>
-              <% end %>
+          <% if @challenge %>
+            <% if user_signed_in? %>
+              <% btn_path = challenge_active_stage_path(@challenge); btn_text = "Return to Challenge" %>
             <% else %>
-              <% btn_path = about_path; btn_text = "Learn More" %>
+              <% btn_path = challenges_path; btn_text = "Join the movement" %>
             <% end %>
+          <% else %>
+            <% btn_path = about_path; btn_text = "Learn more" %>
+          <% end %>
 
-            <div class='text-center center-block'>
-              <%= link_to btn_text, btn_path, class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom ' %>
-            </div>
-
+          <div class='text-center center-block'>
+            <%= link_to btn_text, btn_path, class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom ' %>
           </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 
 <div id='landing-what'>
-  <div class='container'>
+  <div class='container padding-xxxl-vertical'>
     <div class='row'>
       <div class='col-md-10 col-md-offset-1'>
 
-        <h2 class="section-title" style='margin-bottom:10px'>What is <%= ENV.fetch('APP_NAME') %>?</h2>
-        <p class='section-description' style='margin-bottom:2em'>We are a nonprofit that believes that there are already great things happening in our education system. Our mission is to work with you to help find and spread promising practices so that all young people can reach their full potential.</p>
+        <p class='section-description text-xlarge' style='margin-bottom:2em'>Sevenzo is a space where educators can openly exchange promising practice, translate that practice into personal action, and test that practice in a safe environment with the support of other like-minded people.</p>
 
         <%= render partial: 'home/work' %>
-
-        <% if @challenge %>
-          <hr class='break'>
-
-          <h2 class='text-center'>Check out our first challenge below!</h2>
-        <% end %>
-
       </div>
     </div>
   </div>
 </div>
 
-<%= render partial: 'challenges/map', locals: { challenge: @challenge } if @challenge %>
-
 <div id='landing-stages'>
-  <div class='container'>
+  <div class='container padding-xxxl-vertical'>
     <div class='row'>
       <div class='col-md-10 col-md-offset-1'>
 
-        <h2 class="section-title">Each Challenge will go through four phases:</h2>
+        <p class='section-description text-xlarge' style='margin-bottom:2em;'>We challenge our community to come together around issues that deeply impact young people's ability to learn and thrive.  Our challenges go through four phases:</p>
+
 
         <%= render partial: 'home/process' %>
 
@@ -69,134 +59,56 @@
   </div>
 </div>
 
+<%= render partial: 'challenges/overview', locals: { challenge: @challenge }, cache: true %>
+
 <div id='landing-suggest'>
-  <div class="container">
+  <div class="container padding-xxxl-vertical">
     <div class="row">
       <div class='col-md-10 col-md-offset-1'>
 
         <h2 class="section-title" style='margin-bottom:10px'>What challenges should we tackle next?</h2>
-        <p class='section-description' style='margin-bottom:20px'>Tell us what challenges affect you most, and vote on additional challenges suggested by others.</p>
-
-        <div class='row row-count'>
-          <div class='col-xs-4'>
-            <ul class='list-sort'>
-              <li>
-                <%= link_to root_path(order_by: "", anchor: "landing-suggest") do %>
-                  <span class="badge badge-suggestion <%= 'selected' if @ordering.blank? %>">
-                    <span class='headline text-suggestion text-xsmall'>
-                      <%= fa_icon 'fire' %>
-                      Popular
-                    </span>
-                  </span>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to root_path(order_by: "latest", anchor: "landing-suggest") do %>
-                  <span class="badge badge-suggestion <%= 'selected' unless @ordering.blank? %>">
-                    <span class='headline text-suggestion text-xsmall'>
-                      <%= fa_icon 'clock-o' %>
-                      Latest
-                    </span>
-                  </span>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-          <div class='col-xs-4'>
-            <h6 class='text-default text-center center-block' style='margin-top: 2.25em'>
-              <i class='fa fa-archive fa-2x'></i><br>
-              <span><%= pluralize(@suggestions.count, 'suggestion') %></span>
-            </h6>
-          </div>
-          <div class='col-xs-4'>
-            <p class='action text-right text-small'><%= link_to '+ Add yours', '#new-suggestion', class: 'pull-right', 'ng-click' => "suggestion_draft=true", "du-smooth-scroll" => true unless @suggestions.count.zero? %></p>
-          </div>
-        </div>
-
-        <div ng-switch="suggestions" ng-init="suggestions=<%= @ordering.present? %>">
-          <% @suggestions.order_by(@ordering).first(2).each do |suggestion| %>
-              <%= render file: 'suggestions/card', locals: { suggestion: suggestion } %>
-          <% end %>
-
-          <% if @suggestions.count > 2 %>
-            <div ng-show='suggestions'>
-              <% (@suggestions.order_by(@ordering) - @suggestions.order_by(@ordering).first(2)).each do |suggestion| %>
-                <%= render file: 'suggestions/card', locals: { suggestion: suggestion } %>
-              <% end %>
-            </div>
-          <% end %>
-
-          <%= render partial: 'suggestions/card/new', cache: true %>
-
-          <% if @suggestions.count > 2 %>
-            <p class='center-block text-center'>
-              <%= link_to "Show #{@suggestions.count-2} More Suggestions", '#', "ng-hide" => "suggestions", "ng-click" => "suggestions=true", onclick: 'return false;', class: 'text-bold' %>
-
-              <%= link_to "Show Less", "#landing-suggest", "ng-show" => "suggestions", "ng-click" => "suggestions=false", "du-smooth-scroll" => true, offset: '100', onclick: 'return false;', class: 'text-bold' %>
-            </p>
-          <% end %>
-        </div>
-
+        <p class='section-description' style='margin-bottom:20px'><%= link_to "Suggest a challenge", suggestions_path, class: 'engagement-link' %> that’s important to you, and <%= link_to "vote on challenges", suggestions_path, class: 'engagement-link' %> suggested by others.</p>
       </div>
     </div>
   </div>
 </div>
 
-<div id='landing-community' style="background-image:url('<%= asset_path("home/bg.jpg") %>')">
-  <div class='opacity-layer'>
-    <div class='opacity-content'>
-      <div class='container'>
-        <div class='row'>
-          <div class='col-md-10 col-md-offset-1'>
-
-            <h2 class="section-title">Our Community</h2>
-            <p class='section-description' style='margin-bottom: 2em'>It takes a village to tackle the most challenging barriers to young people’s ability to learn and thrive. As such, we welcome all educators including classroom teachers, teacher leaders, coaches, administrators, support staff and out of school mentors into this online community.</p>
-
-            <div class='row'>
-              <% t('home.testimonials').each do |testimonial| %>
-                <div class='col-sm-4'>
-                  <div class='well well-testimonial'>
-                    <p class='text-lighter text-center text-green'>
-                      <i class='fa fa-quote-left fa-2x'></i>
-                      &nbsp;
-                      <%= testimonial[:quote] %>
-                    </p>
-                  </div>
-
-                  <div class="media text-center">
-                    <%= image_tag "home/#{testimonial[:key]}.png", class: 'img-rounded half-margin-bottom' %>
-                    <div class="media-body">
-                      <p>
-                        <strong><%= testimonial[:name] %></strong><br>
-                        <% testimonial[:titles].each do |title| %>
-                          <%= title %><br>
-                        <% end %>
-                        <%= testimonial[:organization] %><br>
-                        <abbr><i class='fa fa-twitter-square fa-1-25x'></i></abbr>
-                        <%= link_to "@#{testimonial[:twitter]}", "https://twitter.com/intent/user?screen_name=#{testimonial[:twitter]}", target: '_blank', style: 'link-white' %>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id='landing-invite'>
-  <div class="container">
+<div id='landing-community'>
+  <div class='container padding-xxxl-vertical'>
     <div class='row'>
       <div class='col-md-10 col-md-offset-1'>
 
-        <h2 class="section-title text-submit">Know someone who may want to add to the discussion?</h2>
-        <p class='section-description'>The more the merrier! Share our platform to help us get the best suggestions from educators like you.</p>
+        <h2 class="section-title">Our Community</h2>
+        <p class='section-description' style='margin-bottom: 2em'>It takes a village to tackle the most challenging barriers to young people’s ability to learn and thrive. As such, we welcome all educators including classroom teachers, teacher leaders, coaches, administrators, support staff and out of school mentors into this online community.</p>
 
-        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: ENV.fetch('COMPANY_NAME'), tweet: "#{ENV.fetch('APP_NAME')} is LIVE! Are you an innovative educator? Join us!", title: "Join #{ENV.fetch('APP_NAME')}!", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "Join me on #{ENV.fetch('APP_NAME')}!" }, cache: true %>
+        <div class='row'>
+          <% t('home.testimonials').each do |testimonial| %>
+            <div class='col-sm-6'>
+              <div class='well well-testimonial'>
+                <p class='text-lighter text-center text-green'>
+                  <i class='fa fa-quote-left fa-2x'></i>
+                  &nbsp;
+                  <%= testimonial[:quote] %>
+                </p>
+              </div>
+
+              <div class="media text-center light-gray-text">
+                <%= image_tag "home/#{testimonial[:key]}.png", class: 'img-rounded half-margin-bottom' %>
+                <div class="media-body">
+                  <p>
+                    <strong><%= testimonial[:name] %></strong><br>
+                    <% testimonial[:titles].each do |title| %>
+                      <%= title %><br>
+                    <% end %>
+                    <%= testimonial[:organization] %><br>
+                    <abbr><i class='fa fa-twitter-square fa-1-25x'></i></abbr>
+                    <%= link_to "@#{testimonial[:twitter]}", "https://twitter.com/intent/user?screen_name=#{testimonial[:twitter]}", target: '_blank', style: 'light-gray-text' %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
 
       </div>
     </div>

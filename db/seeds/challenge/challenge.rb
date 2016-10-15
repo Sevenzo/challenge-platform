@@ -2,15 +2,34 @@ challenge = Challenge.create!(
   title: 'The Belonging Challenge',
   headline: "How do we create a sense of belonging for students in school and community?",
   goal: 'creating a sense of belonging',
-  video_url: 'https://www.youtube.com/watch?v=lvRBFdISNeo',
-  remote_banner_url: 'https://s3-us-west-2.amazonaws.com/redesign-challenge-local/documents/bg.png',
+  video_url: 'https://vimeo.com/185424174',
+  remote_banner_url: 'https://sevenzo-production.s3-us-west-2.amazonaws.com/challenge/1/challenge.png',
   hashtag: 'edubelong',
-  description: "<h2 class='section-title'>First Step: Share your experience with video for your professional learning</h2><p class='section-description'>Think big and earn an opportunity to attend our July Innovator's Weekend…to make your ideas real.</p>",
-  incentive: "Remember, anyone who contributes is eligible for the weekly gift certificate giveaway (<a href='#'>see contest rules</a>)",
-  background: "School systems across the country are investing time and money to create and share professional development videos, but are these videos giving us what they need, when we need it? What if we - teachers, coaches and administrators - came together to share our experiences and come up with ideas for how videos can better meet our learning needs?",
-  outcome: "Sevenzo fosters a community of dedicated educators who, for this first challenge, will think hard to transform how video is used in professional learning. This is a real opportunity to change how we do things in K-12 education. In the Redesign Challenge, good ideas surface to the top no matter what your position is.",
-  help: "There are four ways you can get involved over the course of the Challenge: <b>share</b> your story, <b>contribute</b> ideas for how to improve classroom video, <b>develop</b> those recipes, and <b>try out</b> popular solutions in your classroom. You'll eventually be able to participate in any stage. Ready? Scroll down to click \"Get Started\".",
-  cta: 'What does belonging mean to you?',
+  description: "<h2 class='section-title'>Why this challenge matters</h2>
+
+    <p class='section-description'>Belonging is associated with many positive life outcomes such as a greater sense of well-being and happiness, better stress management, greater health and even lower mortality rates. On the other hand, a lack of belongingness can impair learning and performance. <strong>This challenge will focus on the powerful role that belonging plays in academic success.</strong> We will work together to find the best approaches to creating a sense of belonging for all students so they can learn and thrive in school.</p>
+
+    <div class='row' style='margin-top:1em;margin-bottom:1em;'>
+    <div class='col-sm-6'>
+    <img src='https://s3-us-west-2.amazonaws.com/sevenzo-test/block_3.png' width='100%'/>
+    </div>
+    <div class='col-sm-6'>
+    <img src='https://s3-us-west-2.amazonaws.com/sevenzo-test/block_4.png' width='100%'/>
+    </div>
+    </div>
+
+    <h4 class='text-center text-underline'><a href='https://medium.com/@sevenzo' target='_blank'>Read more about belonging on our blog <i class='fa fa-long-arrow-right'></i></a></h4>
+
+    <hr class='break'>
+
+    <h2 class='section-title'>Our Challenge will go through four stages</h2>
+
+    <p class='section-description'>We welcome all educators including classroom teachers, teacher leaders, coaches, administrators, support staff and out of school mentors to participate!</p>",
+  incentive: "",
+  background: "This challenge will focus on the powerful role that belonging plays in academic success. We will work together to find the best approaches to creating a sense of belonging for all students so they can learn and thrive in school.",
+  outcome: "Our collective goal is to source as many promising belonging practices as possible and then work with each other to remix them across as many locations as possible.",
+  help: "There are four ways you can get involved over the course of the Challenge: <b>share</b> your story, <b>contribute</b> ideas on how to improve classroom video, <b>develop</b> those recipes, and <b>try out</b> popular solutions in your classroom. You'll eventually be able to participate in any stage. Ready? Scroll down to click \"Join the Conversation\"!",
+  cta: 'We want to hear from you.',
   comment_placeholder: 'Belonging to me is...',
   starts_at: Time.now,
   ends_at: 1.month.from_now,

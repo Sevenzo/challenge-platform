@@ -5,20 +5,61 @@
 
         <div class='row'>
 
-          <div class='col-sm-4'>
-            <p><i class='fa fa-copyright'></i> <%= Date.today.year.to_s %> <%= ENV.fetch('COMPANY_NAME') %>.</p>
-            <ul id='footer-legal' class='list-inline'>
-              <li><%= link_to 'Terms', terms_path %></li>
-              <li><%= link_to 'Privacy', privacy_path %></li>
-              <li><%= link_to "<i class='fa fa-twitter fa-1-25x'></i>".html_safe, ENV.fetch('TWITTER_URL'), target: '_blank' %></li>
-              <li><%= link_to "<i class='fa fa-facebook fa-1-25x'></i>".html_safe, ENV.fetch('FACEBOOK_URL'), target: '_blank' %></li>
-              <li><%= link_to "<i class='fa fa-linkedin fa-1-25x'></i>".html_safe, ENV.fetch('LINKEDIN_URL'), target: '_blank' %></li>
-              <li><%= link_to "<i class='fa fa-medium fa-1-25x'></i>".html_safe, ENV.fetch('MEDIUM_URL'), target: '_blank' %></li>
-            </ul>
+          <div class='col-sm-3'>
+            <div class="container">
+              <div class='row' id='app-name'>
+                <%= link_to ENV.fetch('COMPANY_NAME'), root_path %>
+              </div>
+              <div class='row padding-large-vertical'>
+                <i class='fa fa-copyright'></i> <%= Date.today.year.to_s %>
+              </div>
+              <div class='row padding-large-vertical'>
+                <%= link_to 'Terms and Conditions', terms_path, class: "links-left" %>
+              </div>
+              <div class='row padding-large-vertical'>
+                <%= link_to 'Privacy Policy', privacy_path, class: "links-left"  %>
+              </div>
+            </div>
+          </div>
+            <!-- <ul id='footer-legal' class='list-inline'> -->
+            <!-- </ul> -->
+          <div class='col-sm-2'>
+            <div class="container">
+              <div class='row padding-xl-vertical'>
+                <%= link_to "Challenges", challenges_path, class: 'text-lighter links-center' %>
+              </div>
+              <div class='row padding-xl-vertical'>
+                <%= link_to "About us", about_path, class: 'text-lighter links-center' %>
+              </div>
+              <div class='row padding-xl-vertical'>
+                <%= link_to "Our Blog", ENV['MEDIUM_URL'], target: '_blank', class: 'text-lighter links-center' %>
+              </div>
+              <div class='row padding-xl-vertical'>
+                <%= link_to "Guidelines", guidelines_path, class: 'text-lighter links-center' %>
+              </div>
+              <div class='row padding-xl-vertical'>
+                <%= link_to "Contact us", contact_path, class: 'text-lighter links-center' %>
+              </div>
+            </div>
           </div>
 
-          <div class='col-sm-2 col-sm-offset-6'>
-            <div style='margin-top:0.7em'><a href="https://heapanalytics.com/?utm_source=badge" target='_blank'><img style="width:108px;height:41px" src="//heapanalytics.com/img/badge.png" alt="Heap - iOS and Web Analytics" /></a></div>
+          <div class='col-sm-6 col-sm-offset-1'>
+            <div style="container">
+              <div class='row padding-base-vertical text-large text-bolder'>
+                Know someone who may want to add to the discussion?
+              </div>
+              <div class='row padding-base-vertical'>
+                The more the merrier! Share our platform to help us get the best suggestions from educators like you.
+              </div>
+              <div class='row padding-xxl-vertical'>
+                <ul id='footer-legal' class='list-inline'>
+                  <li><%= link_to "<i class='fa fa-twitter fa-1-25x'></i>".html_safe, ENV.fetch('TWITTER_URL'), target: '_blank', class: 'share-buttons' %></li>
+                  <li><%= link_to "<i class='fa fa-facebook fa-1-25x'></i>".html_safe, ENV.fetch('FACEBOOK_URL'), target: '_blank', class: 'share-buttons'  %></li>
+                  <li><%= link_to "<i class='fa fa-linkedin fa-1-25x'></i>".html_safe, ENV.fetch('LINKEDIN_URL'), target: '_blank', class: 'share-buttons'  %></li>
+                  <li><%= link_to "<i class='fa fa-medium fa-1-25x'></i>".html_safe, ENV.fetch('MEDIUM_URL'), target: '_blank', class: 'share-buttons'  %></li>
+                </ul>
+              </div>
+              </div>
           </div>
         </div>
 
