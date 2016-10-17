@@ -56,10 +56,10 @@
           </div>
         </div>
 
-        <% @challenge.panelists.each_slice(4) do |panelists| %>
+        <% @challenge.panelists.each_slice(5) do |panelists| %>
           <div class='row row-panelists'>
-            <% panelists.each do |panelist| %>
-              <div class="col-sm-3" style='margin-bottom:2em'>
+            <% panelists.each_with_index do |panelist, index| %>
+              <div class="<%= "col-sm-2#{ (index == 0) ? " col-sm-offset-1" : "" }" %>" style='margin-bottom:2em'>
                 <%= link_to image_tag(panelist.avatar.profile.url, class: 'img-circle', style: 'max-width:100px'), '#', data: { toggle: 'modal', target: "#panelist-#{panelist.id}" } %>
                 <div class="user-caption">
                   <p class='user-name'><%= link_to panelist.name, "#", data: { toggle: 'modal', target: "#panelist-#{panelist.id}" }, class: 'text-default text-bolder' %></p>
