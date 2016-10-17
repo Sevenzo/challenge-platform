@@ -15,13 +15,13 @@
                 <p><%= @challenge.background.html_safe %></p>
               </div>
             <% end %>
-            <% unless @challenge.outcome.empty %>
+            <% unless @challenge.outcome.empty? %>
               <div class="col-sm-4">
                 <h3 class='text-bold'>The Goal</h3>
                 <p><%= @challenge.outcome.html_safe %></p>
               </div>
             <% end %>
-            <% unless @challenge.help %>
+            <% unless @challenge.help.empty? %>
               <div class="col-sm-4">
                 <h3 class='text-bold'>Your Role</h3>
                 <p><%= @challenge.help.html_safe %></p>
