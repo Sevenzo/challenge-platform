@@ -84,11 +84,20 @@
   .section-description
     text-align: left
   .col-description
-    @extend .col-sm-11, .col-sm-offset-1, .padding-vertical-xxxl
+    @extend .col-sm-11, .col-sm-offset-1, .padding-xxxl-vertical
     width: 73%
     @media (max-width: 480px)
       padding-horizontal: $padding-small-horizontal
       width: 100%
+  .research-title
+    font-size: 1.5em !important
+    padding-bottom: 1.5em
+  .citation-left
+    margin-top: 2em
+    text-align: right
+  .citation-right
+    margin-top: .25em
+    text-align: right
   #challenge-process
     @extend .row-process
     .col-xs-6,.col-sm-3
@@ -201,17 +210,21 @@
     text-decoration: none
     color: darken($blueText, 15%)
 
+.padding-vertical-xxl
+  padding-top: $padding-xxl-vertical
+  padding-bottom: $padding-xxl-vertical
 
-.padding-vertical-xxxl
+.padding-xxxl-vertical
   padding-top: $padding-xxxl-vertical
   padding-bottom: $padding-xxxl-vertical
 
 .light-gray-bg
-  @extend .padding-vertical-xxxl
+  @extend .padding-xxxl-vertical
+  padding-left: $padding-xxxl-vertical
+  padding-right: $padding-xxxl-vertical
+  margin-left: -80px
+  margin-right: -80px
   background-color: $lightGrayBG
-
-.section-title-smaller
-  font-size: 1.5em !important
 
 .padding-horizontal-none
   padding-left: 0px
