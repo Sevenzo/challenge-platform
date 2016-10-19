@@ -1,9 +1,9 @@
 require 'rails_helper'
 require 'support/omniauth_helpers'
 
-RSpec.describe 'Facebook OAuth authorization', type: :request do
+RSpec.describe 'Twitter OAuth authorization', type: :request do
 
-  let(:provider) { 'facebook' }
+  let(:provider) { 'twitter' }
   let(:uid) { '12345' }
   let(:email) { 'TEST@EXAMPLE.COM' }
 
@@ -14,10 +14,12 @@ RSpec.describe 'Facebook OAuth authorization', type: :request do
         provider: provider,
         uid: uid,
         info: {
-          first_name: 'Gaius',
-          last_name:  'Baltar',
-          email:      email,
-          location: 'Here, there'
+          nickname:  'twitterhandle',
+          name:      'Gaius Baltar',
+          email:     email,
+          location:  'San Francisco',
+          image:      'https://pbs.twimg.com/profile_images/test_user_profile/erL8FDMo_normal.jpg',
+          description: 'Oauth Twitter test robot. Here to serve humans.'
         },
         credentials: {
           token: '123456',
@@ -37,14 +39,17 @@ RSpec.describe 'Facebook OAuth authorization', type: :request do
 
   before do
     OmniAuth.config.mock_auth[oauth_strategy[:strategy]] = nil
-    host! "#{ENV.fetch('SITE_HOST')}"
+
+    stub_request(:get, "https://pbs.twimg.com/profile_images/test_user_profile/erL8FDMo_400x400.jpg").
+      with(headers: {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
+      to_return(status: 200, body: "", headers: {})
   end
 
   context 'with valid login info for a new user' do
     before { omniauth_authenticate(valid_oauth_login) }
 
     it 'redirects on submit' do
-      expect(response).to redirect_to user_facebook_omniauth_callback_path
+      expect(response).to redirect_to user_twitter_omniauth_callback_path
     end
 
     it 'creates a new user' do
@@ -62,16 +67,17 @@ RSpec.describe 'Facebook OAuth authorization', type: :request do
         user = User.last
         info = valid_oauth_login[:data][:info]
 
-        expect(user.first_name).to eq info[:first_name]
-        expect(user.last_name).to eq info[:last_name]
+        expect(user.first_name).to eq info[:name].split(' ').first
+        expect(user.last_name).to eq info[:name].split(' ').last
         expect(user.email).to eq email.downcase
         expect(user.location).to eq info[:location]
         expect(user.avatar_option).to eq provider
-        expect(user.avatar.url).to include email.downcase
+        expect(user.avatar.url).to include info[:nickname]
+        expect(user.twitter).to eq info[:nickname]
       end
 
       it 'displays the expected flash message' do
-        expect(flash[:notice]).to match('Successfully signed in with Facebook!')
+        expect(flash[:notice]).to match('Successfully signed in with Twitter!')
       end
 
       it 'redirects to complete profile path' do
@@ -86,7 +92,7 @@ RSpec.describe 'Facebook OAuth authorization', type: :request do
     before { omniauth_authenticate(valid_oauth_login) }
 
     it 'redirects on submit' do
-      expect(response).to redirect_to user_facebook_omniauth_callback_path
+      expect(response).to redirect_to user_twitter_omniauth_callback_path
     end
 
     it 'DOES NOT create a new user' do
@@ -101,11 +107,11 @@ RSpec.describe 'Facebook OAuth authorization', type: :request do
       before { follow_redirect! }
 
       it 'does not update user' do
-        expect_any_instance_of(User).not_to receive(:update_from_facebook)
+        expect_any_instance_of(User).not_to receive(:update_from_twitter)
       end
 
       it 'displays the expected flash message' do
-        expect(flash[:notice]).to match('Successfully signed in with Facebook!')
+        expect(flash[:notice]).to match('Successfully signed in with Twitter!')
       end
 
       it 'redirects to root path' do
@@ -119,7 +125,7 @@ RSpec.describe 'Facebook OAuth authorization', type: :request do
     before { omniauth_authenticate(valid_oauth_login) }
 
     it 'redirects on submit' do
-      expect(response).to redirect_to user_facebook_omniauth_callback_path
+      expect(response).to redirect_to user_twitter_omniauth_callback_path
     end
 
     it 'DOES NOT create a new user' do
@@ -141,11 +147,11 @@ RSpec.describe 'Facebook OAuth authorization', type: :request do
         expect(user.last_name).not_to eq info[:last_name]
         expect(user.location).to eq info[:location]
         expect(user.avatar_option).to eq provider
-        expect(user.avatar.url).to include email.downcase
+        expect(user.avatar.url).to include info[:nickname]
       end
 
       it 'displays the expected flash message' do
-        expect(flash[:notice]).to match('Successfully signed in with Facebook!')
+        expect(flash[:notice]).to match('Successfully signed in with Twitter!')
       end
 
       it 'redirects to root path' do
@@ -158,7 +164,7 @@ RSpec.describe 'Facebook OAuth authorization', type: :request do
     before { omniauth_authenticate(invalid_oauth_login) }
 
     it 'redirects on submit' do
-      expect(response).to redirect_to user_facebook_omniauth_callback_path
+      expect(response).to redirect_to user_twitter_omniauth_callback_path
     end
 
     it 'DOES NOT create a new user' do
@@ -173,7 +179,7 @@ RSpec.describe 'Facebook OAuth authorization', type: :request do
       before { follow_redirect! }
 
       it 'redirects to the failure callback' do
-        expect(response).to redirect_to '/users/auth/failure?message=invalid_credentials&strategy=facebook'
+        expect(response).to redirect_to '/users/auth/failure?message=invalid_credentials&strategy=twitter'
       end
     end
   end
