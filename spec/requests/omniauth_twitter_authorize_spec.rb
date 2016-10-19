@@ -37,7 +37,7 @@ RSpec.describe 'Twitter OAuth authorization', type: :request do
     oauth_strategy.merge(data: { invalid_credentials: true })
   end
 
-  before(:each) do
+  before do
     OmniAuth.config.mock_auth[oauth_strategy[:strategy]] = nil
 
     stub_request(:get, "https://pbs.twimg.com/profile_images/test_user_profile/erL8FDMo_400x400.jpg").
@@ -45,12 +45,19 @@ RSpec.describe 'Twitter OAuth authorization', type: :request do
       to_return(:status => 200, :body => "", :headers => {})
   end
 
-  context 'with valid login infor for a new user' do
+  context 'with valid login info for a new user' do
     before { omniauth_authenticate(valid_oauth_login) }
 
+    it 'redirects on submit' do
+      expect(response).to redirect_to user_twitter_omniauth_callback_path
+    end
+
     it 'creates a new user' do
-      expect(response).to be_redirect
       expect { follow_redirect! }.to change(User, :count).by(1)
+    end
+
+    it 'creates a new identity' do
+      expect { follow_redirect! }.to change(Identity, :count).by(1)
     end
 
     context 'following redirect' do
@@ -59,15 +66,18 @@ RSpec.describe 'Twitter OAuth authorization', type: :request do
       it 'sets the attributes on the user' do
         user = User.last
         info = valid_oauth_login[:data][:info]
-        first_name = info[:name].split(' ').first
-        last_name = info[:name].split(' ').last
-        expect(user.twitter).to eq info[:nickname]
-        expect(user.first_name).to eq first_name
-        expect(user.last_name).to eq last_name
+
+        expect(user.first_name).to eq info[:name].split(' ').first
+        expect(user.last_name).to eq info[:name].split(' ').last
+        expect(user.email).to eq info[:email].downcase
         expect(user.location).to eq info[:location]
-        expect(user.email).to eq email.downcase
         expect(user.avatar_option).to eq provider
         expect(user.avatar.url).to include info[:nickname]
+        expect(user.twitter).to eq info[:nickname]
+      end
+
+      it 'displays the expected flash message' do
+        expect(flash[:notice]).to match('Successfully signed in with Twitter!')
       end
 
       it 'redirects to complete profile path' do
@@ -79,32 +89,33 @@ RSpec.describe 'Twitter OAuth authorization', type: :request do
   context 'with valid login info for an existing user with same uid/provider' do
     let!(:user) { create(:user) }
     let!(:identity) { create(:identity, provider: provider, uid: uid, user: user)}
+    before { omniauth_authenticate(valid_oauth_login) }
 
-    before(:each) do
-      omniauth_authenticate(valid_oauth_login)
-    end
-
-    it 'redirects to callback' do
+    it 'redirects on submit' do
       expect(response).to redirect_to user_twitter_omniauth_callback_path
     end
 
-    context 'redirect to callback' do
-      before do
-        follow_redirect!
-      end
+    it 'DOES NOT create a new user' do
+      expect { follow_redirect! }.not_to change(User, :count)
+    end
 
-      it 'redirects to root path' do
-        expect(response).to redirect_to root_path
-      end
+    it 'DOES NOT create a new identity' do
+      expect { follow_redirect! }.not_to change(Identity, :count)
+    end
 
-      it 'does not create a new user' do
-        # binding.pry
-        expect_any_instance_of(User.class).not_to receive(:update_from_omniauth)
-        expect { follow_redirect! }.not_to change(User, :count)
+    context 'following redirect' do
+      before { follow_redirect! }
+
+      it 'does not update from twitter' do
+        expect_any_instance_of(User).not_to receive(:update_from_twitter)
       end
 
       it 'displays the expected flash message' do
         expect(flash[:notice]).to match('Successfully signed in with Twitter!')
+      end
+
+      it 'redirects to root path' do
+        expect(response).to redirect_to root_path
       end
     end
   end
@@ -113,55 +124,38 @@ RSpec.describe 'Twitter OAuth authorization', type: :request do
     let!(:user) { create(:user, email: email) }
     before { omniauth_authenticate(valid_oauth_login) }
 
+    it 'redirects on submit' do
+      expect(response).to redirect_to user_twitter_omniauth_callback_path
+    end
+
     it 'DOES NOT create a new user' do
-      expect(response).to be_redirect
       expect { follow_redirect! }.not_to change(User, :count)
+    end
+
+    it 'creates a new identity' do
+      expect { follow_redirect! }.to change(Identity, :count).by(1)
     end
 
     context 'following redirect' do
       before { follow_redirect! }
 
-      it 'redirects to root path' do
-        expect(response).to redirect_to root_path
-      end
-
-      it 'displays the expected flash message' do
-        expect(flash[:notice]).to match('Successfully signed in with Twitter!')
-      end
-
       it 'updates their profile with oauth credentials but not name' do
         user = User.last
         info = valid_oauth_login[:data][:info]
+
         expect(user.first_name).not_to eq info[:first_name]
         expect(user.last_name).not_to eq info[:last_name]
         expect(user.location).to eq info[:location]
         expect(user.avatar_option).to eq provider
         expect(user.avatar.url).to include info[:nickname]
       end
-    end
-  end
-
-  context 'with valid login info for an existing user with same email/uid' do
-    let!(:user) { create(:user, email: email) }
-    let!(:identity) { create(:identity, uid: uid, user: user)}
-
-    before { omniauth_authenticate(valid_oauth_login) }
-
-    context 'following redirect' do
-      before do
-        follow_redirect!
-      end
-
-      it 'redirects to root path' do
-        expect(response).to redirect_to root_path
-      end
 
       it 'displays the expected flash message' do
         expect(flash[:notice]).to match('Successfully signed in with Twitter!')
       end
 
-      it 'does not create a new user' do
-        expect{ follow_redirect! }.not_to change(User, :count)
+      it 'redirects to root path' do
+        expect(response).to redirect_to root_path
       end
     end
   end
@@ -169,8 +163,16 @@ RSpec.describe 'Twitter OAuth authorization', type: :request do
   context 'with invalid login info for a new user' do
     before { omniauth_authenticate(invalid_oauth_login) }
 
-    it 'redirects to callback' do
-      expect(response).to be_redirect
+    it 'redirects on submit' do
+      expect(response).to redirect_to user_twitter_omniauth_callback_path
+    end
+
+    it 'DOES NOT create a new user' do
+      expect { follow_redirect! }.not_to change(User, :count)
+    end
+
+    it 'DOES NOT create a new identity' do
+      expect { follow_redirect! }.not_to change(Identity, :count)
     end
 
     context 'following redirect' do
@@ -179,10 +181,6 @@ RSpec.describe 'Twitter OAuth authorization', type: :request do
       it 'redirects to the failure callback' do
         expect(response).to redirect_to '/users/auth/failure?message=invalid_credentials&strategy=twitter'
       end
-    end
-
-    it 'does NOT create a new user' do
-      expect { follow_redirect! }.not_to change(User, :count)
     end
   end
 
