@@ -11,23 +11,23 @@
 
 <div id='landing-splash'>
   <div class='opacity-content'>
-          <h2>
-            Inspiring educators to find and share what works
-          </h2>
 
-          <% if @challenge %>
-            <% if user_signed_in? %>
-              <% btn_path = challenge_active_stage_path(@challenge); btn_text = "Return to Challenge" %>
-            <% else %>
-              <% btn_path = challenges_path; btn_text = "Join the movement" %>
-            <% end %>
-          <% else %>
-            <% btn_path = about_path; btn_text = "Learn more" %>
-          <% end %>
+    <h2>Inspiring educators to find and share what works</h2>
 
-          <div class='text-center center-block'>
-            <%= link_to btn_text, btn_path, class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom ' %>
-          </div>
+    <% if @challenge %>
+      <% if user_signed_in? %>
+        <% btn_path = challenge_active_stage_path(@challenge); btn_text = "Return to Challenge" %>
+      <% else %>
+        <% btn_path = challenges_path; btn_text = "Join the movement" %>
+      <% end %>
+    <% else %>
+      <% btn_path = about_path; btn_text = "Learn more" %>
+    <% end %>
+
+    <div class='text-center center-block'>
+      <%= link_to btn_text, btn_path, class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom ' %>
+    </div>
+
   </div>
 </div>
 
@@ -39,6 +39,7 @@
         <p class='section-description text-xlarge' style='margin-bottom:2em'>Sevenzo is a space where educators can openly exchange promising practice, translate that practice into personal action, and test that practice in a safe environment with the support of other like-minded people.</p>
 
         <%= render partial: 'home/work' %>
+
       </div>
     </div>
   </div>
@@ -59,7 +60,7 @@
   </div>
 </div>
 
-<%= render partial: 'challenges/overview', locals: { challenge: @challenge }, cache: true %>
+<%= render partial: 'challenges/overview', locals: { challenge: @challenge }, cache: true if @challenge %>
 
 <div id='landing-suggest'>
   <div class="container padding-xxxl-vertical">
