@@ -15,17 +15,19 @@ body
   width: 100%
   height: $fixedFooterHeight
   padding: 60px 0px
-  ul
-    margin-bottom: 0px
-  ul,li,a,div,span3
+  ul,li,a,div
     color: $lightGrayText
+  ul.list-footer
+    @extend .list-unstyled
+    li
+      padding-bottom: $padding-xl-vertical
+  h3
+    margin-top: 0em
   #footer-social
     a
       font-size: 1.2em
   #footer-legal
-    margin-top: 10px
-  .row
-    background-color: $lightGrayBG
+    margin-top: 1em
   #app-name
     padding-bottom: $padding-xl-vertical
     a
@@ -52,11 +54,3 @@ body
     color: $blueText
     &:hover,&:focus,&:active,&.active
       color: darken($blueText, 15%)
-  .padding-base-vertical
-    padding-bottom: $padding-base-vertical
-  .padding-large-vertical
-    padding-bottom: $padding-large-vertical
-  .padding-xl-vertical
-    padding-bottom: $padding-xl-vertical
-  .padding-xxl-vertical
-    padding-bottom: $padding-xxl-vertical
