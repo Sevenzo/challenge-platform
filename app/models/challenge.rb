@@ -95,7 +95,7 @@ class Challenge < ActiveRecord::Base
       alias: 'story',
       action: 'share',
       icon: 'fa-paper-plane-o',
-      headline: 'Implement and Share Stories',
+      headline: 'Implement & Share',
       description: 'Try out and refine the bright spots with other peers and share your implementation stories!'
     }
   ]

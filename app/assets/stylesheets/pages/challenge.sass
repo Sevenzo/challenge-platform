@@ -1,61 +1,114 @@
 #challenge-header
   background-color: $lightGrayBG
-  padding: 0.25em 0em
-  &.experience_stages,&.idea_stages,&.recipe_stages
-    background-color: white
-  &.experiences,&.ideas,&.cookbooks,&.recipes,&.solutions
-    #challenge-nav
-      background-color: white
+  padding: 0
+  &:not(.challenges)
+    .badge-container
+      padding-top: $padding-xl-vertical
+      padding-bottom: 0px
+      .descriptor-container
+        display: none
+        height: 0
+  .container
+    padding: 0
+
   #challenge-nav
     @extend .text-center, .center-block, .text-small
-    margin: 0.25em 1.5em
     padding: 0px
-    .badge
-      @extend .text-default, .text-small
-      line-height: 2em
-      background-color: transparent
-      border-style: solid
-      border-color: transparent
-      border-width: 0px 0px $padding-base-vertical 0px
-      padding: 5px 15px
-      .fa
-        &.fa-check
-          @extend .text-default
-      .headline
-        @extend .hidden-xs
-        @extend .text-bolder
-      &.active
-        // background-color: #E9E9E9 !important
-      &.selected
-        .headline,.fa.fa-check
-          @extend .text-white
-      &:first-child
-        margin-left: 0px
-      &:last-child
-        margin-right: 0px
-    .badge-experience
-      &.selected
-        background-color: $experience !important
-    .badge-idea
-      &.selected
-        background-color: $idea !important
-    .badge-recipe
-      &.selected
-        background-color: $recipe !important
-    .badge-solution
-      &.selected
-        background-color: $solution !important
-    .fa-angle-right
-      color: #CECFD0
-    .experience
-      border-color: $experience
-      border-width: 0px 0px $padding-base-vertical 0px
-    .idea
-      border-color: $idea
-    .recipe
-      border-color: $recipe
-    .solution
-      border-color: $solution
+    display: flex
+    flex-direction: row
+    justify-content: center
+  .padding-vertical
+    @media only screen and (min-width: 768px)
+      padding-top: $padding-xxl-vertical
+      padding-bottom: $padding-xl-vertical
+  .badge-container
+    @extend .padding-vertical
+    display: flex
+    flex: 1
+    flex-direction: column
+    &:hover,&:focus,&:active
+      text-decoration: none
+    &.experience-bg
+      &:hover,&:focus,&:active
+        background-color: rgba($experience, 0.2)
+        .badge-experience
+          @extend .experience,.text-experience
+    &.idea-bg
+      &:hover,&:focus,&:active
+        background-color: rgba($idea, 0.2)
+        .badge-idea
+          @extend .idea,.text-idea
+    &.recipe-bg
+      &:hover,&:focus,&:active
+        background-color: rgba($recipe, 0.2)
+        .badge-recipe
+          @extend .recipe,.text-recipe
+    &.solution-bg
+      &:hover,&:focus,&:active
+        background-color: rgba($solution, 0.2)
+        .badge-solution
+          @extend .solution,.text-solution
+
+  .badge
+    @extend .text-small
+    color: $lightGrayText
+    line-height: 2em
+    background-color: transparent
+    border-style: solid
+    border-color: transparent
+    border-width: 0px 0px $padding-base-vertical 0px
+    padding: $padding-base-horizontal $padding-xl-vertical
+    border-radius: 0
+    text-align: left
+    @media only screen and (max-width: 768px)
+      text-align: center
+    .fa
+      @extend .text-h2
+      width: 100%
+      @media only screen and (max-width: 768px)
+        font-size: $font-size-h2 !important
+    .headline
+      @extend .hidden-xs
+      @extend .text-bolder
+    &.active
+      // background-color: #E9E9E9 !important
+    &.selected
+      .headline,.fa.fa-check
+        @extend .text-white
+    &:first-child
+      margin-left: 0px
+    &:last-child
+      margin-right: 0px
+    .headline-xs
+      @extend .visible-xs
+      @extend .text-bolder
+      line-height: $font-size-small
+
+  .fa-angle-right
+    color: #CECFD0
+  .experience
+    border-color: $experience
+  .idea
+    border-color: $idea
+  .recipe
+    border-color: $recipe
+  .solution
+    border-color: $solution
+
+  .descriptor-container
+    @extend .hidden-xs,.text-bold,.text-default,.text-xsmall
+    display: flex
+    flex: 1
+    align-items: stretch
+    flex-direction: row
+    align-items: flex-end
+    padding: 5px 15px
+    .in-progress
+      @extend .text-italic,.text-bolder
+    .descriptor-count
+      font-size: $font-size-large !important
+      line-height: $font-size-large
+      padding-right: $padding-xs-horizontal
 
 #challenge-overview
   background-repeat: no-repeat
