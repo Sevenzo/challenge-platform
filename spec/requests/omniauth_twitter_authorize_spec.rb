@@ -41,8 +41,8 @@ RSpec.describe 'Twitter OAuth authorization', type: :request do
     OmniAuth.config.mock_auth[oauth_strategy[:strategy]] = nil
 
     stub_request(:get, "https://pbs.twimg.com/profile_images/test_user_profile/erL8FDMo_400x400.jpg").
-      with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
-      to_return(:status => 200, :body => "", :headers => {})
+      with(headers: {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
+      to_return(status: 200, body: "", headers: {})
   end
 
   context 'with valid login info for a new user' do
@@ -69,7 +69,7 @@ RSpec.describe 'Twitter OAuth authorization', type: :request do
 
         expect(user.first_name).to eq info[:name].split(' ').first
         expect(user.last_name).to eq info[:name].split(' ').last
-        expect(user.email).to eq info[:email].downcase
+        expect(user.email).to eq email.downcase
         expect(user.location).to eq info[:location]
         expect(user.avatar_option).to eq provider
         expect(user.avatar.url).to include info[:nickname]
@@ -88,7 +88,7 @@ RSpec.describe 'Twitter OAuth authorization', type: :request do
 
   context 'with valid login info for an existing user with same uid/provider' do
     let!(:user) { create(:user) }
-    let!(:identity) { create(:identity, provider: provider, uid: uid, user: user)}
+    let!(:identity) { create(:identity, provider: provider, uid: uid, user: user) }
     before { omniauth_authenticate(valid_oauth_login) }
 
     it 'redirects on submit' do
@@ -106,7 +106,7 @@ RSpec.describe 'Twitter OAuth authorization', type: :request do
     context 'following redirect' do
       before { follow_redirect! }
 
-      it 'does not update from twitter' do
+      it 'does not update user' do
         expect_any_instance_of(User).not_to receive(:update_from_twitter)
       end
 
