@@ -16,7 +16,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       identity = Identity.find_or_initialize_from_omniauth(auth)
 
       if user_signed_in? # User is connecting from settings page; only can connect new services
-
         if identity.new_record? # should always be this case since they can't connect existing services
           identity.update!(user: current_user)
           current_user.send("update_from_#{provider}", auth)
@@ -28,9 +27,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         end
 
         redirect_to edit_user_registration_path(setting: 'account')
-
       else
-
         user = identity.user
         if user.nil? # Identity is new record
           user = User.find_by(email: email)
@@ -51,7 +48,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
         flash[:notice] = "Successfully signed in with #{provider.capitalize}!"
         sign_in_and_redirect user, event: :authentication
-
       end
 
     end
