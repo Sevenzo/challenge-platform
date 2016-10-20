@@ -1,91 +1,53 @@
 <% provide(:title, 'About') %>
 
-<div id='about-splash' style="background-image:url('<%= asset_path("about/innovators.jpg") %>')">
+<div id='about-splash'>
   <div class='opacity-layer'>
-    <div class="container">
+    <div class="container padding-xxxl-vertical">
+        <div class='row'>
+          <div class='col-md-10 col-md-offset-1'>
 
-      <p class='splash-title' data-fittext='1.8' data-fittext-min="28" data-fittext-max="48">Seven&bull;zo: A communal effort to make change possible.</p>
-      <p class='splash-subtitle' data-fittext='2.4' data-fittext-min="16" data-fittext-max="24">We bring together communities to diffuse what works in education so that all learners can reach their full potential.</p>
-      <hr>
+            <p class='text-h2 text-bolder'>
+              Sevenzo is a social impact startup dedicated to bringing together communities to diffuse what works in education so that all students can reach their full potential.
+            </p>
 
-      <h2 class='splash-learn' href='#about-story' du-smooth-scroll>
-        <span class='text-underline'>Learn More</span>.<br><i class='fa fa-chevron-down'></i>
-      </h2>
-
-    </div>
-  </div>
-</div>
-
-<div id="about-nav" data-spy="affix" data-offset-top="315" class="affix-top">
-  <div class="container">
-    <div class="row about-nav-links">
-      <div class='col-xs-2 about-nav-link' href='#about-story' du-smooth-scroll du-scrollspy offset='40'><i class='fa fa-book'></i> <span class='hidden-xs'>Story</span></div>
-      <div class='col-xs-2 about-nav-link' href='#about-works' du-smooth-scroll du-scrollspy offset='40'><i class='fa fa-gears'></i> <span class='hidden-xs'>Process</span></div>
-      <div class='col-xs-2 about-nav-link' href='#about-team' du-smooth-scroll du-scrollspy offset='40'><i class='fa fa-group'></i> <span class='hidden-xs'>Team</span></div>
-      <div class='col-xs-2 about-nav-link' href='#about-press' du-smooth-scroll du-scrollspy offset='40'><i class='fa fa-newspaper-o'></i> <span class='hidden-xs'>Press</span></div>
-      <a class='col-xs-2 about-nav-link' href='/guidelines'><i class='fa fa-question-circle'></i> <span class='hidden-xs'>Guidelines</span></a>
-      <a class='col-xs-2 about-nav-link' href='/contact'><i class='fa fa-phone'></i> <span class='hidden-xs'>Contact</span></a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <div id='about-story'>
-  <div class='container'>
-
-    <h2 class="section-title" style='margin-bottom:10px'>Our Story</h2>
-    <p class='section-description' style='margin-bottom:2em'><%= ENV.fetch('APP_NAME') %> is a social impact startup dedicated to bringing together communities to diffuse what works in education so that all learners can reach their full potential.</p>
-
-    <div class='row' style='margin-bottom:20px'>
-      <div class='col-md-5'>
-        <%= image_tag "about/teachers2.jpg", width: '100%' %>
-      </div>
-
-      <div class='col-md-7'>
-        <p class='text-medium'>While innovative ideas, practices and tools have the potential to transform learning for all students and close the achievement gap, many of these are not sticking or spreading beyond a few pockets of excellence. Sevenzo provides a space where educators can openly exchange promising practice, translate that practice into personal action and test that practice in a safe environment with the support of other like-minded people.</p>
-
-        <p class='text-medium'>The Sevenzo model was first piloted in 2015 through the Bill & Melinda Gates Foundation as the <%= link_to 'Redesign Challenge', 'https://redesignchallenge.org', target: '_blank' %>, engaging thousands of educators from across the country around a problem of practice. Founded in Pittsburgh in 2016, the new organization is building on the early traction of this pilot. Join us to bring educators together around the biggest challenges and most promising ideas in education.</p>
-
-        <p class='text-medium'><%= link_to "Join our movement", new_user_registration_path %> and lend your voice to the conversation.</p>
-      </div>
-    </div>
-
-    <hr class='break'>
-
-    <h2 class="section-title" style='margin-bottom:1em'>Why <%= ENV.fetch('APP_NAME') %>?</h2>
-
-    <div class='row' style='margin-bottom:20px'>
-      <div class='col-md-7'>
-        <p class='text-medium'>We have talked to thousands of educators who have told us that they feel isolated and are looking for a space where peer-to-peer conversations about what works in education are taking place on a national scale. Many educators cited Twitter as the "best PD they’ve ever had" but they often expressed frustration with scheduled chat times and, sometimes intimidating, rapid-fire Twitter chat formats. In addition, educators were often overwhelmed by the amount of ‘noise’ on social media feeds. In this online community educators, like you, can collaborate anytime and anywhere around topics that have highest potential for impact. Think of this platform as a community tent. A place where both what works, and how it works, can be discovered.</p>
-      </div>
-
-      <div class='col-md-5'>
-        <%= image_tag "about/teachers.jpg", width: '100%' %>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div id='about-works'>
-  <div class='container'>
+  <div class='container padding-xxxl-vertical'>
     <div class='row'>
       <div class='col-md-10 col-md-offset-1'>
 
-        <h2 class="section-title" style='margin-bottom:10px'>What we do</h2>
-        <p class='section-description' style='margin-bottom:2em'>We challenge our community to come together around issues that deeply impact young people's ability to learn and thrive.</p>
+        <div class='row' style='margin-bottom:20px'>
+          <div class='col-md-5'>
+            <%= image_tag "about/teachers2.jpg", width: '100%' %>
+          </div>
 
-        <%= render partial: 'home/work' %>
+          <div class='col-md-7'>
+            <p class='text-medium'>While innovative ideas, practices and tools have the potential to transform learning for all students and close the achievement gap, many of these are not sticking or spreading beyond a few pockets of excellence. Sevenzo provides a space where educators can openly exchange promising practice, translate that practice into personal action and test that practice in a safe environment with the support of other like-minded people.</p>
+
+            <p class='text-medium'>The Sevenzo model was first piloted in 2015 through the Bill & Melinda Gates Foundation as the <%= link_to 'Redesign Challenge', 'https://redesignchallenge.org', target: '_blank' %>, engaging thousands of educators from across the country around a problem of practice. Founded in Pittsburgh in 2016, the new organization is building on the early traction of this pilot. Join us to bring educators together around the biggest challenges and most promising ideas in education.</p>
+
+            <p class='text-medium'><%= link_to "Join our movement", new_user_registration_path %> and lend your voice to the conversation.</p>
+          </div>
+        </div>
 
         <hr class='break'>
 
-        <h2 class="section-title" style='margin-bottom:10px'>How it works</h2>
-        <p class='section-description' style='margin-bottom:2em'>Each Challenge will go through four phases:</p>
+        <h2 class="section-title" style='margin-bottom:1em'>Why <%= ENV.fetch('APP_NAME') %>?</h2>
 
-        <%= render partial: 'home/process' %>
+        <div class='row' style='margin-bottom:20px'>
+          <div class='col-md-7'>
+            <p class='text-medium'>We have talked to thousands of educators who have told us that they feel isolated and are looking for a space where peer-to-peer conversations about what works in education are taking place on a national scale. Many educators cited Twitter as the "best PD they’ve ever had" but they often expressed frustration with scheduled chat times and, sometimes intimidating, rapid-fire Twitter chat formats. In addition, educators were often overwhelmed by the amount of ‘noise’ on social media feeds. In this online community educators, like you, can collaborate anytime and anywhere around topics that have highest potential for impact. Think of this platform as a community tent. A place where both what works, and how it works, can be discovered.</p>
+          </div>
 
-        <h3 class='text-center'>Have an idea for a challenge? <%= link_to 'Tell us about an issue that affects you', suggestions_path, class: 'text-underline' %> and we may host a challenge for it!</h3>
-
-        <hr class='short'>
+          <div class='col-md-5'>
+            <%= image_tag "about/teachers.jpg", width: '100%' %>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -93,73 +55,50 @@
 </div>
 
 <div id='about-team'>
-  <div class='container'>
+  <div class='container padding-xxxl-vertical'>
+    <div class='row'>
+      <div class='col-md-10 col-md-offset-1'>
 
-    <h2 class='section-heading'>Our Team</h2>
-    <% t('about.team').each do |person| %>
-      <div class="media media-team">
-        <div class='media-left'><%= image_tag "about/team/#{person[:key]}.png", class: 'img-circle' %></div>
-        <div class="media-body">
-          <h3 class="media-heading">
-            <%= person[:name] %>, <small><%= person[:title] %></small>
-            <br class='visible-xs'>
-            <small class='pull-right hidden-xs'>
-              <%= link_to "<i class='fa fa-twitter'></i>".html_safe, person[:twitter], target: '_blank', class: 'tooltip-hover', title: "@#{person[:twitter].split('/').last}", data: {toggle: 'tooltip', placement: 'top'} %>
-              &nbsp;
-              <%= mail_to person[:email], "<i class='fa fa-envelope'></i>".html_safe, target: '_blank', class: 'tooltip-hover', title: person[:email], data: {toggle: 'tooltip', placement: 'top'} %>
-              &nbsp;
-              <%= link_to "<i class='fa fa-linkedin'></i>".html_safe, person[:linkedin], target: '_blank' %>
-            </small>
-            <small class='visible-xs'>
-              <%= link_to "<i class='fa fa-twitter'></i>".html_safe, person[:twitter], target: '_blank', class: 'tooltip-hover', title: "@#{person[:twitter].split('/').last}", data: {toggle: 'tooltip', placement: 'top'} %>
-              &nbsp;
-              <%= mail_to person[:email], "<i class='fa fa-envelope'></i>".html_safe, target: '_blank', class: 'tooltip-hover', title: person[:email], data: {toggle: 'tooltip', placement: 'top'} %>
-              &nbsp;
-              <%= link_to "<i class='fa fa-linkedin'></i>".html_safe, person[:linkedin], target: '_blank' %>
-            </small>
-          </h3>
-          <div class='clearfix'></div>
-          <p><%= person[:bio].html_safe %></p>
-        </div>
-      </div>
-    <% end %>
-
-    <hr class='short'>
-
-    <h2 class='section-heading'>Our Board</h2>
-    <% t('about.board').each_slice(4) do |people| %>
-      <div class='row row-advisors'>
-        <% people.each do |person| %>
-          <div class='col-md-4 text-center'>
-            <%= link_to image_tag("about/board/#{person[:key]}.png", class: 'img-circle', width: '100px'), '#', data: { toggle: 'modal', target: "#board-#{person[:key]}" } %>
-
-            <h4>
-              <%= link_to person[:name], '#', data: { toggle: 'modal', target: "#board-#{person[:key]}" } %><br>
-              <small>
-                <%= person[:title] %>
-                <br>
-                <%= person[:organization] %>
-              </small>
-            </h4>
+        <p class='section-description text-xlarge text-center'>Our Team</p>
+        <% t('about.team').each_slice(2) do |people| %>
+          <div class='row row-advisors'>
+            <% people.each do |person| %>
+              <div class='col-sm-5 col-sm-offset-1'>
+                <div class="media media-team">
+                  <div class='media-left'>
+                    <%= link_to image_tag("about/team/#{person[:key]}.png", class: 'img-circle', width: '200px'), '#', data: { toggle: 'modal', target: "#team-#{person[:key]}" } %>
+                  </div>
+                  <div class="media-body">
+                    <h3 class="media-heading">
+                      <%= link_to person[:name], '#', data: { toggle: 'modal', target: "#team-#{person[:key]}" } %>
+                      <br>
+                      <small><%= person[:title] %></small>
+                    </h3>
+                    <p>
+                      <%= link_to "<i class='fa fa-linkedin-square fa-1-25x'></i>".html_safe, person[:linkedin], target: '_blank' %>
+                      &nbsp;
+                      <%= link_to "<i class='fa fa-twitter-square fa-1-25x'></i>".html_safe, person[:twitter], target: '_blank', class: 'tooltip-hover', title: "@#{person[:twitter].split('/').last}", data: {toggle: 'tooltip', placement: 'top'} %>
+                      &nbsp;
+                      <%= mail_to person[:email], "<i class='fa fa-envelope fa-1-25x'></i>".html_safe, target: '_blank', class: 'tooltip-hover', title: person[:email], data: {toggle: 'tooltip', placement: 'top'} %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           </div>
         <% end %>
-      </div>
-    <% end %>
 
-    <hr class='short'>
+        <hr>
 
-    <h2 class='section-heading'>Our Advisors</h2>
-    <% t('about.advisors').each_slice(4) do |people| %>
-      <div class='row row-advisors'>
-        <% people.each do |person| %>
-          <div class='col-md-3 col-sm-6'>
-            <div class="media">
-              <div class='media-left'>
-                <%= link_to image_tag("about/advisors/#{person[:key]}.png", class: 'img-circle', style: 'width:60px'), person[:link], target: '_blank' %>
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading">
-                  <%= link_to person[:name], person[:link], target: '_blank' %><br>
+        <p class='section-description text-xlarge text-center'>Our Board</p>
+        <% t('about.board').each_slice(4) do |people| %>
+          <div class='row row-advisors'>
+            <% people.each do |person| %>
+              <div class='col-md-4 text-center'>
+                <%= link_to image_tag("about/board/#{person[:key]}.png", class: 'img-circle', width: '100px'), '#', data: { toggle: 'modal', target: "#board-#{person[:key]}" } %>
+
+                <h4>
+                  <%= link_to person[:name], '#', data: { toggle: 'modal', target: "#board-#{person[:key]}" } %><br>
                   <small>
                     <%= person[:title] %>
                     <br>
@@ -167,84 +106,121 @@
                   </small>
                 </h4>
               </div>
-            </div>
+            <% end %>
           </div>
         <% end %>
-      </div>
-    <% end %>
 
-    <hr class='short'>
+        <hr>
 
-    <h2 class='section-heading'>With Support From</h2>
-    <% t('about.partners').each_slice(3) do |partners| %>
-      <div class='row row-advisors'>
-        <% partners.each do |partner| %>
-          <div class='col-md-4 col-sm-6'>
-            <div class="center-block text-center">
-              <%= link_to image_tag("about/partners/#{partner[:key]}.png", width: '75%'), partner[:link], target: '_blank' %>
-            </div>
+        <p class='section-description text-xlarge text-center'>Our Advisors</p>
+        <% t('about.advisors').each_slice(4) do |people| %>
+          <div class='row row-advisors'>
+            <% people.each do |person| %>
+              <div class='col-md-3 col-sm-6'>
+                <div class="media">
+                  <div class='media-left'>
+                    <%= link_to image_tag("about/advisors/#{person[:key]}.png", class: 'img-circle', style: 'width:60px'), person[:link], target: '_blank' %>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">
+                      <%= link_to person[:name], person[:link], target: '_blank' %><br>
+                      <small>
+                        <%= person[:title] %>
+                        <br>
+                        <%= person[:organization] %>
+                      </small>
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           </div>
         <% end %>
+
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
 
 <div id='about-press'>
-  <div class='container'>
+  <div class='container padding-xxxl-vertical'>
+    <div class='row'>
+      <div class='col-md-10 col-md-offset-1'>
 
-    <h2 class="section-title" style='margin-bottom:10px'>In the News</h2>
-
-    <div id="carousel-press" class="carousel slide" data-interval='false'>
-
-      <ol class="carousel-indicators">
-        <% t('about.press').each_with_index do |press, index| %>
-          <li data-target="#carousel-campaigns" data-slide-to="<%= index %>" class="<%= 'active' if index.zero? %>">
-          </li>
-        <% end %>
-      </ol>
-
-      <div class="carousel-inner">
-        <% t('about.press').each_with_index do |press, index| %>
-          <div class='item <%= 'active' if index.zero? %>'>
-            <div class='well well-white center-block text-center'>
-
-              <blockquote class='quote'>
-                <div>"<%= press[:snippet].html_safe %>"</div>
-                <footer class='text-center'>
-                  <%= "#{press[:publication]}. #{link_to press[:date], press[:link], target: '_blank'}".html_safe %>
-                </footer>
-              </blockquote>
-
-            </div>
+        <p class='section-description text-xlarge text-center'>Sevenzo is supported by:</p>
+        <% t('about.partners').each_slice(3) do |partners| %>
+          <div class='row row-partners'>
+            <% partners.each do |partner| %>
+              <div class='col-md-4 col-sm-6'>
+                <div class="center-block text-center">
+                  <%= link_to image_tag("about/partners/#{partner[:key]}.png", width: '75%'), partner[:link], target: '_blank' %>
+                </div>
+              </div>
+            <% end %>
           </div>
         <% end %>
+
+        <hr class='break'>
+
+        <p class='section-description text-xlarge text-center'>In the news...</p>
+
+        <div id="carousel-press" class="carousel slide" data-interval='false'>
+
+          <ol class="carousel-indicators">
+            <% t('about.press').each_with_index do |press, index| %>
+              <li data-target="#carousel-campaigns" data-slide-to="<%= index %>" class="<%= 'active' if index.zero? %>">
+              </li>
+            <% end %>
+          </ol>
+
+          <div class="carousel-inner">
+            <% t('about.press').each_with_index do |press, index| %>
+              <div class='item <%= 'active' if index.zero? %>'>
+                <div class='well well-white center-block text-center'>
+
+                  <blockquote class='quote'>
+                    <div>"<%= press[:snippet].html_safe %>"</div>
+                    <footer class='text-center'>
+                      <%= "#{press[:publication]}. #{link_to press[:date], press[:link], target: '_blank'}".html_safe %>
+                    </footer>
+                  </blockquote>
+
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+          <a class="left carousel-control" href="#carousel-press" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="right carousel-control" href="#carousel-press" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+        </div>
+
       </div>
-
-      <a class="left carousel-control" href="#carousel-press" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-      </a>
-      <a class="right carousel-control" href="#carousel-press" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-      </a>
     </div>
-
-  </div>
-</div>
-
-<div id='about-cta'>
-  <div class='container'>
-
-    <h2 class="section-title text-submit">Know someone who may want to add to the discussion?</h2>
-    <p class='section-description'>The more the merrier! Share our platform to help us get the best suggestions from educators like you.</p>
-
-    <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: ENV.fetch('COMPANY_NAME'), tweet: "#{ENV.fetch('APP_NAME')} is LIVE! Are you an innovative educator? Join us!", title: "Join #{ENV.fetch('APP_NAME')}!", description: "Are you an innovative educator? Then help revolutionize how educators across America come together to reimagine innovation in K-12 teaching and learning.", subject: "Join me on #{ENV.fetch('APP_NAME')}!" }, cache: true %>
-
   </div>
 </div>
 
 <% t('about.board').each do |person| %>
   <div class="modal fade" id="<%= "board-#{person[:key]}" %>">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class='text-large text-center'><%= person[:name] %></div>
+        </div>
+        <div class='modal-body'>
+          <p><%= person[:bio].html_safe %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% t('about.team').each do |person| %>
+  <div class="modal fade" id="<%= "team-#{person[:key]}" %>">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
