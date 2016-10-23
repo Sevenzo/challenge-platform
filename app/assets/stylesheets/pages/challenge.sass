@@ -220,11 +220,12 @@
 
 .light-gray-bg
   @extend .padding-xxxl-vertical
-  padding-left: $padding-xxxl-vertical
-  padding-right: $padding-xxxl-vertical
-  margin-left: -80px
-  margin-right: -80px
   background-color: $lightGrayBG
+  @media only screen and (min-width: 900px)
+    padding-left: $padding-xxxl-vertical
+    padding-right: $padding-xxxl-vertical
+    margin-left: -80px
+    margin-right: -80px
 
 .padding-horizontal-none
   padding-left: 0px
