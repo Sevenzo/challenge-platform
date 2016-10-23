@@ -56,6 +56,8 @@ class Challenge < ActiveRecord::Base
       3
     when 'solution'
       4
+    when 'done'
+      5
     else
       0
     end
@@ -92,8 +94,8 @@ class Challenge < ActiveRecord::Base
     {
       number: 4,
       name: 'solution',
-      alias: 'story',
-      action: 'share',
+      alias: 'implementation',
+      action: 'shared',
       icon: 'fa-paper-plane-o',
       headline: 'Implement & Share',
       description: 'Try out and refine the bright spots with other peers and share your implementation stories!'

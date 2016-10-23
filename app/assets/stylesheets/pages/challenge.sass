@@ -3,52 +3,57 @@
   padding: 0
   &:not(.challenges)
     .badge-container
-      padding-top: $padding-xl-vertical
+      padding-top: $padding-base-vertical
       padding-bottom: 0px
       .descriptor-container
         display: none
         height: 0
-  .container
-    padding: 0
-
   #challenge-nav
     @extend .text-center, .center-block, .text-small
     padding: 0px
     display: flex
     flex-direction: row
     justify-content: center
-  .padding-vertical
-    @media only screen and (min-width: 768px)
-      padding-top: $padding-xxl-vertical
-      padding-bottom: $padding-xl-vertical
   .badge-container
-    @extend .padding-vertical
+    padding-top: $padding-xl-vertical
+    padding-bottom: $padding-xl-vertical
     display: flex
     flex: 1
     flex-direction: column
-    &:hover,&:focus,&:active
+    &:hover,&:focus,&:active,&.active
       text-decoration: none
     &.experience-bg
-      &:hover,&:focus,&:active
+      &.active
+        .badge-experience
+          @extend .experience,.text-experience
+      &:hover,&:focus,&:active,&.selected
         background-color: rgba($experience, 0.2)
         .badge-experience
           @extend .experience,.text-experience
     &.idea-bg
-      &:hover,&:focus,&:active
+      &.active
+        .badge-idea
+          @extend .idea,.text-idea
+      &:hover,&:focus,&:active,&.selected
         background-color: rgba($idea, 0.2)
         .badge-idea
           @extend .idea,.text-idea
     &.recipe-bg
-      &:hover,&:focus,&:active
+      &.active
+        .badge-recipe
+          @extend .recipe,.text-recipe
+      &:hover,&:focus,&:active,&.selected
         background-color: rgba($recipe, 0.2)
         .badge-recipe
           @extend .recipe,.text-recipe
     &.solution-bg
-      &:hover,&:focus,&:active
+      &.active
+        .badge-solution
+          @extend .solution,.text-solution
+      &:hover,&:focus,&:active,&.selected
         background-color: rgba($solution, 0.2)
         .badge-solution
           @extend .solution,.text-solution
-
   .badge
     @extend .text-small
     color: $lightGrayText
@@ -60,12 +65,12 @@
     padding: $padding-base-horizontal $padding-xl-vertical
     border-radius: 0
     text-align: left
-    @media only screen and (max-width: 768px)
+    @media only screen and (max-width: $screen-sm)
       text-align: center
     .fa
       @extend .text-h2
       width: 100%
-      @media only screen and (max-width: 768px)
+      @media only screen and (max-width: $screen-sm)
         font-size: $font-size-h2 !important
     .headline
       @extend .hidden-xs
@@ -83,7 +88,6 @@
       @extend .visible-xs
       @extend .text-bolder
       line-height: $font-size-small
-
   .fa-angle-right
     color: #CECFD0
   .experience
@@ -94,20 +98,18 @@
     border-color: $recipe
   .solution
     border-color: $solution
-
   .descriptor-container
-    @extend .hidden-xs,.text-bold,.text-default,.text-xsmall
+    @extend .hidden-xs,.text-bold,.text-default,.text-small
     display: flex
     flex: 1
     align-items: stretch
     flex-direction: row
     align-items: flex-end
-    padding: 5px 15px
+    padding: 15px
     .in-progress
       @extend .text-italic,.text-bolder
     .descriptor-count
-      font-size: $font-size-large !important
-      line-height: $font-size-large
+      @extend .text-medium
       padding-right: $padding-xs-horizontal
 
 #challenge-overview
