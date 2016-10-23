@@ -22,14 +22,14 @@
 
   <body>
     <%= render partial: 'layouts/facebook', cache: true %>
-    <%= render partial: 'layouts/header', cache: true unless @hide_navs %>
-    <%= render partial: 'layouts/flashes', cache: true unless @hide_navs %>
+    <%= render partial: 'layouts/header', cache: true %>
+    <%= render partial: 'layouts/flashes', cache: true %>
 
     <div class='page-wrap'>
       <%= yield %>
     </div>
 
-    <%= render partial: 'layouts/footer', cache: true unless @hide_navs %>
+    <%= render partial: 'layouts/footer', cache: true %>
 
     <script>
       angular.element(document).ready(function() {angular.bootstrap(document, ['CPApp']);});

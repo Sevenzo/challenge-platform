@@ -27,10 +27,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def hide_navs
-    @hide_navs = true
-  end
-
   def load_challenge
     @challenge ||= Challenge.find(params[:challenge_id])
   end
