@@ -1,61 +1,116 @@
 #challenge-header
-  background-color: transparent
-  padding: 0.25em 0em
-  &.experience_stages,&.idea_stages,&.recipe_stages
-    background-color: white
-  &.experiences,&.ideas,&.cookbooks,&.recipes,&.solutions
-    #challenge-nav
-      background-color: white
-  &.splash
-    position: absolute
-    top: 3.5em
-    width: 100%
-    z-index: 1000
-    #challenge-nav
-      background-color: white
+  background-color: $lightGrayBG
+  padding: 0
+  &:not(.challenges)
+    .badge-container
+      padding-top: $padding-base-vertical
+      padding-bottom: 0px
+      .descriptor-container
+        display: none
+        height: 0
   #challenge-nav
     @extend .text-center, .center-block, .text-small
-    margin: 0.25em 1.5em
     padding: 0px
-    +border-radius(2em)
-    .badge
-      @extend .text-default, .text-small
-      +border-radius(2em)
-      line-height: 2em
-      background-color: white
-      padding: 5px 15px
-      .fa
-        &.fa-check
-          @extend .text-default
-      .headline
-        @extend .hidden-xs
-        @extend .text-bolder
+    display: flex
+    flex-direction: row
+    justify-content: center
+  .badge-container
+    padding-top: $padding-xl-vertical
+    padding-bottom: $padding-xl-vertical
+    display: flex
+    flex: 1
+    flex-direction: column
+    &:hover,&:focus,&:active,&.active
+      text-decoration: none
+    &.experience-bg
       &.active
-        // background-color: #E9E9E9 !important
-      &.selected
-        .headline,.fa.fa-check
-          @extend .text-white
-      &:first-child
-        margin-left: 0px
-      &:last-child
-        margin-right: 0px
-    .badge-experience
+        .badge-experience
+          @extend .experience,.text-experience
+      &:hover,&:focus,&:active,&.selected
+        background-color: rgba($experience, 0.2)
+        .badge-experience
+          @extend .experience,.text-experience
+    &.idea-bg
       &.active
-        .fa-stack-1x
-          font-size: 1em
-      &.selected
-        background-color: $experience !important
-    .badge-idea
-      &.selected
-        background-color: $idea !important
-    .badge-recipe
-      &.selected
-        background-color: $recipe !important
-    .badge-solution
-      &.selected
-        background-color: $solution !important
-    .fa-angle-right
-      color: #CECFD0
+        .badge-idea
+          @extend .idea,.text-idea
+      &:hover,&:focus,&:active,&.selected
+        background-color: rgba($idea, 0.2)
+        .badge-idea
+          @extend .idea,.text-idea
+    &.recipe-bg
+      &.active
+        .badge-recipe
+          @extend .recipe,.text-recipe
+      &:hover,&:focus,&:active,&.selected
+        background-color: rgba($recipe, 0.2)
+        .badge-recipe
+          @extend .recipe,.text-recipe
+    &.solution-bg
+      &.active
+        .badge-solution
+          @extend .solution,.text-solution
+      &:hover,&:focus,&:active,&.selected
+        background-color: rgba($solution, 0.2)
+        .badge-solution
+          @extend .solution,.text-solution
+  .badge
+    @extend .text-small
+    color: $lightGrayText
+    line-height: 2em
+    background-color: transparent
+    border-style: solid
+    border-color: transparent
+    border-width: 0px 0px $padding-base-vertical 0px
+    padding: $padding-base-horizontal $padding-xl-vertical
+    border-radius: 0
+    text-align: left
+    @media only screen and (max-width: $screen-sm)
+      text-align: center
+    .fa
+      @extend .text-h2
+      width: 100%
+      @media only screen and (max-width: $screen-sm)
+        font-size: $font-size-h2 !important
+    .headline
+      @extend .hidden-xs
+      @extend .text-bolder
+    &.active
+      // background-color: #E9E9E9 !important
+    &.selected
+      .headline,.fa.fa-check
+        @extend .text-white
+    &:first-child
+      margin-left: 0px
+    &:last-child
+      margin-right: 0px
+    .headline-xs
+      @extend .visible-xs
+      @extend .text-bolder
+      line-height: $font-size-small
+  .fa-angle-right
+    color: #CECFD0
+  .experience
+    border-color: $experience
+  .idea
+    border-color: $idea
+  .recipe
+    border-color: $recipe
+  .solution
+    border-color: $solution
+  .descriptor-container
+    @extend .hidden-xs,.text-bold,.text-default,.text-small
+    display: flex
+    flex: 1
+    align-items: stretch
+    flex-direction: row
+    align-items: flex-end
+    padding: 15px
+    .in-progress
+      @extend .text-italic,.text-bolder
+    .descriptor-count
+      @extend .text-medium
+      padding-right: $padding-xs-horizontal
 
 #challenge-overview
   background-repeat: no-repeat
@@ -84,11 +139,20 @@
   .section-description
     text-align: left
   .col-description
-    @extend .col-sm-11, .col-sm-offset-1, .padding-vertical-xxxl
+    @extend .col-sm-11, .col-sm-offset-1, .padding-xxxl-vertical
     width: 73%
     @media (max-width: 480px)
       padding-horizontal: $padding-small-horizontal
       width: 100%
+  .research-title
+    font-size: 1.5em !important
+    padding-bottom: 1.5em
+  .citation-left
+    margin-top: 2em
+    text-align: right
+  .citation-right
+    margin-top: .25em
+    text-align: right
   #challenge-process
     @extend .row-process
     .col-xs-6,.col-sm-3
@@ -201,17 +265,21 @@
     text-decoration: none
     color: darken($blueText, 15%)
 
+.padding-vertical-xxl
+  padding-top: $padding-xxl-vertical
+  padding-bottom: $padding-xxl-vertical
 
-.padding-vertical-xxxl
+.padding-xxxl-vertical
   padding-top: $padding-xxxl-vertical
   padding-bottom: $padding-xxxl-vertical
 
 .light-gray-bg
-  @extend .padding-vertical-xxxl
+  @extend .padding-xxxl-vertical
+  padding-left: $padding-xxxl-vertical
+  padding-right: $padding-xxxl-vertical
+  margin-left: -80px
+  margin-right: -80px
   background-color: $lightGrayBG
-
-.section-title-smaller
-  font-size: 1.5em !important
 
 .padding-horizontal-none
   padding-left: 0px
