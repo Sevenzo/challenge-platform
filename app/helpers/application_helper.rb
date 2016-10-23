@@ -46,6 +46,12 @@ module ApplicationHelper
     end
   end
 
+  def authentication_page?
+    %w(passwords sessions).include?(controller_name) ||
+      %w(preview).include?(action_name) ||
+      current_page?(edit_user_registration_path(setting: 'onboard'))
+  end
+
 private
 
   def normalize_flash_key(key)
