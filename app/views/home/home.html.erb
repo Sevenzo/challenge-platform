@@ -1,33 +1,28 @@
-<style type="text/css">
-#landing-splash {
-    background-image:url('<%= asset_path("Home_hero970.png") %>');
-}
-@media only screen and (max-width: 414px) {
-  #landing-splash {
-      background-image:url('<%= asset_path("Home_hero500.png") %>');
-  }
-}
-</style>
-
-<div id='landing-splash'>
+<div id='landing-splash' style="background-image:url('<%= asset_path("Home_hero970.png") %>')">
   <div class='opacity-content'>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-6 col-md-offset-3'>
 
-    <h2>Inspiring educators to find and share what works</h2>
+          <h1 class='headline'>Inspiring communities to find and spread what works</h1>
 
-    <% if @challenge %>
-      <% if user_signed_in? %>
-        <% btn_path = challenge_active_stage_path(@challenge); btn_text = "Return to Challenge" %>
-      <% else %>
-        <% btn_path = challenges_path; btn_text = "Join the movement" %>
-      <% end %>
-    <% else %>
-      <% btn_path = about_path; btn_text = "Learn more" %>
-    <% end %>
+          <% if @challenge %>
+            <% if user_signed_in? %>
+              <% btn_path = challenge_active_stage_path(@challenge); btn_text = "Return to Challenge" %>
+            <% else %>
+              <% btn_path = challenges_path; btn_text = "Join the movement" %>
+            <% end %>
+          <% else %>
+            <% btn_path = about_path; btn_text = "Learn more" %>
+          <% end %>
 
-    <div class='text-center center-block'>
-      <%= link_to btn_text, btn_path, class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom ' %>
+          <div class='text-center center-block'>
+            <%= link_to btn_text, btn_path, class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom ' %>
+          </div>
+
+        </div>
+      </div>
     </div>
-
   </div>
 </div>
 
@@ -52,7 +47,7 @@
 
         <p class='section-description text-xlarge' style='margin-bottom:2em;'>We challenge our community to come together around issues that deeply impact young people's ability to learn and thrive.  Our challenges go through four phases:</p>
 
-        <%= render partial: 'home/process' %>
+        <%= render partial: 'home/stages' %>
 
       </div>
     </div>
@@ -81,34 +76,32 @@
         <h2 class="section-title">Our Community</h2>
         <p class='section-description' style='margin-bottom: 2em'>It takes a village to tackle the most challenging barriers to young people’s ability to learn and thrive. As such, we welcome all educators including classroom teachers, teacher leaders, coaches, administrators, support staff and out of school mentors into this online community.</p>
 
-        <div class='row'>
-          <% t('home.testimonials').each do |testimonial| %>
-            <div class='col-sm-6'>
-              <div class='well well-testimonial'>
-                <p class='text-lighter text-center text-green'>
-                  <i class='fa fa-quote-left fa-2x'></i>
-                  &nbsp;
-                  <%= testimonial[:quote] %>
-                </p>
-              </div>
 
-              <div class="media text-center light-gray-text">
-                <%= image_tag "home/#{testimonial[:key]}.png", class: 'img-rounded half-margin-bottom' %>
-                <div class="media-body">
-                  <p>
-                    <strong><%= testimonial[:name] %></strong><br>
-                    <% testimonial[:titles].each do |title| %>
-                      <%= title %><br>
-                    <% end %>
-                    <%= testimonial[:organization] %><br>
-                    <abbr><i class='fa fa-twitter-square fa-1-25x'></i></abbr>
-                    <%= link_to "@#{testimonial[:twitter]}", "https://twitter.com/intent/user?screen_name=#{testimonial[:twitter]}", target: '_blank', style: 'light-gray-text' %>
-                  </p>
+        <% t('home.testimonials').shuffle.each_slice(2) do |testimonials| %>
+          <div class='row'>
+            <% testimonials.each do |testimonial| %>
+              <div class='col-sm-6'>
+                <div class='well well-testimonial'>
+                  <div class="media">
+                    <div class='media-left'><%= image_tag "home/#{testimonial[:key]}.png", width: '100px' %></div>
+                    <div class="media-body">
+                      <p class='text-small text-experience'>"<%= testimonial[:quote] %>"</p>
+                      <p class='text-small text-dark-gray'>
+                        <strong><%= testimonial[:name].split(' ').first %>, <%= testimonial[:title] %></strong><br>
+                        <%= testimonial[:organization] %><br>
+                      </p>
+
+                      <%= link_to "https://twitter.com/intent/user?screen_name=#{testimonial[:twitter]}", target: '_blank' do %>
+                        <abbr><i class='fa fa-twitter-square fa-1-25x'></i></abbr>
+                        <%= "@#{testimonial[:twitter]}" %>
+                      <% end %>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% end %>
-        </div>
+            <% end %>
+          </div>
+        <% end %>
 
       </div>
     </div>

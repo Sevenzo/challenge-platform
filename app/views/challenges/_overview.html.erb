@@ -1,24 +1,15 @@
-<div id='challenge-overview' style='background-image:url("<%= challenge.banner.present? ? challenge.banner.url.html_safe : asset_path('bg.png') %>")'>
+<div id='challenge-overview' style='background-image:url("<%= challenge.banner.present? ? challenge.banner.url.html_safe : asset_path('home/bg.jpg') %>")'>
   <div class='opacity-content'>
     <div class='container'>
       <div class='row'>
-        <div class='col-md-10 col-md-offset-1'>
+        <div class='col-md-8 col-md-offset-2'>
 
-          <div class='row'>
-            <div class="col-sm-8 col-sm-offset-1">
-              <h2>Current challenge</h2>
-            </div>
-          </div>
-          <div class='row'>
-            <div class="col-sm-8 col-sm-offset-1">
-              <h1 class='challenge-headline'><%= challenge.headline.html_safe %></h3>
-            </div>
-          </div>
-          <div class="row row-cta">
-            <div class='text-center center-block'>
-              <%= link_to 'Join the Challenge', challenge_experience_stage_path(challenge, challenge.experience_stage), class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom btn-cta' %>
-            </div>
-          </div>
+          <h1 class='challenge-headline'>
+            <small class='text-white'>Current challenge</small>
+            <br>
+            <%= challenge.headline.html_safe %>
+          </h1>
+          <%= link_to 'Join the Challenge', challenge_experience_stage_path(challenge, challenge.experience_stage), class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom btn-cta' %>
 
         </div>
       </div>
