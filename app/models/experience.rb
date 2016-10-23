@@ -29,7 +29,7 @@ class Experience < ActiveRecord::Base
   end
 
   def icon
-    'fa-comment'
+    'fa-comments'
   end
 
 end

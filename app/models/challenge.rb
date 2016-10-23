@@ -67,7 +67,7 @@ class Challenge < ActiveRecord::Base
       name: 'experience',
       alias: 'insight',
       action: 'shared',
-      icon: 'fa-comments-o',
+      icon: 'fa-comments',
       headline: 'Share Insights',
       description: "Share your thinking about why solving the challenge is important for our students and find inspiration in other's stories."
     },
