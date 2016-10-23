@@ -5,14 +5,14 @@
 
         <div id='challenge-nav'>
           <% Challenge::STAGES.each_with_index do |stage, index| %>
-            <%= link_to eval("challenge_#{stage[:name]}_stage_path(@challenge, @challenge.#{stage[:name]}_stage)"), class: "badge-container #{stage[:name]}-bg #{ 'selected' if @challenge.stage_number > 4 || eval("params[:#{stage[:name]}_stage_id] || @#{stage[:name]}_stage") }" do %>
+            <%= link_to eval("challenge_#{stage[:name]}_stage_path(@challenge, @challenge.#{stage[:name]}_stage)"), class: "stage-container #{stage[:name]}-bg #{ 'selected' if @challenge.stage_number > 4 || eval("params[:#{stage[:name]}_stage_id] || @#{stage[:name]}_stage") }" do %>
 
-              <div class="badge badge-<%= stage[:name] %> <%= "text-default #{@challenge.active_stage}" if @challenge.stage_number >= stage[:number] %>">
+              <div class="stage stage-<%= stage[:name] %> <%= "text-default #{@challenge.active_stage}" if @challenge.stage_number >= stage[:number] %>">
 
                 <% if stage[:name] == @challenge.active_stage %>
-                    <i class="fa <%= stage[:icon] %> text-<%= stage[:name] %>"></i>
+                    <i class="fa fa-2x <%= stage[:icon] %> text-<%= stage[:name] %>"></i>
                 <% else %>
-                  <i class='fa <%= stage[:icon] %>'></i>
+                  <i class='fa fa-2x <%= stage[:icon] %>'></i>
                 <% end %>
 
                 <div class='headline text-<%= stage[:name] if @challenge.stage_number == stage[:number] %>'><%= stage[:headline] %></div>
