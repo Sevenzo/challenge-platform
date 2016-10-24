@@ -60,7 +60,8 @@ private
 
   def after_update_path_for(resource)
     stored_location_for(resource) ||
-      edit_user_registration_path(setting: (@setting == 'onboard' ? 'profile': "#{@setting}"))
+      (@setting == 'onboard' ? featured_challenge_path : edit_user_registration_path) ||
+      edit_user_registration_path(setting: @setting)
   end
 
   def update_avatar(resource)
