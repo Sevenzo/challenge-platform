@@ -31,6 +31,14 @@ class ApplicationController < ActionController::Base
     @challenge ||= Challenge.find(params[:challenge_id])
   end
 
+  def featured_challenge
+    @featured_challenge ||= Challenge.featured
+  end
+
+  def featured_challenge_path
+    featured_challenge_path ||= featured_challenge ? challenge_path(featured_challenge) : challenges_path
+  end
+
 private
 
   def capture_referrer_id
