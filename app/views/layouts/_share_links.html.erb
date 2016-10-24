@@ -16,7 +16,3 @@
     <%= mail_to '', "<i class='fa fa-envelope fa-1-5x'></i>".html_safe, {subject: "#{strip_tags(title)}", body: "#{strip_tags(description)} #{url}", onclick: "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"} %>
   </li>
 </ul>
-
-<hr class='short'>
-
-<%= render partial: 'layouts/share_follow' %>

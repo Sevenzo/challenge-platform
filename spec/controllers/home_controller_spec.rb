@@ -89,11 +89,6 @@ describe HomeController do
   describe 'GET #preview' do
     let(:comment) { create(:comment) }
 
-    it 'hides the navigation bars' do
-      get 'preview', class_name: 'inconsequential'
-      expect(assigns(:hide_navs)).to be true
-    end
-
     it 'loads the votable type from the session object when vote is a query parameter' do
       session[:like] = {likeable_type: 'Comment', likeable_id: comment.id, vote_scope: 'like'}
       get 'preview', class_name: 'vote'

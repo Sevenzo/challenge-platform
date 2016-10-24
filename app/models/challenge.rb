@@ -56,6 +56,8 @@ class Challenge < ActiveRecord::Base
       3
     when 'solution'
       4
+    when 'done'
+      5
     else
       0
     end
@@ -67,7 +69,7 @@ class Challenge < ActiveRecord::Base
       name: 'experience',
       alias: 'insight',
       action: 'shared',
-      icon: 'fa-comment',
+      icon: 'fa-comments',
       headline: 'Share Insights',
       description: "Share your thinking about why solving the challenge is important for our students and find inspiration in other's stories."
     },
@@ -92,10 +94,10 @@ class Challenge < ActiveRecord::Base
     {
       number: 4,
       name: 'solution',
-      alias: 'story',
-      action: 'share',
-      icon: 'fa-play-circle-o',
-      headline: 'Implement and Share Stories',
+      alias: 'implementation',
+      action: 'shared',
+      icon: 'fa-paper-plane-o',
+      headline: 'Implement & Share',
       description: 'Try out and refine the bright spots with other peers and share your implementation stories!'
     }
   ]
