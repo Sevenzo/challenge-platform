@@ -7,7 +7,7 @@
 
         <div class='well well-auth' ng-switch='new_user' ng-init='new_user=true'>
           <%= link_to "<i class='fa fa-close fa-2x'></i>".html_safe, @cancel_path, class: 'auth-cancel' %>
-          <h2 class='section-title'>Thanks for contributing! Please sign {{new_user ? 'up' : 'in'}} to <%= @object.respond_to?(:published_at) && !@object.published_at? ? 'save' : 'share' %> your voice.</h2>
+          <h2 class='section-title'>Thanks for sharing! Please sign {{new_user ? 'up' : 'in'}} to <%= @object.respond_to?(:published_at) && !@object.published_at? ? 'save' : 'post' %> your contribution.</h2>
 
           <div ng-hide="new_user">
             <%= render partial: 'devise/sessions/form', locals: { switch_link: link_to("Sign Up.", '#', onclick: 'return false;', 'ng-click' => 'new_user=true') }, cache: true %>
@@ -17,8 +17,6 @@
             <%= render partial: 'devise/registrations/forms/new', locals: { switch_link: link_to("Sign In.", '#', onclick: 'return false;', 'ng-click' => 'new_user=false') }, cache: true %>
           </div>
         </div>
-
-        <%= render partial: 'layouts/share_follow' %>
 
       </div>
     </div>

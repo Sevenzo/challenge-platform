@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-  before_action :hide_navs, only: [:preview]
 
   def index
     @challenge = Challenge.featured

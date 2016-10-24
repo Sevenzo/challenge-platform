@@ -1,31 +1,39 @@
-<div id='challenge-header' class='<%= current_page?(challenge_path(@challenge)) || @solution_stage ? 'splash' : controller_name %>'>
-  <div class='container'>
-    <div class='row'>
-      <div class='col-md-10 col-md-offset-1'>
+<div id='challenge-header' class='<%= controller_name %>'>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
 
-        <div id='challenge-nav' style='<%= challenge_nav_margin(@challenge) %>'>
+        <div id='challenge-nav'>
           <% Challenge::STAGES.each_with_index do |stage, index| %>
+            <%= link_to eval("challenge_#{stage[:name]}_stage_path(@challenge, @challenge.#{stage[:name]}_stage)"), class: "stage-container #{stage[:name]}-bg #{ 'selected' if @challenge.stage_number > 4 || eval("params[:#{stage[:name]}_stage_id] || @#{stage[:name]}_stage") }" do %>
 
-            <%= link_to eval("challenge_#{stage[:name]}_stage_path(@challenge, @challenge.#{stage[:name]}_stage)") do %>
-              <span class="badge badge-<%= stage[:name] %> <%= 'active' if @challenge.stage_number >= stage[:number] %> <%= 'selected' if eval("params[:#{stage[:name]}_stage_id] || @#{stage[:name]}_stage") %>">
+              <div class="stage stage-<%= stage[:name] %> <%= "text-default #{@challenge.active_stage}" if @challenge.stage_number >= stage[:number] %>">
 
                 <% if stage[:name] == @challenge.active_stage %>
-                  <span class="fa-stack">
-                    <i class="fa fa-stack-2x fa-circle text-<%= eval("params[:#{stage[:name]}_stage_id] || @#{stage[:name]}_stage") ? 'white' : stage[:name] %>"></i>
-                    <i class="fa fa-stack-1x <%= stage[:icon] %> text-<%= eval("params[:#{stage[:name]}_stage_id] || @#{stage[:name]}_stage") ? stage[:name] : 'white' %>"></i>
-                  </span>
+                    <i class="fa fa-2x <%= stage[:icon] %> text-<%= stage[:name] %>"></i>
                 <% else %>
-                  <i class='fa <%= stage[:icon] %> text-<%= eval("params[:#{stage[:name]}_stage_id] || @#{stage[:name]}_stage") ? 'white' : stage[:name] %>'></i>
+                  <i class='fa fa-2x <%= stage[:icon] %>'></i>
                 <% end %>
 
-                <%= "<i class='fa fa-check'></i>".html_safe if @challenge.stage_number > stage[:number] %>
+                <div class='headline text-<%= stage[:name] if @challenge.stage_number == stage[:number] %>'><%= stage[:headline] %></div>
+                <div class='headline-xs text-<%= stage[:name] if @challenge.stage_number == stage[:number] %>'><%= stage[:headline].split(' ').first %></div>
+              </div>
 
-                <span class='headline text-<%= stage[:name] if @challenge.stage_number == stage[:number] %>'><%= stage[:headline] %></span>
-              </span>
+              <div class="descriptor-container">
+
+                <% if stage[:name] == @challenge.active_stage %>
+                  <div class="in-progress">In progress</div>
+                <% elsif stage[:number] < @challenge.stage_number %>
+                  <!-- We don't want to display 0 counts. -->
+                  <% activity_count = eval("@challenge.#{stage[:name]}_stage.#{stage[:name].pluralize}.size") %>
+                  <% if activity_count > 0 %>
+                    <div class="descriptor-count"><%= activity_count %></div>
+                    <div class="descriptor-body"><%= "#{stage[:alias].pluralize.capitalize} #{stage[:action]}" %></div>
+                  <% end %>
+                <% end %>
+              </div>
+
             <% end %>
-
-            <%= "<i class='fa fa-angle-right'></i>".html_safe unless index+1 == Challenge::STAGES.length %>
-
           <% end %>
         </div>
 
