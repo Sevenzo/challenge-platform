@@ -60,7 +60,7 @@ private
 
   def after_update_path_for(resource)
     stored_location_for(resource) ||
-      (@setting == 'onboard' ? featured_challenge_path : edit_user_registration_path) ||
+      (featured_challenge_path if @setting == 'onboard') ||
       edit_user_registration_path(setting: @setting)
   end
 

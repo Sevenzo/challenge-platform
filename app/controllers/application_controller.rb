@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def featured_challenge_path
-    featured_challenge_path ||= challenge_path(featured_challenge) if featured_challenge.present?
+    featured_challenge_path ||= featured_challenge ? challenge_path(featured_challenge) : challenges_path
   end
 
 private
