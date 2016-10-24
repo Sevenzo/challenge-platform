@@ -18,10 +18,10 @@
       <% if user_signed_in? %>
         <% btn_path = challenge_active_stage_path(@challenge); btn_text = "Return to Challenge" %>
       <% else %>
-        <% btn_path = challenges_path; btn_text = "Join the movement" %>
+        <% btn_path = challenges_path; btn_text = "See Our First Challenge" %>
       <% end %>
     <% else %>
-      <% btn_path = about_path; btn_text = "Learn more" %>
+      <% btn_path = about_path; btn_text = "Learn More" %>
     <% end %>
 
     <div class='text-center center-block'>

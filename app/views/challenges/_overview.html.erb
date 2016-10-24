@@ -9,14 +9,29 @@
               <h2>Current challenge</h2>
             </div>
           </div>
+
           <div class='row'>
             <div class="col-sm-8 col-sm-offset-1">
-              <h1 class='challenge-headline'><%= challenge.headline.html_safe %></h3>
+              <h1 class='challenge-headline'><%= challenge.headline.html_safe %></h1>
             </div>
           </div>
-          <div class="row row-cta">
-            <div class='text-center center-block'>
-              <%= link_to 'Join the Challenge', challenge_experience_stage_path(challenge, challenge.experience_stage), class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom btn-cta' %>
+
+          <div class='row'>
+            <div class="col-sm-11 col-sm-offset-1">
+              <div class="row-cta">
+                <div class='div-cta'>
+                  <script type="text/javascript">
+                    $(window).width();
+                  $(window).height();
+                  </script>
+                  <%= link_to @challenge.video_url, { class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom btn-cta-left', 'data-toggle': "lightbox", 'data-width': "1000" } do %>
+                    <%= "<i class='fa fa-play-circle-o play-icon'></i> Get Inspired".html_safe if @challenge.video_url %>
+                  <% end %>
+                </div>
+                <div class='div-cta'>
+                  <%= link_to 'Join the Challenge', challenge_experience_stage_path(challenge, challenge.experience_stage), class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom btn-cta-right' %>
+                </div>
+              </div>
             </div>
           </div>
 

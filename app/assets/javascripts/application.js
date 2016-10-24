@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require underscore
 //= require bootstrap-sprockets
+//= require lightbox-bootstrap
 //= require angular
 //= require angular-resource
 //= require angular-sanitize
