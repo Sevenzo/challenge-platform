@@ -1,18 +1,20 @@
 <% url = user_signed_in? ? "#{url}?referrer_id=#{current_user.id}" : url %>
+<% ul_class = nil if local_assigns[:ul_class].nil? %>
+<% li_class = nil if local_assigns[:li_class].nil? %>
 
-<ul class='share-links'>
+<ul class=<%= ul_class ? ul_class : "share-links" %>>
   <li>
-    <%= link_to "<i class='fa fa-twitter fa-1-5x'></i>".html_safe, "https://twitter.com/intent/tweet?text=#{url_encode(tweet)}&url=#{url_encode(url)}&hashtags=#{hashtag}", target: '_blank' %>
+    <%= link_to "<i class='fa fa-twitter fa-1-5x'></i>".html_safe, "https://twitter.com/intent/tweet?text=#{url_encode(tweet)}&url=#{url_encode(url)}&hashtags=#{hashtag}", target: '_blank', class: "#{ li_class ? li_class : nil }" %>
   </li>
   <li>
-    <%= link_to "<i class='fa fa-facebook fa-1-5x'></i>".html_safe, "https://www.facebook.com/dialog/share?app_id=#{ENV.fetch('FACEBOOK_APP_ID')}&display=popup&href=#{url_encode(url)}&redirect_uri=#{url_encode(url)}", onclick: "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;" %>
+    <%= link_to "<i class='fa fa-facebook fa-1-5x'></i>".html_safe, "https://www.facebook.com/dialog/share?app_id=#{ENV.fetch('FACEBOOK_APP_ID')}&display=popup&href=#{url_encode(url)}&redirect_uri=#{url_encode(url)}", onclick: "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;", class: "#{ li_class ? li_class : nil }" %>
     <meta property="og:title" content="<%= strip_tags(title) %>" />
     <meta property="og:description" content="<%= strip_tags(description) %>" />
   </li>
   <li>
-    <%= link_to "<i class='fa fa-linkedin fa-1-5x'></i>".html_safe, "http://www.linkedin.com/shareArticle?mini=true&url=#{url_encode(url)}&title=#{url_encode(strip_tags(title))}&summary=#{url_encode(strip_tags(description))}", onclick: "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;" %>
+    <%= link_to "<i class='fa fa-linkedin fa-1-5x'></i>".html_safe, "http://www.linkedin.com/shareArticle?mini=true&url=#{url_encode(url)}&title=#{url_encode(strip_tags(title))}&summary=#{url_encode(strip_tags(description))}", onclick: "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;", class: "#{ li_class ? li_class : nil }" %>
   </li>
   <li>
-    <%= mail_to '', "<i class='fa fa-envelope fa-1-5x'></i>".html_safe, {subject: "#{strip_tags(title)}", body: "#{strip_tags(description)} #{url}", onclick: "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"} %>
+    <%= mail_to '', "<i class='fa fa-envelope fa-1-5x'></i>".html_safe, {subject: "#{strip_tags(title)}", body: "#{strip_tags(description)} #{url}", onclick: "javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;", class: "#{ li_class ? li_class : nil }" } %>
   </li>
 </ul>

@@ -23,11 +23,17 @@ body
       padding-bottom: $padding-xl-vertical
   h3
     margin-top: 0em
+
   #footer-social
     a
       font-size: 1.2em
-  #footer-legal
-    margin-top: 1em
+    ul
+      margin-top: 1em
+      .share-buttons
+        color: $blueText
+        &:hover,&:focus,&:active,&.active
+          color: darken($blueText, 15%)
+
   #app-name
     padding-bottom: $padding-xl-vertical
     a
@@ -50,7 +56,3 @@ body
     &:hover,&:focus,&:active,&.active
       color: $blueText
       text-decoration: none
-  .share-buttons
-    color: $blueText
-    &:hover,&:focus,&:active,&.active
-      color: darken($blueText, 15%)
