@@ -3,7 +3,7 @@ challenge = Challenge.create!(
   headline: "How do we create a sense of belonging for students in school and community?",
   goal: 'creating a sense of belonging',
   video_url: 'https://vimeo.com/185424174',
-  remote_banner_url: 'https://sevenzo-production.s3-us-west-2.amazonaws.com/challenge/1/challenge.png',
+  remote_banner_url: 'https://s3-us-west-2.amazonaws.com/sevenzo-production/challenge/1/Belonging_hero714.png',
   hashtag: 'edubelong',
   description: "<h2 class='section-title'>Why this challenge matters</h2>
 
