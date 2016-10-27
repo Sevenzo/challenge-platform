@@ -26,7 +26,8 @@
           <div id='footer-social' class='col-sm-6 col-sm-offset-1'>
             <h3>Know someone who may want to join the discussion?</h3>
             <p>The more the merrier! Share our platform to help us get the best suggestions from educators like you.</p>
-            <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: @challenge.hashtag, tweet: "What are simple ways teachers can ensure students feel like they belong? Share your ideas at", title: "Share Your Insights on how to create a sense of belonging for students in school", description: "Are you an educator who’s been thinking about how to create a sense of belonging for all of your students? Help revolutionize how educators across America come together to identify belonging bright spots and help spread them across more places.", subject: "Share Your Insights on how to create a sense of belonging for students in school!", ul_class: 'list-inline', li_class: 'share-buttons' }, cache: true %>
+            <% hashtag = @challenge ? @challenge.hashtag : nil %>
+            <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: hashtag, tweet: "What are simple ways teachers can ensure students feel like they belong? Share your ideas at", title: "Share Your Insights on how to create a sense of belonging for students in school", description: "Are you an educator who’s been thinking about how to create a sense of belonging for all of your students? Help revolutionize how educators across America come together to identify belonging bright spots and help spread them across more places.", subject: "Share Your Insights on how to create a sense of belonging for students in school!", ul_class: 'list-inline', li_class: 'share-buttons' }, cache: true %>
           </div>
         </div>
 
