@@ -101,11 +101,6 @@
           </div>
         <% end %>
 
-        <h2 class='section-title text-submit'>Know people who have something to add to this conversation?</h2>
-        <p class='section-description'>More people means more problems solved. Share this challenge!</p>
-
-        <%= render partial: 'layouts/share_links', locals: { url: root_url, hashtag: @challenge.hashtag, tweet: "See great ideas in action at the #{@challenge.title}!", title: "See Your Ideas Become Real!", description: "Educators across America have shared amazing ideas in the #{@challenge.title}. Now see how those ideas are happening in schools.", subject: "See how great ideas become real at the #{@challenge.title}" }, cache: true %>
-
       </div>
     </div>
   </div>
