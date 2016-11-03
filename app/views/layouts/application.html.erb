@@ -15,6 +15,7 @@
     <%= render partial: 'layouts/google', cache: true if ENV['GA_KEY'].present? %>
     <%= render partial: 'layouts/heap', cache: true if ENV['HEAP_APP_ID'].present? %>
     <%= render partial: 'layouts/twitter', cache: true %>
+    <%= render partial: 'layouts/facebook_pixel', cache: true if ENV['FACEBOOK_AD_ACCT_ID'].present? %>
     <%= render partial: 'shared/cards/facebook', cache: true %>
 
     <%= csrf_meta_tags %>
