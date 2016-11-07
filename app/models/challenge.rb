@@ -71,7 +71,7 @@ class Challenge < ActiveRecord::Base
       action: 'shared',
       icon: 'fa-comments',
       headline: 'Share Insights',
-      description: "Share your thinking about why solving the challenge is important for our students and find inspiration in other's stories."
+      description: "Inspire, be inspired and gain insights before finding solutions."
     },
     {
       number: 2,
@@ -79,8 +79,8 @@ class Challenge < ActiveRecord::Base
       alias: 'bright spot',
       action: 'contributed',
       icon: 'fa-lightbulb-o',
-      headline: 'Contribute Bright Spots',
-      description: "Share what you or others are already doing that's solving the challenge for students."
+      headline: 'Discover What Works',
+      description: "Share new ideas or existing solutions that tackle challenges."
     },
     {
       number: 3,
@@ -89,7 +89,7 @@ class Challenge < ActiveRecord::Base
       action: 'developed',
       icon: 'fa-flask',
       headline: 'Develop Recipes',
-      description: 'Co-design recipes that will bring the selected bright spots to life in other places.'
+      description: 'Co-design recipes offline to bring virtually shared ideas to life.'
     },
     {
       number: 4,
@@ -98,7 +98,7 @@ class Challenge < ActiveRecord::Base
       action: 'shared',
       icon: 'fa-paper-plane-o',
       headline: 'Implement & Share',
-      description: 'Try out and refine the bright spots with other peers and share your implementation stories!'
+      description: 'Lead or participate in implementation trials with like-minded peers.'
     }
   ]
 

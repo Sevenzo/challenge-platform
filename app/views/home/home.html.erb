@@ -4,7 +4,7 @@
       <div class='row'>
         <div class='col-md-6 col-md-offset-3'>
 
-          <h1 class="headline">Inspiring educators to find and share what works</h1>
+          <h1 class="headline">Where Educators Lead Change</h1>
 
           <% if @challenge %>
             <% if user_signed_in? %>
@@ -26,26 +26,12 @@
   </div>
 </div>
 
-<div id='landing-what'>
-  <div class='container padding-xxxl-vertical'>
-    <div class='row'>
-      <div class='col-md-10 col-md-offset-1'>
-
-        <p class='section-description text-xlarge' style='margin-bottom:2em'><%= ENV.fetch('APP_NAME') %> is a space where educators can openly exchange promising practice, translate that practice into personal action, and test that practice in a safe environment with the support of other like-minded people.</p>
-
-        <%= render partial: 'home/work' %>
-
-      </div>
-    </div>
-  </div>
-</div>
-
 <div id='landing-stages'>
   <div class='container padding-xxxl-vertical'>
     <div class='row'>
       <div class='col-md-10 col-md-offset-1'>
 
-        <p class='section-description text-xlarge' style='margin-bottom:2em;'>We challenge our community to come together around issues that deeply impact young people's ability to learn and thrive.  Our challenges go through four phases:</p>
+        <p class='section-description text-xlarge' style='margin-bottom:2em;'>This is a space where educators, like you, tackle big challenges, exchange ideas that work and get support to implement those ideas across communities. Our challenges go through four phases:</p>
 
         <%= render partial: 'home/stages' %>
 
