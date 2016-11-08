@@ -10,7 +10,9 @@
     <div class='row'>
       <% if experience.embed.present? %>
         <div class='col-sm-6'>
-          <p><%= experience.description.html_safe %></p>
+          <%= link_to challenge_experience_stage_theme_experience_path(@challenge, experience.experience_stage, experience.theme, experience), class: 'engagement-link' do %>
+            <p><%= experience.description.html_safe %></p>
+          <% end %>
           <% if experience.file.present? %>
             <p>
               <b><%= fa_icon "file-#{experience.file.file.extension.downcase}-o" %></b>
@@ -23,7 +25,9 @@
         </div>
       <% else %>
         <div class='col-sm-12'>
-          <p><%= experience.description.html_safe %></p>
+          <%= link_to challenge_experience_stage_theme_experience_path(@challenge, experience.experience_stage, experience.theme, experience), class: 'engagement-link' do %>
+            <p><%= experience.description.html_safe %></p>
+          <% end %>
           <% unless experience.link.blank? %>
             <p>
               <b><i class='fa fa-link'></i></b>
