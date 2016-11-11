@@ -10,7 +10,7 @@
     <div class='row'>
       <% if experience.embed.present? %>
         <div class='col-sm-6'>
-          <%= link_to challenge_experience_stage_theme_experience_path(@challenge, experience.experience_stage, experience.theme, experience), class: 'engagement-link' do %>
+          <%= link_to challenge_experience_stage_theme_experience_path(@challenge, experience.experience_stage, experience.theme, experience), class: 'experience-description' do %>
             <p><%= experience.description.html_safe %></p>
           <% end %>
           <% if experience.file.present? %>
@@ -25,7 +25,7 @@
         </div>
       <% else %>
         <div class='col-sm-12'>
-          <%= link_to challenge_experience_stage_theme_experience_path(@challenge, experience.experience_stage, experience.theme, experience), class: 'engagement-link' do %>
+          <%= link_to challenge_experience_stage_theme_experience_path(@challenge, experience.experience_stage, experience.theme, experience), class: 'experience-description' do %>
             <p><%= experience.description.html_safe %></p>
           <% end %>
           <% unless experience.link.blank? %>

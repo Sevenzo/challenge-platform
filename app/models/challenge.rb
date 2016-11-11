@@ -30,7 +30,7 @@ class Challenge < ActiveRecord::Base
   def featured_contributions
     case active_stage
     when 'experience'
-      experience_stage.experiences.published.first(2)
+      experience_stage.experiences.order_by('created_at DESC').published.first(2)
     when 'idea'
       idea_stage.ideas.published.where(inspiration: false).first(3)
     when 'recipe'

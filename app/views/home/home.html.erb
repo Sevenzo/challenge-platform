@@ -40,21 +40,11 @@
   </div>
 </div>
 
+<%= render partial: "suggestions/index", locals: { suggestions: @suggestions }, cache: true  if @suggestions %>
+
 <%= render partial: 'challenges/overview', locals: { challenge: @challenge }, cache: true if @challenge %>
 
 <%= render partial: "challenges/featured", locals: { challenge: @challenge }, cache: true  if @challenge %>
-
-<div id='landing-suggest'>
-  <div class="container padding-xxxl-vertical">
-    <div class="row">
-      <div class='col-md-10 col-md-offset-1'>
-
-        <h2 class="section-title" style='margin-bottom:10px'>What challenges should we tackle next?</h2>
-        <p class='section-description' style='margin-bottom:20px'><%= link_to "Suggest a challenge", suggestions_path, class: 'engagement-link' %> that’s important to you, and <%= link_to "vote on challenges", suggestions_path, class: 'engagement-link' %> suggested by others.</p>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div id='landing-community'>
   <div class='container padding-xxxl-vertical'>

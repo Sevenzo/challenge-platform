@@ -1,0 +1,72 @@
+<div id='suggestions'>
+  <div class='container'>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+
+        <h2 class="section-title" style='margin-bottom:10px'>What’s a burning challenge you want to discuss today?</h2>
+        <p class='section-description' style='margin-bottom:20px'>Tell us what challenges affect you most, and vote on additional challenges suggested by others.</p>
+
+        <div class='row row-count'>
+          <div class='col-xs-4'>
+            <ul class='list-sort'>
+              <li>
+                <%= link_to root_path(order_by: "", anchor: "landing-suggest") do %>
+                  <span class="badge badge-suggestion <%= 'selected' if @ordering.blank? %>">
+                    <span class='headline text-suggestion text-xsmall'>
+                      <%= fa_icon 'fire' %>
+                      Popular
+                    </span>
+                  </span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to root_path(order_by: "latest", anchor: "landing-suggest") do %>
+                  <span class="badge badge-suggestion <%= 'selected' unless @ordering.blank? %>">
+                    <span class='headline text-suggestion text-xsmall'>
+                      <%= fa_icon 'clock-o' %>
+                      Latest
+                    </span>
+                  </span>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+          <div class='col-xs-4'>
+            <h6 class='text-default text-center center-block' style='margin-top: 2.25em'>
+              <i class='fa fa-archive fa-2x'></i><br>
+              <span><%= pluralize(suggestions.count, 'suggestion') %></span>
+            </h6>
+          </div>
+          <div class='col-xs-4'>
+            <p class='action text-right text-small'><%= link_to '+ Add yours', '#new-suggestion', class: 'pull-right', 'ng-click' => "suggestion_draft=true", "du-smooth-scroll" => true unless suggestions.count.zero? %></p>
+          </div>
+        </div>
+
+        <div ng-switch="suggestions" ng-init="suggestions=<%= @ordering.present? %>">
+          <% suggestions.order_by(@ordering).first(2).each do |suggestion| %>
+              <%= render file: 'suggestions/card', locals: { suggestion: suggestion } %>
+          <% end %>
+
+          <% if suggestions.count > 2 %>
+            <div ng-show='suggestions'>
+              <% (suggestions.order_by(@ordering) - suggestions.order_by(@ordering).first(2)).each do |suggestion| %>
+                <%= render file: 'suggestions/card', locals: { suggestion: suggestion } %>
+              <% end %>
+            </div>
+          <% end %>
+
+          <%= render partial: 'suggestions/card/new', cache: true %>
+
+          <% if suggestions.count > 2 %>
+            <p class='center-block text-center'>
+              <%= link_to "Show #{suggestions.count-2} More Suggestions", '#', "ng-hide" => "suggestions", "ng-click" => "suggestions=true", onclick: 'return false;', class: 'text-bold' %>
+
+              <%= link_to "Show Less", "#landing-suggest", "ng-show" => "suggestions", "ng-click" => "suggestions=false", "du-smooth-scroll" => true, offset: '100', onclick: 'return false;', class: 'text-bold' %>
+            </p>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
