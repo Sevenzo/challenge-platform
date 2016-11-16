@@ -3,10 +3,12 @@
     <div class='container'>
       <div class='row'>
 
-        <div class='col-md-6'>
+        <div class='col-md-6 col-md-offset-3'>
           <div class="well engagement left">
             <div>
-              <%= image_tag "about/teachers2.jpg", width: '100%' %>
+              <%= link_to "https://s3-us-west-2.amazonaws.com/sevenzo-production/challenge/1/BelongingChallengeToolkit.zip", target: "_blank" do %>
+                <%= image_tag "speech_bubble.png", width: '100%' %>
+              <% end %>
             </div>
             <div class="padding-vertical-xxl">
               <div class='description text-center text-large text-white'>Share what belonging means to you. #edubelong</div>
@@ -17,11 +19,11 @@
           </div>
         </div>
 
-        <div class='col-md-6'>
+        <!-- <div class='col-md-6'>
           <div class="engagement right">
             <h2>Current challenge</h2>
           </div>
-        </div>
+        </div> -->
 
       </div>
     </div>
