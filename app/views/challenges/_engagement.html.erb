@@ -6,18 +6,26 @@
         <div class='col-md-6 col-md-offset-3'>
           <div class="well engagement left">
             <div>
-              <%= link_to "https://s3-us-west-2.amazonaws.com/sevenzo-production/challenge/1/BelongingChallengeToolkit.zip", target: "_blank" do %>
+              <%= link_to "https://s3-us-west-2.amazonaws.com/sevenzo-production/challenge/1/BelongingChallengeToolkit.zip", target: "_blank", id: "download-image" do %>
                 <%= image_tag "speech_bubble.png", width: '100%' %>
               <% end %>
             </div>
             <div class="padding-vertical-xxl">
               <div class='description text-center text-large text-white'>Share what belonging means to you. #edubelong</div>
               <div class='text-center center-block'>
-                <%= link_to "Download the Toolkit here", "https://s3-us-west-2.amazonaws.com/sevenzo-production/challenge/1/BelongingChallengeToolkit.zip", target: "_blank", class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom btn-cta-right' %>
+                <%= link_to "Download the Toolkit here", "https://s3-us-west-2.amazonaws.com/sevenzo-production/challenge/1/BelongingChallengeToolkit.zip", target: "_blank", id: "download-button", class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom btn-cta-right' %>
               </div>
             </div>
           </div>
         </div>
+        <script>
+          $('#download-button').click(function(){
+           ga('send', 'event', 'Engagement', 'Downloaded Toolkit');
+          });
+          $('#download-image').click(function(){
+           ga('send', 'event', 'Engagement', 'Downloaded Toolkit');
+          });
+        </script>
 
         <!-- <div class='col-md-6'>
           <div class="engagement right">
