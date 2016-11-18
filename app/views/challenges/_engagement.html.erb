@@ -3,7 +3,7 @@
     <div class='container'>
       <div class='row'>
 
-        <div class='col-md-6 col-md-offset-3'>
+        <div class='col-md-6'>
           <div class="well engagement left">
             <div>
               <%= link_to "https://s3-us-west-2.amazonaws.com/sevenzo-production/challenge/1/BelongingChallengeToolkit.zip", target: "_blank", id: "download-image" do %>
@@ -24,6 +24,31 @@
           });
           $('#download-image').click(function(){
            ga('send', 'event', 'Engagement', 'Downloaded Toolkit');
+          });
+        </script>
+
+        <div class='col-md-6'>
+          <div class="well engagement left">
+            <div>
+              <% event_url = 'http://sevenzo.us12.list-manage.com/subscribe?u=279ecebf88e84cd20ee99b2c4&id=39140b4dbd' %>
+              <%= link_to event_url, target: "_blank", id: "event-image" do %>
+                <%= image_tag "event_image_vivett.png", width: '100%' %>
+              <% end %>
+            </div>
+            <div class="padding-vertical-xxl" style="margin-top: 33px;">
+              <div class='description text-center text-large text-white'>Discuss strategies that work with fellow educators</div>
+              <div class='text-center center-block'>
+                <%= link_to "Register here!", event_url, target: "_blank", id: "event-button", class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom btn-cta-right' %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          $('#event-button').click(function(){
+           ga('send', 'event', 'Engagement', 'Event click');
+          });
+          $('#event-image').click(function(){
+           ga('send', 'event', 'Engagement', 'Event click');
           });
         </script>
 
