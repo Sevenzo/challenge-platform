@@ -40,11 +40,11 @@
   </div>
 </div>
 
-<%= render partial: "suggestions/index", locals: { suggestions: @suggestions }, cache: true  if @suggestions %>
+<%= render partial: "challenges/featured", locals: { challenge: @challenge }, cache: true  if @challenge %>
 
 <%= render partial: 'challenges/overview', locals: { challenge: @challenge }, cache: true if @challenge %>
 
-<%= render partial: "challenges/featured", locals: { challenge: @challenge }, cache: true  if @challenge %>
+<%= render partial: "suggestions/index", locals: { suggestions: @suggestions }, cache: true if @suggestions %>
 
 <%= render partial: "challenges/engagement" %>
 
