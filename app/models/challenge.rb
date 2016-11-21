@@ -79,7 +79,7 @@ class Challenge < ActiveRecord::Base
       alias: 'bright spot',
       action: 'contributed',
       icon: 'fa-lightbulb-o',
-      headline: 'Discover What Works',
+      headline: 'Contribute Ideas',
       description: "Share new ideas or existing solutions that tackle challenges."
     },
     {
