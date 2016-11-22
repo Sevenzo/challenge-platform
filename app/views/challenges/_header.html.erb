@@ -5,23 +5,23 @@
 
         <div id='challenge-nav'>
           <% Challenge::STAGES.each_with_index do |stage, index| %>
+            <% current_stage = stage[:name] == @challenge.active_stage %>
             <%= link_to eval("challenge_#{stage[:name]}_stage_path(@challenge, @challenge.#{stage[:name]}_stage)"), class: "stage-container #{stage[:name]}-bg #{ 'selected' if @challenge.stage_number > 4 || eval("params[:#{stage[:name]}_stage_id] || @#{stage[:name]}_stage") }" do %>
 
-              <div class="stage stage-<%= stage[:name] %> <%= "text-default #{@challenge.active_stage}" if @challenge.stage_number >= stage[:number] %>">
+              <div class="default_stage <%= "pre-active_stage" if @challenge.stage_number > stage[:number] %> hover-<%= stage[:name] %> <%= "stage-#{stage[:name]} #{@challenge.active_stage}" if @challenge.stage_number >= stage[:number] %>">
 
-                <% if stage[:name] == @challenge.active_stage %>
-                    <i class="fa fa-2x <%= stage[:icon] %> text-<%= stage[:name] %>"></i>
-                <% else %>
-                  <i class='fa fa-2x <%= stage[:icon] %>'></i>
-                <% end %>
+                <i class="fa fa-2x <%= stage[:icon] %> <%= "text-#{stage[:name]}" if current_stage %>"></i>
 
-                <div class='headline text-<%= stage[:name] if @challenge.stage_number == stage[:number] %>'><%= stage[:headline] %></div>
-                <div class='headline-xs text-<%= stage[:name] if @challenge.stage_number == stage[:number] %>'><%= stage[:headline].split(' ').first %></div>
+                <div class='headline text-<%= stage[:name] if current_stage %>'><%= stage[:headline] %></div>
+                <div class='headline-xs text-<%= stage[:name] if current_stage %>'><%= stage[:headline].split(' ').first %></div>
+              </div>
+
+              <div class="bottom-bar bar-<%= @challenge.active_stage if @challenge.stage_number >= stage[:number] %> <%= "stage-#{stage[:name]}" %>">
               </div>
 
               <div class="descriptor-container">
 
-                <% if stage[:name] == @challenge.active_stage %>
+                <% if current_stage %>
                   <div class="in-progress">In progress</div>
                 <% elsif stage[:number] < @challenge.stage_number %>
                   <!-- We don't want to display 0 counts. -->

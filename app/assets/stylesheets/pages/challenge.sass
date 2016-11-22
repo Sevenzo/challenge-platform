@@ -6,7 +6,7 @@
       padding-top: $padding-base-vertical
       padding-bottom: 0px
     .stage
-      border-width: 0 0 $padding-base-vertical 0
+      border-width: 0
       .headline
         @extend .text-small
         line-height: $font-size-small
@@ -35,7 +35,7 @@
       &:hover,&:focus,&:active,&.selected
         background-color: rgba($experience, 0.2)
         .stage-experience
-          @extend .experience,.text-experience
+          @extend .experience,.text-experience,.bar-experience
     &.idea-bg
       &.active
         .stage-idea
@@ -43,7 +43,7 @@
       &:hover,&:focus,&:active,&.selected
         background-color: rgba($idea, 0.2)
         .stage-idea
-          @extend .idea,.text-idea
+          @extend .idea,.text-idea,.bar-idea
     &.recipe-bg
       &.active
         .stage-recipe
@@ -51,36 +51,55 @@
       &:hover,&:focus,&:active,&.selected
         background-color: rgba($recipe, 0.2)
         .stage-recipe
-          @extend .recipe,.text-recipe
+          @extend .recipe,.text-recipe,.bar-recipe
     &.solution-bg
       &.active
         .stage-solution
           @extend .solution,.text-solution
       &:hover,&:focus,&:active,&.selected
         background-color: rgba($solution, 0.2)
+        @extend .text-solution
         .stage-solution
-          @extend .solution,.text-solution
-  .stage
-    @extend .text-small
-    color: $lightGrayText
-    line-height: 2em
-    background-color: transparent
-    border-style: solid
-    border-width: 0 0 $padding-large-vertical 0
-    padding: $padding-base-horizontal $padding-xl-vertical
-    border-radius: 0
-    text-align: left
-    @media only screen and (max-width: $screen-sm)
-      text-align: center
-    .headline
-      @extend .text-medium
-      @extend .hidden-xs
-      @extend .text-bolder
-    .headline-xs
+          @extend .solution,.text-solution,.bar-solution
+    .default_stage
       @extend .text-small
-      @extend .visible-xs
-      @extend .text-bolder
-      line-height: $font-size-small
+      color: $lightGrayText
+      line-height: 2em
+      background-color: transparent
+      border-style: solid
+      border-width: 0
+      padding: $padding-base-horizontal $padding-xl-vertical
+      border-radius: 0
+      text-align: left
+      @media only screen and (max-width: $screen-sm)
+        text-align: center
+      &.hover-solution
+        &:hover,&:focus,&:active,&.selected
+          @extend .solution,.text-solution
+      .headline
+        @extend .text-medium
+        @extend .hidden-xs
+        @extend .text-bolder
+      .headline-xs
+        @extend .text-small
+        @extend .visible-xs
+        @extend .text-bolder
+        line-height: $font-size-small
+    .pre-active_stage
+      @extend .text-default
+
+    .bottom-bar
+      height: $padding-base-vertical
+      background-color: rgba($lightGrayText, 0.2)
+      &.bar-experience
+        background-color: $experience
+      &.bar-idea
+        background-color: $idea
+      &.bar-recipe
+        background-color: $recipe
+      &.bar-solution
+        background-color: $solution
+
   .fa-angle-right
     color: #CECFD0
   .experience
@@ -91,8 +110,9 @@
     border-color: $recipe
   .solution
     border-color: $solution
-  .descriptor-container
-    @extend .hidden-xs,.text-bold,.text-default,.text-small
+
+  .background-descriptor-container
+    @background .hidden-xs,.text-bold,.text-default,.text-small
     display: flex
     flex: 1
     align-items: stretch
