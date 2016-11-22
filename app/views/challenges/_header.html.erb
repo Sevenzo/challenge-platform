@@ -6,17 +6,25 @@
         <div id='challenge-nav'>
           <% Challenge::STAGES.each_with_index do |stage, index| %>
             <% current_stage = stage[:name] == @challenge.active_stage %>
-            <%= link_to eval("challenge_#{stage[:name]}_stage_path(@challenge, @challenge.#{stage[:name]}_stage)"), class: "stage-container #{stage[:name]}-bg #{ 'selected' if @challenge.stage_number > 4 || eval("params[:#{stage[:name]}_stage_id] || @#{stage[:name]}_stage") }" do %>
+            <% selected_stage = @challenge.stage_number > 4 || eval("params[:#{stage[:name]}_stage_id] || @#{stage[:name]}_stage") %>
+            <% past_stage = @challenge.stage_number >= stage[:number] %>
 
-              <div class="default_stage <%= "pre-active_stage" if @challenge.stage_number > stage[:number] %> hover-<%= stage[:name] %> <%= "stage-#{stage[:name]} #{@challenge.active_stage}" if @challenge.stage_number >= stage[:number] %>">
+            <%= link_to eval("challenge_#{stage[:name]}_stage_path(@challenge, @challenge.#{stage[:name]}_stage)"), class:
+              "stage-container
+                default_stage
+                #{ 'past_stage' if past_stage }
+                #{ 'current_stage' if current_stage }
+                #{ 'selected_stage' if selected_stage }
+                #{stage[:name]}" do %>
 
+              <div class='body'>
                 <i class="fa fa-2x <%= stage[:icon] %> <%= "text-#{stage[:name]}" if current_stage %>"></i>
 
-                <div class='headline text-<%= stage[:name] if current_stage %>'><%= stage[:headline] %></div>
-                <div class='headline-xs text-<%= stage[:name] if current_stage %>'><%= stage[:headline].split(' ').first %></div>
+                <div class='headline'><%= stage[:headline] %></div>
+                <div class='headline-xs'><%= stage[:headline].split(' ').first %></div>
               </div>
 
-              <div class="bottom-bar bar-<%= @challenge.active_stage if @challenge.stage_number >= stage[:number] %> <%= "stage-#{stage[:name]}" %>">
+              <div class="bottom-bar <%= @challenge.active_stage if past_stage %>">
               </div>
 
               <div class="descriptor-container">

@@ -27,55 +27,23 @@
     flex: 1
     flex-direction: column
     &:hover,&:focus,&:active,&.active
-      text-decoration: none
-    &.experience-bg
-      &.active
-        .stage-experience
-          @extend .experience,.text-experience
+    text-decoration: none
+  .default_stage
+    @extend .text-small
+    color: $lightGrayText
+    line-height: 2em
+    background-color: transparent
+    border-style: solid
+    border-width: 0
+    border-radius: 0
+    text-align: left
+    @media only screen and (max-width: $screen-sm)
+      text-align: center
+    &.hover-solution
       &:hover,&:focus,&:active,&.selected
-        background-color: rgba($experience, 0.2)
-        .stage-experience
-          @extend .experience,.text-experience,.bar-experience
-    &.idea-bg
-      &.active
-        .stage-idea
-          @extend .idea,.text-idea
-      &:hover,&:focus,&:active,&.selected
-        background-color: rgba($idea, 0.2)
-        .stage-idea
-          @extend .idea,.text-idea,.bar-idea
-    &.recipe-bg
-      &.active
-        .stage-recipe
-          @extend .recipe,.text-recipe
-      &:hover,&:focus,&:active,&.selected
-        background-color: rgba($recipe, 0.2)
-        .stage-recipe
-          @extend .recipe,.text-recipe,.bar-recipe
-    &.solution-bg
-      &.active
-        .stage-solution
-          @extend .solution,.text-solution
-      &:hover,&:focus,&:active,&.selected
-        background-color: rgba($solution, 0.2)
-        @extend .text-solution
-        .stage-solution
-          @extend .solution,.text-solution,.bar-solution
-    .default_stage
-      @extend .text-small
-      color: $lightGrayText
-      line-height: 2em
-      background-color: transparent
-      border-style: solid
-      border-width: 0
+        @extend .solution,.text-solution
+    .body
       padding: $padding-base-horizontal $padding-xl-vertical
-      border-radius: 0
-      text-align: left
-      @media only screen and (max-width: $screen-sm)
-        text-align: center
-      &.hover-solution
-        &:hover,&:focus,&:active,&.selected
-          @extend .solution,.text-solution
       .headline
         @extend .text-medium
         @extend .hidden-xs
@@ -85,20 +53,74 @@
         @extend .visible-xs
         @extend .text-bolder
         line-height: $font-size-small
-    .pre-active_stage
-      @extend .text-default
-
     .bottom-bar
       height: $padding-base-vertical
-      background-color: rgba($lightGrayText, 0.2)
-      &.bar-experience
+      background-color: rgba($text-color, 0.2)
+    &.experience
+      &:hover,&:focus,&:active,&.selected
+        @extend .experience,.text-experience
+        background-color: rgba($experience, 0.2)
+        .bottom-bar
+          background-color: $experience
+    &.idea
+      &:hover,&:focus,&:active,&.selected
+        @extend .idea,.text-idea
+        background-color: rgba($idea, 0.2)
+        .bottom-bar
+          background-color: $idea
+    &.recipe
+      &:hover,&:focus,&:active,&.selected
+        @extend .recipe,.text-recipe
+        background-color: rgba($recipe, 0.2)
+        .bottom-bar
+          background-color: $recipe
+    &.solution
+      &:hover,&:focus,&:active,&.selected
+        background-color: rgba($solution, 0.2)
+        @extend .solution,.text-solution
+        .bottom-bar
+          background-color: $solution
+  .past_stage
+    @extend .text-default
+    .bottom-bar
+      &.experience
         background-color: $experience
-      &.bar-idea
+      &.idea
         background-color: $idea
-      &.bar-recipe
+      &.recipe
         background-color: $recipe
-      &.bar-solution
+      &.solution
         background-color: $solution
+  .current_stage
+    &.experience
+      @extend .text-experience
+      .bottom-bar
+        background: repeating-linear-gradient(45deg, $experience, $experience 10px, rgba($text-color, 0.2) 10px, rgba($text-color, 0.2) 20px)
+    &.idea
+      @extend .text-idea
+      .bottom-bar
+        background: repeating-linear-gradient(45deg, $idea, $idea 10px, rgba($text-color, 0.2) 10px, rgba($text-color, 0.2) 20px)
+    &.recipe
+      @extend .text-recipe
+      .bottom-bar
+        background: repeating-linear-gradient(45deg, $recipe, $recipe 10px, rgba($text-color, 0.2) 10px, rgba($text-color, 0.2) 20px)
+    &.solution
+      @extend .text-solution
+      .bottom-bar
+        background: repeating-linear-gradient(45deg, $solution, $solution 10px, rgba($text-color, 0.2) 10px, rgba($text-color, 0.2) 20px)
+  .selected_stage
+    &.experience
+      @extend .text-experience
+      background-color: rgba($experience, 0.2)
+    &.idea
+      @extend .text-idea
+      background-color: rgba($idea, 0.2)
+    &.recipe
+      @extend .text-recipe
+      background-color: rgba($recipe, 0.2)
+    &.solution
+      @extend .text-solution
+      background-color: rgba($solution, 0.2)
 
   .fa-angle-right
     color: #CECFD0
@@ -111,7 +133,7 @@
   .solution
     border-color: $solution
 
-  .background-descriptor-container
+  .descriptor-container
     @background .hidden-xs,.text-bold,.text-default,.text-small
     display: flex
     flex: 1
