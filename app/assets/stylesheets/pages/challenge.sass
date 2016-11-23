@@ -21,13 +21,14 @@
   flex-direction: row
   justify-content: center
   .stage-container
-    padding-top: $padding-xl-vertical
-    padding-bottom: $padding-xl-vertical
     display: flex
     flex: 1
     flex-direction: column
     &:hover,&:focus,&:active,&.active
-    text-decoration: none
+      text-decoration: none
+    @media (min-width: 768px)
+      padding-top: $padding-xl-vertical
+      padding-bottom: $padding-xl-vertical
   .default_stage
     @extend .text-small
     color: $lightGrayText
@@ -83,6 +84,9 @@
   .past_stage
     @extend .text-default
     .bottom-bar
+      display: flex
+      flex-direction: row
+      justify-content: flex-end
       &.experience
         background-color: $experience
       &.idea
@@ -95,19 +99,35 @@
     &.experience
       @extend .text-experience
       .bottom-bar
-        background: repeating-linear-gradient(45deg, $experience, $experience 10px, rgba($text-color, 0.2) 10px, rgba($text-color, 0.2) 20px)
+        background-color: $experience
+        .in-progress
+          height: 100%
+          width: 50%
+          background: repeating-linear-gradient(45deg, $experience, $experience 10px, $btn-default-border 10px, $btn-default-border 20px)
     &.idea
       @extend .text-idea
       .bottom-bar
-        background: repeating-linear-gradient(45deg, $idea, $idea 10px, rgba($text-color, 0.2) 10px, rgba($text-color, 0.2) 20px)
+        background-color: $idea
+        .in-progress
+          height: 100%
+          width: 50%
+          background: repeating-linear-gradient(45deg, $idea, $idea 10px, $btn-default-border 10px, $btn-default-border 20px)
     &.recipe
       @extend .text-recipe
       .bottom-bar
-        background: repeating-linear-gradient(45deg, $recipe, $recipe 10px, rgba($text-color, 0.2) 10px, rgba($text-color, 0.2) 20px)
+        background-color: $recipe
+        .in-progress
+          height: 100%
+          width: 50%
+          background: repeating-linear-gradient(45deg, $recipe, $recipe 10px, $btn-default-border 10px, $btn-default-border 20px)
     &.solution
       @extend .text-solution
       .bottom-bar
-        background: repeating-linear-gradient(45deg, $solution, $solution 10px, rgba($text-color, 0.2) 10px, rgba($text-color, 0.2) 20px)
+        background-color: $solution
+        .in-progress
+          height: 100%
+          width: 50%
+          background: repeating-linear-gradient(45deg, $solution, $solution 7%, $btn-default-border 7%, $btn-default-border 14%)
   .selected_stage
     &.experience
       @extend .text-experience
@@ -134,7 +154,7 @@
     border-color: $solution
 
   .descriptor-container
-    @background .hidden-xs,.text-bold,.text-default,.text-small
+    @extend .hidden-xs,.text-bold,.text-default,.text-small
     display: flex
     flex: 1
     align-items: stretch
