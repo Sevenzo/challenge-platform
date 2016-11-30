@@ -43,7 +43,8 @@
     <div class='row'>
       <% @themes.each do |theme| %>
         <div class='col-sm-3 nav-link' href='#theme-<%= theme.id %>' du-smooth-scroll du-scrollspy offset='110'>
-          <p class='title'><%= theme.title.html_safe %></p>
+          <p class='title lg'><%= theme.title.html_safe %></p>
+          <p class='title md'><%= truncate(theme.title.html_safe, length: 50) %></p>
 
           <p class='cta text-lighter text-small'>
             <% if theme.experiences.published.count.zero? %>

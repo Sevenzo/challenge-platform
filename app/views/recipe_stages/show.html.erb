@@ -43,7 +43,8 @@
     <div class='row'>
       <% @cookbooks.each do |cookbook| %>
         <div class="col-sm-4 nav-link" href="<%= "#cookbook-#{cookbook.id}" %>" du-smooth-scroll du-scrollspy offset="125">
-          <p class='title'><%= cookbook.title.html_safe %></p>
+          <p class='title lg'><%= cookbook.title.html_safe %></p>
+          <p class='title md'><%= truncate(cookbook.title.html_safe, length: 75) %></p>
 
           <p class='cta text-lighter text-small'>
             <% if cookbook.recipes.published.count.zero? %>

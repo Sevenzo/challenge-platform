@@ -24,6 +24,10 @@
       @extend .text-idea
   .title
     min-height: 7em
+    &.lg
+      @extend .hidden-xs,.hidden-sm,.hidden-md
+    &.md
+      @extend .hidden-lg,
 
 #idea_stage-content
   padding: 20px 0px
