@@ -18,11 +18,17 @@
   .idea-title
     min-height: 100px
   .idea-actions
+    display: flex
+    flex-direction: row
+    align-items: flex-end
+    justify-content: space-between
     position: absolute
-    left: 20px
+    left: 0px
+    right: 0px
     bottom: 0.25em
     width: 100%
-    padding-right: 2.5em
+    padding-left: 20px
+    padding-right: 20px
     ul
       @extend .text-small
       margin-top: 10px
@@ -36,6 +42,9 @@
           min-width: 100%
           a
             color: #333
+    .avatar
+      padding-bottom: 15px
+
   .fa-user-avatar
     @extend .pull-right
     width: auto !important
@@ -151,7 +160,7 @@
   .fa-close.fa-2x
     @extend .pull-right
     position: relative
-    top: 30px 
+    top: 30px
     color: #999999
   .idea-form-thumbnail
     background-color: white

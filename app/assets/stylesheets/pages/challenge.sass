@@ -10,9 +10,6 @@
       .headline
         @extend .text-small
         line-height: $font-size-small
-    .descriptor-container
-      display: none
-      height: 0
 
 #challenge-nav
   @extend .text-center, .center-block, .text-small
@@ -44,7 +41,8 @@
       &:hover,&:focus,&:active,&.selected
         @extend .solution,.text-solution
     .body
-      padding: $padding-base-horizontal $padding-xl-vertical
+      padding-top: $padding-xl-vertical
+      padding-bottom: $padding-xl-vertical
       .headline
         @extend .text-medium
         @extend .hidden-xs
@@ -86,7 +84,7 @@
     .bottom-bar
       display: flex
       flex-direction: row
-      justify-content: flex-end
+      justify-content: flex-start
       &.experience
         background-color: $experience
       &.idea
@@ -99,7 +97,7 @@
     &.experience
       @extend .text-experience
       .bottom-bar
-        background-color: $experience
+        background-color: $btn-default-border
         .in-progress
           height: 100%
           width: 50%
@@ -107,7 +105,7 @@
     &.idea
       @extend .text-idea
       .bottom-bar
-        background-color: $idea
+        background-color: $btn-default-border
         .in-progress
           height: 100%
           width: 50%
@@ -115,7 +113,7 @@
     &.recipe
       @extend .text-recipe
       .bottom-bar
-        background-color: $recipe
+        background-color: $btn-default-border
         .in-progress
           height: 100%
           width: 50%
@@ -123,7 +121,7 @@
     &.solution
       @extend .text-solution
       .bottom-bar
-        background-color: $solution
+        background-color: $btn-default-border
         .in-progress
           height: 100%
           width: 50%
