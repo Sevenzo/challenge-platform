@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   match 'contact',          to: 'home#contact',         via: :get
   match 'privacy',          to: 'home#privacy',         via: :get
   match 'terms',            to: 'home#terms',           via: :get
+  get '/careers' => redirect('http://stories.sevenzo.org/careers')
 
   match 'states/search',    to: 'states#search',        via: :get
   match 'districts/search', to: 'districts#search',     via: :get
