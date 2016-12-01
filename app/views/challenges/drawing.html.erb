@@ -1,0 +1,5 @@
+<%= render partial: 'challenges/header', cache: true %>
+
+<div id='challenge-drawing'>
+  <%= @challenge.drawing.html_safe if @challenge.drawing %>
+</div>
