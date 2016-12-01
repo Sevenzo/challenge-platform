@@ -67,11 +67,11 @@
                     <div class="media-body">
                       <p class='text-small text-experience'>"<%= testimonial[:quote] %>"</p>
                       <p class='text-small text-dark-gray'>
-                        <strong><%= testimonial[:name].split(' ').first %>, <%= testimonial[:title] %></strong><br>
+                        <strong><%= testimonial[:name] %>, <%= testimonial[:title] %></strong><br>
                         <%= testimonial[:organization] %><br>
                       </p>
 
-                      <%= link_to "https://twitter.com/intent/user?screen_name=#{testimonial[:twitter]}", target: '_blank' do %>
+                      <%= link_to "https://twitter.com/intent/user?screen_name=#{testimonial[:twitter]}", target: '_blank', class: 'text-small' do %>
                         <abbr><i class='fa fa-twitter-square fa-1-25x'></i></abbr>
                         <%= "@#{testimonial[:twitter]}" %>
                       <% end %>
