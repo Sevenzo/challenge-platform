@@ -18,7 +18,7 @@
   flex-direction: row
   justify-content: center
   align-items: flex-start
-  @media (max-width: 768px)
+  @media only screen and (max-width: $screen-sm)
     align-items: flex-end
   .stage-container
     display: flex
@@ -26,7 +26,7 @@
     flex-direction: column
     &:hover,&:focus,&:active,&.active
       text-decoration: none
-    @media (min-width: 768px)
+    @media only screen and (min-width: $screen-sm)
       padding-top: $padding-xl-vertical
       padding-bottom: $padding-xl-vertical
   .default_stage
@@ -210,7 +210,7 @@
   .col-description
     @extend .col-sm-11, .col-sm-offset-1, .padding-xxxl-vertical
     width: 73%
-    @media (max-width: 480px)
+    @media only screen and (max-width: $screen-xs)
       padding-horizontal: $padding-small-horizontal
       width: 100%
   .research-title
@@ -338,7 +338,7 @@
 .light-gray-bg
   @extend .padding-xxxl-vertical
   background-color: $lightGrayBG
-  @media only screen and (min-width: 900px)
+  @media only screen and (min-width: $screen-md)
     padding-left: $padding-xxxl-vertical
     padding-right: $padding-xxxl-vertical
     margin-left: -80px
@@ -347,8 +347,6 @@
 .padding-horizontal-none
   padding-left: 0px
   padding-right: 0px
-  margin-right: 0px
-  margin-left: 0px
 
 .big-break
   width: 100% !important
