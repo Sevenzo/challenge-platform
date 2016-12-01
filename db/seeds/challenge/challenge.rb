@@ -34,50 +34,44 @@ challenge = Challenge.create!(
   starts_at: Time.now,
   ends_at: 1.month.from_now,
   featured: true,
-  drawing: "<div class='legal container'>
-    <div class='row'>
-      <div class='col-md-10 col-md-offset-1'>
-        <article class='articleWrapper'>
-          <h1>Privacy Policy</h1>
-          <p>Last updated: (add date)</p>
+  drawing: "<article class='articleWrapper'>
+    <h1>Privacy Policy</h1>
+    <p>Last updated: (add date)</p>
 
-          <p>(change: YOUR COMPANY NAME) ('us', 'we', or 'our') operates (change: WEB ADDRESS) (the 'Site'). This page
-            informs you of our policies regarding the collection, use and disclosure of Personal Information we receive
-            from users of the Site. We use your Personal Information only for providing and improving the Site. By using
-            the Site, you agree to the collection and use of information in accordance with this policy.</p>
+    <p>(change: YOUR COMPANY NAME) ('us', 'we', or 'our') operates (change: WEB ADDRESS) (the 'Site'). This page
+      informs you of our policies regarding the collection, use and disclosure of Personal Information we receive
+      from users of the Site. We use your Personal Information only for providing and improving the Site. By using
+      the Site, you agree to the collection and use of information in accordance with this policy.</p>
 
-          <h2> Information Collection And Use</h2>
+    <h2> Information Collection And Use</h2>
 
-          <p> While using our Site, we may ask you to provide us with certain personally identifiable information that can
-            be used to contact or identify you. Personally identifiable information may include, but is not limited to
-            your name ('Personal Information').</p>
+    <p> While using our Site, we may ask you to provide us with certain personally identifiable information that can
+      be used to contact or identify you. Personally identifiable information may include, but is not limited to
+      your name ('Personal Information').</p>
 
-          <h2>Communications</h2>
-          <p> We may use your Personal Information to contact you with newsletters, marketing or promotional materials and
-            other information that (change: LIST YOUR COMMUNICATION METHODS AND DETAILS HERE)</p>
+    <h2>Communications</h2>
+    <p> We may use your Personal Information to contact you with newsletters, marketing or promotional materials and
+      other information that (change: LIST YOUR COMMUNICATION METHODS AND DETAILS HERE)</p>
 
-          <h2>Security</h2>
+    <h2>Security</h2>
 
-          <p>The security of your Personal Information is important to us, but remember that no method of transmission
-            over the Internet, or method of electronic storage, is 100% secure. While we strive to use commercially
-            acceptable means to protect your Personal Information, we cannot guarantee its absolute security.</p>
-          <h2> Changes To This Privacy Policy</h2>
-          <p>This Privacy Policy is effective as of (change: ADD DATE) and will remain in effect except with respect to
-            any changes in its provisions in the future, which will be in effect immediately after being posted on this
-            page.</p>
-          <p>We reserve the right to update or change our Privacy Policy at any time and you should check this Privacy
-            Policy periodically. Your continued use of the Service after we post any modifications to the Privacy Policy
-            on this page will constitute your acknowledgment of the modifications and your consent to abide and be bound
-            by the modified Privacy Policy.</p>
-          <p>If we make any material changes to this Privacy Policy, we will notify you either through the email address
-            you have provided us, or by placing a prominent notice on our website.</p>
+    <p>The security of your Personal Information is important to us, but remember that no method of transmission
+      over the Internet, or method of electronic storage, is 100% secure. While we strive to use commercially
+      acceptable means to protect your Personal Information, we cannot guarantee its absolute security.</p>
+    <h2> Changes To This Privacy Policy</h2>
+    <p>This Privacy Policy is effective as of (change: ADD DATE) and will remain in effect except with respect to
+      any changes in its provisions in the future, which will be in effect immediately after being posted on this
+      page.</p>
+    <p>We reserve the right to update or change our Privacy Policy at any time and you should check this Privacy
+      Policy periodically. Your continued use of the Service after we post any modifications to the Privacy Policy
+      on this page will constitute your acknowledgment of the modifications and your consent to abide and be bound
+      by the modified Privacy Policy.</p>
+    <p>If we make any material changes to this Privacy Policy, we will notify you either through the email address
+      you have provided us, or by placing a prominent notice on our website.</p>
 
-          <h2> Contact Us</h2>
-          <p>If you have any questions about this Privacy Policy, please contact us (change: YOUR CONTACT EMAIL)</p>
-        </article>
-      </div>
-    </div>
-  </div>"
+    <h2> Contact Us</h2>
+    <p>If you have any questions about this Privacy Policy, please contact us (change: YOUR CONTACT EMAIL)</p>
+  </article>"
 )
 
 ## CREATING DEMO PANEL
