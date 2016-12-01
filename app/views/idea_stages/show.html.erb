@@ -42,8 +42,8 @@
     <div class='row'>
       <% @problem_statements.each do |problem_statement| %>
         <div class='col-sm-3 nav-link' href='#problem_statement-<%= problem_statement.id %>' du-smooth-scroll du-scrollspy offset='160'>
-          <p class='title lg'><%= problem_statement.title.html_safe %></p>
-          <p class='title md'><%= truncate(problem_statement.title.html_safe, length: 75) %></p>
+          <p class='title hidden-sm'><%= problem_statement.title.html_safe %></p>
+          <p class='title visible-sm'><%= truncate(problem_statement.title.html_safe, length: 75) %></p>
 
           <p class='cta text-lighter text-small'>
             <% if problem_statement.ideas.published.count.zero? %>
