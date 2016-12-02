@@ -181,6 +181,29 @@ class User < ActiveRecord::Base
   rescue
   end
 
+  def traits
+    {
+      id: id,
+      email: email,
+      firstName: first_name,
+      lastName: last_name,
+      organization: organization,
+      role: role,
+      title: title,
+      description: bio,
+      twitter: twitter,
+      avatar: avatar.url,
+      location: location,
+      createdAt: created_at,
+      updatedAt: updated_at,
+      signInCount: sign_in_count,
+      currentSignInAt: current_sign_in_at,
+      lastSignInAt: last_sign_in_at,
+      currentSignInIP: current_sign_in_ip,
+      lastSignInIP: last_sign_in_ip
+    }
+  end
+
   ROLES = {
     'Pre-Service Teacher' => 'Pre-Service Teacher',
     'Current Teacher' => 'Current Teacher',
