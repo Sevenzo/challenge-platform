@@ -4,7 +4,7 @@
   analytics.page();
 
   <% if user_signed_in? %>
-    analytics.identify(<%= current_user.id %>, <%= current_user.traits.to_json %>);
+    analytics.identify(<%= current_user.id %>, <%= current_user.traits.to_json.html_safe %>);
   <% end %>
   }}();
 </script>
