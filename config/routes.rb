@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   resources :challenges, only: [:show, :index] do
     member do
-      get 'drawing'
+      get :drawing
     end
     resources :experience_stages, only: [:show] do
       resources :themes, only: [:show] do
