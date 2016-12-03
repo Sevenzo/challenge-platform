@@ -1,0 +1,9 @@
+<div id='challenge-drawing'>
+  <div class="container">
+    <div class='row'>
+      <div class='col-md-10 col-md-offset-1'>
+        <%= @challenge.drawing.html_safe if @challenge.drawing %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -14,4 +14,8 @@ class ChallengesController < ApplicationController
     end
   end
 
+  def drawing
+    @challenge = Challenge.find(params[:id])
+  end
+
 end
