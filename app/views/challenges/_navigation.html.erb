@@ -1,0 +1,49 @@
+<div id='challenge-header' class='<%= controller_name %>'>
+  <div class="container">
+    <div class='row'>
+      <div class='col-md-10 col-md-offset-1'>
+        <div id='challenge-nav'>
+          <% Challenge::STAGES.each_with_index do |stage, index| %>
+            <% current_stage = stage[:name] == @challenge.active_stage %>
+            <% selected_stage = @challenge.stage_number > 4 || eval("params[:#{stage[:name]}_stage_id] || @#{stage[:name]}_stage") %>
+            <% past_stage = @challenge.stage_number >= stage[:number] %>
+            <% submissions_count = eval("@challenge.#{stage[:name]}_stage.#{stage[:name].pluralize}.published.count") if stage[:number] <= @challenge.stage_number %>
+
+            <%= link_to eval("challenge_#{stage[:name]}_stage_path(@challenge, @challenge.#{stage[:name]}_stage)"), class:
+              "stage-container
+                default_stage
+                #{ 'past_stage' if past_stage }
+                #{ 'current_stage' if current_stage }
+                #{ 'selected_stage' if selected_stage }
+                #{stage[:name]}" do %>
+
+              <div class='body'>
+                <i class="fa fa-2x <%= stage[:icon] %> <%= "text-#{stage[:name]}" if current_stage %>"></i>
+                <div class='headline'><%= stage[:headline] %></div>
+                <div class='headline-xs'>
+                  <%= stage[:headline].split(' ').first %><br>
+                  <%= content_tag(:span, submissions_count, class: "badge badge-#{stage[:name]}") if submissions_count && !submissions_count.zero? %>
+                </div>
+              </div>
+
+              <div class="bottom-bar <%= @challenge.active_stage if past_stage %>">
+                <div class="in-progress"></div>
+              </div>
+
+              <div class="descriptor-container">
+                <% if submissions_count && !submissions_count.zero? %>
+                  <div class="descriptor-count"><%= submissions_count %></div>
+                  <div class="descriptor-body">
+                    <%= stage[:alias].pluralize.capitalize %>
+                    <span class='hidden-sm'><%= stage[:action] %></span>
+                  </div>
+                <% end %>
+              </div>
+
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

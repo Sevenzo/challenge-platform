@@ -3,7 +3,9 @@
     <div class='stage-container'>
       <div class="body <%= "text-default #{stage[:name]}" %>">
         <i class="fa fa-2x <%= stage[:icon] %> text-<%= stage[:name] %>"></i>
-        <div class='headline text-<%= stage[:name] %>'><%= "#{index+1}. #{stage[:headline]}" %></div>
+        <div class='headline text-<%= stage[:name] %>'>
+          <b><%= "#{index+1}. #{stage[:headline]}" %></b>
+        </div>
       </div>
       <div class="bottom-bar <%= stage[:name] %>"></div>
       <div class="descriptor-container">

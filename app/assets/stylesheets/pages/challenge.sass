@@ -1,6 +1,5 @@
 #challenge-header
   background-color: $lightGrayBG
-  padding: 0
   &:not(.challenges)
     .stage-container
       padding-top: $padding-base-vertical
@@ -12,7 +11,7 @@
         line-height: $font-size-small
 
 #challenge-nav
-  @extend .text-center, .center-block, .text-small
+  @extend .text-center, .center-block
   padding: 0px
   display: flex
   flex-direction: row
@@ -156,18 +155,18 @@
     &:hover
       .in-progress
         opacity: 0
-
   .fa-angle-right
     color: #CECFD0
-  .experience
-    border-color: $experience
-  .idea
-    border-color: $idea
-  .recipe
-    border-color: $recipe
-  .solution
-    border-color: $solution
-
+  .badge
+    font-size: $font-size-xsmall
+    &.badge-experience
+      background-color: $experience
+    &.badge-idea
+      background-color: $idea
+    &.badge-recipe
+      background-color: $recipe
+    &.badge-solution
+      background-color: $solution
   .descriptor-container
     @extend .hidden-xs,.text-bold,.text-default,.text-small
     display: flex
