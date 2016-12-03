@@ -43,11 +43,12 @@
     <div class='row'>
       <% @cookbooks.each do |cookbook| %>
         <div class="col-sm-4 nav-link" href="<%= "#cookbook-#{cookbook.id}" %>" du-smooth-scroll du-scrollspy offset="125">
-          <p class='title'><%= cookbook.title.html_safe %></p>
+          <p class='title hidden-sm'><%= cookbook.title.html_safe %></p>
+          <p class='title visible-sm'><%= truncate(cookbook.title.html_safe, length: 50) %></p>
 
           <p class='cta text-lighter text-small'>
             <% if cookbook.recipes.published.count.zero? %>
-              <!-- <i class='fa fa-plus'></i> Add the first recipe -->
+              <i class='fa fa-plus'></i> Add the first recipe
             <% else %>
               <i class='fa fa-flask'></i> <%= cookbook.recipes.published.count %>
             <% end %>

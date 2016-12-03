@@ -1,5 +1,6 @@
 <div id='challenge-header' class='<%= controller_name %>'>
   <div class="container-fluid">
+
     <div id='challenge-nav'>
       <% Challenge::STAGES.each_with_index do |stage, index| %>
         <% current_stage = stage[:name] == @challenge.active_stage %>
@@ -31,7 +32,8 @@
             <div class="in-progress"></div>
           </div>
         <% end %>
-    <% end %>
+      <% end %>
     </div>
+
   </div>
 </div>
