@@ -76,7 +76,7 @@ class Challenge < ActiveRecord::Base
     {
       number: 2,
       name: 'idea',
-      alias: 'bright spot',
+      alias: 'idea',
       action: 'contributed',
       icon: 'fa-lightbulb-o',
       headline: 'Contribute Ideas',
@@ -97,7 +97,7 @@ class Challenge < ActiveRecord::Base
       alias: 'implementation',
       action: 'shared',
       icon: 'fa-paper-plane-o',
-      headline: 'Implement & Share',
+      headline: 'Implement + Share',
       description: 'Lead or participate in implementation trials with like-minded peers.'
     }
   ]

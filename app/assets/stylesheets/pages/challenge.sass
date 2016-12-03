@@ -1,6 +1,5 @@
 #challenge-header
   background-color: $lightGrayBG
-  padding: 0
   &:not(.challenges)
     .stage-container
       padding-top: $padding-base-vertical
@@ -10,23 +9,23 @@
       .headline
         @extend .text-small
         line-height: $font-size-small
-    .descriptor-container
-      display: none
-      height: 0
 
 #challenge-nav
-  @extend .text-center, .center-block, .text-small
+  @extend .text-center, .center-block
   padding: 0px
   display: flex
   flex-direction: row
   justify-content: center
+  align-items: flex-start
+  @media only screen and (max-width: $screen-sm)
+    align-items: flex-end
   .stage-container
     display: flex
     flex: 1
     flex-direction: column
     &:hover,&:focus,&:active,&.active
       text-decoration: none
-    @media (min-width: 768px)
+    @media only screen and (min-width: $screen-sm)
       padding-top: $padding-xl-vertical
       padding-bottom: $padding-xl-vertical
   .default_stage
@@ -44,7 +43,10 @@
       &:hover,&:focus,&:active,&.selected
         @extend .solution,.text-solution
     .body
-      padding: $padding-base-horizontal $padding-xl-vertical
+      padding-top: $padding-xl-vertical
+      padding-bottom: $padding-xl-vertical
+      @media only screen and (min-width: $screen-sm)
+        padding-left: $padding-base-horizontal
       .headline
         @extend .text-medium
         @extend .hidden-xs
@@ -86,7 +88,7 @@
     .bottom-bar
       display: flex
       flex-direction: row
-      justify-content: flex-end
+      justify-content: flex-start
       &.experience
         background-color: $experience
       &.idea
@@ -99,67 +101,79 @@
     &.experience
       @extend .text-experience
       .bottom-bar
-        background-color: $experience
+        background-color: $btn-default-border
         .in-progress
           height: 100%
           width: 50%
-          background: repeating-linear-gradient(45deg, $experience, $experience 7%, $btn-default-border 7%, $btn-default-border 14%)
+          background: repeating-linear-gradient(45deg, $experience, $experience 7.15%, $btn-default-border 7.15%, $btn-default-border 14.3%)
     &.idea
       @extend .text-idea
       .bottom-bar
-        background-color: $idea
+        background-color: $btn-default-border
         .in-progress
           height: 100%
           width: 50%
-          background: repeating-linear-gradient(45deg, $idea, $idea 7%, $btn-default-border 7%, $btn-default-border 14%)
+          background: repeating-linear-gradient(45deg, $idea, $idea 7.15%, $btn-default-border 7.15%, $btn-default-border 14.3%)
     &.recipe
       @extend .text-recipe
       .bottom-bar
-        background-color: $recipe
+        background-color: $btn-default-border
         .in-progress
           height: 100%
           width: 50%
-          background: repeating-linear-gradient(45deg, $recipe, $recipe 7%, $btn-default-border 7%, $btn-default-border 14%)
+          background: repeating-linear-gradient(45deg, $recipe, $recipe 7.15%, $btn-default-border 7.15%, $btn-default-border 14.3%)
     &.solution
       @extend .text-solution
       .bottom-bar
-        background-color: $solution
+        background-color: $btn-default-border
         .in-progress
           height: 100%
           width: 50%
-          background: repeating-linear-gradient(45deg, $solution, $solution 7%, $btn-default-border 7%, $btn-default-border 14%)
+          background: repeating-linear-gradient(45deg, $solution, $solution 7.15%, $btn-default-border 7.15%, $btn-default-border 14.3%)
   .selected_stage
     &.experience
       @extend .text-experience
       background-color: rgba($experience, 0.2)
+    &:hover
+      .in-progress
+        opacity: 0
     &.idea
       @extend .text-idea
       background-color: rgba($idea, 0.2)
+    &:hover
+      .in-progress
+        opacity: 0
     &.recipe
       @extend .text-recipe
       background-color: rgba($recipe, 0.2)
+    &:hover
+      .in-progress
+        opacity: 0
     &.solution
       @extend .text-solution
       background-color: rgba($solution, 0.2)
-
+    &:hover
+      .in-progress
+        opacity: 0
   .fa-angle-right
     color: #CECFD0
-  .experience
-    border-color: $experience
-  .idea
-    border-color: $idea
-  .recipe
-    border-color: $recipe
-  .solution
-    border-color: $solution
-
+  .badge
+    font-size: $font-size-xsmall
+    &.badge-experience
+      background-color: $experience
+    &.badge-idea
+      background-color: $idea
+    &.badge-recipe
+      background-color: $recipe
+    &.badge-solution
+      background-color: $solution
   .descriptor-container
     @extend .hidden-xs,.text-bold,.text-default,.text-small
     display: flex
     flex: 1
     align-items: stretch
     flex-direction: row
-    align-items: flex-end
+    align-items: flex-start
     padding: 15px
     .in-progress
       @extend .text-italic,.text-bolder
@@ -195,7 +209,7 @@
   .col-description
     @extend .col-sm-11, .col-sm-offset-1, .padding-xxxl-vertical
     width: 73%
-    @media (max-width: 480px)
+    @media only screen and (max-width: $screen-xs)
       padding-horizontal: $padding-small-horizontal
       width: 100%
   .research-title
@@ -323,7 +337,7 @@
 .light-gray-bg
   @extend .padding-xxxl-vertical
   background-color: $lightGrayBG
-  @media only screen and (min-width: 900px)
+  @media only screen and (min-width: $screen-md)
     padding-left: $padding-xxxl-vertical
     padding-right: $padding-xxxl-vertical
     margin-left: -80px
@@ -332,8 +346,6 @@
 .padding-horizontal-none
   padding-left: 0px
   padding-right: 0px
-  margin-right: 0px
-  margin-left: 0px
 
 .big-break
   width: 100% !important
