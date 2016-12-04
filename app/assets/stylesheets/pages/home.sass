@@ -15,13 +15,12 @@
 
 #landing-stages
   padding: 30px 0px
-  .section-description
-    @media only screen and (min-width: 500px)
-      margin-left: 4em
-      margin-right: 4em
-  #challenge-nav
-    .body
-      padding: $padding-base-horizontal $padding-xl-vertical
+  #challenge-stages
+    @extend .text-center
+    .row
+      .col-md-3
+        @media only screen and (min-width: $screen-sm)
+          padding: 0
     .bottom-bar
       height: $padding-base-vertical
       &.experience
@@ -32,10 +31,6 @@
         background-color: $recipe
       &.solution
         background-color: $solution
-    .descriptor-container
-      align-items: flex-start
-    .descriptor-body
-      text-align: left
 
 #landing-suggest
   background-color: $lightGrayBG

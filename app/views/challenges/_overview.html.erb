@@ -5,32 +5,21 @@
         <div class='col-md-8 col-md-offset-2'>
 
           <div class='row'>
-            <div class="col-sm-8 col-sm-offset-1">
+            <div class="col-sm-11 col-sm-offset-1">
               <h2>Current challenge</h2>
-            </div>
-          </div>
-
-          <div class='row'>
-            <div class="col-sm-10 col-sm-offset-1">
               <h1 class='challenge-headline'><%= challenge.headline.html_safe %></h1>
             </div>
           </div>
 
-          <div class='row'>
+          <div class='row row-cta'>
             <div class="col-sm-11 col-sm-offset-1">
-              <div class="row-cta">
-                <div class='div-cta'>
-                  <script type="text/javascript">
-                    $(window).width();
-                  $(window).height();
-                  </script>
-                  <%= link_to @challenge.video_url, { class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom btn-cta-left', 'data-toggle': "lightbox", 'data-width': "1000" } do %>
-                    <%= "<i class='fa fa-play-circle-o play-icon'></i> Get Inspired".html_safe if @challenge.video_url %>
-                  <% end %>
-                </div>
-                <div class='div-cta'>
-                  <%= link_to 'Join the Conversation', challenge_active_stage_path(challenge), class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom btn-cta-right' %>
-                </div>
+              <div class='div-cta'>
+                <%= link_to @challenge.video_url, { class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom btn-cta-left', 'data-toggle': "lightbox", 'data-width': "1000" } do %>
+                  <%= "<i class='fa fa-play-circle-o play-icon'></i> Watch the Video".html_safe if @challenge.video_url %>
+                <% end %>
+              </div>
+              <div class='div-cta'>
+                <%= link_to 'Join the Conversation', challenge_active_stage_path(challenge), class: 'btn btn-lg btn-rounded btn-longer btn-info half-margin-bottom btn-cta-right' %>
               </div>
             </div>
           </div>
