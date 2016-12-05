@@ -22,7 +22,9 @@
                 <div class='headline'><%= stage[:headline] %></div>
                 <div class='headline-xs'>
                   <%= stage[:headline].split(' ').first %><br>
-                  <%= content_tag(:span, submissions_count, class: "badge badge-#{stage[:name]}") if submissions_count && !submissions_count.zero? %>
+                  <span class='badge <%= submissions_count && !submissions_count.zero? ? "badge-#{stage[:name]}" : 'badge-transparent' %>'>
+                    <%= submissions_count %>
+                  </span>
                 </div>
               </div>
 
@@ -30,14 +32,12 @@
                 <div class="in-progress"></div>
               </div>
 
-              <div class="descriptor-container">
-                <% if submissions_count && !submissions_count.zero? %>
-                  <div class="descriptor-count"><%= submissions_count %></div>
-                  <div class="descriptor-body">
-                    <%= stage[:alias].pluralize.capitalize %>
-                    <span class='hidden-sm'><%= stage[:action] %></span>
-                  </div>
-                <% end %>
+              <div class="descriptor-container <%= "text-transparent" unless submissions_count && !submissions_count.zero? %>">
+                <div class="descriptor-count"><%= submissions_count %></div>
+                <div class="descriptor-body">
+                  <%= stage[:alias].pluralize.capitalize %>
+                  <span class='hidden-sm'><%= stage[:action] %></span>
+                </div>
               </div>
 
             <% end %>

@@ -24,7 +24,9 @@
             </div>
             <div class='headline-xs'>
               <%= stage[:headline].split(' ').first %><br>
-              <%= content_tag(:span, submissions_count, class: "badge badge-#{stage[:name]}") if submissions_count && !submissions_count.zero? %>
+              <span class='badge <%= submissions_count && !submissions_count.zero? ? "badge-#{stage[:name]}" : 'badge-transparent' %>'>
+                <%= submissions_count %>
+              </span>
             </div>
           </div>
 
