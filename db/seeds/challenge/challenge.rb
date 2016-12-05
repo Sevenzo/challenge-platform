@@ -2,7 +2,7 @@ challenge = Challenge.create!(
   title: 'The Belonging Challenge',
   headline: "How do we create a sense of belonging for students in school and community?",
   goal: 'creating a sense of belonging',
-  video_url: 'https://vimeo.com/185424174',
+  video_url: '<script src="//fast.wistia.com/embed/medias/x01uf87566.jsonp" async></script><script src="//fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_x01uf87566 videoFoam=true" style="height:100%;width:100%">&nbsp;</div></div></div>',
   remote_banner_url: 'https://s3-us-west-2.amazonaws.com/sevenzo-production/challenge/1/Belonging_hero714.png',
   hashtag: 'edubelong',
   description: "<h2 class='section-title'>Why this challenge matters</h2>
