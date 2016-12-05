@@ -182,7 +182,6 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.10.0)
-    lightbox-bootstrap-rails (3.3.0.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -430,7 +429,6 @@ DEPENDENCIES
   friendly_id
   jquery-rails
   kaminari
-  lightbox-bootstrap-rails
   mailkick
   memcachier
   mini_magick
