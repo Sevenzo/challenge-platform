@@ -26,7 +26,7 @@
                 </div>
               </div>
 
-              <div class="bottom-bar <%= @challenge.active_stage if past_stage %>">
+              <div class="bottom-bar <%= controller_name %> <%= @challenge.active_stage if past_stage %>">
                 <div class="in-progress"></div>
               </div>
 

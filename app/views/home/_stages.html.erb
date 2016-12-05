@@ -1,14 +1,18 @@
 <div id='challenge-stages'>
   <div class='row row-stages'>
     <% Challenge::STAGES.each_with_index do |stage, index| %>
-      <div class='col-md-3' style='margin-bottom:2em'>
-        <h4 class="<%= "text-default text-#{stage[:name]}" %>">
-          <i class="fa fa-2x <%= stage[:icon] %> <%= "text-#{stage[:name]}" %>"></i><br>
-          <b class='<%= "text-#{stage[:name]}" %>'><%= "#{index+1}. #{stage[:headline]}" %></b>
-        </h4>
-        <div class="bottom-bar <%= stage[:name] %>"></div>
-        <br>
-        <p class='text-medium'><%= stage[:description] %></p>
+      <div class='col-sm-3' style='margin-bottom:2em'>
+        <div class='stage-title'>
+          <h4 class="<%= "text-default text-#{stage[:name]}" %>">
+            <i class="fa fa-2x <%= stage[:icon] %> <%= "text-#{stage[:name]}" %>"></i><br>
+            <b class='<%= "text-#{stage[:name]}" %>'><%= "#{index+1}. #{stage[:headline]}" %></b>
+            <%= "&nbsp;&nbsp;&nbsp;&nbsp;".html_safe if stage[:headline].length < 15 %>
+          </h4>
+        </div>
+        <div class="stage-bar <%= stage[:name] %>"></div>
+        <div class='stage-description'>
+          <p><%= stage[:description] %></p>
+        </div>
       </div>
     <% end %>
   </div>

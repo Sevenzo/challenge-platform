@@ -97,7 +97,7 @@ class Challenge < ActiveRecord::Base
       alias: 'implementation',
       action: 'shared',
       icon: 'fa-paper-plane-o',
-      headline: 'Implement + Share',
+      headline: 'Implement & Share',
       description: 'Lead or participate in implementation trials with like-minded peers.'
     }
   ]
