@@ -15,20 +15,20 @@ body
   width: 100%
   height: $fixedFooterHeight
   padding: 60px 0px
-  ul,li,a,div
-    color: $lightGrayText
+  color: $lightGrayText
   ul.list-footer
     @extend .list-unstyled
     li
       padding-bottom: $padding-xl-vertical
-  h3
-    margin-top: 0em
+  h4
+    line-height: 1.3em
+    margin: 0em 0em .5em
 
   #footer-social
-    a
-      font-size: 1.2em
     ul
-      margin-top: 1em
+      margin: 1em 0em
+      li
+        margin-right: 1em
       .share-buttons
         color: $blueText
         &:hover,&:focus,&:active,&.active
@@ -52,6 +52,7 @@ body
       @extend .text-bolder
       text-decoration: none
   .links-center
+    color: $lightGrayText
     &:hover,&:focus,&:active,&.active
       color: $blueText
       text-decoration: none
