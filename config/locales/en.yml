@@ -120,8 +120,8 @@ en:
         email: masa@sevenzo.org
       - key: christina
         name: Christina Esquivel
-        title: Program Director
-        bio: Christina Esquivel is the Program Director of Sevenzo and part of the founding team. Christina led the education strategy at Mobility Labs, where she worked closely with educators and K-12 leaders to build digital tools for social good. She previously worked at the Bill & Melinda Gates Foundation, providing programmatic & research support across multiple initiatives in K-12 Education. Christina is a graduate of Brown University with a concentration in Latin American History. While there, she received an Undergraduate Research Award to conduct research on civil rights movements in the United States.
+        title: Program Engagement Manager
+        bio: Christina Esquivel is the Program Engagement Manager of Sevenzo and part of the founding team. Christina led the education strategy at Mobility Labs, where she worked closely with educators and K-12 leaders to build digital tools for social good. She previously worked at the Bill & Melinda Gates Foundation, providing programmatic & research support across multiple initiatives in K-12 Education. Christina is a graduate of Brown University with a concentration in Latin American History. While there, she received an Undergraduate Research Award to conduct research on civil rights movements in the United States.
         twitter: https://twitter.com/christinabesq
         linkedin: https://www.linkedin.com/in/christinaesquivel
         email: christina@sevenzo.org
@@ -148,60 +148,81 @@ en:
         twitter: https://twitter.com/masuma_henry
         linkedin: https://www.linkedin.com/in/masumahenry
     advisors:
-      - key: christopher
-        name: Christopher Bronke
-        title: English Teacher & Dept. Chair
+      - key: chris
+        name: Chris Bronke
+        title: English Dept. Chair
         organization: Downers Grove North HS
         link: https://twitter.com/MrBronke
       - key: brad
         name: Brad Clark
-        title: Director, Kentucky State Teacher Fellows Program
+        title: Director, KY Teacher Fellows Program
         organization: Hope Street Group
         link: https://twitter.com/notbradclark
       - key: paige
         name: Paige Hoffman
-        title: Manager of Innovation & Design
+        title: Manager, Innov. & Design
         organization: DC Public Schools
         link: https://www.linkedin.com/in/paige-l-hoffman-798243b6
       - key: karan
         name: Karan Jain
         title: Software Engineer
         organization: Chalk Schools
-        link: https://www.twitter.com/krnjn
+        link: https://www.linkedin.com/in/krnjn
       - key: michelle
         name: Michelle King
         title: Teacher
-        organization: Environmental Charter School
+        organization: Env. Charter School
         link: https://www.twitter.com/LrningInstigatr
       - key: stephan
         name: Stephan Mueller
         title: Chief Operating Officer
-        organization: Thrill Mill
-        link: https://twitter.com/stephanfmueller
+        organization: AscenderPGH
+        link: https://www.linkedin.com/in/stephanfmueller
       - key: mike
         name: Mike Szegedy
         title: UX Designer/Researcher
-        organization: Carnegie Mellon University
+        organization: Carnegie Mellon Univ.
         link: https://www.linkedin.com/in/michaelszegedy
+      - key: chrisr
+        name: Chris Roberts
+        title: Product Design Manager
+        organization: Rivers Agile
+        link: https://www.linkedin.com/in/chrisrdesign
     partners:
-      - key: cfa
-        name: Community Foundation for the Alleghenies
-        link: https://cfalleghenies.org/
-      - key: nellie_mae
-        name: Nellie Mae Education Foundation
-        link: http://www.nmefoundation.org/
-      - key: thrill_mill
-        name: Thrill Mill Incubator
-        link: http://www.thrillmill.com/
-      - key: raikes
-        name: The Raikes Foundation
-        link: http://www.raikesfoundation.org/
-      - key: artefact
-        name: Artefact Group
-        link: https://www.artefactgroup.com/
       - key: lingo
         name: Lingo Ventures
         link: http://lingoventures.us/
+      - key: cfa
+        name: Community Foundation for the Alleghenies
+        link: https://cfalleghenies.org/
+      - key: ascender
+        name: AscenderPGH
+        link: https://ascenderpgh.com/
+      - key: nellie_mae
+        name: Nellie Mae Education Foundation
+        link: http://www.nmefoundation.org/
+      - key: raikes
+        name: The Raikes Foundation
+        link: http://www.raikesfoundation.org/
+      - key: gates
+        name: The Bill & Melinda Gates Foundation
+        link: http://www.gatesfoundation.org/
+      - key: opulent
+        name: Opulent Films
+        link: http://opulentfilms.com/
+      - key: artefact
+        name: Artefact Group
+        link: https://www.artefactgroup.com/
+      - key: anthem
+        name: Anthem Video Production
+        link: http://anthem.video/
+      - key: stanford
+        name: Stanford University
+        link: http://www.stanford.edu/
+      - key: remake
+        name: Remake Learning
+        link: http://remakelearning.org/
+
     press:
       - key: edsurge
         publication: EdSurge

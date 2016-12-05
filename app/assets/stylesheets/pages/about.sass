@@ -1,90 +1,45 @@
+.section-title-alt
+  @extend .section-title
+  @extend .text-center
+  @extend .text-xlarge
+  margin-bottom: 1.5em
+
+hr.break-alt
+  border-top: solid 2px #979797
+  margin: 3em 0
+
+.row-media
+  div[class*="col-"]
+    margin-bottom: 2em
+
+.row-images
+  div[class*="col-"]
+    margin-bottom: $grid-gutter-width
+
 #about-splash
-  background-repeat: no-repeat
-  background-size: cover
-  background-position: 50% 20%
+  padding: 40px 0px
+  background-color: rgba(0, 179, 216, 0.8)
   color: white
   text-align: center
-  hr
-    @extend hr.short
-    border-top: 1px solid white
-    width: 50%
-    margin: 20px auto
-  .opacity-layer
-    padding: 50px 0px
-    background: rgba(0, 179, 216, 0.8)
-  .splash-title
-    font-size: 3.5em
-    line-height: 1.2em
-  .splash-subtitle
-    font-size: 1.7em
-  .splash-learn
-    margin: 20px auto 0px
-    &:hover
-      cursor: pointer
-  .splash-donor-cta
-    h2
-      margin-top: 0px
-    .btn
-      margin-bottom: 10px
-  .splash-nonprofit-cta
-    a
-      color: white
-      text-decoration: underline
-    p
-      margin-bottom: 0px
-
-#about-nav
-  color: $link-color
-  @extend .text-center
-  z-index: 1000
-  background-color: white
-  width: 100%
-  margin-top: -15px
-  box-shadow: 0px 5px 10px rgba(2, 1, 1, 0.27)
-  &.affix
-    top: 0
-    margin-top: 0px
-  .about-nav-links
-    a
-      color: $link-color
-      &:hover,&:active
-        background-color: $link-color
-        color: white
-        text-decoration: none
-    .about-nav-link
-      padding: 10px 0
-      &:hover,&.active
-        background-color: $link-color
-        color: white
-        cursor: pointer
 
 #about-story
-  padding: 30px 20px
-
-#about-works
-  padding: 30px 20px
+  padding: 60px 0
   background-color: white
 
 #about-team
-  padding: 30px 0
-  background-color: white
+  padding: 60px 0
   .media-team
     .media-left
       img
-        width: 80px
-        @media (max-width: 480px)
+        width: 125px
+        @media (max-width: $screen-xs)
           width: 60px
     .media-heading
       a
         color: #333
-        .fa
-          font-size: 1.2em
-  .row-advisors
-    margin-bottom: 30px
+    .media-body
+      padding-left: 1em
 
 #about-press
-  padding: 30px 0
-  background-color: $lightGrayBG
-
-#about-cta
-  padding: 30px 0
+  padding: 60px 0
+  background-color: white
