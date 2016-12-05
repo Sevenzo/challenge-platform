@@ -1,40 +1,41 @@
+.section-title-alt
+  @extend .section-title
+  @extend .text-center
+  @extend .text-xlarge
+  margin-bottom: 1.5em
+
+hr.break-alt
+  border-top: solid 2px #979797
+  margin: 3em 0
+
+.row-media
+  div[class*="col-"]
+    margin-bottom: 2em
+
 #about-splash
-  background-repeat: no-repeat
-  background-size: cover
-  background-position: 50% 20%
+  padding: 40px 0px
+  background-color: rgba(0, 179, 216, 0.8)
   color: white
   text-align: center
-  hr
-    @extend hr.short
-    border-top: 1px solid white
-    width: 50%
-    margin: 20px auto
-  .opacity-layer
-    padding: 50px 0px
-    background: rgba(0, 179, 216, 0.8)
 
 #about-story
-  padding: 30px 20px
+  padding: 60px 0
   background-color: white
 
 #about-team
-  padding: 30px 0
+  padding: 60px 0
   .media-team
     .media-left
       img
         width: 125px
-        @media (max-width: 480px)
+        @media (max-width: $screen-xs)
           width: 60px
     .media-heading
       a
         color: #333
     .media-body
       padding-left: 1em
-  .row-advisors
-    margin-bottom: 30px
 
 #about-press
-  padding: 30px 0
+  padding: 60px 0
   background-color: white
-  .row-partners
-    margin-bottom: 30px
