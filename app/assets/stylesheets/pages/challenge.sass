@@ -31,7 +31,6 @@
   .default_stage
     @extend .text-small
     color: $lightGrayText
-    line-height: 2em
     background-color: transparent
     border-style: solid
     border-width: 0
@@ -170,13 +169,15 @@
     &.badge-solution
       background-color: $solution
   .descriptor-container
-    @extend .hidden-xs,.text-bold,.text-default,.text-small
+    @extend .hidden-xs,.text-bold,.text-small
     display: flex
     flex: 1
     align-items: stretch
     flex-direction: row
     align-items: flex-start
     padding: 15px
+    line-height: 2em
+    color: $text-color
     .in-progress
       @extend .text-italic,.text-bolder
     .descriptor-count
