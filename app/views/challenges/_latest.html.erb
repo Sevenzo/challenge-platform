@@ -1,14 +1,14 @@
-<% unless @challenge.featured_contributions.empty? %>
+<% unless @challenge.latest_contributions.empty? %>
   <div id='challenge-featured'>
     <div class="container">
       <div class='row'>
         <div class='col-md-10 col-md-offset-1'>
 
-          <h2 class="text-center">Featured contributions from <%= challenge.title %></h2>
+          <h2 class="text-center">Newest contributions from <%= challenge.title %></h2>
 
           <div class='row'>
-            <% challenge.featured_contributions.each do |featured| %>
-              <%= render file: "#{featured.class.name.pluralize.downcase}/card", locals: eval("{ #{featured.class.name.downcase}: featured }") %>
+            <% challenge.latest_contributions.each do |latest| %>
+              <%= render file: "#{latest.class.name.pluralize.downcase}/card", locals: eval("{ #{latest.class.name.downcase}: latest }") %>
             <% end %>
           </div>
 
