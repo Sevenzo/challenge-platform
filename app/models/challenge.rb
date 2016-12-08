@@ -30,13 +30,30 @@ class Challenge < ActiveRecord::Base
   def featured_contributions
     case active_stage
     when 'experience'
-      experience_stage.experiences.order_by('created_at DESC').published.first(2)
+      experience_stage.experiences.published.first(2)
     when 'idea'
       idea_stage.ideas.published.where(inspiration: false).first(3)
     when 'recipe'
       recipe_stage.recipes.published.first(2)
     when 'solution'
       solution_stage.solutions.first(2)
+    else
+      []
+    end
+  end
+
+  def latest_contributions
+    ordering = "published_at DESC"
+
+    case active_stage
+    when 'experience'
+      experience_stage.experiences.published.order_by(ordering).first(2)
+    when 'idea'
+      idea_stage.ideas.published.where(inspiration: false).order_by(ordering).first(3)
+    when 'recipe'
+      recipe_stage.recipes.published.order_by(ordering).first(2)
+    when 'solution'
+      solution_stage.solutions.order_by(ordering).first(2)
     else
       []
     end

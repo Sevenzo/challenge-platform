@@ -42,7 +42,7 @@
   </div>
 </div>
 
-<%= render partial: "challenges/featured", locals: { challenge: @challenge }, cache: true  if @challenge %>
+<%= render partial: "challenges/latest", locals: { challenge: @challenge }, cache: true  if @challenge %>
 
 <%= render partial: 'challenges/overview', locals: { challenge: @challenge }, cache: true if @challenge %>
 
