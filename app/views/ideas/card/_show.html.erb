@@ -12,6 +12,7 @@
     <div class="folded-corner">
       <div class='idea-title'>
         <p class='text-xlarge text-lighter text-normal'><%= link_to truncate(idea.title, length: 50), challenge_idea_stage_problem_statement_idea_path(@challenge, idea.idea_stage, idea.problem_statement, idea), class: 'text-xlarge text-idea text-normal' %></p>
+        <h5><small><%= "#{time_ago_in_words(idea.display_date)} ago" %></small></h5>
       </div>
 
       <p><%= truncate_html(idea.description, length: 200).html_safe %></p>
@@ -54,7 +55,7 @@
       </ul>
 
       <div class='pull-right'>
-        <%= render partial: 'shared/avatar', locals: { user: idea.user, avatar_style: 'width:2.25em' }, cache: true %>
+        <%= render partial: 'shared/avatar', locals: { user: idea.user, avatar_style: 'width:2.25em;position:relative;bottom:0.5em' }, cache: true %>
       </div>
     </div>
 
