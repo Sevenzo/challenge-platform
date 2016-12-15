@@ -209,7 +209,7 @@ en:
         link: http://www.gatesfoundation.org/
       - key: opulent
         name: Opulent Films
-        link: http://opulentfilms.com/
+        link: http://opulentfilms.co/
       - key: artefact
         name: Artefact Group
         link: https://www.artefactgroup.com/
@@ -225,8 +225,12 @@ en:
       - key: lom
         name: Life on Mars
         link: http://www.lifeonmars.pt/
-
     press:
+      - key: seattletimes
+        publication: The Seattle Times
+        date: Decemeber 7, 2016
+        snippet: Teachers from across the country have joined the belonging-challenge to share ideas with one another.
+        link: http://www.seattletimes.com/opinion/challenge-to-new-president-alleviate-students-anxiety/
       - key: edsurge
         publication: EdSurge
         date: February 4, 2016
