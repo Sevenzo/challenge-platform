@@ -1,7 +1,15 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="<%= ENV.fetch('TWITTER_URL').split('/').last %>" />
 
-<% unless @featured.present? || @challenge.present? %>
+<% if @challenge.present? %>
+  <meta name="twitter:title" content="<%= @challenge.title %>" />
+  <meta name="twitter:description" content="<%= @challenge.description %>" />
+  <meta name="twitter:image" content="<%= @challenge.banner.url %>" />
+<% elsif featured_challenge.present? %>
+  <meta name="twitter:title" content="<%= featured_challenge.title %>" />
+  <meta name="twitter:description" content="<%= featured_challenge.description %>" />
+  <meta name="twitter:image" content="<%= featured_challenge.banner.url %>" />
+<% else %>
   <meta name="twitter:title" content="<%= ENV.fetch('APP_NAME') %>" />
   <meta name="twitter:description" content="<%= ENV.fetch('APP_NAME') %> is an online workshop in innovation where teachers, coaches, and administrators tackle K-12's toughest challenges. The mission: turning innovative ideas into real solutions you can try in your school." />
   <meta name="twitter:image" content="<%= asset_url('favicon.png') %>" />

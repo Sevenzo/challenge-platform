@@ -1,9 +1,19 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="<%= ENV.fetch('APP_NAME') %>" />
 
-<% unless @featured.present? || @challenge.present? %>
+<% if @challenge.present? %>
+  <meta name="og:title" content="<%= @challenge.title %>" />
+  <meta name="og:description" content="<%= @challenge.description %>" />
+  <meta name="og:image" content="<%= @challenge.banner.url %>" />
+  <meta property="og:url" content="<%= challenge_url(@challenge) %>" />
+<% elsif featured_challenge.present? %>
+  <meta name="og:title" content="<%= featured_challenge.title %>" />
+  <meta name="og:description" content="<%= featured_challenge.description %>" />
+  <meta name="og:image" content="<%= featured_challenge.banner.url %>" />
+  <meta property="og:url" content="<%= challenge_url(featured_challenge) %>" />
+<% else %>
   <meta property="og:title" content="Join <%= ENV.fetch('APP_NAME') %>!" />
   <meta property="og:description" content="<%= ENV.fetch('APP_NAME') %> is an online workshop in innovation where teachers, coaches, and administrators tackle K-12's toughest challenges. The mission: turning innovative ideas into real solutions you can try in your school." />
   <meta property="og:image" content="<%= asset_url('favicon.png') %>" />
-  <meta property="og:url" content="<%= "#{ENV.fetch('SITE_PROTOCOL')}://#{ENV.fetch('SITE_HOST')}" %>" />
+  <meta property="og:url" content="<%= root_url %>" />
 <% end %>
