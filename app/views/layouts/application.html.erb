@@ -15,9 +15,7 @@
     <%= render partial: 'layouts/shim', cache: true %>
     <%= render partial: 'layouts/twitter', cache: true %>
     <%= render partial: 'layouts/segment', cache: true if ENV['SEGMENT_WRITE_KEY'].present? %>
-
-    <%= render partial: 'shared/cards/facebook' %>
-    <%= render partial: 'shared/cards/twitter' %>
+    <%= render partial: 'layouts/share_meta' %>
   </head>
 
   <body>

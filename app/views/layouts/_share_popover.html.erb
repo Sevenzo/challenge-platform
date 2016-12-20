@@ -5,10 +5,6 @@
   <% url = url.index('#') ? url.insert(url.index('#'), referer) : "#{url}#{referer}" %>
 <% end %>
 
-<% provide(:og_title, title) %>
-<% provide(:og_description, description) %>
-<% provide(:og_url, url) %>
-
 <ul class="share-popover" style='margin-bottom:0px'>
   <li>
     <%= link_to "<i class='fa fa-twitter'></i>".html_safe, "https://twitter.com/intent/tweet?text=#{url_encode(title)}&url=#{url_encode(url)}&hashtags=#{hashtag}", target: '_blank' %>
