@@ -3,6 +3,7 @@ class Solution < ActiveRecord::Base
   include URLNormalizer
   include Publishable
   include Orderable
+  include Sortable
   include Likeable
 
   belongs_to :solution_story
