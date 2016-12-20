@@ -10,13 +10,12 @@
     <%= javascript_include_tag 'application' %>
     <%= favicon_link_tag 'favicon.png', type: 'image/png' %>
     <%= favicon_link_tag 'favicon.png', type: 'image/png', rel: 'apple-touch-icon' %>
+    <%= csrf_meta_tags %>
 
     <%= render partial: 'layouts/shim', cache: true %>
     <%= render partial: 'layouts/twitter', cache: true %>
-    <%= render partial: 'shared/cards/facebook', cache: true %>
     <%= render partial: 'layouts/segment', cache: true if ENV['SEGMENT_WRITE_KEY'].present? %>
-
-    <%= csrf_meta_tags %>
+    <%= render partial: 'layouts/share_meta' %>
   </head>
 
   <body>
