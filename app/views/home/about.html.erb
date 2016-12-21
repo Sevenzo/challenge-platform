@@ -50,10 +50,10 @@
       <div class='col-md-10 col-md-offset-1'>
 
         <p class='section-title-alt'>Our Team</p>
-        <% t('about.team').each_slice(2) do |people| %>
+        <% t('about.team').each_slice(3) do |people| %>
           <div class='row row-media'>
             <% people.each do |person| %>
-              <div class='col-sm-5 col-sm-offset-1'>
+              <div class='col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1'>
                 <div class="media media-team">
                   <div class='media-left'>
                     <%= link_to image_tag("about/team/#{person[:key]}.png", class: 'img-circle', width: '200px'), '#', data: { toggle: 'modal', target: "#team-#{person[:key]}" } %>
