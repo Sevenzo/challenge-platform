@@ -1,17 +1,25 @@
 <div id='suggestions'>
+  <div id='suggestion-header'>
+    <div class='container'>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-2 col-sm-6 col-sm-offset-1">
+          <p class="text-xlarge text-bold" style='margin-bottom:20px'>What challenges should we tackle next?</p>
+          <p class='text-normal' style='margin-bottom:0px'>Tell us what challenges affect you most, and vote on additional challenges suggested by others.</p>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class='container'>
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
+        <%= render partial: 'suggestions/card/new', cache: true %>
 
-        <h2 class="section-title" style='margin-bottom:10px'>What challenges should we tackle next?</h2>
-        <p class='section-description' style='margin-bottom:20px'>Tell us what challenges affect you most, and vote on additional challenges suggested by others.</p>
-
-        <div class='row row-count'>
+        <div id='suggestion-list' class='row row-count'>
           <div class='col-xs-4'>
             <ul class='list-sort'>
               <li>
-                <%= link_to root_path(order_by: "", anchor: "landing-suggest") do %>
-                  <span class="badge badge-suggestion <%= 'selected' if @ordering.blank? %>">
+                <%= link_to suggestions_path(order_by: "popular", anchor: 'suggestion-list') do %>
+                  <span class="badge badge-suggestion <%= 'selected' unless params[:order_by] == 'latest' %>">
                     <span class='headline text-suggestion text-xsmall'>
                       <%= fa_icon 'fire' %>
                       Popular
@@ -20,8 +28,8 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to root_path(order_by: "latest", anchor: "landing-suggest") do %>
-                  <span class="badge badge-suggestion <%= 'selected' unless @ordering.blank? %>">
+                <%= link_to suggestions_path(order_by: "latest", anchor: 'suggestion-list') do %>
+                  <span class="badge badge-suggestion <%= 'selected' if params[:order_by] == 'latest' %>">
                     <span class='headline text-suggestion text-xsmall'>
                       <%= fa_icon 'clock-o' %>
                       Latest
@@ -54,8 +62,6 @@
               <% end %>
             </div>
           <% end %>
-
-          <%= render partial: 'suggestions/card/new', cache: true %>
 
           <% if @suggestions.count > 2 %>
             <p class='center-block text-center'>
