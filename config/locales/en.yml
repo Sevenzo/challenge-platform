@@ -110,7 +110,7 @@ en:
         organization: Aurora Public Schools, CO
         twitter: JJCuthy
   about:
-    team:
+    founders:
       - key: masa
         name: Masa Uzicanin
         title: Executive Director, Founder
@@ -125,6 +125,7 @@ en:
         twitter: https://twitter.com/christinabesq
         linkedin: https://www.linkedin.com/in/christinaesquivel
         email: christina@sevenzo.org
+    team:
       - key: leslie
         name: Leslie Garner Franklin
         title: Director, Program Design & Implementation
@@ -132,13 +133,6 @@ en:
         twitter: https://twitter.com/lesliegarner
         linkedin: https://www.linkedin.com/in/leslieanngarner
         email:  leslie@sevenzo.org
-      - key: yennsy
-        name: Yenssy Goyins
-        title: Marketing Manager
-        bio: lorem ipsum
-        twitter: https://twitter.com/Yenssy
-        linkedin: https://www.linkedin.com/in/yenssy
-        email: yenssy@gmail.com
       - key: julianne
         name: Julianne Canterbury
         title: Social Media Manager
@@ -146,6 +140,20 @@ en:
         twitter: https://twitter.com/sevenzo_org
         linkedin: https://www.linkedin.com/in/juli-anne-canterbury-98500169
         email: julianne@sevenzo.org
+      - key: nicki
+        name: Nicki Bosch
+        title: Strategic Partnerships & Events Manager
+        bio: lorem ipsum
+        twitter: https://twitter.com/sevenzo_org
+        linkedin: https://www.linkedin.com/in/nicki-bosch-b89b701
+        email: nicki@sevenzo.org
+      - key: yennsy
+        name: Yenssy Goyins
+        title: Marketing Manager
+        bio: lorem ipsum
+        twitter: https://twitter.com/Yenssy
+        linkedin: https://www.linkedin.com/in/yenssy
+        email: yenssy@gmail.com
       - key: michael
         name: Michael Hernandez
         title: Community Manager 
@@ -160,13 +168,6 @@ en:
         twitter: https://twitter.com/stedmanblake
         linkedin: https://www.linkedin.com/in/stedmanblakehood
         email: stedmanhood@gmail.com
-      - key: nicki
-        name: Nicki Bosch
-        title: Strategic Partnerships & Events Manager
-        bio: lorem ipsum
-        twitter: https://twitter.com/sevenzo_org
-        linkedin: https://www.linkedin.com/in/nicki-bosch-b89b701
-        email: nicki@sevenzo.org
     board:
       - key: greg
         name: Greg Gunn
