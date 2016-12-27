@@ -110,7 +110,7 @@ en:
         organization: Aurora Public Schools, CO
         twitter: JJCuthy
   about:
-    team:
+    founders:
       - key: masa
         name: Masa Uzicanin
         title: Executive Director, Founder
@@ -125,6 +125,49 @@ en:
         twitter: https://twitter.com/christinabesq
         linkedin: https://www.linkedin.com/in/christinaesquivel
         email: christina@sevenzo.org
+    team:
+      - key: leslie
+        name: Leslie Garner Franklin
+        title: Director, Program Design & Implementation
+        bio: lorem ipsum
+        twitter: https://twitter.com/lesliegarner
+        linkedin: https://www.linkedin.com/in/leslieanngarner
+        email:  leslie@sevenzo.org
+      - key: julianne
+        name: Julianne Canterbury
+        title: Social Media Manager
+        bio: lorem ipsum
+        twitter: https://twitter.com/sevenzo_org
+        linkedin: https://www.linkedin.com/in/juli-anne-canterbury-98500169
+        email: julianne@sevenzo.org
+      - key: nicki
+        name: Nicki Bosch
+        title: Strategic Partnerships & Events Manager
+        bio: lorem ipsum
+        twitter: https://twitter.com/sevenzo_org
+        linkedin: https://www.linkedin.com/in/nicki-bosch-b89b701
+        email: nicki@sevenzo.org
+      - key: yennsy
+        name: Yenssy Goyins
+        title: Marketing Manager
+        bio: lorem ipsum
+        twitter: https://twitter.com/Yenssy
+        linkedin: https://www.linkedin.com/in/yenssy
+        email: yenssy@gmail.com
+      - key: michael
+        name: Michael Hernandez
+        title: Community Manager 
+        bio: lorem ipsum
+        twitter: https://twitter.com/cinehead
+        linkedin: https://www.linkedin.com/in/michael-hernandez-21a8195
+        email: cinehead3@gmail.com
+      - key: stedman
+        name: Stedman Blake Hood
+        title: Developer 
+        bio: lorem ipsum
+        twitter: https://twitter.com/stedmanblake
+        linkedin: https://www.linkedin.com/in/stedmanblakehood
+        email: stedmanhood@gmail.com
     board:
       - key: greg
         name: Greg Gunn

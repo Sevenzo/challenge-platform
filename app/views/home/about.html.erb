@@ -50,27 +50,35 @@
       <div class='col-md-10 col-md-offset-1'>
 
         <p class='section-title-alt'>Our Team</p>
-        <% t('about.team').each_slice(2) do |people| %>
+        <% t('about.founders').each_slice(2) do |people| %>
           <div class='row row-media'>
             <% people.each do |person| %>
-              <div class='col-sm-5 col-sm-offset-1'>
+              <div class='col-sm-3 col-sm-offset-2 text-center'>
+                <%= link_to image_tag("about/team/#{person[:key]}.png", class: 'img-circle', style: 'width:125px'), '#', data: { toggle: 'modal', target: "#team-#{person[:key]}" } %>
+                <h4>
+                  <%= link_to person[:name], '#', data: { toggle: 'modal', target: "#team-#{person[:key]}" } %>
+                  <br>
+                  <small><%= person[:title] %></small>
+                </h4>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
+        <% t('about.team').each_slice(3) do |people| %>
+          <div class='row row-media'>
+            <% people.each do |person| %>
+              <div class='col-sm-4'>
                 <div class="media media-team">
                   <div class='media-left'>
-                    <%= link_to image_tag("about/team/#{person[:key]}.png", class: 'img-circle', width: '200px'), '#', data: { toggle: 'modal', target: "#team-#{person[:key]}" } %>
+                    <%= image_tag("about/team/#{person[:key]}.png", class: 'img-circle', style: 'width:75px') %>
                   </div>
                   <div class="media-body">
-                    <h4 class="media-heading">
-                      <%= link_to person[:name], '#', data: { toggle: 'modal', target: "#team-#{person[:key]}" } %>
+                    <h5 class="media-heading">
+                      <%= link_to person[:name], person[:linkedin], target: '_blank' %>
                       <br>
                       <small><%= person[:title] %></small>
-                    </h4>
-                    <p>
-                      <%= link_to "<i class='fa fa-linkedin-square fa-1-25x'></i>".html_safe, person[:linkedin], target: '_blank' %>
-                      &nbsp;
-                      <%= link_to "<i class='fa fa-twitter-square fa-1-25x'></i>".html_safe, person[:twitter], target: '_blank', class: 'tooltip-hover', title: "@#{person[:twitter].split('/').last}", data: {toggle: 'tooltip', placement: 'top'} %>
-                      &nbsp;
-                      <%= mail_to person[:email], "<i class='fa fa-envelope fa-1-25x'></i>".html_safe, target: '_blank', class: 'tooltip-hover', title: person[:email], data: {toggle: 'tooltip', placement: 'top'} %>
-                    </p>
+                    </h5>
                   </div>
                 </div>
               </div>
@@ -85,8 +93,7 @@
           <div class='row row-media'>
             <% people.each do |person| %>
               <div class='col-sm-4 text-center'>
-                <%= link_to image_tag("about/board/#{person[:key]}.png", class: 'img-circle', width: '100px'), '#', data: { toggle: 'modal', target: "#board-#{person[:key]}" } %>
-
+                <%= link_to image_tag("about/board/#{person[:key]}.png", class: 'img-circle', style: 'width:100px'), '#', data: { toggle: 'modal', target: "#board-#{person[:key]}" } %>
                 <h4>
                   <%= link_to person[:name], '#', data: { toggle: 'modal', target: "#board-#{person[:key]}" } %><br>
                   <small>
@@ -109,7 +116,7 @@
               <div class='col-md-3 col-sm-6'>
                 <div class="media">
                   <div class='media-left'>
-                    <%= link_to image_tag("about/advisors/#{person[:key]}.png", class: 'img-circle', style: 'width:60px'), person[:link], target: '_blank' %>
+                    <%= image_tag "about/advisors/#{person[:key]}.png", class: 'img-circle', style: 'width:60px' %>
                   </div>
                   <div class="media-body">
                     <h5 class="media-heading">
@@ -204,12 +211,19 @@
         <div class='modal-body'>
           <p><%= person[:bio].html_safe %></p>
         </div>
+        <div class='modal-footer'>
+          <div class='text-center'>
+            <%= link_to "<i class='fa fa-linkedin-square fa-1-25x'></i>".html_safe, person[:linkedin], target: '_blank' %>
+            &nbsp;
+            <%= link_to "<i class='fa fa-twitter-square fa-1-25x'></i>".html_safe, person[:twitter], target: '_blank', class: 'tooltip-hover', title: "@#{person[:twitter].split('/').last}", data: {toggle: 'tooltip', placement: 'top'} %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 <% end %>
 
-<% t('about.team').each do |person| %>
+<% t('about.founders').each do |person| %>
   <div class="modal fade" id="<%= "team-#{person[:key]}" %>">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -219,6 +233,15 @@
         </div>
         <div class='modal-body'>
           <p><%= person[:bio].html_safe %></p>
+        </div>
+        <div class='modal-footer'>
+          <div class='text-center'>
+            <%= link_to "<i class='fa fa-linkedin-square fa-1-25x'></i>".html_safe, person[:linkedin], target: '_blank' %>
+            &nbsp;
+            <%= link_to "<i class='fa fa-twitter-square fa-1-25x'></i>".html_safe, person[:twitter], target: '_blank', class: 'tooltip-hover', title: "@#{person[:twitter].split('/').last}", data: {toggle: 'tooltip', placement: 'top'} %>
+            &nbsp;
+            <%= mail_to person[:email], "<i class='fa fa-envelope fa-1-25x'></i>".html_safe, target: '_blank', class: 'tooltip-hover', title: person[:email], data: {toggle: 'tooltip', placement: 'top'} %>
+          </div>
         </div>
       </div>
     </div>
