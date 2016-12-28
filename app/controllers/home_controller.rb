@@ -3,7 +3,6 @@ class HomeController < ApplicationController
   def index
     @challenge = Challenge.featured
     @suggestions = Suggestion.all
-    @ordering = 'created_at DESC' if params[:order_by] == 'latest'
     render user_page
   end
 
