@@ -1,14 +1,17 @@
-<div id='suggestions'>
-  <div id='suggestion-header'>
-    <div class='container'>
-      <div class="row">
-        <div class="col-md-4 col-md-offset-2 col-sm-6 col-sm-offset-1">
-          <p class="text-xlarge text-bold" style='margin-bottom:20px'>What challenges should we tackle next?</p>
-          <p class='text-normal' style='margin-bottom:0px'>Tell us what challenges affect you most, and vote on additional challenges suggested by others.</p>
-        </div>
+<div id='suggestion-header'>
+  <div class='container'>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+
+        <h1 class='challenge-headline'>What challenges should we tackle next?</h1>
+        <h3 class='text-normal' style='margin-bottom: 0'>Tell us what challenges affect you most, and vote on additional challenges suggested by others.</h3>
+
       </div>
     </div>
   </div>
+</div>
+
+<div id='suggestion-body'>
   <div class='container'>
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
@@ -50,27 +53,9 @@
           </div>
         </div>
 
-        <div ng-switch="suggestions" ng-init="suggestions=<%= @ordering.present? %>">
-          <% @suggestions.order_by(@ordering).first(2).each do |suggestion| %>
-              <%= render file: 'suggestions/card', locals: { suggestion: suggestion } %>
-          <% end %>
-
-          <% if @suggestions.count > 2 %>
-            <div ng-show='suggestions'>
-              <% (@suggestions.order_by(@ordering) - @suggestions.order_by(@ordering).first(2)).each do |suggestion| %>
-                <%= render file: 'suggestions/card', locals: { suggestion: suggestion } %>
-              <% end %>
-            </div>
-          <% end %>
-
-          <% if @suggestions.count > 2 %>
-            <p class='center-block text-center'>
-              <%= link_to "Show #{@suggestions.count-2} More Suggestions", '#', "ng-hide" => "suggestions", "ng-click" => "suggestions=true", onclick: 'return false;', class: 'text-bold' %>
-
-              <%= link_to "Show Less", "#landing-suggest", "ng-show" => "suggestions", "ng-click" => "suggestions=false", "du-smooth-scroll" => true, offset: '100', onclick: 'return false;', class: 'text-bold' %>
-            </p>
-          <% end %>
-        </div>
+        <% @suggestions.order_by(@ordering).each do |suggestion| %>
+            <%= render file: 'suggestions/card', locals: { suggestion: suggestion } %>
+        <% end %>
 
       </div>
     </div>
