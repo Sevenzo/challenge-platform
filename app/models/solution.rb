@@ -5,6 +5,7 @@ class Solution < ActiveRecord::Base
   include Orderable
   include Sortable
   include Likeable
+  include Sortable
 
   belongs_to :solution_story
   belongs_to :user

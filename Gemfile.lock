@@ -95,10 +95,11 @@ GEM
       carrierwave (>= 0.7, < 2.0)
     carrierwave_backgrounder (0.4.2)
       carrierwave (~> 0.5)
-    client_side_validations (4.2.11)
+    chronic (0.10.2)
       jquery-rails (>= 3.1.2, < 5.0.0)
       js_regex (~> 1.0, >= 1.0.19)
       rails (>= 4.0.0, < 4.3.0)
+    client_side_validations (4.2.11)
     cocoon (1.2.9)
     coderay (1.1.1)
     coffee-rails (4.2.1)
@@ -122,6 +123,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     domain_name (0.5.20161129)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.1.1)
@@ -352,6 +354,11 @@ GEM
       rack-protection (>= 1.5.0)
       redis (~> 3.2, >= 3.2.1)
     simple_oauth (0.3.1)
+    simplecov (0.12.0)
+      docile (~> 1.1.0)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -400,6 +407,8 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
+    whenever (0.9.7)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
@@ -461,6 +470,7 @@ DEPENDENCIES
   select2-rails
   shoulda-matchers
   sidekiq
+  simplecov
   sinatra
   spring
   truncate_html
@@ -469,6 +479,7 @@ DEPENDENCIES
   unicorn
   web-console
   webmock
+  whenever
 
 RUBY VERSION
    ruby 2.3.1p112

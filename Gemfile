@@ -76,6 +76,9 @@ gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'exception_notification'
 
+## CRONS AND SCHEDULED EVENTS
+gem 'whenever'
+
 ## VALIDATOR HELPER
 gem 'public_suffix'
 
@@ -102,6 +105,7 @@ group :test do
   gem 'webmock'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
+  gem 'simplecov', :require => false
 end
 
 group :production do

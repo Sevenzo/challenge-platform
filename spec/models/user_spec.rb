@@ -14,6 +14,7 @@ describe User do
   it { is_expected.to belong_to(:referrer).class_name('User').with_foreign_key(:referrer_id) }
   it { is_expected.to have_many(:referrals).class_name('User').with_foreign_key(:referrer_id) }
   it { is_expected.to have_many(:identities).dependent(:destroy) }
+  it { is_expected.to have_many(:scheduled_notifications).dependent(:destroy) }
 
   it { is_expected.to validate_presence_of(:first_name) }
   it { is_expected.to validate_length_of(:first_name).is_at_most(255) }
@@ -126,6 +127,75 @@ describe User do
         user.recipes << recipe
         user.solutions << solution
         expect(user.has_draft_submissions?).to eq false
+      end
+    end
+
+    context 'digest notifications' do
+      context '#digest_options' do
+        it 'should get the digest frequency options as an array' do
+          expect(User.digest_options).to eq ['immediate', 'daily', 'weekly']
+        end
+      end
+
+      context '#digest_frequency_unit' do
+        let(:user) {
+          create(:user, email: 'foo@bar.baz', digest_frequency: digest_frequency)
+        }
+
+        context 'digest frequency unit aliased from a `daily` digest frequncy' do
+          let(:digest_frequency) { 'immediate' }
+
+          it 'should get the unit for `immediate` digest frequency' do
+            expect(user.digest_frequency_unit).to be_nil
+          end
+        end
+
+        context 'digest frequency unit aliased from a `daily` digest frequncy' do
+          let(:digest_frequency) { 'daily' }
+
+          it 'should get the unit for `daily` digest frequency' do
+            expect(user.digest_frequency_unit).to eq 'day'
+          end
+        end
+
+        context 'digest frequency unit aliased from a `weekly` digest frequncy' do
+          let(:digest_frequency) { 'weekly' }
+
+          it 'should get the unit for `daily` digest frequency' do
+            expect(user.digest_frequency_unit).to eq 'week'
+          end
+        end
+      end
+
+      context '#immediate' do
+        let(:user) {
+          create(:user, email: 'foo@bar.baz') # digest_frequency defaults to `immediate`
+        }
+
+        it 'should create a user with a daily `digest_frequency`' do
+          expect(user.immediate?).to eq true
+          expect(user.scheduled_notifications.size).to eq 0
+        end
+      end
+
+      context '#dialy' do
+        let(:user) {
+          create(:user, email: 'foo@bar.baz', digest_frequency: 'daily')
+        }
+
+        it 'should create a user with a daily `digest_frequency`' do
+          expect(user.daily?).to eq true
+        end
+      end
+
+      context '#weekly' do
+        let(:user) {
+          create(:user, email: 'foo@bar.baz', digest_frequency: 'weekly')
+        }
+
+        it 'should create a user with a weekly `digest_frequency`' do
+          expect(user.weekly?).to eq true
+        end
       end
     end
   end

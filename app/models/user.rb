@@ -3,16 +3,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:twitter, :facebook]
 
-  ## Rails Admin
-  rails_admin do
-    configure :password do
-      read_only true
-    end
-    configure :password_confirmation do
-      read_only true
-    end
-  end
-
   has_and_belongs_to_many :states
   has_and_belongs_to_many :districts
   has_and_belongs_to_many :schools
@@ -24,12 +14,16 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :suggestions
   has_many :identities, dependent: :destroy
+  has_many :scheduled_notifications, dependent: :destroy
   belongs_to :referrer, class_name: 'User', foreign_key: :referrer_id
   has_many :referrals,  class_name: 'User', foreign_key: :referrer_id
   store_accessor :notifications, :comment_replied, :comment_posted, :comment_followed
 
   mount_uploader :avatar, AvatarUploader
   process_in_background :avatar unless Rails.env.development?
+
+  # Enumerating options for scheduled digest emails
+  enum digest_frequency: [ :immediate, :daily, :weekly ]
 
   acts_as_voter
   mailkick_user
@@ -179,6 +173,22 @@ class User < ActiveRecord::Base
     self.remote_avatar_url = best_avatar_url
     self.save!(validate: false)
   rescue
+  end
+
+  ##
+  # gets the defaults for email digest frequency
+  #
+  def self.digest_options
+    digest_frequencies.keys
+  end
+
+  def digest_frequency_unit
+    case true
+    when daily?
+      'day'
+    when weekly?
+      'week'
+    end
   end
 
   def traits

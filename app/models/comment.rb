@@ -2,6 +2,7 @@ class Comment < ActiveRecord::Base
   include Embeddable
   include URLNormalizer
   include Likeable
+
   default_scope { order(created_at: :asc) }
   scope :find_comments_by_user, -> (user) { where(user_id: user.id) }
   scope :find_comments_for_commentable, -> (type, id) { where(commentable_type: type.constantize, commentable_id: id) }
@@ -9,6 +10,7 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :commentable, polymorphic: true
   has_one :feature, as: :featureable
+  has_many :scheduled_notifications, dependent: :destroy
 
   acts_as_votable
   acts_as_nested_set scope: [:commentable_id, :commentable_type]
@@ -53,7 +55,7 @@ class Comment < ActiveRecord::Base
     ## PARENT COMMENT USER
     parent_comment_user = parent ? parent.user : nil
     if parent_comment_user && parent_comment_user != user && parent_comment_user.comment_replied.true?
-      CommentMailer.delay.replied(id)
+      queue_notification(:replied, parent_comment_user)
       replied_notification_sent = true
     end
 
@@ -61,7 +63,7 @@ class Comment < ActiveRecord::Base
     commentable_user = commentable.user ? commentable.user : nil
     if commentable_user && commentable_user != user && commentable_user.comment_posted.true? &&
        (commentable_user == parent_comment_user ? !replied_notification_sent : true)
-      CommentMailer.delay.posted(id)
+      queue_notification(:posted, commentable_user)
       posted_notification_sent = true
     end
 
@@ -76,7 +78,7 @@ class Comment < ActiveRecord::Base
           end
          )
 
-        CommentMailer.delay.followed(id, sibling_comment_user.id)
+        queue_notification(:followed, sibling_comment_user)
       end
     end
   end
@@ -105,4 +107,15 @@ private
     ExceptionNotifier.notify_exception(e)
   end
 
+
+  def queue_notification(type, owner)
+    if not owner.immediate?
+      return scheduled_notifications.create(
+        user_id: owner.id,
+        notification_type: scheduled_notifications.notification_types[type]
+      )
+    end
+
+    CommentMailer.delay.send(type, [id, owner.id]) unless Rails.env.development?
+  end
 end

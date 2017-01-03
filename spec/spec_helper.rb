@@ -19,7 +19,10 @@
 require 'webmock/rspec'
 require 'database_cleaner'
 require 'factory_girl'
+require 'simplecov'
+SimpleCov.start 'rails'
 WebMock.disable_net_connect!(allow_localhost: true)
+
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

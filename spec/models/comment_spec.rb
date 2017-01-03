@@ -21,6 +21,7 @@ describe Comment do
   it { is_expected.to belong_to(:commentable) }
   it { is_expected.to validate_presence_of(:body) }
   it { is_expected.to have_one :feature }
+  it { is_expected.to have_many(:scheduled_notifications).dependent(:destroy) }
 
   it_behaves_like 'embeddable'
   it_behaves_like 'normalizable'
@@ -160,5 +161,6 @@ describe Comment do
         expect(Sidekiq::Extensions::DelayedMailer.jobs.size).to eq 9
       end
     end
+
   end
 end
