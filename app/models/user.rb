@@ -3,16 +3,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:twitter, :facebook]
 
-  ## Rails Admin
-  rails_admin do
-    configure :password do
-      read_only true
-    end
-    configure :password_confirmation do
-      read_only true
-    end
-  end
-
   has_and_belongs_to_many :states
   has_and_belongs_to_many :districts
   has_and_belongs_to_many :schools
