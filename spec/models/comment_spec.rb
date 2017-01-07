@@ -160,5 +160,6 @@ describe Comment do
         expect(Sidekiq::Extensions::DelayedMailer.jobs.size).to eq 9
       end
     end
+
   end
 end

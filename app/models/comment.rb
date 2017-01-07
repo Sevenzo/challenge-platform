@@ -2,6 +2,7 @@ class Comment < ActiveRecord::Base
   include Embeddable
   include URLNormalizer
   include Likeable
+
   default_scope { order(created_at: :asc) }
   scope :find_comments_by_user, -> (user) { where(user_id: user.id) }
   scope :find_comments_for_commentable, -> (type, id) { where(commentable_type: type.constantize, commentable_id: id) }

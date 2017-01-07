@@ -15,7 +15,7 @@ RailsAdmin.config do |config|
   config.authorize_with do |controller|
     unless current_user.try(:admin?)
       flash[:danger] = "Sorry, you're not authorized to access that page."
-      redirect_to main_app.root_path 
+      redirect_to main_app.root_path
     end
   end
 
@@ -38,5 +38,15 @@ RailsAdmin.config do |config|
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+  end
+
+  ## Rails Admin for users management
+  config.model 'User' do
+    configure :password do
+      read_only true
+    end
+    configure :password_confirmation do
+      read_only true
+    end
   end
 end
