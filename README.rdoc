@@ -58,3 +58,14 @@ You will require a file called `.env` in the root of the folder.  The following 
 == Starting the server
 
   foreman s
+
+
+== Configuring cron jobs
+
+Cron jobs are set up with the help of the `whenever` gem and rely on
+`config/schedule.rb` configuration to run.
+Instead of populating the issued date and time as an environment variable,
+review the given file and adapt to a more suitable configuration.
+After changes the command `whenever -w` should be ran to update user's crontab.
+`whenever` supports environment specific configuration so, be sure to run
+`whenever -s environment=REPLACE_WITH_ENVIRONMENT -w`.
