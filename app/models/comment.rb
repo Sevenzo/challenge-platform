@@ -10,6 +10,7 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :commentable, polymorphic: true
   has_one :feature, as: :featureable
+  has_many :scheduled_notifications, dependent: :destroy
 
   acts_as_votable
   acts_as_nested_set scope: [:commentable_id, :commentable_type]
