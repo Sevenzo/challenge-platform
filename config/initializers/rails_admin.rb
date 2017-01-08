@@ -48,5 +48,9 @@ RailsAdmin.config do |config|
     configure :password_confirmation do
       read_only true
     end
+
+    User.stored_attributes[:notifications].each do |field|
+      configure field, :text
+    end
   end
 end

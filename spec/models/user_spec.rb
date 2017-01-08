@@ -130,4 +130,40 @@ describe User do
     end
   end
 
+  describe '#digest_options' do
+    it 'should get the digest frequency options as an array' do
+      expect(User.digest_options).to eq ['immediately', 'daily', 'weekly']
+    end
+  end
+
+  describe '#digest_frequency_unit' do
+    let(:user) {
+      create(:user, email: 'foo@bar.baz', digest_frequency: digest_frequency)
+    }
+
+    context 'digest frequency unit aliased from a `immediately` digest frequncy' do
+      let(:digest_frequency) { 'immediately' }
+
+      it 'should get the unit for `immediately` digest frequency' do
+        expect(user.digest_frequency_unit).to be_nil
+      end
+    end
+
+    context 'digest frequency unit aliased from a `daily` digest frequncy' do
+      let(:digest_frequency) { 'daily' }
+
+      it 'should get the unit for `daily` digest frequency' do
+        expect(user.digest_frequency_unit).to eq 'day'
+      end
+    end
+
+    context 'digest frequency unit aliased from a `weekly` digest frequncy' do
+      let(:digest_frequency) { 'weekly' }
+
+      it 'should get the unit for `daily` digest frequency' do
+        expect(user.digest_frequency_unit).to eq 'week'
+      end
+    end
+  end
+
 end
