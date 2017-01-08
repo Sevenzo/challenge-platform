@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
       @comment.user = current_user
       if @comment.save
         flash[:success] = object_flash_message_for(@comment)
-        @comment.send_notifications unless Rails.env.development?
+        @comment.send_notifications
         redirect_to after_update_object_path_for(@comment)
       else
         render :new
