@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206160651) do
+ActiveRecord::Schema.define(version: 20161209015943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -435,6 +435,19 @@ ActiveRecord::Schema.define(version: 20161206160651) do
 
   add_index "redactor_assets", ["assetable_type", "assetable_id"], name: "idx_redactor_assetable", using: :btree
   add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type", using: :btree
+
+  create_table "scheduled_notifications", force: :cascade do |t|
+    t.integer  "notification_type", default: 0
+    t.integer  "user_id",                       null: false
+    t.integer  "comment_id",                    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "scheduled_notifications", ["comment_id"], name: "index_scheduled_notifications_on_comment_id", using: :btree
+  add_index "scheduled_notifications", ["notification_type"], name: "index_scheduled_notifications_on_notification_type", using: :btree
+  add_index "scheduled_notifications", ["updated_at"], name: "index_scheduled_notifications_on_updated_at", using: :btree
+  add_index "scheduled_notifications", ["user_id"], name: "index_scheduled_notifications_on_user_id", using: :btree
 
   create_table "schools", force: :cascade do |t|
     t.string   "nces_id"

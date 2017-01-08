@@ -14,6 +14,7 @@ describe User do
   it { is_expected.to belong_to(:referrer).class_name('User').with_foreign_key(:referrer_id) }
   it { is_expected.to have_many(:referrals).class_name('User').with_foreign_key(:referrer_id) }
   it { is_expected.to have_many(:identities).dependent(:destroy) }
+  it { is_expected.to have_many(:scheduled_notifications).dependent(:destroy) }
 
   it { is_expected.to validate_presence_of(:first_name) }
   it { is_expected.to validate_length_of(:first_name).is_at_most(255) }
@@ -162,6 +163,31 @@ describe User do
 
       it 'should get the unit for `daily` digest frequency' do
         expect(user.digest_frequency_unit).to eq 'week'
+      end
+    end
+
+    context '#immediately' do
+      let(:user) { create(:user, email: 'foo@bar.baz') }
+
+      it 'should create a user with a immediately `digest_frequency`' do
+        expect(user.immediately?).to eq true
+        expect(user.scheduled_notifications.size).to eq 0
+      end
+    end
+
+    context '#daily' do
+      let(:user) { create(:user, email: 'foo@bar.baz', digest_frequency: 'daily') }
+
+      it 'should create a user with a daily `digest_frequency`' do
+        expect(user.daily?).to eq true
+      end
+    end
+
+    context '#weekly' do
+      let(:user) { create(:user, email: 'foo@bar.baz', digest_frequency: 'weekly') }
+
+      it 'should create a user with a weekly `digest_frequency`' do
+        expect(user.weekly?).to eq true
       end
     end
   end
