@@ -55,7 +55,7 @@ class Comment < ActiveRecord::Base
     ## PARENT COMMENT USER
     parent_comment_user = parent ? parent.user : nil
     if parent_comment_user && parent_comment_user != user && parent_comment_user.comment_replied.true?
-      CommentMailer.delay.replied(id)
+      queue_notification(:replied, parent_comment_user)
       replied_notification_sent = true
     end
 
@@ -63,7 +63,7 @@ class Comment < ActiveRecord::Base
     commentable_user = commentable.user ? commentable.user : nil
     if commentable_user && commentable_user != user && commentable_user.comment_posted.true? &&
        (commentable_user == parent_comment_user ? !replied_notification_sent : true)
-      CommentMailer.delay.posted(id)
+      queue_notification(:posted, commentable_user)
       posted_notification_sent = true
     end
 
@@ -78,7 +78,7 @@ class Comment < ActiveRecord::Base
           end
          )
 
-        CommentMailer.delay.followed(id, sibling_comment_user.id)
+        queue_notification(:followed, sibling_comment_user)
       end
     end
   end
@@ -105,6 +105,15 @@ private
     commentable.update_column(:comments_count, commentable.comment_threads.count)
   rescue => e
     ExceptionNotifier.notify_exception(e)
+  end
+
+
+  def queue_notification(type, user)
+    if user.immediately?
+      CommentMailer.delay.send(type, [id, user.id]) unless Rails.env.development?
+    else
+      scheduled_notifications.create(user: user, notification_type: scheduled_notifications.notification_types[type])
+    end
   end
 
 end
