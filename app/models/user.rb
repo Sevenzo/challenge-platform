@@ -21,6 +21,9 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   process_in_background :avatar unless Rails.env.development?
 
+  # Enumerating options for scheduled digest emails
+  enum digest_frequency: [ :immediately, :daily, :weekly ]
+
   acts_as_voter
   mailkick_user
 
@@ -169,6 +172,22 @@ class User < ActiveRecord::Base
     self.remote_avatar_url = best_avatar_url
     self.save!(validate: false)
   rescue
+  end
+
+  ##
+  # gets the defaults for email digest frequency
+  #
+  def self.digest_options
+    digest_frequencies.keys
+  end
+
+  def digest_frequency_unit
+    case true
+    when daily?
+      'day'
+    when weekly?
+      'week'
+    end
   end
 
   def traits

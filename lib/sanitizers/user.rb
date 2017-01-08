@@ -44,7 +44,8 @@ class User::ParameterSanitizer < Devise::ParameterSanitizer
       { school_ids: [] },
       :comment_posted,
       :comment_replied,
-      :comment_followed
+      :comment_followed,
+      :digest_frequency
     ]
   end
 
