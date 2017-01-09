@@ -107,12 +107,14 @@ private
     ExceptionNotifier.notify_exception(e)
   end
 
-
-  def queue_notification(type, user)
-    if user.immediately?
-      CommentMailer.delay.send(type, [id, user.id])
+  def queue_notification(type, resource)
+    if resource.immediately?
+      CommentMailer.delay.send(type, id, resource.id)
     else
-      scheduled_notifications.create(user: user, notification_type: scheduled_notifications.notification_types[type])
+      scheduled_notifications.create!(
+        user: resource,
+        notification_type: scheduled_notifications.notification_types[type]
+      )
     end
   end
 

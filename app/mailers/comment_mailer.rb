@@ -22,7 +22,7 @@ class CommentMailer < ApplicationMailer
   def digest(comment_ids, user_id)
     @comments = comment_ids.transform_values { |ids| Comment.where(id: ids) unless ids.empty? }
     @resource = User.find(user_id)
-    @subject = "#{@resource.digest_frequency.capitalize} digest email for #{@resource.display_name}."
+    @subject = "#{ENV.fetch('COMPANY_NAME')} #{@resource.digest_frequency} digest email for #{@resource.display_name}."
   end
 
 end

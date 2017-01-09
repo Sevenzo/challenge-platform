@@ -67,6 +67,19 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.smtp_settings = {
+    port: '587',
+    address: ENV.fetch('POSTMARK_SMTP_SERVER'),
+    user_name: ENV.fetch('POSTMARK_API_TOKEN'),
+    password: ENV.fetch('POSTMARK_API_TOKEN'),
+    domain: 'heroku.com',
+    authentication: :cram_md5,
+    enable_starttls_auto: true
+  }
+  config.action_mailer.logger = nil
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
