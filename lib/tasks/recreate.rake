@@ -12,6 +12,6 @@ namespace :db do
     Rake::Task['db:seed'].invoke
     Sidekiq::Queue.new.clear
     Sidekiq::RetrySet.new.clear
-    sh "whenever -s environment=#{Rails.env} -w"
+    # sh "whenever -s environment=#{Rails.env} -w"
   end
 end
