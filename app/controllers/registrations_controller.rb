@@ -22,9 +22,16 @@ class RegistrationsController < Devise::RegistrationsController
     # If we do not, the existing resource values will be the same as the params.
     avatar_updated = avatar_updated?
 
+    # checking if it's digest frequency change back to immediately
+    digest_frequency_updated = digest_frequency_updated?
+
     super do |resource|
       if resource.errors.empty?
         update_avatar(resource) if avatar_updated
+
+        # flushing pending notifications for users that decided to go back to
+        # immediately digest frequency
+        Notifications.flush(resource) if digest_frequency_updated
       end
     end
   end
@@ -82,4 +89,13 @@ private
     twitter_avatar || facebook_avatar || remove_avatar
   end
 
+  #
+  # Checks if a user changed its email digest frequency back to `immediately`.
+  # In that case, after update, a flush must happen for pending queued
+  # notifications
+  def digest_frequency_updated?
+    frequency = params[:user][:digest_frequency]
+
+    frequency == 'immediately' && frequency != resource.digest_frequency
+  end
 end
