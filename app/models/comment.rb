@@ -110,7 +110,7 @@ private
 
   def queue_notification(type, user)
     if user.immediately?
-      CommentMailer.delay.send(type, [id, user.id]) unless Rails.env.development?
+      CommentMailer.delay.send(type, [id, user.id])
     else
       scheduled_notifications.create(user: user, notification_type: scheduled_notifications.notification_types[type])
     end
