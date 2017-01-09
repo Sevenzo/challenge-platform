@@ -76,9 +76,6 @@ gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'exception_notification'
 
-## CRONS AND SCHEDULED EVENTS
-gem 'whenever'
-
 ## VALIDATOR HELPER
 gem 'public_suffix'
 
