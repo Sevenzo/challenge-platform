@@ -11,8 +11,8 @@ All dependencies should be listed otherwise in the Gemfile.
 
 == Installation
 
-  `bundle install`
-  `gem install mailcatcher`
+  bundle install
+  gem install mailcatcher
 
 == .env configuration
 
