@@ -1,48 +1,23 @@
-<%= render partial: 'mailers/shared/text', locals: { content: "Here is your recap for the last #{@resource.digest_frequency_unit}:" }, cache: true %>
-<br />
+<%= render partial: 'mailers/shared/text', locals: { content: "Here is your #{@resource.digest_frequency} digest of comments left on your contributions on #{ENV.fetch('COMPANY_NAME')}:" }, cache: true %>
 
 <% if @comments[:followed].present? %>
-  <%= render partial: 'mailers/shared/text', locals: { content: "These were the <b>followed</b> comments for the last #{@resource.digest_frequency_unit}:" }, cache: true %>
-
   <% @comments[:followed].each do |comment| %>
-    <%= render partial: 'mailers/shared/text', locals: { content: "One of your esteemed collaborators on #{ENV.fetch('APP_NAME')} added a comment in the discussion of #{link_to comment.commentable_title.truncate(30), after_update_object_url_for(comment.commentable)}:" }, cache: true %>
-
-    <%= render partial: 'mailers/shared/blockquote', locals: { quote: comment.body, source: "#{comment.user.display_name}, #{comment.created_at.strftime("%B %d, %Y")}" }, cache: true %>
-
-    <%= render partial: 'mailers/shared/button', locals: { url: after_update_object_url_for(comment, {anchor: "comment-#{comment.id}", temporal_parent_id: comment.id}), action: 'View and Reply' }, cache: true %>
+    <%= render partial: 'mailers/shared/blockquote', locals: { quote: comment.body, source: "#{comment.user.display_name} added a comment in the discussion of #{link_to comment.commentable_title.truncate(30), after_update_object_url_for(comment.commentable)}, #{comment.created_at.strftime("%B %d, %Y")}" }, cache: true %>
   <% end %>
-
-  <br />
 <% end %>
 
 <% if @comments[:posted].present? %>
-  <%= render partial: 'mailers/shared/text', locals: { content: "These were the <b>posted</b> comments for the last #{@resource.digest_frequency_unit}:" }, cache: true %>
-
   <% @comments[:posted].each do |comment| %>
-    <%= render partial: 'mailers/shared/text', locals: { content: "One of your esteemed collaborators on #{ENV.fetch('APP_NAME')} posted a comment on your #{comment.commentable_type} #{link_to comment.commentable_title.truncate(30), after_update_object_url_for(comment.commentable)}:" }, cache: true %>
-
-    <%= render partial: 'mailers/shared/blockquote', locals: { quote: comment.body, source: "#{comment.user.display_name}, #{comment.created_at.strftime("%B %d, %Y")}" }, cache: true %>
-
-    <%= render partial: 'mailers/shared/button', locals: { url: after_update_object_url_for(comment, {anchor: "comment-#{comment.id}", temporal_parent_id: comment.id}), action: 'View and Reply' }, cache: true %>
+    <%= render partial: 'mailers/shared/blockquote', locals: { quote: comment.body, source: "#{comment.user.display_name} posted a comment on #{link_to comment.commentable_title.truncate(30), after_update_object_url_for(comment.commentable)}, #{comment.created_at.strftime("%B %d, %Y")}" }, cache: true %>
   <% end %>
-
-  <br />
 <% end %>
 
 <% if @comments[:replied].present? %>
-  <%= render partial: 'mailers/shared/text', locals: { content: "These were the <b>replied</b> comments for the last #{@resource.digest_frequency}:" }, cache: true %>
-
   <% @comments[:replied].each do |comment| %>
-    <%= render partial: 'mailers/shared/text', locals: { content: "One of your esteemed collaborators on #{ENV.fetch('APP_NAME')} replied to your comment on the #{comment.commentable_type} #{link_to comment.commentable_title.truncate(30), after_update_object_path_for(comment.commentable)}:" }, cache: true %>
-
-    <%= render partial: 'mailers/shared/blockquote', locals: { quote: comment.body, source: "#{comment.user.display_name}, #{comment.created_at.strftime("%B %d, %Y")}" }, cache: true %>
-
-    <%= render partial: 'mailers/shared/button', locals: { url: after_update_object_url_for(comment, {anchor: "comment-#{comment.id}", temporal_parent_id: comment.id}), action: 'View and Reply' }, cache: true %>
+    <%= render partial: 'mailers/shared/blockquote', locals: { quote: comment.body, source: "#{comment.user.display_name} replied to your comment on #{link_to comment.commentable_title.truncate(30), after_update_object_url_for(comment.commentable)}, #{comment.created_at.strftime("%B %d, %Y")}" }, cache: true %>
   <% end %>
-
-  <br />
 <% end %>
 
 <% provide :callout do %>
-  <%= render partial: 'mailers/shared/callout', locals: { callout: "Don't want to receive these kinds of notifications? #{link_to "Unsubscribe from your settings page", edit_user_registration_url(setting: 'account'), style: 'color:white'}." }, cache: true %>
+  <%= render partial: 'mailers/shared/callout', locals: { callout: "Don't want to receive these kinds of notifications or want to change how often you receive them? Simply update your notification preferences from #{link_to "your settings page.", edit_user_registration_url(setting: 'account', anchor: 'notifications'), style: 'color:white'}." }, cache: true %>
 <% end %>
