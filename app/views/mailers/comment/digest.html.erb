@@ -19,5 +19,5 @@
 <% end %>
 
 <% provide :callout do %>
-  <%= render partial: 'mailers/shared/callout', locals: { callout: "Don't want to receive these kinds of notifications? #{link_to "Unsubscribe from your settings page", edit_user_registration_url(setting: 'account'), style: 'color:white'}." }, cache: true %>
+  <%= render partial: 'mailers/shared/callout', locals: { callout: "Don't want to receive these kinds of notifications or want to change how often you receive them? Simply update your notification preferences from #{link_to "your settings page.", edit_user_registration_url(setting: 'account', anchor: 'notifications'), style: 'color:white'}." }, cache: true %>
 <% end %>
