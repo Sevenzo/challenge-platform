@@ -36,7 +36,7 @@ module Notifications
   def self.flush(user)
     return if user.scheduled_notifications.empty?
 
-    CommentMailer.delay.digest(scheduled_comments(user), user.id) unless Rails.env.development?
+    CommentMailer.delay.digest(scheduled_comments(user), user.id)
 
     user.scheduled_notifications.destroy_all
   end
