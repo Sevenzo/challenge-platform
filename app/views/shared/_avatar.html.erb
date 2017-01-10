@@ -5,9 +5,9 @@
 
 <% if user %>
   <% link_path = user_path(user) unless local_assigns[:link_path] %>
-  
+
   <% if user.avatar.present? %>
-    <%= link_to image_tag(user.avatar.profile.url,  class: 'img-circle', style: avatar_style.html_safe), link_path %>
+    <%= link_to image_tag(user.avatar.profile.url,  class: 'img-circle', style: avatar_style.html_safe), link_path, data: { toggle: "tooltip", html: true }, title: "<b>#{user.first_name} #{user.last_name}</b><br>#{user.role},<br>#{user.organization}" %>
   <% else %>
     <% if user_signed_in? && current_user == user %>
       <%= link_to link_path do %>
