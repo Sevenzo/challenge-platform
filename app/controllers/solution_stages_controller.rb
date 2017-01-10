@@ -4,7 +4,7 @@ class SolutionStagesController < ApplicationController
     @challenge = Challenge.find(params[:challenge_id])
     @solution_stage = @challenge.solution_stage
     @solution_stories = @solution_stage.solution_stories
-    @ordering = 'created_at DESC' if params[:order_by] == 'latest'
+    @ordering = params[:order_by] == 'popular' ? '' : 'created_at DESC'
   end
 
 end

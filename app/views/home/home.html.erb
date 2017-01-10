@@ -59,7 +59,7 @@
             <ul class='list-sort'>
               <li>
                 <%= link_to suggestions_path(order_by: "popular", anchor: 'suggestion-list') do %>
-                  <span class="badge badge-suggestion selected">
+                  <span class="badge badge-suggestion">
                     <span class='headline text-suggestion text-xsmall'>
                       <%= fa_icon 'fire' %>
                       Popular
@@ -69,7 +69,7 @@
               </li>
               <li>
                 <%= link_to suggestions_path(order_by: "latest", anchor: 'suggestion-list') do %>
-                  <span class="badge badge-suggestion">
+                  <span class="badge badge-suggestion selected">
                     <span class='headline text-suggestion text-xsmall'>
                       <%= fa_icon 'clock-o' %>
                       Latest

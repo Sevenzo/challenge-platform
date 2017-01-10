@@ -22,7 +22,7 @@
             <ul class='list-sort'>
               <li>
                 <%= link_to suggestions_path(order_by: "popular", anchor: 'suggestion-list') do %>
-                  <span class="badge badge-suggestion <%= 'selected' unless params[:order_by] == 'latest' %>">
+                  <span class="badge badge-suggestion <%= 'selected' if params[:order_by] == 'popular' %>">
                     <span class='headline text-suggestion text-xsmall'>
                       <%= fa_icon 'fire' %>
                       Popular
@@ -32,7 +32,7 @@
               </li>
               <li>
                 <%= link_to suggestions_path(order_by: "latest", anchor: 'suggestion-list') do %>
-                  <span class="badge badge-suggestion <%= 'selected' if params[:order_by] == 'latest' %>">
+                  <span class="badge badge-suggestion <%= 'selected' unless params[:order_by] == 'popular' %>">
                     <span class='headline text-suggestion text-xsmall'>
                       <%= fa_icon 'clock-o' %>
                       Latest

@@ -65,7 +65,7 @@
             <div class='col-xs-3'>
               <ul class='list-sort'>
                 <li>
-                  <%= link_to challenge_solution_stage_path(@challenge, @solution_stage, order_by: "", anchor: "solution_stage-content") do %>
+                  <%= link_to challenge_solution_stage_path(@challenge, @solution_stage, order_by: "popular", anchor: "solution_stage-content") do %>
                     <span class="badge badge-solution <%= 'selected' if @ordering.blank? %>">
                       <span class='headline text-solution text-xsmall'>
                         <%= fa_icon 'fire' %>

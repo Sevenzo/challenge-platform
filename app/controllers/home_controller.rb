@@ -2,7 +2,8 @@ class HomeController < ApplicationController
 
   def index
     @challenge = Challenge.featured
-    @suggestions = Suggestion.all
+    @suggestions = Suggestion.all.order_by('created_at DESC')
+
     render user_page
   end
 

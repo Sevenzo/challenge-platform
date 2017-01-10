@@ -5,7 +5,7 @@ class SuggestionsController < ApplicationController
 
   def index
     @suggestions = Suggestion.all
-    @ordering = params[:order_by] == 'latest' ? 'created_at DESC' : 'cached_votes_total DESC'
+    @ordering = params[:order_by] == 'popular' ? 'cached_votes_total DESC' : 'created_at DESC'
   end
 
   def new
