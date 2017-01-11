@@ -5,7 +5,7 @@ class IdeaStagesController < ApplicationController
     @idea_stage = @challenge.idea_stage
     @problem_statements = @idea_stage.problem_statements
     @featured_ideas = @idea_stage.ideas.where(featured: true)
-    @ordering = params[:order_by] == 'popular' ? '' : 'published_at DESC'
+    @ordering = 'published_at DESC' unless params[:order_by] == 'popular'
   end
 
 end

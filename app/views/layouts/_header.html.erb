@@ -16,6 +16,7 @@
         <ul class="nav navbar-nav">
           <%= nav_link "Challenges", challenges_path %>
           <%= nav_link "About Us", about_path %>
+          <%= nav_link "Blog", ENV.fetch('MEDIUM_URL') %>
           <%= nav_link "Donate", ENV.fetch('DONATE_URL') if ENV['DONATE_URL'].present? %>
           <%= nav_link "Newsletter", ENV.fetch('NEWSLETTER_URL') if ENV['NEWSLETTER_URL'].present? %>
           <%= nav_link "Activity", user_path(current_user) if user_signed_in? %>
