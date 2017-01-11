@@ -5,7 +5,7 @@ class ExperienceStagesController < ApplicationController
     @experience_stage = @challenge.experience_stage
     @themes = @experience_stage.themes
     @featured_experiences = @experience_stage.experiences.where(featured: true)
-    @ordering = params[:order_by] == 'popular' ? '' : 'published_at DESC'
+    @ordering = 'published_at DESC' unless params[:order_by] == 'popular'
   end
 
 end
