@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   mount RedactorRails::Engine => '/redactor_rails'
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web, at: 'sidekiq'
-    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+    mount PgHero::Engine, at: 'pghero'
+    mount RailsAdmin::Engine, at: 'admin', as: 'rails_admin'
   end
 
   devise_for :users, controllers: {
