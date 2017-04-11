@@ -70,6 +70,7 @@ gem 'newrelic_rpm'
 gem 'memcachier'
 gem 'dalli'
 gem 'multi_fetch_fragments'
+gem 'pghero'
 
 ## DELAYED JOBS
 gem 'sidekiq'
