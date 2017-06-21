@@ -72,11 +72,11 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
     port: '587',
-    address: ENV.fetch('POSTMARK_SMTP_SERVER'),
-    user_name: ENV.fetch('POSTMARK_API_TOKEN'),
-    password: ENV.fetch('POSTMARK_API_TOKEN'),
+    address: 'smtp.sendgrid.net',
+    user_name: ENV.fetch('SENDGRID_USERNAME'),
+    password: ENV.fetch('SENDGRID_PASSWORD'),
     domain: 'heroku.com',
-    authentication: :cram_md5,
+    authentication: :plain,
     enable_starttls_auto: true
   }
   config.action_mailer.logger = nil
